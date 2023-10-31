@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<base th:href="@{/}">
+
+<head th:replace="zlayout/fragments :: html_head"></head>
+
+
+<body>
+    <!-- loader -->
+    <div id="loader" th:fragment="loader">
+        <span>
+            <img src="/assets/images/loading.gif" alt="img/loading">
+        </span>
+    </div>
+    <!-- end -->
+
+    <!-- ẩn hiện cart small, cart chính nằm bên dưới phần nav-->
+    <div class="offcanvas offcanvas-end cart_box_small" tabindex="-1" id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel" th:fragment="cartSmall">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">
+                <i class="bi bi-cart-plus"></i> Giỏ Hàng
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="cart_small card">
+                <div class="card_small" style="max-width: 540px; border: none;">
+                    <div class="row g-0">
+                        <div class="col-md-3 img_cart_small mb-0">
+                            <img src="/assets/images/buger.jpg" class="img-fluid" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <span class="delete_cart_small"><i class="bi bi-x"></i></span>
+                            <div class="card-body">
+                                <h5 class="card-title">Hamburger</h5>
+                                <p class="card-text">35.000đ</p>
+                                <!-- <p class="card-text1 "><small class="text-body-secondary">Last updated 3 mins ago</small> -->
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="color: rgb(151, 151, 151);">
+                </div>
+                <div class="card_small" style="max-width: 540px; border: none;">
+                    <div class="row g-0">
+                        <div class="col-md-3 img_cart_small mb-0">
+                            <img src="/assets/images/gallary_5.jpg" class="img-fluid" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <span class="delete_cart_small"><i class="bi bi-x"></i></span>
+                            <div class="card-body">
+                                <h5 class="card-title">Hamburger</h5>
+                                <p class="card-text">35.000đ</p>
+                                <!-- <p class="card-text1 "><small class="text-body-secondary">Last updated 3 mins ago</small> -->
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="color: rgb(151, 151, 151);">
+                </div>
+            </div>
+            <div class="sum_cart_small">
+                <span>Tổng: </span> <span class="sum-price-small">70.000đ</span>
+            </div>
+            <hr>
+            <div class="box_btn">
+                <a th:href="@{user/cart}"><button type="submit" class="btn btn-danger btn-cart-small">Giỏ
+                        Hàng</button></a> <a href="#menu-food"><button type="submit"
+                        class="btn btn-menu-small">Menu</button></a>
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+</body>
+
+</html>

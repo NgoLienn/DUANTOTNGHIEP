@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- <definition name="web.user" template="/WEB-INF/layout/index.jsp"> <put-attribute 
+		name="header" value="/WEB-INF/layout/_header.jsp" /> <put-attribute name="menu" 
+		value="/WEB-INF/layout/_menu.jsp" /> <put-attribute name="body" value="" 
+		/> <put-attribute name="aside" value="/WEB-INF/layout/_aside.jsp" /> <put-attribute 
+		name="footer" value="/WEB-INF/layout/_footer.jsp" /> </definition> -->
+
+	<!-- Definition HOME layout -->
+
+	<definition name="abc/*" extends="web.user">
+		<put-attribute name="body"
+			value="/WEB-INF/views/page/xyz/{1}.jsp" />
+		<!---->
+	</definition>
+	<definition name="abc/*" extends="web.user">
+		<put-attribute name="body"
+			value="/WEB-INF/views/page/user/index.html " />
+		<!--value="/WEB-INF/views/xyz/{1}.jsp" -->
+	</definition>
+	<!-- Definition Admin layout -->
+	<definition name="web.admin">
+		<put-attribute name="body"
+			value="/WEB-INF/views/page/admin/dashboard.html " />
+	</definition>
+	<!-- Definition QLSP layout -->
+	<definition name="web.tables">
+		<put-attribute name="body"
+			value="/WEB-INF/views/page/admin/tables.html " />
+	</definition>
+
+	<!-- Definition PRODUCTDETAIL layout -->
+	<definition name="web.product_detail">
+		<put-attribute name="body"
+			value="/WEB-INF/views/home/produc_detail.html " />
+	</definition>
+
+	<!-- Definition CART layout -->
+	<definition name="web.cart">
+		<put-attribute name="body"
+			value="/WEB-INF/views/page/user/cart.html " />
+	</definition>
+
+	<!-- <definition name="*/*" extends="web.user"> <put-attribute name="body" 
+		value="/WEB-INF/views/{1}/{2}.jsp" /> -->
+	<!-- /WEB-INF/views/home/index.jsp -->
+	<!--</definition> -->
+
+
+	<!-- Definition Admin layout -->
+	<!--<definition
+	name="web.admin" template="/WEB-INF/views/admin/layout/index.jsp"> 
+		<put-attribute name="header" value="/WEB-INF/views/admin/layout/_header.jsp" 
+		/> <put-attribute name="menu" value="/WEB-INF/views/admin/layout/_menu.jsp" 
+		/> <put-attribute name="body" value="" /> <put-attribute name="aside"
+	value="/WEB-INF/views/admin/layout/_aside.jsp" 
+		/> <put-attribute name="footer" value="/WEB-INF/views/admin/layout/_footer.jsp" 
+		/> </definition> <definition name="admin/*/*" extends="web.admin"> <put-attribute 
+		name="body" value="/WEB-INF/views/admin/{1}/{2}.jsp" /> -->
+	<!-- /WEB-INF/views/admin/home/index.jsp -->
+	<!--</definition> -->
+</tiles-definitions>

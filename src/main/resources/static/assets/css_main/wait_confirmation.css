@@ -1,0 +1,1281 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--bgtoggle-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+:root {
+    /* ===== Colors ===== */
+    --body-color: rgba(255, 255, 255, 0.5);
+    --bgtoggle-color: rgba(255, 255, 255, 0.3);
+    --bgthree-color: rgba(255, 255, 255, 0.5);
+    --iframe-color: rgba(255, 255, 255, 0.8);
+    --button-color: rgb(219, 2, 2);
+    --sidebar-color: #0d1116;
+    --primary-color: #3a3b3c;
+    --primary-color-light: #0d1116;
+    --toggle-color: #fff;
+    --text-color: #ccc;
+
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
+.containerr {
+    position: relative;
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    width: 100%;
+}
+
+.containerr .image-one {
+    background-image: url(/assets/images/background.jpg);
+    filter: blur(20px);
+    background-size: 100% 1000px;
+    background-position: center;
+    position: absolute;
+    width: 100%;
+    height: 102.5%;
+    z-index: -1;
+    left: 0;
+    top: 0;
+
+}
+
+.containerr .image-two {
+    background-color: var(--body-color);
+    /* Màu nền với độ mờ 50% */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    top: 70px;
+    left: 5%;
+    bottom: 8%;
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+}
+
+/* */
+
+.containerr .myimage {
+    position: absolute;
+    left: 75%;
+    top: 14%;
+    /* transform: rotate(-45deg); */
+    width: 25%;
+    z-index: 1;
+}
+
+.containerr .image-two .yum-logo {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    top: 7%;
+    left: 5%;
+    z-index: 0;
+}
+
+.containerr .image-two .collapse .navbar-nav {
+    position: absolute;
+    top: 9%;
+    left: 30%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 10%;
+    cursor: pointer;
+    z-index: 0;
+}
+
+.containerr .image-two .navb .collapse .navbar-nav .nav-item .nav-link:hover {
+    color: rgb(150, 2, 2);
+}
+
+.containerr .image-two .collapse .navbar-nav li a {
+    width: 100px;
+    color: black;
+    font-size: 1.2rem;
+    z-index: 1;
+    display: inline-block;
+
+}
+
+/* Thiết lập cho logo ra giữa trên thiết bị di động */
+.navbar-brand {
+    order: 1;
+    margin-right: 0 !important;
+}
+
+/* Thiết lập cho nút toggle */
+.navbar-toggler {
+    position: absolute;
+    top: 8%;
+    right: 5%;
+    order: 1;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    background: var(--bgtoggle-color);
+}
+
+/* Thêm hiệu ứng transition cho thanh navbar */
+.navb .navbar-collapse {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+}
+
+/* button Đăng nhập */
+.navb .btn-sign {
+    position: absolute;
+    right: 10%;
+    top: 9%;
+    width: 100px;
+    height: 40px;
+    background: var(--button-color);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
+    line-height: 40px;
+}
+
+.navb .btn-sign:hover {
+    background-color: rgb(209, 8, 8);
+}
+
+.navb a {
+    text-decoration: none;
+    color: white;
+}
+
+/* button Giỏ hàng */
+
+.navb .btn-cart {
+    position: absolute;
+    right: 21%;
+    top: 9%;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 40px;
+    color: black;
+    font-size: 18px;
+}
+
+.btn-cart {
+    transition: transform 0.3s ease;
+}
+
+.btn-cart:hover {
+    transform: scale(1.1);
+}
+
+/* mix-blend-mode: lighten; */
+
+.containerr .food2 {
+    position: absolute;
+    width: 13%;
+    top: -5%;
+    left: -2%;
+}
+
+
+/* header */
+
+.image-two header {
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-top: 180px;
+    padding-top: 20px;
+    width: 90%;
+    height: auto;
+    z-index: 0;
+    border-radius: 60px;
+}
+
+.banner-big .img-blur img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
+
+.banner-big .img-blur .anh1 {
+    position: absolute;
+    top: 65%;
+    left: 0%;
+}
+
+/*  */
+.banner-big .wraper aside .tttk {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.banner-big .wraper aside {
+    padding: 30px;
+}
+
+.banner-big .wraper aside .container-fluid {
+    position: relative;
+    border-radius: 10px;
+    height: auto;
+}
+
+.banner-big .wraper aside .container-fluid .confirmation .img_confm {
+    transform: translate(66%, 0);
+    width: 42%;
+    height: 42%;
+    background-size: cover;
+    /* filter: grayscale(100%); */
+    /* Áp dụng hiệu ứng xám */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.banner-big .wraper aside .container-fluid .button_confm {
+    margin-bottom: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -35%);
+    position: relative;
+    gap: 50px;
+}
+
+/* cart small */
+.offcanvas-title i {
+    font-size: 35px;
+}
+
+.cart_box_small {
+    z-index: 99999;
+    background: rgb(237, 237, 237);
+    border-top-left-radius: 23px;
+    border-bottom-left-radius: 23px;
+}
+
+.cart_box_small .offcanvas-body .cart_small {
+    padding: 8px;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 10px;
+    overflow: auto;
+    height: 77%;
+    background: rgb(237, 237, 237);
+}
+
+.cart_box_small .offcanvas-body .cart_small::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--bgtoggle-color);
+}
+
+.cart_box_small .offcanvas-body .cart_small::-webkit-scrollbar-thumb {
+    background-color: #dddddd;
+    border-radius: 4px;
+}
+
+.cart_box_small .offcanvas-body .cart_small::-webkit-scrollbar-thumb:hover {
+    background-color: #c3c3c3;
+}
+
+.cart_box_small .offcanvas-body .box_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.cart_box_small .offcanvas-body .box_btn button {
+    padding: 12px 30px;
+}
+
+.cart_box_small .offcanvas-body .box_btn .btn-menu-small {
+    border: 1px solid rgb(226, 34, 34);
+    color: rgb(226, 34, 34);
+    font-weight: bold;
+}
+
+.cart_box_small .offcanvas-body .box_btn .btn-menu-small:hover {
+    background: rgb(255, 241, 241);
+}
+
+.cart_box_small .offcanvas-body .sum_cart_small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(226, 34, 34);
+    gap: 60%;
+}
+
+.cart_box_small .offcanvas-body .sum-price-small {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(226, 34, 34);
+}
+
+.cart_box_small .offcanvas-body .cart_small .img_cart_small {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: var(--bgtoggle-color);
+    border-radius: 20px;
+}
+
+.cart_box_small .offcanvas-body .cart_small .img_cart_small img {
+    padding: 6px;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+
+}
+
+.cart_box_small .offcanvas-body .cart_small .delete_cart_small i {
+    position: absolute;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    color: rgb(238, 16, 16);
+}
+
+.cart_box_small .offcanvas-body .cart_small .card-body .card-text {
+    font-weight: bold;
+    color: red;
+}
+
+/* end */
+
+/* hover hiện menu */
+.navb .btn-profile {
+    position: absolute;
+    right: 10%;
+    top: 9%;
+    width: 120px;
+    height: 40px;
+    color: black;
+    font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.navb .btn-profile:hover {
+    width: 120px;
+    transform: scale(1.02);
+}
+
+.profile-link:hover .profile-menu {
+    display: block;
+}
+
+.profile-link .profile-menu {
+    display: none;
+    position: absolute;
+    top: 13%;
+    right: 8%;
+    width: 250px;
+    height: 130px;
+    font-size: 18px;
+    background: var(--body-color);
+    padding: 10px;
+    box-shadow: 12px 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border: 1px solid rgb(255, 255, 255);
+    padding: 20px;
+    z-index: 9999;
+    line-height: 35px;
+}
+
+.profile-link .profile-menu a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 5px 20px;
+}
+
+.profile-link .profile-menu a:hover {
+    color: rgb(79, 79, 79);
+    transform: scale(1.03);
+}
+
+/* end */
+
+/* .image-two .banner-big  */
+
+
+header .girdd {
+    display: flex;
+    flex-direction: center;
+    justify-content: left;
+    align-items: center;
+    margin-top: 35px;
+    gap: 50px;
+}
+
+footer {
+    position: relative;
+    top: 0;
+    background: var(--body-color);
+    margin-left: 5%;
+    margin-top: 70px;
+    width: 90%;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    padding-top: 80px;
+    padding-bottom: 30px;
+}
+
+footer .ft .logo-footer {
+    width: 150px;
+    height: 100px;
+}
+
+footer .ft ul li a {
+    text-decoration: none;
+    line-height: 50px;
+
+}
+
+footer .ft ul li {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* end */
+
+/* top-home */
+/* nút bấm quay về đầu trang */
+.containerr .top-home i {
+    position: relative;
+    bottom: 5%;
+    right: 3%;
+    font-size: 2.5em;
+    position: fixed;
+    color: white;
+    z-index: 9999;
+}
+
+.containerr .top-home {
+    scroll-behavior: smooth;
+}
+
+/* responsive */
+@media only screen and (min-width: 375px) and (max-width: 575.5px) {
+
+    /* CSS règles cho thiết bị tablet */
+    .containerr .image-two {
+        position: relative;
+        top: 70px;
+        left: 5%;
+        bottom: 8%;
+        width: 90%;
+        height: auto;
+        display: flex;
+    }
+
+    .navbar-toggler {
+        position: absolute;
+        top: 7.5%;
+    }
+
+    .navb .btn-sign {
+        position: absolute;
+        right: 18%;
+        top: 7.5%;
+        width: 100px;
+        height: 40px;
+    }
+
+    .navb .btn-profile {
+        position: absolute;
+        right: 18.5%;
+        top: 7.5%;
+        width: 110px;
+        height: 40px;
+    }
+
+    .profile-link .profile-menu {
+        position: absolute;
+        top: 11.5%;
+        right: 10%;
+        background: rgb(230, 230, 230);
+
+    }
+
+    .containerr .image-two .collapse .navbar-nav {
+        position: absolute;
+        top: 7%;
+        left: 25%;
+        display: flex;
+        gap: 10%;
+        background-color: rgb(211, 211, 211);
+        padding: 30px 30px;
+        width: 200px;
+        border-radius: 20px;
+        opacity: 0.9;
+        z-index: 1;
+    }
+
+    .navb .btn-cart {
+        position: absolute;
+        right: 48%;
+        top: 7.5%;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .containerr .image-two .yum-logo {
+        position: absolute;
+        width: 100px;
+        height: auto;
+        top: 7%;
+        left: 5%;
+    }
+
+    /* end navbar */
+
+    /* banner */
+    .image-two header article {
+        position: absolute;
+        left: 10%;
+        top: 20%;
+        font-size: 0;
+    }
+
+    .image-two header article p {
+        font-size: 1.6rem;
+    }
+
+    .image-two header article a img {
+        width: 45px;
+        height: 45px;
+        padding: 2px;
+        margin-left: -10px;
+    }
+
+    .image-two header article a button {
+        margin-top: 40px;
+        width: 180px;
+        height: 45px;
+    }
+
+    .image-two header aside img {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-top: 250px;
+        width: 100%;
+        height: auto;
+        padding-top: 220px;
+        padding-bottom: 20px;
+    }
+
+    /* end banner */
+
+    /* header */
+
+    .image-two header {
+        overflow: hidden;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: auto;
+    }
+
+    .banner-big .img-blur .anh1 {
+        position: absolute;
+        top: 84%;
+        left: 0%;
+        z-index: -1;
+    }
+
+    /*  */
+    .banner-big .wraper aside .tttk {
+        font-size: 22px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .banner-big .wraper aside {
+        padding: 30px;
+    }
+
+    .banner-big .wraper aside .container-fluid {
+        position: relative;
+        top: -50px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .banner-big .wraper aside .container-fluid .confirmation .img_confm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        transform: translate(12%, -50%);
+        width: 80%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        margin-top: 35%;
+    }
+
+    .banner-big .wraper aside .container-fluid .button_confm {
+        margin: 0;
+        margin-top: -25px;
+        text-align: center;
+        transform: translate(-50%, -50%);
+        position: relative;
+        top: 50%;
+        left: 50%;
+        width: 109px;
+        gap: 10px;
+        font-size: 12px;
+    }
+
+    .banner-big .wraper aside .container-fluid .tttk {
+        font-size: 18px;
+    }
+
+    .banner-big .wraper aside .container-fluid .thank {
+        font-size: 15px;
+    }
+
+}
+
+@media only screen and (min-width: 576px) and (max-width: 766.5px) {
+
+    /* CSS règles cho thiết bị máy tính bảng hoặc chiều dọc điện thoại */
+    .containerr .image-two {
+        position: relative;
+        top: 70px;
+        left: 5%;
+        bottom: 8%;
+        width: 90%;
+        height: auto;
+        display: flex;
+    }
+
+    .navb .btn-sign {
+        position: absolute;
+        right: 18%;
+        top: 8%;
+        width: 100px;
+        height: 40px;
+    }
+
+    .navb .btn-profile {
+        position: absolute;
+        right: 18%;
+        top: 8%;
+        width: 110px;
+        height: 40px;
+    }
+
+    .profile-link .profile-menu {
+        position: absolute;
+        top: 11.5%;
+        right: 10%;
+        background: rgb(230, 230, 230);
+    }
+
+    .containerr .image-two .collapse .navbar-nav {
+        position: absolute;
+        top: 8%;
+        left: 45%;
+        display: flex;
+        gap: 10%;
+        background-color: rgb(211, 211, 211);
+        padding: 30px 30px;
+        width: 200px;
+        border-radius: 20px;
+        opacity: 0.9;
+        z-index: 1;
+    }
+
+    .navb .btn-cart {
+        position: absolute;
+        right: 42%;
+        top: 8%;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .containerr .image-two .yum-logo {
+        position: absolute;
+        width: 130px;
+        height: auto;
+        top: 7%;
+        left: 5%;
+    }
+
+    /* end navbar */
+
+    /* banner */
+    .image-two header article {
+        position: absolute;
+        left: 18%;
+        top: 20%;
+        font-size: 0;
+    }
+
+    .image-two header article p {
+        font-size: 2.1rem;
+    }
+
+    .image-two header article a img {
+        width: 50px;
+        height: 50px;
+        padding: 2px;
+    }
+
+    .image-two header article a button {
+        margin-top: 40px;
+        width: 200px;
+        height: 50px;
+    }
+
+    .image-two header aside img {
+        position: relative;
+        top: 60px;
+        left: -8%;
+        margin-top: 250px;
+        width: 120%;
+        height: auto;
+        padding-top: 250px;
+        padding-bottom: 80px;
+    }
+
+    /* end banner */
+
+    /* header */
+
+    .image-two header {
+        overflow: hidden;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: auto;
+    }
+
+    .banner-big .img-blur .anh1 {
+        position: absolute;
+        top: 84%;
+        left: 0%;
+    }
+
+    /*  */
+
+    .banner-big .wraper aside .tttk {
+        font-size: 22px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .banner-big .wraper aside {
+        padding: 30px;
+    }
+
+    .banner-big .wraper aside .container-fluid .confirmation .img_confm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        transform: translate(22%, -60%);
+        width: 80%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        margin-top: 35%;
+    }
+
+    .banner-big .wraper aside .container-fluid .button_confm {
+        margin-top: -40px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+        position: relative;
+        font-size: 14px;
+        gap: 50px;
+    }
+
+}
+
+/* end responsive cho thiết bị di động */
+
+
+
+/* Định nghĩa kích thước responsive cho máy tính bảng */
+@media screen and (min-width: 767px) and (max-width: 992.5px) {
+
+    /* CSS règles cho máy tính bảng */
+    /* navbar */
+    .navb .btn-sign {
+        position: absolute;
+        right: 15%;
+        top: 8%;
+        width: 100px;
+        height: 40px;
+    }
+
+    .navb .btn-profile {
+        position: absolute;
+        right: 14%;
+        top: 8%;
+        width: 110px;
+        height: 40px;
+    }
+
+    .profile-link .profile-menu {
+        position: absolute;
+        top: 11.5%;
+        right: 10%;
+    }
+
+    .containerr .image-two .collapse .navbar-nav {
+        position: absolute;
+        top: 8%;
+        left: 58%;
+        display: flex;
+        gap: 10%;
+        background-color: rgb(211, 211, 211);
+        padding: 20px 10px;
+        width: 200px;
+        border-radius: 20px;
+        opacity: 0.9;
+        z-index: 1;
+    }
+
+    .navb .btn-cart {
+        position: absolute;
+        right: 30%;
+        top: 8%;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .containerr .image-two .yum-logo {
+        position: absolute;
+        width: 130px;
+        height: auto;
+        top: 7%;
+        left: 5%;
+    }
+
+    /* end navbar */
+
+    /* banner */
+    .image-two header article {
+        position: absolute;
+        left: 9%;
+        top: 38%;
+        font-size: 2.5em;
+    }
+
+    .image-two header article p {
+        font-size: 1.8rem;
+    }
+
+    .image-two header article a img {
+        width: 40px;
+        height: 40px;
+        padding: 2px;
+        margin-right: -15px;
+    }
+
+    .image-two header article a button {
+        margin-top: 40px;
+        width: 170px;
+        height: 45px;
+    }
+
+    .image-two header aside img {
+        position: relative;
+        top: 0;
+        left: 60%;
+        margin-top: 170px;
+        width: 100%;
+        height: auto;
+    }
+
+    /* end banner */
+
+    /* header */
+
+    .image-two header {
+        overflow: hidden;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: auto;
+    }
+
+    /*  */
+    .banner-big .wraper aside .tttk {
+        font-size: 22px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .banner-big .wraper aside {
+        padding: 30px;
+    }
+
+    .banner-big .wraper aside .container-fluid {
+        position: relative;
+        background: var(--bgtoggle-color);
+        border-radius: 10px;
+    }
+
+    .banner-big .wraper aside .container-fluid .confirmation .img_confm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        transform: translate(-70%, -50%);
+        width: 50%;
+        height: 50%;
+    }
+
+    .banner-big .wraper aside .container-fluid .button_confm {
+        margin-top: -50px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+        position: relative;
+        gap: 50px;
+    }
+
+}
+
+/* end responsive cho máy tính bảng */
+
+
+
+/* Định nghĩa kích thước responsive cho màn hình máy tính và laptop */
+@media screen and (min-width: 993px) and (max-width: 1199.5px) {
+    /* CSS règles cho màn hình máy tính và laptop */
+
+    /* navbar */
+    .navb .btn-sign {
+        position: absolute;
+        right: 4%;
+        top: 9%;
+        width: 100px;
+        height: 40px;
+    }
+
+    .navb .btn-profile {
+        position: absolute;
+        right: 4%;
+        top: 9%;
+        width: 110px;
+        height: 40px;
+    }
+
+    .profile-link .profile-menu {
+        position: absolute;
+        right: 5%;
+    }
+
+    .containerr .image-two .collapse .navbar-nav {
+        position: absolute;
+        top: 9%;
+        left: 30%;
+        gap: 7%;
+    }
+
+    .navb .btn-cart {
+        position: absolute;
+        right: 17%;
+        top: 9%;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    /* end navbar */
+
+    /* banner */
+    .image-two header article p {
+        font-size: 2.2rem;
+    }
+
+    .image-two header article a img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .image-two header article a button {
+        margin-top: 50px;
+        width: 200px;
+        height: 45px;
+    }
+
+    .image-two header aside img {
+        position: relative;
+        top: 0;
+        left: 75%;
+        margin-top: 180px;
+        width: 110%;
+        height: auto;
+    }
+
+    /* end banner */
+
+    /* header */
+
+    .image-two header {
+        overflow: hidden;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 90%;
+        height: auto;
+    }
+
+    /*  */
+
+    .banner-big .wraper aside .tttk {
+        font-size: 22px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .banner-big .wraper aside {
+        padding: 30px;
+    }
+
+    .banner-big .wraper aside .container-fluid {
+        position: relative;
+        background: var(--bgtoggle-color);
+        border-radius: 10px;
+    }
+
+    .banner-big .wraper aside .container-fluid .confirmation .img_confm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        transform: translate(-100%, -40%);
+        width: 50%;
+        height: 50%;
+    }
+
+    .banner-big .wraper aside .container-fluid .button_confm {
+        margin-top: -50px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+        position: relative;
+        gap: 50px;
+    }
+}
+
+/* end responsive cho màn hình máy tính và laptop */
+
+
+
+@media screen and (min-width: 1200px) and (max-width: 1286px) {
+    .navb .btn-sign {
+        position: absolute;
+        right: 10%;
+        top: 9%;
+        width: 100px;
+        height: 40px;
+    }
+
+    .containerr .image-two .collapse .navbar-nav {
+        position: absolute;
+        top: 9%;
+        left: 30%;
+        gap: 10%;
+    }
+
+    .navb .btn-cart {
+        position: absolute;
+        right: 21%;
+        top: 9%;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .image-two header article p {
+        font-size: 2.5rem;
+    }
+
+    .image-two header article a img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .image-two header article a button {
+        margin-top: 50px;
+        width: 220px;
+        height: 50px;
+    }
+
+    .image-two header aside img {
+        position: relative;
+        top: 0;
+        left: 72%;
+        margin-top: 180px;
+        width: 130%;
+        height: auto;
+    }
+
+    .containerr .food2 {
+        position: absolute;
+        width: 13%;
+        top: -5%;
+        left: -2%;
+    }
+
+    .containerr .myimage {
+        position: absolute;
+        left: 75%;
+        top: 14%;
+        width: 25%;
+    }
+
+    .containerr .myimagefood5 {
+        position: absolute;
+        top: 2700px;
+        left: -20px;
+        width: 23%;
+    }
+
+    .containerr .image-two .yum-logo {
+        position: absolute;
+        width: 150px;
+        height: auto;
+        top: 7%;
+        left: 5%;
+    }
+
+    .navbar-toggler {
+        position: absolute;
+        top: 9%;
+        right: 5%;
+        order: 1;
+        width: 40px;
+        height: 40px;
+    }
+
+    .containerr .image-two .collapse .navbar-nav {
+        position: absolute;
+        top: 9%;
+        left: 30%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        gap: 10%;
+        cursor: pointer;
+        z-index: 0;
+    }
+
+    /*  */
+
+    .banner-big .wraper aside .tttk {
+        font-size: 22px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .banner-big .wraper aside {
+        padding: 30px;
+    }
+
+    .banner-big .wraper aside .container-fluid {
+        position: relative;
+        background: var(--bgtoggle-color);
+        border-radius: 10px;
+    }
+
+    .banner-big .wraper aside .container-fluid .confirmation .img_confm {
+        transform: translate(-100%, -30%);
+        width: 45%;
+        height: 45%;
+    }
+
+    .banner-big .wraper aside .container-fluid .button_confm {
+        margin-top: -50px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+        position: relative;
+        gap: 50px;
+    }
+
+}

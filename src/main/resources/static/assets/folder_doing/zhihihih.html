@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+</head>
+
+<body class="" style=" overflow-x: hidden;">
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="/assets/images/cta-banner." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Humburger</h5>
+                    <p class="card-text">35.000đ</p>
+                    <a href="#" class="btn btn-danger d-flex justify-content-center">Thêm Giỏ Hàng</a>
+                </div>
+            </div>
+            <div class="swiper-slide"><img src="/assets/images/cta-banner.p" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Humburger</h5>
+                    <p class="card-text">35.000đ</p>
+                    <a href="#" class="btn btn-danger d-flex justify-content-center">Thêm Giỏ Hàng</a>
+                </div>
+            </div>
+            <div class="swiper-slide"><img src="/assets/images/cta-banner." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Humburger</h5>
+                    <p class="card-text">35.000đ</p>
+                    <a href="#" class="btn btn-danger d-flex justify-content-center">Thêm Giỏ Hàng</a>
+                </div>
+            </div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+            <!-- Add More "swiper-slide's" To Add More Slides -->
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            loop: true,
+        });
+
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 4, // số lượng slide hiển thị tại một thời điểm
+            loop: true, // để slide show không bị dừng lại ở slide cuối cùng
+            autoplay: {
+                delay: 3000, // tự động chuyển slide sau mỗi 3 giây
+                disableOnInteraction: false, // tiếp tục autoplay ngay cả sau khi người dùng tương tác với slide show
+            },
+
+        });
+    </script>
+
+
+
+</body>
+
+</html>

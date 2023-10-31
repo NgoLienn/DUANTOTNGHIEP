@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="zlayout/fragments :: html_head"></head>
+
+<body>
+    <!-- nav chung -->
+    <nav class="navb navbar-expand-lg navbar-light bg-light" th:fragment="menu">
+        <a th:href="@{/}"><img src="/assets/images/yum-logo.png" alt="yum-logo.ong" class="yum-logo navbar-brand"></a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="bi bi-list icon-list"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a th:href="@{/}" class="nav-link active home" aria-current="page">Trang
+                        Chủ</a>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link">Giới
+                        Thiệu</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Liên
+                        Hệ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+            </ul>
+        </div>
+        <div class="btn-groupp">
+            <th:block th:unless="${#request.remoteUser}">
+                <a th:href="@{/auth/signin}">
+              <div class="btn-sign">Sign In</div>
+                </a>
+            </th:block>
+            <th:block th:if="${#request.remoteUser}">
+                <div class="profile-link">
+                    <div class="btn-profile">
+                        <i class="bi bi-person-fill"></i> Cá Nhân
+                    </div>
+                    <div class="profile-menu">
+                        <a th:href="@{/user/profile}"> <i class="bi bi-person-circle"></i> Trang Cá Nhân
+                        </a>
+                        <a th:href="@{/auth/logoff}"> <i class="bi bi-box-arrow-right"></i> Đăng Xuất
+                        </a>
+                    </div>
+                </div>
+            </th:block>
+
+
+            <!-- cart small -->
+            <a style="cursor: pointer;">
+                <div class="btn-cart" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                    aria-controls="offcanvasRight">
+                    <i class="bi bi-bag"></i> <span
+                        class="tb-cart position-absolute start-80 translate-middle bg-danger rounded-circle"
+                        style="width: 8px; height: 8px; margin-top: 8px;"> <span class="visually-hidden"></span>
+                    </span>
+                </div>
+            </a>
+            <!-- end -->
+        </div>
+    </nav>
+    <!-- end -->
+
+
+    <!-- menu_log -->
+    <nav class="navbar navbar-expand-lg border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4"
+        th:fragment="menu_log">
+        <div class="container-fluid">
+            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-dark text-lg" th:href="@{/}">
+                Yummy
+            </a>
+            <a class="navbar-toggler shadow-none ms-2" data-bs-toggle="collapse" data-bs-target="#navigation"
+                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" th:href="@{/}">
+                <div class="btn-cart"><i class="bi bi-bag"></i><span
+                        class="tb-cart position-absolute start-80 translate-middle bg-danger rounded-circle"
+                        style="width: 8px; height: 8px; margin-top: 8px;">
+                        <span class="visually-hidden"></span>
+                </div>
+            </a>
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" th:href="@{/}">
+                            <i class="bi bi-house-door-fill opacity-6 text-dark me-1"></i>
+                            Trang Chủ
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2" href="#">
+                            <i class="fa fa-user opacity-6 text-dark me-1"></i>
+                            Câu Hỏi
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2" href="#">
+                            <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
+                            Liên Hệ
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2" href="#">
+                            <i class="fas fa-key opacity-6 text-dark me-1"></i>
+                            Blog
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="nav-item">
+                        <a href="#" class="">
+                            <div class="btn-cart" style="margin-top: 10px; font-size: 20px; padding: 0;">
+                                <i class="bi bi-bag"></i>
+                                <span
+                                    class="tb-cart position-absolute start-80 translate-middle bg-danger rounded-circle"
+                                    style="width: 8px; height: 8px; margin-top: 8px;">
+                                    <span class="visually-hidden"></span>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- end -->
+
+    <!-- menu_res -->
+    <nav class="navbar navbar-expand-lg border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4"
+        th:fragment="menu_res">
+        <div class="container-fluid">
+            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white text-lg" th:href="@{/}">
+                Yummy
+            </a>
+
+            <a class="navbar-toggler shadow-none ms-2 " data-bs-toggle="collapse" data-bs-target="#navigation"
+                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"
+                href="/page/user/cart.html">
+                <div class="btn-cart"><i class="bi bi-bag text-white"></i><span
+                        class="tb-cart position-absolute start-80 translate-middle bg-danger rounded-circle"
+                        style="width: 8px; height: 8px; margin-top: 8px;">
+                        <span class="visually-hidden"></span>
+                </div>
+            </a>
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center me-2 active text-white" aria-current="page"
+                            th:href="@{/}">
+                            <i class="bi bi-house-door-fill opacity-6 text-white me-1"></i>
+                            Trang Chủ
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2 text-white" href="#">
+                            <i class="fa fa-user opacity-6 text-white me-1"></i>
+                            Câu Hỏi
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2 text-white" href="#">
+                            <i class="fas fa-user-circle opacity-6 text-white me-1"></i>
+                            Liên Hệ
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-2 text-white" href="#">
+                            <i class="fas fa-key opacity-6 text-white me-1 "></i>
+                            Blog
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="nav-item">
+                        <a href="#" class="">
+                            <div class="btn-cart" style="margin-top: 10px; font-size: 20px; padding: 0;"><i
+                                    class="bi bi-bag text-white"></i>
+                                <span
+                                    class="tb-cart position-absolute start-80 translate-middle bg-danger rounded-circle"
+                                    style="width: 8px; height: 8px; margin-top: 8px;">
+                                    <span class="visually-hidden"></span>
+                                </span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- end -->
+</body>
+
+</html>

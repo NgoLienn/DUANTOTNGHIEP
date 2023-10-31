@@ -1,0 +1,3339 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  transition: scroll-behavior 0.5s;
+  overflow-x: hidden;
+}
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* @keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+} */
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--bgtoggle-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+:root {
+  /* ===== Colors ===== */
+  --body-color: rgba(255, 255, 255, 0.5);
+  --bgtoggle-color: rgba(255, 255, 255, 0.3);
+  --bgthree-color: rgba(197, 197, 197, 0.5);
+  --button-color: rgb(219, 2, 2);
+  --sidebar-color: #0d1116;
+  --primary-color: #3a3b3c;
+  --primary-color-light: #0d1116;
+  --toggle-color: #fff;
+  --text-color: #ccc;
+
+  /* ====== Transition ====== */
+  --tran-03: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.4s ease;
+  --tran-05: all 0.5s ease;
+}
+
+.containerr {
+  position: relative;
+  height: auto;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  width: 100%;
+}
+
+/* .containerr .image-big{
+    background-color: var(--body-color);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+} */
+
+.containerr .image-one {
+  background-image: url(/assets/images/background.jpg);
+  filter: blur(20px);
+  background-size: 100% 1000px;
+  background-position: center;
+  position: absolute;
+  width: 100%;
+  height: 102.5%;
+  z-index: -1;
+  left: 0;
+  top: 0;
+}
+
+.containerr .image-two {
+  background-color: var(--body-color);
+  /* Màu nền với độ mờ 50% */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  top: 70px;
+  left: 5%;
+  bottom: 8%;
+  width: 90%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+}
+
+/* .containerr .image-three {
+    position: relative;
+    top: 8%;
+    left: 45%;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+    border-top-left-radius: 45%;
+    border-bottom-left-radius: 45%;
+    background: var(--bgthree-color);
+    width: 50%;
+    height: 84%;
+} */
+
+/* sp1 */
+.containerr .image-four {
+  background-color: var(--body-color);
+  /* Màu nền với độ mờ 50% */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  top: 0;
+  left: 5%;
+  bottom: 8%;
+  width: 90%;
+  height: 1550px;
+  margin-top: 70px;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+}
+
+.containerr .image-four .food-sp1 img {
+  position: absolute;
+  width: 200px;
+  top: 50px;
+  left: 12%;
+  filter: drop-shadow(5px 5px 5px rgba(68, 68, 68, 0.7));
+  z-index: 1;
+}
+
+.containerr .image-four .food-sp1 img:hover {
+  cursor: pointer;
+  transform: scale(102%);
+}
+
+.containerr .image-four .food-sp1 .wrap-food-sp1 {
+  position: relative;
+  top: 170px;
+  z-index: 1;
+  left: 11%;
+  background: var(--bgtoggle-color);
+  width: 220px;
+  height: 250px;
+  border-radius: 15%;
+}
+
+.containerr .image-four .food-sp1 .wrap-food-sp1 .cart-sp1 {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 18px;
+  color: white;
+  background: #0d1116;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 30px;
+}
+
+.containerr .image-four .food-sp1 .wrap-food-sp1 .title {
+  position: absolute;
+  bottom: 50%;
+  left: 10%;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.containerr .image-four .food-sp1 .wrap-food-sp1 .quantity {
+  position: absolute;
+  bottom: 35%;
+  left: 10%;
+  font-weight: bold;
+}
+
+.containerr .image-four .food-sp1 .wrap-food-sp1 .evaluate {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  color: rgb(255, 168, 17);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.containerr .image-four .food-sp1 .wrap-food-sp1 .price {
+  position: absolute;
+  bottom: 7%;
+  left: 10%;
+  font-weight: bold;
+}
+
+.containerr .image-four .food-sp1 .wrap-food-sp1 .share {
+  position: absolute;
+  right: 5%;
+  bottom: 25%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.containerr .image-four .food-sp1 .wrap-food-sp1 .tym {
+  position: absolute;
+  right: 5%;
+  bottom: 40%;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+}
+
+.bi-heart-fill {
+  color: rgb(255, 255, 255);
+}
+
+.red {
+  color: rgb(239, 0, 0);
+}
+
+/* .containerr .image-four .food-sp1 .wrap-food-sp1 .tym:hover {
+    color: red;
+} */
+
+.containerr .image-four .food-sp1 .mota-sp1 {
+  position: absolute;
+  top: 0;
+  right: 8%;
+  margin-top: 180px;
+  width: 35%;
+  height: 35%;
+}
+
+/*  */
+.containerr .image-four .food-sp2 img {
+  position: absolute;
+  width: 200px;
+  top: 50px;
+  left: 32.8%;
+}
+
+.containerr .image-four .food-sp2 .wrap-food-sp2 {
+  background: var(--bgtoggle-color);
+  position: absolute;
+  top: 170px;
+  left: 32%;
+  width: 220px;
+  height: 250px;
+  border-radius: 15%;
+}
+
+.containerr .image-four .food-sp2 .wrap-food-sp2 .cart-sp2 {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 18px;
+  color: white;
+  background: #0d1116;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 30px;
+}
+
+.containerr .image-four .food-sp2 .wrap-food-sp2 .title {
+  position: absolute;
+  bottom: 50%;
+  left: 10%;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.containerr .image-four .food-sp2 .wrap-food-sp2 .quantity {
+  position: absolute;
+  bottom: 35%;
+  left: 10%;
+  font-weight: bold;
+}
+
+.containerr .image-four .food-sp2 .wrap-food-sp2 .evaluate {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  color: rgb(255, 168, 17);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.containerr .image-four .food-sp2 .wrap-food-sp2 .price {
+  position: absolute;
+  bottom: 7%;
+  left: 10%;
+  font-weight: bold;
+}
+
+.containerr .image-four .food-sp2 .wrap-food-sp2 .share {
+  position: absolute;
+  right: 5%;
+  bottom: 25%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.containerr .image-four .food-sp2 .wrap-food-sp2 .tym {
+  position: absolute;
+  right: 5%;
+  bottom: 40%;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+}
+
+/*  */
+
+.containerr .image-four .food-sp2 .mota-sp2 {
+  position: absolute;
+  top: 12%;
+  right: 10%;
+  /* background-color: var(--bgtoggle-color); */
+  width: 35%;
+  height: 35%;
+}
+
+/* sp3 */
+.containerr .image-four .food-sp3 aside img {
+  position: absolute;
+  margin-top: 20%;
+  right: 13%;
+  width: 24%;
+  filter: drop-shadow(12px 13px 8px rgba(68, 68, 68, 0.7));
+}
+
+.containerr .image-four .food-sp3 article {
+  position: absolute;
+  margin-top: 25%;
+  left: 11%;
+  width: 41%;
+  height: 25%;
+}
+
+.containerr .image-four .food-sp3 article span {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.containerr .image-four .food-sp3 article p {
+  position: absolute;
+  font-size: 18px;
+}
+
+/* mô tả sp */
+.containerr .image-four .food-sp1 .mota-sp1 span {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.containerr .image-four .food-sp1 .mota-sp1 p {
+  position: absolute;
+  font-size: 18px;
+}
+
+/* end */
+
+/* slide card */
+.card-slider {
+  width: 70%;
+  overflow: hidden;
+  padding-top: 50%;
+  margin-left: 15%;
+  padding-right: 50px;
+}
+
+.card-slider .text-slide {
+  font-size: 50px;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
+}
+
+.card-slider .card-wrapper {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  width: max-content;
+  transition: transform 0.8s ease-in-out;
+}
+
+.card-slider .card-wrapper .card-body .card-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.card-slider .card-wrapper .card-body .card-text {
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(196, 3, 3);
+}
+
+.card-slider .card-wrapper .slide-card img {
+  width: 80%;
+  height: 80%;
+  padding-top: 20px;
+}
+
+.card-slider .card-wrapper .slide-card {
+  width: 240px;
+  flex-shrink: 0;
+  flex: 0 0 auto;
+  background: var(--bgtoggle-color);
+  border: 1px solid var(--body-color);
+}
+
+/* .card-slider .card-wrapper .card {
+    width: calc(100% / 4);
+    flex: 0 0 calc(100% / 8);
+} */
+
+/* Chia đều ngang 4 phần tử trên một hàng */
+/* Chia đều ngang 4 phần tử trên một hàng */
+
+.card-slider .controls {
+  position: absolute;
+  top: 95%;
+  left: 40%;
+  display: flex;
+  color: #0d1116;
+  gap: 100%;
+}
+
+.card-slider .controls button {
+  min-width: 50px;
+  padding: 0;
+}
+
+.card-slider .btn-outline i {
+  font-size: 28px;
+}
+
+.card-slider .slide-prev {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin-left: 10px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: none;
+}
+
+.card-slider .slide-next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: none;
+}
+
+/* end */
+
+/* image five */
+.containerr #menu-food {
+  background-color: var(--body-color);
+  /* Màu nền với độ mờ 50% */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  top: 0;
+  left: 5%;
+  width: 90%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 30px;
+  /* resize: both;
+    overflow: hidden; */
+  /* border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px; */
+}
+
+/* menu sp4 */
+.containerr .image-five .tabpanel {
+  position: absolute;
+  top: 70px;
+  right: 7%;
+}
+
+.containerr .image-five .tabpanel {
+  position: absolute;
+  top: 70px;
+  right: 2%;
+}
+
+.containerr .image-five .tabpanel .custom-tab-link {
+  margin-right: 2em;
+  background-color: rgb(147, 147, 147);
+  border-radius: 10px 0 10px 0;
+  border: none;
+  border-bottom: 1px solid transparent;
+}
+
+.containerr .image-five .tabpanel .custom-tab-link.active,
+.containerr .image-five .tabpanel .custom-tab-link:hover {
+  background-color: rgb(199, 58, 58);
+  border-color: transparent;
+}
+
+/* end */
+
+.containerr .image-five h2 {
+  line-height: 4em;
+  font-weight: bold;
+  padding-bottom: 90px;
+}
+
+.containerr .image-five .card-group img {
+  width: 80%;
+  margin-top: -50%;
+  margin-left: 11%;
+  /* resize: both;
+    overflow: hidden; */
+  filter: drop-shadow(5px 5px 5px rgba(68, 68, 68, 0.7));
+}
+
+.containerr .image-five .card-group img:hover {
+  cursor: pointer;
+  transform: scale(102%);
+}
+
+.containerr .image-five .card-group .card {
+  background: var(--bgtoggle-color);
+  width: 220px;
+  height: 250px;
+  border-radius: 15%;
+}
+
+.containerr .image-five .card-group .card .card-body .cart-sp4 {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 18px;
+  color: white;
+  background: #0d1116;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 30px;
+}
+
+.containerr .image-five .card-group .card .card-body .title {
+  position: absolute;
+  bottom: 50%;
+  left: 10%;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.containerr .image-five .card-group .card .card-body .quantity {
+  position: absolute;
+  bottom: 35%;
+  left: 10%;
+  font-weight: bold;
+}
+
+.containerr .image-five .card-group .card .card-body .evaluate {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  color: rgb(255, 168, 17);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.containerr .image-five .card-group .card .card-body .price {
+  position: absolute;
+  bottom: 7%;
+  left: 10%;
+  font-weight: bold;
+}
+
+.containerr .image-five .card-group .card .card-body .share {
+  position: absolute;
+  right: 3.5%;
+  bottom: 25%;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.containerr .image-five .card-group .card .card-body .tym {
+  position: absolute;
+  right: 3.5%;
+  bottom: 42%;
+  cursor: pointer;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+}
+
+.card-group > .card {
+  flex: none;
+  margin-bottom: 0;
+}
+
+/* .containerr .image-five .card-group .card .card-body .tym:hover {
+    color: red;
+} */
+
+/*  */
+
+.containerr .myimage {
+  position: absolute;
+  left: 75%;
+  top: 14%;
+  /* transform: rotate(-45deg); */
+  width: 25%;
+  z-index: 1;
+}
+
+.containerr .myimagefood5 {
+  position: absolute;
+  top: 2700px;
+  left: -20px;
+  width: 23%;
+  z-index: 1;
+}
+
+.containerr .image-two .yum-logo {
+  position: absolute;
+  width: 150px;
+  height: auto;
+  top: 7%;
+  left: 5%;
+  z-index: 1;
+}
+
+.containerr .image-two .collapse .navbar-nav {
+  position: absolute;
+  top: 9%;
+  left: 30%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 10%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.containerr .image-two .navb .collapse .navbar-nav .nav-item .nav-link:hover {
+  color: rgb(150, 2, 2);
+}
+
+.containerr .image-two .collapse .navbar-nav li a {
+  width: 100px;
+  color: black;
+  font-size: 1.2rem;
+  z-index: 1;
+  display: inline-block;
+}
+
+/* Thiết lập cho logo ra giữa trên thiết bị di động */
+.navbar-brand {
+  order: 1;
+  margin-right: 0 !important;
+}
+
+/* Thiết lập cho nút toggle */
+.navbar-toggler {
+  position: absolute;
+  top: 9%;
+  right: 5%;
+  order: 1;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  background: var(--bgtoggle-color);
+}
+
+/* Thêm hiệu ứng transition cho thanh navbar */
+.navb .navbar-collapse {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+}
+
+/* button Đăng nhập */
+.navb .btn-sign {
+  position: absolute;
+  right: 10%;
+  top: 9%;
+  width: 100px;
+  height: 40px;
+  background: var(--button-color);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+  line-height: 40px;
+}
+
+.navb .btn-sign:hover {
+  background-color: rgb(209, 8, 8);
+}
+
+.navb .btn-profile {
+  position: absolute;
+  right: 10%;
+  top: 9%;
+  width: 120px;
+  height: 40px;
+  color: black;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.navb .btn-profile:hover {
+  width: 120px;
+  transform: scale(1.02);
+}
+
+.navb a {
+  text-decoration: none;
+  color: white;
+}
+
+/* hover hiện menu */
+
+.profile-link:hover .profile-menu {
+  display: block;
+}
+
+.profile-link .profile-menu {
+  display: none;
+  position: absolute;
+  top: 15.5%;
+  right: 10%;
+  width: 250px;
+  height: 130px;
+  font-size: 18px;
+  background: var(--body-color);
+  padding: 10px;
+  box-shadow: 12px 10px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  border: 1px solid rgb(255, 255, 255);
+  padding: 20px;
+  z-index: 1;
+  line-height: 35px;
+}
+
+.profile-link .profile-menu a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  padding: 5px 20px;
+}
+
+.profile-link .profile-menu a:hover {
+  color: rgb(79, 79, 79);
+  transform: scale(1.03);
+}
+
+/* end */
+
+/* button Giỏ hàng */
+
+.navb .btn-cart {
+  position: absolute;
+  right: 21%;
+  top: 9%;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 40px;
+  color: black;
+  font-size: 18px;
+}
+
+.btn-cart {
+  transition: transform 0.3s ease;
+}
+
+.btn-cart:hover {
+  transform: scale(1.1);
+}
+
+/* end */
+
+/* cart small */
+.offcanvas-title i {
+  font-size: 35px;
+}
+
+.cart_box_small {
+  z-index: 99999;
+  background: rgb(237, 237, 237);
+  border-top-left-radius: 23px;
+  border-bottom-left-radius: 23px;
+}
+
+.cart_box_small .offcanvas-body .cart_small {
+  padding: 8px;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 10px;
+  overflow: auto;
+  height: 77%;
+  background: rgb(237, 237, 237);
+}
+
+.cart_box_small .offcanvas-body .cart_small::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--bgtoggle-color);
+}
+
+.cart_box_small .offcanvas-body .cart_small::-webkit-scrollbar-thumb {
+  background-color: #dddddd;
+  border-radius: 4px;
+}
+
+.cart_box_small .offcanvas-body .cart_small::-webkit-scrollbar-thumb:hover {
+  background-color: #c3c3c3;
+}
+
+.cart_box_small .offcanvas-body .box_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.cart_box_small .offcanvas-body .box_btn button {
+  padding: 12px 30px;
+}
+
+.cart_box_small .offcanvas-body .box_btn .btn-menu-small {
+  border: 1px solid rgb(226, 34, 34);
+  color: rgb(226, 34, 34);
+  font-weight: bold;
+}
+
+.cart_box_small .offcanvas-body .box_btn .btn-menu-small:hover {
+  background: rgb(255, 241, 241);
+}
+
+.cart_box_small .offcanvas-body .sum_cart_small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(226, 34, 34);
+  gap: 60%;
+}
+
+.cart_box_small .offcanvas-body .sum-price-small {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(226, 34, 34);
+}
+
+.cart_box_small .offcanvas-body .cart_small .img_cart_small {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: var(--bgtoggle-color);
+  border-radius: 20px;
+}
+
+.cart_box_small .offcanvas-body .cart_small .img_cart_small img {
+  padding: 6px;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.cart_box_small .offcanvas-body .cart_small .delete_cart_small i {
+  position: absolute;
+  right: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  color: rgb(238, 16, 16);
+}
+
+.cart_box_small .offcanvas-body .cart_small .card-body .card-text {
+  font-weight: bold;
+  color: red;
+}
+
+/* end */
+
+/* mix-blend-mode: lighten; */
+
+.containerr .food2 {
+  position: absolute;
+  width: 13%;
+  top: -5%;
+  left: -2%;
+}
+
+/* header */
+
+.image-two header article {
+  position: absolute;
+  left: 13%;
+  top: 38%;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.image-two header aside img {
+  position: relative;
+  top: 0;
+  left: 72%;
+  margin-top: 180px;
+  width: 130%;
+  height: auto;
+  filter: drop-shadow(15px 12px 10px rgba(46, 46, 46, 0.7));
+  animation: fade 5s ease infinite;
+}
+
+@keyframes fade {
+  0% {
+    top: 0px;
+  }
+
+  50% {
+    top: -15px;
+  }
+
+  100% {
+    top: 0px;
+  }
+}
+
+.image-two header article p {
+  text-align: left;
+  font-size: 2.5rem;
+}
+
+.image-two header article a img {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: var(--bgtoggle-color);
+  border-radius: 10px;
+}
+
+.image-two header article a:hover {
+  transform: scale(0.96);
+}
+
+header .girdd {
+  display: flex;
+  flex-direction: center;
+  justify-content: left;
+  align-items: center;
+  margin-top: 35px;
+  gap: 50px;
+}
+
+.image-two header article .button-sp a {
+  text-decoration: none;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.image-two header article a button {
+  color: white;
+  background: black;
+  margin-top: 50px;
+  width: 220px;
+  height: 50px;
+  border: none;
+  text-align: center;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.image-two header article a button:hover {
+  background-color: rgb(34, 34, 34);
+}
+
+/* end */
+
+footer {
+  position: relative;
+  top: 0;
+  background: var(--body-color);
+  margin-left: 5%;
+  width: 90%;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  padding-top: 80px;
+  padding-bottom: 30px;
+}
+
+footer .ft .logo-footer {
+  width: 150px;
+  height: 100px;
+}
+
+footer .ft ul li a {
+  text-decoration: none;
+  line-height: 50px;
+}
+
+footer .ft ul li {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* end */
+
+/* top-home */
+/* nút bấm quay về đầu trang */
+.containerr .top-home i {
+  position: relative;
+  bottom: 5%;
+  right: 3%;
+  font-size: 2.5em;
+  position: fixed;
+  color: white;
+  z-index: 9999;
+}
+
+.containerr .top-home {
+  scroll-behavior: smooth;
+}
+
+/* responsive */
+@media screen and (min-width: 375px) and (max-width: 575.5px) {
+  /* CSS règles cho thiết bị tablet */
+  .containerr .image-two {
+    position: relative;
+    top: 70px;
+    left: 5%;
+    bottom: 8%;
+    width: 90%;
+    height: auto;
+    display: flex;
+  }
+
+  .navb .btn-sign {
+    position: absolute;
+    right: 18%;
+    top: 7.5%;
+    width: 100px;
+    height: 40px;
+  }
+
+  .navb .btn-profile {
+    position: absolute;
+    right: 18%;
+    top: 7.5%;
+    width: 110px;
+    height: 40px;
+  }
+
+  .profile-link .profile-menu {
+    background: rgb(211, 211, 211);
+    position: absolute;
+    top: 12%;
+  }
+
+  .containerr .image-two .collapse .navbar-nav {
+    position: absolute;
+    top: 7%;
+    left: 25%;
+    display: flex;
+    gap: 10%;
+    background-color: rgb(211, 211, 211);
+    padding: 30px 30px;
+    width: 200px;
+    border-radius: 20px;
+    opacity: 0.9;
+  }
+
+  .navb .btn-cart {
+    position: absolute;
+    right: 48%;
+    top: 7.5%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .containerr .image-two .yum-logo {
+    position: absolute;
+    width: 100px;
+    height: auto;
+    top: 7%;
+    left: 5%;
+  }
+
+  /* end navbar */
+
+  /* banner */
+  .image-two header article {
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    font-size: 0;
+  }
+
+  .image-two header article p {
+    font-size: 1.6rem;
+  }
+
+  .image-two header article a img {
+    width: 45px;
+    height: 45px;
+    padding: 2px;
+    margin-left: -10px;
+  }
+
+  .image-two header article a button {
+    margin-top: 40px;
+    width: 180px;
+    height: 45px;
+  }
+
+  .image-two header aside img {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-top: 250px;
+    width: 100%;
+    height: auto;
+    padding-top: 220px;
+    padding-bottom: 20px;
+    z-index: 0;
+  }
+
+  /* end banner */
+
+  /* spham */
+  .containerr .image-four {
+    position: relative;
+    top: 0;
+    left: 5%;
+    bottom: 8%;
+    width: 90%;
+    height: 1300px;
+    margin-top: 70px;
+  }
+
+  .containerr .image-four .food-sp1 img {
+    position: absolute;
+    width: 170px;
+    top: 60px;
+    left: 22%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 {
+    position: relative;
+    top: 170px;
+    left: 50%;
+    width: 300px;
+    height: 220px;
+    transform: translate(-50%, 0%);
+  }
+
+  .containerr .image-four .food-sp1 .mota-sp1 {
+    position: absolute;
+    top: 0;
+    right: 8%;
+    margin-top: 480px;
+    width: 80%;
+    height: 35%;
+    display: none;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .cart-sp1 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 20px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .share {
+    position: absolute;
+    right: 5%;
+    bottom: 25%;
+    font-size: 24px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .tym {
+    position: absolute;
+    right: 5%;
+    bottom: 45%;
+    font-size: 24px;
+  }
+
+  /*  */
+
+  .containerr .image-four .food-sp2 img {
+    position: absolute;
+    width: 170px;
+    top: 420px;
+    left: 22%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 {
+    position: absolute;
+    top: 520px;
+    left: 50%;
+    width: 300px;
+    height: 220px;
+    transform: translate(-50%, 0%);
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .cart-sp2 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 20px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .share {
+    position: absolute;
+    right: 5%;
+    bottom: 25%;
+    font-size: 24px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .tym {
+    position: absolute;
+    right: 5%;
+    bottom: 45%;
+    font-size: 24px;
+  }
+
+  /*  */
+
+  /* end spham */
+
+  .containerr .image-four .food-sp3 aside img {
+    position: absolute;
+    margin-top: 25%;
+    right: 13%;
+    width: 26%;
+    display: none;
+  }
+
+  .containerr .image-four .food-sp3 article {
+    position: absolute;
+    margin-top: 25%;
+    left: 11%;
+    width: 41%;
+    height: 25%;
+    display: none;
+  }
+
+  .containerr .image-four .food-sp3 article span {
+    font-size: 1.5em;
+  }
+
+  .containerr .image-four .food-sp3 article p {
+    position: absolute;
+    font-size: 17px;
+  }
+
+  /* five */
+  .containerr .image-five h2 {
+    line-height: 4em;
+    font-weight: bold;
+    transform: translate(10%, 20%);
+    padding-bottom: 290px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .containerr #menu-food {
+    position: relative;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: auto;
+    padding: 0;
+  }
+
+  /* menu sp4 */
+
+  .containerr .image-five .tabpanel {
+    position: absolute;
+    font-size: 15px;
+    top: 160px;
+    right: -5%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 170px;
+  }
+
+  .containerr .image-five .tabpanel .custom-tab-link {
+    margin-right: 2em;
+    background-color: rgb(147, 147, 147);
+    border-radius: 10px 0 10px 0;
+    border: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .containerr .image-five .tabpanel .custom-tab-link.active,
+  .containerr .image-five .tabpanel .custom-tab-link:hover {
+    background-color: rgb(199, 58, 58);
+    border-color: transparent;
+  }
+
+  .containerr .image-five .card-group img {
+    width: 90%;
+    margin-top: -54%;
+    margin-left: 4%;
+  }
+
+  .containerr .image-five .card-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    transform: translate(19%, 0%);
+  }
+
+  .containerr .image-five .card-group .card {
+    width: 160px;
+    height: 190px;
+    margin-left: -90px;
+  }
+
+  /*  */
+  .containerr .image-five .card-group .card .card-body .cart-sp4 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 9%;
+    font-size: 15px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .share {
+    position: absolute;
+    right: 3.5%;
+    bottom: 25%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .tym {
+    position: absolute;
+    right: 3.5%;
+    bottom: 42%;
+  }
+
+  /* end five */
+
+  .containerr .food2 {
+    position: absolute;
+    width: 30%;
+    top: -2%;
+    left: -2%;
+  }
+
+  .containerr .myimage {
+    position: absolute;
+    left: 73%;
+    top: 12%;
+    width: 30%;
+  }
+
+  .containerr .myimagefood5 {
+    position: absolute;
+    top: 3660px;
+    left: -20px;
+    width: 45%;
+  }
+
+  .navbar-toggler {
+    position: absolute;
+    top: 7.5%;
+    right: 5%;
+    order: 1;
+    width: 40px;
+    height: 40px;
+    transition: all 0.5s ease;
+  }
+
+  /* slider */
+  .card-slider {
+    width: 80%;
+    overflow: hidden;
+    padding-top: 570px;
+    margin-left: 50px;
+  }
+
+  .card-slider .card-wrapper {
+    width: max-content;
+  }
+
+  .card-slider .controls {
+    margin-top: 10px;
+    margin-left: -80px;
+  }
+
+  .card-slider .text-slide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 33px;
+  }
+
+  .card-slider .card-wrapper .card {
+    width: calc(100% / 4);
+    /* Chia đều ngang 4 phần tử trên một hàng */
+    flex: 0 0 calc(100% / 15);
+    /* Chia đều ngang 4 phần tử trên một hàng */
+  }
+
+  .card-slider .card-wrapper .card {
+    width: calc(100% / 4);
+    /* Chia đều ngang 4 phần tử trên một hàng */
+    flex: 0 0 calc(100% / 4);
+    /* Chia đều ngang 4 phần tử trên một hàng */
+  }
+
+  .card-slider .card-wrapper .card-body .card-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .card-slider .card-wrapper .card-body .card-text {
+    font-size: 20px;
+  }
+
+  .card-slider .card-wrapper .card-body a {
+    font-size: 12px;
+  }
+
+  .card-slider .card-wrapper .card {
+    width: calc(100% / 4);
+    /* Chia đều ngang 4 phần tử trên một hàng */
+    flex: 0 0 calc(100% / 9);
+    /* Chia đều ngang 4 phần tử trên một hàng */
+  }
+
+  /* end */
+}
+
+@media only screen and (min-width: 576px) and (max-width: 766.5px) {
+  /* CSS règles cho thiết bị máy tính bảng hoặc chiều dọc điện thoại */
+  .containerr .image-two {
+    position: relative;
+    top: 70px;
+    left: 5%;
+    bottom: 8%;
+    width: 90%;
+    height: auto;
+    display: flex;
+  }
+
+  .navb .btn-sign {
+    position: absolute;
+    right: 18%;
+    top: 9%;
+    width: 100px;
+    height: 40px;
+  }
+
+  .navb .btn-profile {
+    position: absolute;
+    right: 18%;
+    top: 9%;
+    width: 110px;
+    height: 40px;
+  }
+
+  .profile-link .profile-menu {
+    background: rgb(211, 211, 211);
+    position: absolute;
+    top: 13%;
+  }
+
+  .containerr .image-two .collapse .navbar-nav {
+    position: absolute;
+    top: 9%;
+    left: 45%;
+    display: flex;
+    gap: 10%;
+    background-color: rgb(211, 211, 211);
+    padding: 30px 30px;
+    width: 200px;
+    border-radius: 20px;
+    opacity: 0.9;
+  }
+
+  .navb .btn-cart {
+    position: absolute;
+    right: 42%;
+    top: 9%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .containerr .image-two .yum-logo {
+    position: absolute;
+    width: 130px;
+    height: auto;
+    top: 7%;
+    left: 5%;
+  }
+
+  /* end navbar */
+
+  /* banner */
+  .image-two header article {
+    position: absolute;
+    left: 18%;
+    top: 20%;
+    font-size: 0;
+  }
+
+  .image-two header article p {
+    font-size: 2.1rem;
+  }
+
+  .image-two header article a img {
+    width: 50px;
+    height: 50px;
+    padding: 2px;
+  }
+
+  .image-two header article a button {
+    margin-top: 40px;
+    width: 200px;
+    height: 50px;
+  }
+
+  .image-two header aside img {
+    position: relative;
+    top: 60px;
+    left: -8%;
+    margin-top: 250px;
+    width: 120%;
+    height: auto;
+    padding-top: 250px;
+    padding-bottom: 80px;
+  }
+
+  /* end banner */
+
+  /* spham */
+  .containerr .image-four {
+    position: relative;
+    top: 0;
+    left: 5%;
+    bottom: 8%;
+    width: 90%;
+    height: 1300px;
+    margin-top: 70px;
+  }
+
+  .containerr .image-four .food-sp1 img {
+    position: absolute;
+    width: 170px;
+    top: 60px;
+    left: 22%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 {
+    position: relative;
+    top: 170px;
+    left: 50%;
+    width: 380px;
+    height: 220px;
+    transform: translate(-50%, 0%);
+  }
+
+  .containerr .image-four .food-sp1 .mota-sp1 {
+    position: absolute;
+    top: 0;
+    right: 8%;
+    margin-top: 480px;
+    width: 80%;
+    height: 35%;
+    display: none;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .cart-sp1 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 20px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .share {
+    position: absolute;
+    right: 5%;
+    bottom: 25%;
+    font-size: 24px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .tym {
+    position: absolute;
+    right: 5%;
+    bottom: 45%;
+    font-size: 24px;
+  }
+
+  /*  */
+
+  .containerr .image-four .food-sp2 img {
+    position: absolute;
+    width: 170px;
+    top: 420px;
+    left: 22%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 {
+    position: absolute;
+    top: 520px;
+    left: 50%;
+    width: 380px;
+    height: 220px;
+    transform: translate(-50%, 0%);
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .cart-sp2 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 20px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .share {
+    position: absolute;
+    right: 5%;
+    bottom: 25%;
+    font-size: 24px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .tym {
+    position: absolute;
+    right: 5%;
+    bottom: 45%;
+    font-size: 24px;
+  }
+
+  /*  */
+
+  /* end spham */
+
+  .containerr .image-four .food-sp3 aside img {
+    position: absolute;
+    margin-top: 25%;
+    right: 13%;
+    width: 26%;
+    display: none;
+  }
+
+  .containerr .image-four .food-sp3 article {
+    position: absolute;
+    margin-top: 25%;
+    left: 11%;
+    width: 41%;
+    height: 25%;
+    display: none;
+  }
+
+  .containerr .image-four .food-sp3 article span {
+    font-size: 1.5em;
+  }
+
+  .containerr .image-four .food-sp3 article p {
+    position: absolute;
+    font-size: 17px;
+  }
+
+  /* five */
+  .containerr .image-five h2 {
+    line-height: 4em;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 190px;
+  }
+
+  .containerr #menu-food {
+    position: relative;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: auto;
+  }
+
+  /* menu sp4 */
+
+  .containerr .image-five .tabpanel {
+    position: absolute;
+    font-size: 15px;
+    top: 150px;
+    right: -4%;
+    height: 120px;
+    text-align: center;
+  }
+
+  .containerr .image-five .tabpanel .custom-tab-link {
+    margin-right: 2em;
+    background-color: rgb(147, 147, 147);
+    border-radius: 10px 0 10px 0;
+    border: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .containerr .image-five .tabpanel .custom-tab-link.active,
+  .containerr .image-five .tabpanel .custom-tab-link:hover {
+    background-color: rgb(199, 58, 58);
+    border-color: transparent;
+  }
+
+  .containerr .image-five .card-group img {
+    width: 90%;
+    margin-top: -54%;
+    margin-left: 4%;
+  }
+
+  .containerr .image-five .card-group .card {
+    width: 160px;
+    height: 190px;
+  }
+
+  /*  */
+  .containerr .image-five .card-group .card .card-body .cart-sp4 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 9%;
+    font-size: 15px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .share {
+    position: absolute;
+    right: 3.5%;
+    bottom: 25%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .tym {
+    position: absolute;
+    right: 3.5%;
+    bottom: 42%;
+  }
+
+  /* end five */
+
+  .containerr .food2 {
+    position: absolute;
+    width: 18%;
+    top: -3%;
+    left: -2%;
+  }
+
+  .containerr .myimage {
+    position: absolute;
+    left: 73%;
+    top: 14%;
+    width: 27%;
+  }
+
+  .containerr .myimagefood5 {
+    position: absolute;
+    top: 3280px;
+    left: -20px;
+    width: 38%;
+  }
+
+  .navbar-toggler {
+    position: absolute;
+    top: 9%;
+    right: 5%;
+    order: 1;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* slider */
+  .card-slider {
+    width: 80%;
+    overflow: hidden;
+    padding-top: 555px;
+    margin-left: 55px;
+  }
+
+  .card-slider .card-wrapper {
+    width: max-content;
+  }
+
+  .card-slider .controls {
+    margin-top: 20px;
+    margin-left: -45px;
+  }
+
+  .card-slider .text-slide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+  }
+
+  .card-slider .card-wrapper .slide-card {
+    width: 200px;
+  }
+
+  .card-slider .card-wrapper .card-body .card-title {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .card-slider .card-wrapper .card-body .card-text {
+    font-size: 15px;
+  }
+
+  .card-slider .card-wrapper .card-body a {
+    font-size: 12px;
+  }
+
+  .card-slider .card-wrapper .card {
+    width: calc(100% / 4);
+    /* Chia đều ngang 4 phần tử trên một hàng */
+    flex: 0 0 calc(100% / 11);
+    /* Chia đều ngang 4 phần tử trên một hàng */
+  }
+
+  /* end */
+}
+
+/* end responsive cho thiết bị di động */
+
+/* Định nghĩa kích thước responsive cho máy tính bảng */
+@media screen and (min-width: 767px) and (max-width: 992.5px) {
+  /* CSS règles cho máy tính bảng */
+  /* navbar */
+  .navb .navbar-collapse {
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    opacity: 1;
+  }
+
+  .navb .btn-sign {
+    position: absolute;
+    right: 15%;
+    top: 9%;
+    width: 100px;
+    height: 40px;
+  }
+
+  .navb .btn-profile {
+    position: absolute;
+    right: 15%;
+    top: 9%;
+    width: 110px;
+    height: 40px;
+  }
+
+  .containerr .image-two .collapse .navbar-nav {
+    position: absolute;
+    top: 9%;
+    left: 58%;
+    display: flex;
+    gap: 10%;
+    background-color: rgb(211, 211, 211);
+    padding: 20px 10px;
+    width: 200px;
+    border-radius: 20px;
+    opacity: 0.9;
+  }
+
+  .navb .btn-cart {
+    position: absolute;
+    right: 32%;
+    top: 9%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .containerr .image-two .yum-logo {
+    position: absolute;
+    width: 130px;
+    height: auto;
+    top: 7%;
+    left: 5%;
+  }
+
+  /* end navbar */
+
+  /* banner */
+  .image-two header article {
+    position: absolute;
+    left: 9%;
+    top: 38%;
+    font-size: 2.5em;
+  }
+
+  .image-two header article p {
+    font-size: 1.8rem;
+  }
+
+  .image-two header article a img {
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+    margin-right: -15px;
+  }
+
+  .image-two header article a button {
+    margin-top: 40px;
+    width: 170px;
+    height: 45px;
+  }
+
+  .image-two header aside img {
+    position: relative;
+    top: 0;
+    left: 60%;
+    margin-top: 170px;
+    width: 100%;
+    height: auto;
+  }
+
+  /* end banner */
+
+  /* spham */
+  .containerr .image-four {
+    position: relative;
+    top: 0;
+    left: 5%;
+    bottom: 8%;
+    width: 90%;
+    height: 1300px;
+    margin-top: 70px;
+  }
+
+  .containerr .image-four .food-sp1 img {
+    position: absolute;
+    width: 170px;
+    top: 60px;
+    left: 7%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 {
+    position: relative;
+    top: 170px;
+    left: 6%;
+    width: 300px;
+    height: 220px;
+  }
+
+  .containerr .image-four .food-sp1 .mota-sp1 {
+    position: absolute;
+    top: 0;
+    right: 8%;
+    margin-top: 480px;
+    width: 80%;
+    height: 35%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .cart-sp1 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .share {
+    position: absolute;
+    right: 5%;
+    bottom: 25%;
+    font-size: 24px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .tym {
+    position: absolute;
+    right: 5%;
+    bottom: 45%;
+    font-size: 24px;
+  }
+
+  /*  */
+
+  .containerr .image-four .food-sp2 img {
+    position: absolute;
+    width: 170px;
+    top: 60px;
+    left: 55%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 {
+    position: absolute;
+    top: 170px;
+    left: 54%;
+    width: 300px;
+    height: 220px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .cart-sp2 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .share {
+    position: absolute;
+    right: 5%;
+    bottom: 25%;
+    font-size: 24px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .tym {
+    position: absolute;
+    right: 5%;
+    bottom: 45%;
+    font-size: 24px;
+  }
+
+  /*  */
+
+  /* end spham */
+
+  .containerr .image-four .food-sp3 aside img {
+    position: absolute;
+    margin-top: 25%;
+    right: 13%;
+    width: 26%;
+    display: none;
+  }
+
+  .containerr .image-four .food-sp3 article {
+    position: absolute;
+    margin-top: 25%;
+    left: 11%;
+    width: 41%;
+    height: 25%;
+    display: none;
+  }
+
+  .containerr .image-four .food-sp3 article span {
+    font-size: 1.5em;
+  }
+
+  .containerr .image-four .food-sp3 article p {
+    position: absolute;
+    font-size: 17px;
+  }
+
+  /* five */
+  .containerr .image-five h2 {
+    line-height: 4em;
+    font-weight: bold;
+    padding-bottom: 220px;
+    text-align: center;
+    margin-left: 20px;
+  }
+
+  .containerr #menu-food {
+    position: relative;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: auto;
+  }
+
+  /* menu sp4 */
+
+  .containerr .image-five .tabpanel {
+    position: absolute;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    top: 180px;
+    right: 10%;
+  }
+
+  .containerr .image-five .tabpanel .custom-tab-link {
+    margin-right: 2em;
+    background-color: rgb(147, 147, 147);
+    border-radius: 10px 0 10px 0;
+    border: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .containerr .image-five .tabpanel .custom-tab-link.active,
+  .containerr .image-five .tabpanel .custom-tab-link:hover {
+    background-color: rgb(199, 58, 58);
+    border-color: transparent;
+  }
+
+  .containerr .image-five .card-group img {
+    width: 90%;
+    margin-top: -54%;
+    margin-left: 4%;
+  }
+
+  .containerr .image-five .card-group .card {
+    width: 190px;
+    height: 220px;
+  }
+
+  /*  */
+  .containerr .image-five .card-group .card .card-body .cart-sp4 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .share {
+    position: absolute;
+    right: 3.5%;
+    bottom: 25%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .tym {
+    position: absolute;
+    right: 3.5%;
+    bottom: 42%;
+  }
+
+  /* end five */
+
+  .containerr .food2 {
+    position: absolute;
+    width: 18%;
+    top: -3%;
+    left: -2%;
+  }
+
+  .containerr .myimage {
+    position: absolute;
+    left: 73%;
+    top: 14%;
+    width: 27%;
+  }
+
+  .containerr .myimagefood5 {
+    position: absolute;
+    top: 3000px;
+    left: -20px;
+    width: 30%;
+  }
+
+  .navbar-toggler {
+    position: absolute;
+    top: 9%;
+    right: 5%;
+    order: 1;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* slider */
+  .card-slider {
+    width: 80%;
+    overflow: hidden;
+    padding-top: 520px;
+    margin-left: 80px;
+  }
+
+  .card-slider .card-wrapper {
+    width: max-content;
+  }
+
+  .card-slider .controls {
+    margin-top: 10px;
+    margin-left: -20px;
+  }
+
+  .card-slider .text-slide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+  }
+
+  .card-slider .card-wrapper .slide-card {
+    width: 200px;
+  }
+
+  .card-slider .card-wrapper .card-body .card-title {
+    font-size: 20px;
+  }
+
+  .card-slider .card-wrapper .card {
+    width: calc(100% / 4);
+    flex: 0 0 calc(100% / 13.5);
+  }
+
+  /* end */
+}
+
+/* end responsive cho máy tính bảng */
+
+/* Định nghĩa kích thước responsive cho màn hình máy tính và laptop */
+@media screen and (min-width: 993px) and (max-width: 1199.5px) {
+  /* CSS règles cho màn hình máy tính và laptop */
+
+  /* navbar */
+  .navb .btn-sign {
+    position: absolute;
+    right: 4%;
+    top: 9%;
+    width: 100px;
+    height: 40px;
+  }
+
+  .navb .btn-profile {
+    position: absolute;
+    right: 4%;
+    top: 9%;
+    width: 110px;
+    height: 40px;
+  }
+
+  .containerr .image-two .collapse .navbar-nav {
+    position: absolute;
+    top: 9%;
+    left: 30%;
+    gap: 7%;
+  }
+
+  .navb .btn-cart {
+    position: absolute;
+    right: 17%;
+    top: 9%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  /* end navbar */
+
+  /* banner */
+  .image-two header article p {
+    font-size: 2.2rem;
+  }
+
+  .image-two header article a img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .image-two header article a button {
+    margin-top: 50px;
+    width: 200px;
+    height: 45px;
+  }
+
+  .image-two header aside img {
+    position: relative;
+    top: 0;
+    left: 75%;
+    margin-top: 180px;
+    width: 110%;
+    height: auto;
+  }
+
+  /* end banner */
+
+  /* spham */
+  .containerr .image-four {
+    position: relative;
+    top: 0;
+    left: 5%;
+    bottom: 8%;
+    width: 90%;
+    height: 1300px;
+    margin-top: 70px;
+  }
+
+  .containerr .image-four .food-sp1 img {
+    position: absolute;
+    width: 170px;
+    top: 60px;
+    left: 9%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 {
+    position: relative;
+    top: 170px;
+    left: 8%;
+    width: 190px;
+    height: 220px;
+  }
+
+  .containerr .image-four .food-sp1 .mota-sp1 {
+    position: absolute;
+    top: 0;
+    right: 8%;
+    margin-top: 150px;
+    width: 35%;
+    height: 35%;
+  }
+
+  .containerr .image-four .food-sp1 .mota-sp1 span {
+    font-size: 1.5em;
+  }
+
+  .containerr .image-four .food-sp1 .mota-sp1 p {
+    position: absolute;
+    font-size: 17px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .cart-sp1 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .share {
+    position: absolute;
+    right: 5%;
+    bottom: 25%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .tym {
+    position: absolute;
+    right: 5%;
+    bottom: 40%;
+    font-size: 18px;
+  }
+
+  /*  */
+
+  .containerr .image-four .food-sp2 img {
+    position: absolute;
+    width: 170px;
+    top: 60px;
+    left: 32.8%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 {
+    position: absolute;
+    top: 170px;
+    left: 32%;
+    width: 190px;
+    height: 220px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .cart-sp2 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .share {
+    position: absolute;
+    right: 5%;
+    bottom: 25%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .tym {
+    position: absolute;
+    right: 5%;
+    bottom: 40%;
+    font-size: 18px;
+  }
+
+  /*  */
+
+  /* end spham */
+
+  .containerr .image-four .food-sp3 aside img {
+    position: absolute;
+    margin-top: 25%;
+    right: 13%;
+    width: 26%;
+  }
+
+  .containerr .image-four .food-sp3 article {
+    position: absolute;
+    margin-top: 25%;
+    left: 11%;
+    width: 41%;
+    height: 25%;
+  }
+
+  .containerr .image-four .food-sp3 article span {
+    font-size: 1.5em;
+  }
+
+  .containerr .image-four .food-sp3 article p {
+    position: absolute;
+    font-size: 17px;
+  }
+
+  /* five */
+  .containerr .image-five h2 {
+    line-height: 4em;
+    font-weight: bold;
+    padding-bottom: 90px;
+  }
+
+  .containerr #menu-food {
+    position: relative;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: auto;
+  }
+
+  /* menu sp4 */
+  .containerr .image-five .tabpanel {
+    position: absolute;
+    top: 70px;
+    right: 2%;
+  }
+
+  .containerr .image-five .tabpanel .custom-tab-link {
+    margin-right: 2em;
+    background-color: rgb(147, 147, 147);
+    border-radius: 10px 0 10px 0;
+    border: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .containerr .image-five .tabpanel .custom-tab-link.active,
+  .containerr .image-five .tabpanel .custom-tab-link:hover {
+    background-color: rgb(199, 58, 58);
+    border-color: transparent;
+  }
+
+  .containerr .image-five .card-group img {
+    width: 90%;
+    margin-top: -54%;
+    margin-left: 4%;
+  }
+
+  .containerr .image-five .card-group .card {
+    width: 190px;
+    height: 220px;
+  }
+
+  /*  */
+  .containerr .image-five .card-group .card .card-body .cart-sp4 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .share {
+    position: absolute;
+    right: 3.5%;
+    bottom: 25%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .tym {
+    position: absolute;
+    right: 3.5%;
+    bottom: 42%;
+  }
+
+  /* end five */
+
+  .containerr .food2 {
+    position: absolute;
+    width: 14%;
+    top: -5%;
+    left: -2%;
+  }
+
+  .containerr .myimage {
+    position: absolute;
+    left: 75%;
+    top: 17%;
+    width: 25%;
+  }
+
+  .containerr .myimagefood5 {
+    position: absolute;
+    top: 2450px;
+    left: -20px;
+    width: 23%;
+  }
+
+  .containerr .image-two .yum-logo {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    top: 7%;
+    left: 3%;
+  }
+
+  .navbar-toggler {
+    position: absolute;
+    top: 9%;
+    right: 5%;
+    order: 1;
+    width: 40px;
+    height: 40px;
+  }
+
+  .containerr .image-two .collapse .navbar-nav {
+    position: absolute;
+    top: 9%;
+    left: 30%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 10%;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  /* slider */
+  .card-slider {
+    width: 80%;
+    overflow: hidden;
+    padding-top: 570px;
+    margin-left: 100px;
+  }
+
+  .card-slider .card-wrapper {
+    width: max-content;
+  }
+
+  .card-slider .controls {
+    margin-top: 10px;
+    margin-left: -10px;
+    position: absolute;
+    padding-bottom: 60px;
+  }
+
+  .card-slider .text-slide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: -70px;
+  }
+
+  .card-slider .card-wrapper .slide-card {
+    width: 200px;
+  }
+
+  .card-slider .card-wrapper .card {
+    width: calc(100% / 4);
+    /* Chia đều ngang 4 phần tử trên một hàng */
+    flex: 0 0 calc(100% / 13.5);
+    /* Chia đều ngang 4 phần tử trên một hàng */
+  }
+
+  /* end */
+}
+
+/* end responsive cho màn hình máy tính và laptop */
+
+@media screen and (min-width: 1200px) and (max-width: 1286px) {
+  .navb .btn-sign {
+    position: absolute;
+    right: 10%;
+    top: 9%;
+    width: 100px;
+    height: 40px;
+  }
+
+  .navb .btn-profile {
+    position: absolute;
+    right: 10%;
+    top: 9%;
+    width: 110px;
+    height: 40px;
+  }
+
+  .containerr .image-two .collapse .navbar-nav {
+    position: absolute;
+    top: 9%;
+    left: 30%;
+    gap: 10%;
+  }
+
+  .navb .btn-cart {
+    position: absolute;
+    right: 21%;
+    top: 9%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .image-two header article p {
+    font-size: 2.5rem;
+  }
+
+  .image-two header article a img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .image-two header article a button {
+    margin-top: 50px;
+    width: 220px;
+    height: 50px;
+  }
+
+  .image-two header aside img {
+    position: relative;
+    top: 0;
+    left: 72%;
+    margin-top: 180px;
+    width: 130%;
+    height: auto;
+  }
+
+  /*  */
+  .containerr .image-four {
+    position: relative;
+    top: 0;
+    left: 5%;
+    bottom: 8%;
+    width: 90%;
+    height: 1500px;
+    margin-top: 70px;
+  }
+
+  .containerr .image-four .food-sp1 img {
+    position: absolute;
+    width: 200px;
+    top: 50px;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 {
+    position: relative;
+    top: 170px;
+    left: 9%;
+    width: 220px;
+    height: 250px;
+  }
+
+  .containerr .image-four .food-sp1 .mota-sp1 {
+    position: absolute;
+    top: 0;
+    right: 8%;
+    margin-top: 160px;
+    width: 35%;
+    height: 35%;
+  }
+
+  .containerr .image-four .food-sp1 .mota-sp1 span {
+    font-size: 2em;
+  }
+
+  .containerr .image-four .food-sp1 .mota-sp1 p {
+    position: absolute;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .cart-sp1 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .share {
+    position: absolute;
+    right: 5%;
+    bottom: 25%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp1 .wrap-food-sp1 .tym {
+    position: absolute;
+    right: 5%;
+    bottom: 40%;
+    font-size: 18px;
+  }
+
+  /*  */
+  .containerr .image-four .food-sp2 img {
+    position: absolute;
+    width: 200px;
+    top: 50px;
+    left: 32.8%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 {
+    position: absolute;
+    top: 170px;
+    left: 32%;
+    width: 220px;
+    height: 250px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .cart-sp2 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .share {
+    position: absolute;
+    right: 5%;
+    bottom: 25%;
+    font-size: 18px;
+  }
+
+  .containerr .image-four .food-sp2 .wrap-food-sp2 .tym {
+    position: absolute;
+    right: 5%;
+    bottom: 40%;
+    font-size: 18px;
+  }
+
+  /*  */
+
+  .containerr .image-four .food-sp3 aside img {
+    position: absolute;
+    margin-top: 23%;
+    right: 13%;
+    width: 24%;
+  }
+
+  .containerr .image-four .food-sp3 article {
+    position: absolute;
+    margin-top: 25%;
+    left: 11%;
+    width: 41%;
+    height: 25%;
+  }
+
+  .containerr .image-four .food-sp3 article span {
+    font-size: 2em;
+  }
+
+  .containerr .image-four .food-sp3 article p {
+    position: absolute;
+    font-size: 18px;
+  }
+
+  /* five */
+  .containerr .image-five h2 {
+    line-height: 4em;
+    font-weight: bold;
+    padding-bottom: 90px;
+  }
+
+  .containerr #menu-food {
+    position: relative;
+    top: 100%;
+    left: 5%;
+    width: 90%;
+    height: auto;
+  }
+
+  /* menu sp4 */
+  .containerr .image-five .tabpanel {
+    position: absolute;
+    top: 70px;
+    right: 7%;
+  }
+
+  .containerr .image-five .tabpanel .custom-tab-link {
+    margin-right: 2em;
+    background-color: rgb(147, 147, 147);
+    border-radius: 10px 0 10px 0;
+    border: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .containerr .image-five .tabpanel .custom-tab-link.active,
+  .containerr .image-five .tabpanel .custom-tab-link:hover {
+    background-color: rgb(199, 58, 58);
+    border-color: transparent;
+  }
+
+  .containerr .image-five .card-group img {
+    width: 80%;
+    margin-top: -50%;
+    margin-left: 11%;
+  }
+
+  .containerr .image-five .card-group .card {
+    width: 220px;
+    height: 250px;
+  }
+
+  /* end */
+
+  /*  */
+
+  .containerr .image-five .card-group .card .card-body .cart-sp4 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .title {
+    position: absolute;
+    bottom: 50%;
+    left: 10%;
+    font-size: 18px;
+  }
+
+  .containerr .image-five .card-group .card .card-body .quantity {
+    position: absolute;
+    bottom: 35%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .evaluate {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .price {
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .share {
+    position: absolute;
+    right: 3.5%;
+    bottom: 25%;
+  }
+
+  .containerr .image-five .card-group .card .card-body .tym {
+    position: absolute;
+    right: 3.5%;
+    bottom: 42%;
+  }
+
+  /* end five */
+
+  .containerr .food2 {
+    position: absolute;
+    width: 13%;
+    top: -5%;
+    left: -2%;
+  }
+
+  .containerr .myimage {
+    position: absolute;
+    left: 75%;
+    top: 14%;
+    width: 25%;
+  }
+
+  .containerr .myimagefood5 {
+    position: absolute;
+    top: 2700px;
+    left: -20px;
+    width: 23%;
+  }
+
+  .containerr .image-two .yum-logo {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    top: 7%;
+    left: 5%;
+  }
+
+  .navbar-toggler {
+    position: absolute;
+    top: 9%;
+    right: 5%;
+    order: 1;
+    width: 40px;
+    height: 40px;
+  }
+
+  .containerr .image-two .collapse .navbar-nav {
+    position: absolute;
+    top: 9%;
+    left: 30%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 10%;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  /* slider */
+  .card-slider .card-wrapper {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+  }
+
+  .card-slider {
+    width: 80%;
+    overflow: hidden;
+    padding-top: 55%;
+    margin-left: 10%;
+  }
+
+  .card-slider .controls {
+    position: absolute;
+    top: 95%;
+    left: 41%;
+  }
+
+  /* end */
+}
+
+/*  */

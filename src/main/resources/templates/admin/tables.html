@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"> -->
+  <link rel="icon" type="image/png" href="/assets/images/banner_pizza.png">
+  <title>
+    Fast Food Store
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/bootstrap-icons/bootstrap-icons.css">
+  <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+
+</head>
+
+<body class="g-sidenav-show bg-gray-100">
+
+  <!-- loader khi vào -->
+  <div id="loader-page" style=" 
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 99999;
+   width: 100%;
+   height: 100%;
+   background-color: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;">
+    <span>
+      <img src="/assets/images/loading.gif" alt="img/loading">
+    </span>
+  </div>
+  <!-- end -->
+
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+  <aside
+    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+    id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+        aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" target="_blank" style="cursor: grab;">
+        <img src="/assets/images/yum-logo.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADMIN</span>
+      </a>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link " href="/page/admin/dashboard.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="bi bi-bar-chart-fill mb-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Thống Kê - Doanh Thu</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/page/admin/tables.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="bi bi-person-vcard-fill mb-2 text-warning text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Quản Lý Tài Khoản</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/page/admin/billing.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="bi bi-bag-check text-success text-sm mb-2 opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Quản Lý Đơn Hàng</span>
+          </a>
+        </li>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Tài Khoản</h6>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/page/admin/profile.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="bi bi-person-bounding-box text-dark text-lg mb-2 opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Trang Cá Nhân</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/page/user/login.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="bi bi-box-arrow-right text-warning text-lg mb-2 opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Đăng Nhập</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/page/user/register.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="bi bi-box-arrow-left text-info text-lg mb-2 opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Đăng Ký</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+  <main class="main-content position-relative border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+      data-scroll="false">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Trang</a></li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Quản Lý Tài Khoản</li>
+          </ol>
+          <h6 class="font-weight-bolder text-white mb-0">Quản Lý Tài khoản</h6>
+        </nav>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group">
+              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" placeholder="Tìm Kiếm...">
+            </div>
+          </div>
+          <ul class="navbar-nav  justify-content-end">
+            <li class="nav-item d-flex align-items-center">
+              <a href="/page/admin/profile.html" class="nav-link text-white font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none">Tài Khoản</span>
+              </a>
+            </li>
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0">
+                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li>
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa fa-bell cursor-pointer"></i>
+              </a>
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="/assets/images/food-menu-1.png" class="avatar avatar-sm  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          13 phút trước
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="/assets/images/food-menu-2.png" class="avatar avatar-sm me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          1 ngày trước
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="/assets/images/food-menu-4.png" class="avatar avatar-sm me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          3 ngày trước
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="row">
+      <div class="col-12">
+        <div class="container-fluid py-4">
+          <div class="card">
+            <div class="card-header pb-0">
+              <div class="d-flex align-items-center">
+                <p class="mb-0">Chỉnh Sửa Tài Khoản</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="text-uppercase text-sm">Thông Tin Người Dùng</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Họ Và Tên</label>
+                    <input class="form-control" type="text" value="" placeholder="Name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Email</label>
+                    <input class="form-control" type="email" value="" placeholder="Email Address">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Tài Khoản</label>
+                    <input class="form-control" type="text" value="" placeholder="User Name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Mật Khẩu</label>
+                    <input class="form-control" type="password" value="" placeholder="Password">
+                  </div>
+                </div>
+              </div>
+              <hr class="horizontal dark">
+              <p class="text-uppercase text-sm">Hình Ảnh</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Chọn Hình Ảnh</label>
+                    <input class="form-control" type="file" value="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label py-2">Phân Quyền</label><br>
+                    <label style="margin-right: 20px; font-size: 13px;"><input class="form-control-label"
+                        style="width: 25px; height: 15px;" name="option" type="radio" value="Admin">
+                      Admin</label>
+                    <label style="margin-right: 20px; font-size: 13px;"><input class="form-control-label"
+                        style="width: 25px; height: 15px;" name="option" type="radio" value="User">
+                      User</label>
+                  </div>
+                </div>
+              </div>
+              <hr class="py-2">
+              <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm ms-4">Thêm</button>
+                <button class="btn btn-info btn-sm ms-4">Sửa</button>
+                <button class="btn btn-danger btn-sm ms-4">Xóa</button>
+                <button class="btn btn-dark btn-sm ms-4">Làm Mới</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end -->
+    <div class="row">
+      <div class="col-12">
+        <div class="container-fluid py-4">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h6>Danh Sách Tài Khoản</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tài Khoản</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Mật Khẩu
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Họ Tên
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quyền
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Thao
+                        Tác</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/assets/images/avatar-1.jpg" class="avatar avatar-sm me-3" alt="user1">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">lebang</h6>
+                            <p class="text-xs text-secondary mb-0">Admin</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0">12345</p>
+                        <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm text-dark text-xs">Lê Chí Bằng</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">banglcpc04088@fpt.edu.vn</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">Admin</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                          data-original-title="Edit user">
+                          Edit
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/assets/images/avatar-2.jpg" class="avatar avatar-sm me-3" alt="user1">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">nguyencuong</h6>
+                            <p class="text-xs text-secondary mb-0">User</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0">56789</p>
+                        <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm text-dark text-xs">Nguyễn Chí Cường</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">cuongncpc04122@fpt.edu.vn</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">Người Dùng</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                          data-original-title="Edit user">
+                          Edit
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/assets/images/avatar-3.jpg" class="avatar avatar-sm me-3" alt="user1">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">ngolien</h6>
+                            <p class="text-xs text-secondary mb-0">User</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0">13579</p>
+                        <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm text-dark text-xs">Ngô Văn Liền</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">liennvpc04152@fpt.edu.vn</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">Người Dùng</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                          data-original-title="Edit user">
+                          Edit
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/assets/images/blog-1.jpg" class="avatar avatar-sm me-3" alt="user1">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">chauphuc</h6>
+                            <p class="text-xs text-secondary mb-0">User</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0">24681</p>
+                        <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm text-dark text-xs">Châu Hoài Phúc</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">phucchpc@fpt.edu.vn</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">Người Dùng</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                          data-original-title="Edit user">
+                          Edit
+                        </a>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/assets/images/blog-2.jpg" class="avatar avatar-sm me-3" alt="user1">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">tranvu</h6>
+                            <p class="text-xs text-secondary mb-0">User</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0">01357</p>
+                        <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm text-dark text-xs">Trần Phong Vũ</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">vutp@fpt.edu.vn</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">Người Dùng</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                          data-original-title="Edit user">
+                          Edit
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end -->
+      <footer class="footer p-4">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                Được Thiết Kế Bởi FastFoodTeam
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+  <div class="fixed-plugin">
+    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+      <i class="fa fa-cog py-2"> </i>
+    </a>
+    <div class="card shadow-lg">
+      <div class="card-header pb-0 pt-3 ">
+        <div class="float-start">
+          <h5 class="mt-3 mb-0">Cài Đặt</h5>
+          <p>Người Dùng Admin</p>
+        </div>
+        <div class="float-end mt-4">
+          <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+            <i class="fa fa-close"></i>
+          </button>
+        </div>
+        <!-- End Toggle Button -->
+      </div>
+      <hr class="horizontal dark my-1">
+      <div class="card-body pt-sm-3 pt-0 overflow-auto">
+        <!-- Sidebar Backgrounds -->
+        <div>
+          <h6 class="mb-0">hé lô</h6>
+        </div>
+        <!-- Sidenav Type -->
+        <div class="mt-3">
+          <h6 class="mb-0">Điền các cài đặt vô đây</h6>
+          <p class="text-sm">ít thôi, hong xử lý chtme</p>
+        </div>
+        <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
+        <!-- Navbar Fixed -->
+      </div>
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/bootstrap-icons/bootstrap-icons.json"></script>
+  <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script>
+
+    // loading khi refresh
+    var loader = function () {
+      setTimeout(function () {
+        $('#loader-page').css({ 'opacity': 0, 'visibility': 'hidden' });
+      }, 2000);
+    };
+    $(function () {
+      loader();
+    });
+    // end
+
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+</body>
+
+</html>

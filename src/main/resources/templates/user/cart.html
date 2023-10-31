@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+<link rel="stylesheet" th:href="@{../assets/css_main/cart.css}">
+
+<body>
+
+    <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+
+    <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
+    <div class="containerr ">
+        <div class="image_big">
+            <div class="image-one"></div>
+            <div class="image-three"></div>
+            <div class="image-two">
+                <img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
+                <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
+
+                <header class="banner-big">
+                    <div class="img-blur ">
+                        <!-- <img src="assets/images/food5.png" class="anh1" alt=""> -->
+                    </div>
+                    <div class="wraper">
+                        <aside class="">
+                            <div class="container-fluid text-cart py-4 mt-3 ">
+                                <span class="tttk text-uppercase px-3">Giỏ Hàng</span>
+                                <br>
+                                <span class="px-3 mt-3 position-absolute text-giohang">Bạn có 4 sản phẩm trong giỏ
+                                    hàng</span>
+                                <div class="search-box">
+                                    <button type="submit" class="icon-search">
+                                        <i class="bi bi-search "></i>
+                                    </button>
+                                    <input type="search" class="search px-3" name="search" id="timkiem">
+                                </div>
+                            </div>
+                            <div class="container-fluid py-4 mt-3">
+                                <div class="product-container">
+                                    <div class="product-row header mb-4">
+                                        <div class="product-cell1">Sản phẩm</div>
+                                        <div class="product-cell">Đơn giá</div>
+                                        <div class="product-cell">Số lượng</div>
+                                        <div class="product-cell">Số tiền</div>
+                                        <div class="product-cell">Thao Tác</div>
+                                    </div>
+                                    <div class="product-row">
+                                        <input type="checkbox" class="checkb_product custom-checkbox">
+                                        <a href="/page/user/product_detail.html">
+                                            <img src="/assets/images/bglogin.jpg" class="img-cell" alt="prod_pm">
+                                        </a>
+                                        <div class="product-cell-name">Tên sản phẩm</div>
+                                        <div class="product-cell px-2">:M</div>
+                                        <div class="product-cell">100.000₫</div>
+                                        <div class="product-quantity px-5">
+                                            <button class="button-tru">-</button>
+                                            <input type="text" value="1">
+                                            <button class="button-cong">+</button>
+                                        </div>
+                                        <div class="product-cell">200.000₫</div>
+                                        <div class="button-xoa">
+                                            <button type="button" class="btn">Xóa</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="product-container">
+                                    <div class="product-row header mb-4">
+                                        <div class="product-cell1">Sản phẩm</div>
+                                        <div class="product-cell">Đơn giá</div>
+                                        <div class="product-cell">Số lượng</div>
+                                        <div class="product-cell">Số tiền</div>
+                                        <div class="product-cell">Thao Tác</div>
+                                    </div>
+                                    <div class="product-row">
+                                        <input type="checkbox" class="checkb_product custom-checkbox">
+                                        <a href="/page/user/product_detail.html">
+                                            <img src="/assets/images/bglogin.jpg" class="img-cell" alt="prod_pm">
+                                        </a>
+                                        <div class="product-cell-name">Tên sản phẩm</div>
+                                        <div class="product-cell px-2">:M</div>
+                                        <div class="product-cell">100.000₫</div>
+                                        <div class="product-quantity px-5">
+                                            <button class="button-tru">-</button>
+                                            <input type="text" value="1">
+                                            <button class="button-cong">+</button>
+                                        </div>
+                                        <div class="product-cell">200.000₫</div>
+                                        <div class="button-xoa">
+                                            <button type="button" class="btn">Xóa</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="shopping-cart-container mt-3 py-3 px-3">
+                                <div class="payment-container">
+                                    <span class="text-payment">Tổng Thanh Toán: </span>
+                                    <span class="px-4 price-payment-sum">1.000.000₫</span><br>
+                                    <label for="selecAll" class="selecall">
+                                        <span class="chk-all">
+                                            <input type="checkbox" id="selecAll"> Chọn Tất Cả()
+                                        </span>
+                                    </label>
+                                    <a th:href="@{payment}">
+                                        <button class="btn btn-danger btn-thanhtoan mt-3" type="submit">Mua
+                                            Ngay</button>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </aside>
+                    </div>
+                </header>
+            </div>
+
+            <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
+        </div>
+
+        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+    </div>
+
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // loading khi refresh
+        var loader = function () {
+            setTimeout(function () {
+                $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+            }, 2000);
+        };
+        $(function () {
+            loader();
+        });
+        // end
+
+        $(function () {
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 1024) {
+                    $(".navb").addClass("scrolled");
+                } else {
+                    $(".navb").removeClass("scrolled");
+                }
+            });
+        });
+
+        $(function () {
+            $(".navbar-toggler").click(function () {
+                $(".navbar-collapse").toggleClass("show");
+            });
+        });
+
+        // nút mua hàng nằm phía trên màng hình
+        window.addEventListener('scroll', function () {
+            var paymentContainer = document.querySelector('.payment-container');
+            if (window.scrollY <= paymentContainer.offsetHeight + paymentContainer.offsetLeft) {
+                paymentContainer.classList.add('sticky');
+            } else {
+                paymentContainer.classList.remove('sticky');
+            }
+        });
+
+        // end
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+
+<link rel="stylesheet" href="/assets/css_main/profile.css">
+
+<body>
+    <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+
+    <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
+
+    <div class="containerr ">
+        <div class="image_big">
+            <div class="image-one"></div>
+            <div class="image-three"></div>
+            <div class="image-two">
+                <img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
+                <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
+
+                <header class="banner-big">
+                    <div class="img-blur ">
+                        <!-- <img src="assets/images/food5.png" class="anh1" alt=""> -->
+                    </div>
+                    <div class="wraper">
+                        <aside class="">
+                            <div class="container-fluid py-4 mt-3">
+                                <span class="tttk text-uppercase">Thông Tin Tài Khoản</span>
+                                <div class="row mt-3">
+                                    <div class="col-md-4">
+                                        <div class="card-body p-3">
+                                            <div class="col gx-5 justify-content-center text-center">
+                                                <div class="col-auto">
+                                                    <div class="avatar avatar-xl position-relative">
+                                                        <img src="/assets/images/avata_user.jpg" alt="profile_image"
+                                                            class=" border-radius-lg shadow-sm"
+                                                            style="object-fit: cover; cursor: pointer;">
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto my-auto mt-5">
+                                                    <div class="h-100 text-center">
+                                                        <h5 class="text-name mb-1">
+                                                            Lê Chí Bằng
+                                                        </h5>
+                                                        <p class="mb-0 font-weight-bold text-sm">
+                                                            User
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <nav
+                                            class="d-flex align-items-start justify-content-center mt-3 tab-confirmatione">
+                                            <div class="nav flex-column me-3" id="nav-tab" role="tablist">
+                                                <button class="nav-link active mb-2" id="nav-home-tab"
+                                                    data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+                                                    role="tab" aria-controls="nav-home" aria-selected="true">Tài Khoản
+                                                    Của
+                                                    Tôi
+                                                </button>
+                                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#nav-profile" type="button" role="tab"
+                                                    aria-controls="nav-profile" aria-selected="false">Lịch Sử
+                                                    Mua
+                                                </button>
+                                            </div>
+                                        </nav>
+                                    </div>
+                                    <div class="col-md-8 ">
+                                        <div class="card tab-content" id="nav-tabContent">
+                                            <section class="tab-pane fade show active tab-tttk" id="nav-home"
+                                                role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"
+                                                data-bs-parent="#nav-tabContent">
+                                                <div class="card-header pb-0 mt-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <p class="text-uppercase mb-0 py-2">Chỉnh Sửa Tài Khoản</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="text-uppercase text-sm mt-3">Thông Tin Người Dùng</p>
+                                                    <div class="row py-2">
+                                                        <div class="col-md-6 py-3">
+                                                            <div class="form-group">
+                                                                <label for="example-text-input"
+                                                                    class="form-control-label mb-1">Họ Và Tên</label>
+                                                                <input class="form-control" type="text" value=""
+                                                                    placeholder="Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 py-3">
+                                                            <div class="form-group">
+                                                                <label for="example-text-input"
+                                                                    class="form-control-label mb-1">Email</label>
+                                                                <input class="form-control" type="email" value=""
+                                                                    placeholder="Email Address">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 py-3">
+                                                            <div class="form-group">
+                                                                <label for="example-text-input"
+                                                                    class="form-control-label mb-1">Tài Khoản</label>
+                                                                <input class="form-control" type="text" value=""
+                                                                    placeholder="User Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 py-3">
+                                                            <div class="form-group">
+                                                                <label for="example-text-input"
+                                                                    class="form-control-label mb-1">Mật Khẩu</label>
+                                                                <input class="form-control" type="text" value=""
+                                                                    placeholder="Password">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="horizontal dark">
+                                                    <p class="text-uppercase text-sm mb-1">Hình Ảnh</p>
+                                                    <div class="row">
+                                                        <div class="col-md-6 py-2">
+                                                            <div class="form-group">
+                                                                <label for="example-text-input"
+                                                                    class="form-control-label mb-1">Chọn Hình
+                                                                    Ảnh</label>
+                                                                <input class="form-control" type="file" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 py-2">
+                                                            <div class="form-group">
+                                                                <label for="example-text-input"
+                                                                    class="form-control-label mb-1">Phân Quyền</label>
+                                                                <input class="form-control" type="text" disabled
+                                                                    value="Admin">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="py-2">
+                                                    <div class="btn-update d-flex align-items-center justify-content-center"
+                                                        style="display: flex; flex-wrap: wrap;">
+                                                        <button class="btn btn-danger btn-sm ms-4 px-4 py-2"
+                                                            style="font-size: 16px; z-index: 1;">Cập Nhật</button>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <section class="tab-pane fade tab-profile" id="nav-profile" role="tabpanel"
+                                                aria-labelledby="nav-profile-tab" tabindex="0"
+                                                data-bs-parent="#nav-tabContent">
+                                                <span class="h5 px-2">Đơn Mua</span>
+                                                <div class="container-fluid py-4 mt-3">
+                                                    <div class="product-container">
+                                                        <div class="product-row header">
+                                                            <div class="product-cell">Sản phẩm</div>
+                                                            <div class="product-cell">Size</div>
+                                                            <div class="product-cell">Đơn giá</div>
+                                                            <div class="product-cell">Số lượng</div>
+                                                            <div class="product-cell">Thành tiền</div>
+                                                        </div>
+
+                                                        <div class="product-row">
+                                                            <img src="/assets/images/bglogin.jpg" class="img-cell"
+                                                                alt="prod_pm">
+                                                            <div class="product-cell ">:M</div>
+                                                            <div class="product-cell ">100.000₫</div>
+                                                            <div class="product-cell ">2</div>
+                                                            <div class="product-cell">200.000₫</div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit"
+                                                        class="btn btn-danger d-flex mt-4 p-2 button-huy">Hủy Đơn
+                                                        Hàng
+                                                    </button>
+                                                </div>
+                                                <div class="container-fluid py-4 mt-3">
+                                                    <div class="product-container">
+                                                        <div class="product-row header">
+                                                            <div class="product-cell">Sản phẩm</div>
+                                                            <div class="product-cell">Size</div>
+                                                            <div class="product-cell">Đơn giá</div>
+                                                            <div class="product-cell">Số lượng</div>
+                                                            <div class="product-cell">Thành tiền</div>
+                                                        </div>
+
+                                                        <div class="product-row">
+                                                            <img src="/assets/images/bglogin.jpg" class="img-cell"
+                                                                alt="prod_pm">
+                                                            <div class="product-cell ">:M</div>
+                                                            <div class="product-cell ">100.000₫</div>
+                                                            <div class="product-cell ">2</div>
+                                                            <div class="product-cell">200.000₫</div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit"
+                                                        class="btn btn-danger d-flex mt-4 p-2 button-huy">Hủy Đơn
+                                                        Hàng
+                                                    </button>
+                                                </div>
+                                                <div class="container-fluid py-4 mt-3">
+                                                    <div class="product-container">
+                                                        <div class="product-row header">
+                                                            <div class="product-cell">Sản phẩm</div>
+                                                            <div class="product-cell">Size</div>
+                                                            <div class="product-cell">Đơn giá</div>
+                                                            <div class="product-cell">Số lượng</div>
+                                                            <div class="product-cell">Thành tiền</div>
+                                                        </div>
+
+                                                        <div class="product-row">
+                                                            <img src="/assets/images/bglogin.jpg" class="img-cell"
+                                                                alt="prod_pm">
+                                                            <div class="product-cell ">:M</div>
+                                                            <div class="product-cell ">100.000₫</div>
+                                                            <div class="product-cell ">2</div>
+                                                            <div class="product-cell">200.000₫</div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit"
+                                                        class="btn btn-danger d-flex mt-4 p-2 button-huy">Hủy Đơn
+                                                        Hàng
+                                                    </button>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                        </aside>
+                    </div>
+                </header>
+            </div>
+            <img class="myimage" src="/assets/images/food4.png" alt="food4">
+            
+            <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
+            
+        </div>
+
+        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+    </div>
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // loading khi refresh
+        var loader = function () {
+            setTimeout(function () {
+                $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+            }, 2000);
+        };
+        $(function () {
+            loader();
+        });
+        // end
+
+        $(function () {
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 1024) {
+                    $(".navb").addClass("scrolled");
+                } else {
+                    $(".navb").removeClass("scrolled");
+                }
+            });
+        });
+
+        $(function () {
+            $(".navbar-toggler").click(function () {
+                $(".navbar-collapse").toggleClass("show");
+            });
+        });
+        //
+
+        // ẩn hiên tab
+
+
+        // end
+
+    </script>
+</body>
+
+</html>

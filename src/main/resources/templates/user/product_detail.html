@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+<base th:href="@{../}">
+<link rel="stylesheet" th:href="@{../assets/css_main/product_detail.css}">
+
+<body>
+    <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+
+    <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
+
+    <div class="containerr ">
+        <div class="image_big">
+            <div class="image-one"></div>
+            <div class="image-three"></div>
+            <div class="image-two">
+                <img src="../assets/images/leaves.png" alt="leaves.png" class="food2">
+                <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
+
+                <header class="banner-big">
+                    <div class="wraper">
+                        <aside class="">
+                            <section id="ttsanpham" class="full-height px-lg-5" style=" border: none;">
+                                <div class="container col-md-12">
+                                    <div class="col">
+                                        <div class="title">
+                                            <p th:text="${product.name}" class="text-uppercase"></p>
+                                        </div>
+                                        <div class="danhgia mb-1">
+                                            <div class="star">
+                                                <span class="sosao">4.1 </span> &nbsp;
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star"></i>
+                                                &nbsp;&nbsp;<span class="danhgia_text text-dark">|
+                                                    &nbsp; 66 Đánh
+                                                    Giá</span>
+                                            </div>
+                                        </div>
+                                        <div class="size mb-3 mt-4">
+                                            <span>Size</span>&nbsp;&nbsp;&nbsp;
+                                            <input type="button" class="sosize mx-1" value="S">&nbsp;
+                                            <input type="button" class="sosize mx-1" value="M">&nbsp;
+                                            <input type="button" class="sosize mx-1" value="L">&nbsp;
+                                        </div>
+                                        <div class="gia mt-4">
+                                            <span>Giá</span>&nbsp;&nbsp;&nbsp;
+                                            <span class="text-gach text-decoration-line-through"
+                                                th:text="${product.prices} + '$'"></span>
+                                            &nbsp;
+                                            <span class="price" th:text="${product.price} + '$'"></span>&nbsp;
+                                            &nbsp;
+                                            <!-- <span class="giamgia">50% GIẢM</span> -->
+                                        </div>
+                                        <div class="soluong mt-4 mb-4">
+                                            <span class="cart-item-quantity">
+                                                <span class="text-soluong">Số Lượng
+                                                </span>&nbsp;&nbsp;&nbsp;
+                                                <input type="button" class="tru" value="-">
+                                                <input class="EquXA8 Wrmraq" type="text" role="spinbutton"
+                                                    aria-valuenow="1" value="1">
+                                                <input type="button" class="cong" value="+">
+                                            </span>
+                                        </div>
+                                        <div class="cart-buy-item">
+                                            <a th:href="@{cart}"><button class="button-cart"><i
+                                                        class="bi bi-cart-plus"></i>
+                                                    Thêm Giỏ
+                                                    Hàng</button></a>
+                                            <a th:href="@{payment}"><button class="button-buy">Mua
+                                                    Ngay</button> </a>
+                                        </div>
+                                    </div>
+                            </section>
+                        </aside>
+
+                        <article>
+                            <iframe th:src="@{'/assets/images/img_product/' + ${product.image}}" frameborder="0"
+                                class="if-image" name="if-image">
+                                <img th:src="@{'/assets/images/img_product/' + ${product.image}}" alt="about-banner"
+                                    class="img-food">
+                            </iframe>
+                            <div class="ifarm-images">
+                                <div th:each="image : ${images}">
+                                    <a th:href="@{'/assets/images/img_product/' + ${image.url_Img}}" target="if-image">
+                                        <img th:src="@{'/assets/images/img_product/' + ${image.url_Img}}"
+                                            alt="anhSpham">
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </header>
+            </div>
+            <div class="image-four">
+                <nav class="">
+                    <div class="nav tab-product" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                            aria-selected="true">Mô Tả
+                        </button>
+                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Đánh Giá
+                        </button>
+                    </div>
+                </nav>
+                <div class="tab-product-big tab-content" id="nav-tabContent">
+                    <div class="wraper1 tab-pane fade show active" id="nav-home" role="tabpanel"
+                        aria-labelledby="nav-home-tab" tabindex="0">
+                        <div class="container mt-3 col-md-9">
+                            <h4>Mô Tả Sản Phẩm</h4>
+                            <p class="mt-3">Khi làm burger, thông thường, bánh burger sẽ được chín
+                                nhẹ trên bề mặt nóng,
+                                sau
+                                đó
+                                được xếp lên
+                                thịt bò, rau sống, sốt và các phụ kiện khác. Sau đó, bánh burger
+                                trên cùng sẽ được đặt
+                                lên
+                                để
+                                hoàn thành sản phẩm.
+
+                                Một số biến thể của Burger Classic có thể bao gồm thêm phô mai chảo,
+                                gia vị đặc biệt,
+                                hoặc
+                                thêm
+                                các loại gia vị khác nhau...
+                            </p>
+                            <div id="demo" class="collapse">
+                                <span> Burger Classic là một loại burger truyền thống với những
+                                    thành phần cơ bản như
+                                    sau:</span> <br>
+
+                                <span> 1. Bánh Burger: Thường là bánh mì trắng mềm, hình tròn hoặc
+                                    hình xăm.
+                                </span> <br>
+
+                                <span>2. Thịt Bò: Thường là thịt bò xay tươi, được chế biến thành
+                                    miếng bánh thịt hình
+                                    tròn có đường
+                                    kính
+                                    phù hợp với bánh burger.
+                                </span> <br>
+
+                                <span> 3. Rau sống: Bao gồm rau xanh như sốt salad, rau cải xanh, cà
+                                    chua, hành tây, và
+                                    nhiều loại rau
+                                    khác tùy theo sở thích cá nhân.
+                                </span> <br>
+
+                                <span>4. Sốt: Sốt thường được sử dụng trong Burger Classic gồm có
+                                    sốt mayonnaise, sốt
+                                    hành phi, sốt cà
+                                    chua, và nhiều loại sốt khác như sốt BBQ, sốt hành, sốt cà chua,
+                                    sốt cay, và nhiều
+                                    loại
+                                    sốt
+                                    khác
+                                    tùy theo khẩu vị.
+                                </span> <br>
+
+                                <span>5. Phụ kiện: Có thể bổ sung phụ kiện như phô mai, trứng,
+                                    bacon, hay các loại gia
+                                    vị
+                                    như muối,
+                                    tiêu,
+                                    bột đường, paprika, ớt bột,...
+                                </span><br>
+
+                                <span>- Classic Burger không chỉ đơn thuần là một bữa ăn ngon lành
+                                    mà còn là một trải
+                                    nghiệm
+                                    thú vị. Hãy tận hưởng cảm giác thịt bò thơm ngon, hòa quyện với
+                                    hương vị của rau
+                                    sống
+                                    tươi mát và các loại sốt đậm đà.
+                                </span><br>
+                                <span>Một Số Hình Ảnh: </span>
+                                <br><br><br> <br>
+                            </div>
+                            <div class="xemthem" data-bs-toggle="collapse" data-bs-target="#demo">
+                                <span>more</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wraper1 mt-5 tab-pane fade" id="nav-profile" role="tabpanel"
+                        aria-labelledby="nav-profile-tab" tabindex="0">
+                        <div class="container col-md-9">
+                            <div class="reviews">
+                                <h4 class="section-title mb-4 mt-3">Đánh Giá Và Bình Luận</h4>
+                                <div class="card-header-comment mb-4">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                                data-bs-target="#home-tab-pane" type="button" role="tab"
+                                                aria-controls="home-tab-pane" aria-selected="true">Tất Cả</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="sao5-tab" data-bs-toggle="tab"
+                                                data-bs-target="#sao5-tab-pane" type="button" role="tab"
+                                                aria-controls="sao5-tab-pane" aria-selected="false">5 Sao()</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="sao4-tab" data-bs-toggle="tab"
+                                                data-bs-target="#sao4-tab-pane" type="button" role="tab"
+                                                aria-controls="sao4-tab-pane" aria-selected="false">4 Sao()</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="sao3-tab" data-bs-toggle="tab"
+                                                data-bs-target="#sao3-tab-pane" type="button" role="tab"
+                                                aria-controls="sao3-tab-pane" aria-selected="false">3 Sao()</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="sao2-tab" data-bs-toggle="tab"
+                                                data-bs-target="#sao2-tab-pane" type="button" role="tab"
+                                                aria-controls="sao2-tab-pane" aria-selected="false">2 Sao()</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="sao1-tab" data-bs-toggle="tab"
+                                                data-bs-target="#sao1-tab-pane" type="button" role="tab"
+                                                aria-controls="sao1-tab-pane" aria-selected="false">1 Sao()</button>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="review tab-content" id=" myTabContent">
+                                    <div class="user-review tab-pane fade show active" id="home-tab-pane"
+                                        role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                        <div class="info-all">
+                                            <div class="user-info">
+                                                <span>
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
+                                                        style="width: 50px; height: 50px; border-radius: 100%;"
+                                                        class="user-avatar">
+                                                    <span class="user-name">Tên người dùng</span>
+                                                    <br>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
+                                                </span>
+                                            </div>
+                                            <p class="review-content">Nội dung bình luận</p>
+                                        </div>
+                                        <hr>
+                                        <div class="info-all">
+                                            <div class="user-info">
+                                                <span>
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
+                                                        style="width: 50px; height: 50px; border-radius: 100%;"
+                                                        class="user-avatar">
+                                                    <span class="user-name">Tên người dùng</span>
+                                                    <br>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
+                                                </span>
+                                            </div>
+                                            <p class="review-content">Nội dung bình luận</p>
+                                        </div>
+                                        <hr>
+                                        <div class="info-all">
+                                            <div class="user-info">
+                                                <span>
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
+                                                        style="width: 50px; height: 50px; border-radius: 100%;"
+                                                        class="user-avatar">
+                                                    <span class="user-name">Tên người dùng</span>
+                                                    <br>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
+                                                </span>
+                                            </div>
+                                            <p class="review-content">Nội dung bình luận</p>
+                                        </div>
+                                    </div>
+                                    <div class="user-review tab-pane fade " id="sao5-tab-pane" role="tabpanel"
+                                        aria-labelledby="sao5-tab" tabindex="0">
+                                        <div class="info-all">
+                                            <div class="user-info">
+                                                <span>
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
+                                                        style="width: 50px; height: 50px; border-radius: 100%;"
+                                                        class="user-avatar">
+                                                    <span class="user-name">Tên người dùng</span>
+                                                    <br>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
+                                                </span>
+                                            </div>
+                                            <p class="review-content">Nội dung bình luận</p>
+                                        </div>
+                                        <hr>
+                                        <div class="info-all">
+                                            <div class="user-info">
+                                                <span>
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
+                                                        style="width: 50px; height: 50px; border-radius: 100%;"
+                                                        class="user-avatar">
+                                                    <span class="user-name">Tên người dùng</span>
+                                                    <br>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
+                                                </span>
+                                            </div>
+                                            <p class="review-content">Nội dung bình luận</p>
+                                        </div>
+                                    </div>
+                                    <div class="user-review tab-pane fade" id="sao4-tab-pane" role="tabpanel"
+                                        aria-labelledby="sao4-tab" tabindex="0">
+                                        <div class="info-all">
+                                            <div class="user-info">
+                                                <span>
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
+                                                        style="width: 50px; height: 50px; border-radius: 100%;"
+                                                        class="user-avatar">
+                                                    <span class="user-name">Tên người dùng</span>
+                                                    <br>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
+                                                </span>
+                                            </div>
+                                            <p class="review-content">Nội dung bình luận</p>
+                                        </div>
+                                    </div>
+                                    <div class="user-review tab-pane fade" id="sao3-tab-pane" role="tabpanel"
+                                        aria-labelledby="sao3-tab" tabindex="0">
+                                        <div class="info-all">
+                                            <div class="user-info">
+                                                <span>
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
+                                                        style="width: 50px; height: 50px; border-radius: 100%;"
+                                                        class="user-avatar">
+                                                    <span class="user-name">Tên người dùng</span>
+                                                    <br>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
+                                                </span>
+                                            </div>
+                                            <p class="review-content">Nội dung bình luận</p>
+                                        </div>
+                                    </div>
+                                    <div class="user-review tab-pane fade" id="sao2-tab-pane" role="tabpanel"
+                                        aria-labelledby="sao2-tab" tabindex="0">
+                                        <div class="info-all">
+                                            <div class="user-info">
+                                                <span>
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
+                                                        style="width: 50px; height: 50px; border-radius: 100%;"
+                                                        class="user-avatar">
+                                                    <span class="user-name">Tên người dùng</span>
+                                                    <br>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
+                                                </span>
+                                            </div>
+                                            <p class="review-content">Nội dung bình luận</p>
+                                        </div>
+                                    </div>
+                                    <div class="user-review tab-pane fade" id="sao1-tab-pane" role="tabpanel"
+                                        aria-labelledby="sao1-tab" tabindex="0">
+                                        <div class="info-all">
+                                            <div class="user-info">
+                                                <span>
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
+                                                        style="width: 50px; height: 50px; border-radius: 100%;"
+                                                        class="user-avatar">
+                                                    <span class="user-name">Tên người dùng</span>
+                                                    <br>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
+                                                </span>
+                                            </div>
+                                            <p class="review-content">Nội dung bình luận</p>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img class="myimage" src="/assets/images/food4.png" alt="food4">
+
+            <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
+        </div>
+
+        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+    </div>
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // loading khi refresh
+        var loader = function () {
+            setTimeout(function () {
+                $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+            }, 2000);
+        };
+        $(function () {
+            loader();
+        });
+        // end
+
+        $(function () {
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 1024) {
+                    $(".navb").addClass("scrolled");
+                } else {
+                    $(".navb").removeClass("scrolled");
+                }
+            });
+        });
+
+        $(function () {
+            $(".navbar-toggler").click(function () {
+                $(".navbar-collapse").toggleClass("show");
+            });
+        });
+
+    </script>
+</body>
+
+</html>

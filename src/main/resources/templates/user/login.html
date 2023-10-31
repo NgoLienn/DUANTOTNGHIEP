@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+<!-- rerister and login -->
+<link id="pagestyle" href="/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css_main/login.css">
+<!-- end -->
+
+<body>
+
+  <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+
+  <div class="container position-sticky z-index-sticky top-0">
+    <div class="row">
+      <div class="col-12">
+        <!-- Navbar -->
+        <nav th:replace="zlayout/navbar :: menu_log"></nav>
+        <!-- End Navbar -->
+      </div>
+    </div>
+  </div>
+  <main class="main-content  mt-0">
+    <section>
+      <div class="page-header min-vh-100">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
+              <div class="bgound-mo"></div>
+              <div class="card card-plain "> <!-- card-plain -->
+                <div class="img-blur ">
+                  <img src="/assets/images/food5.png" class="anh1" alt="">
+                  <img src="/assets/images/cta-banner.png" class="anh2" alt="">
+                  <img src="/assets/images/food2.png" class="anh3" alt="">
+                </div>
+                <div class="text-card pb-0 text-start"><!-- card-header -->
+                  <h4 class="font-weight-bolder">Đăng Nhập</h4>
+                  <p class="mb-0 text-dark">Nhập tài khoản và mật khẩu để đăng nhập!</p>
+                </div>
+                <div class="card-body">
+                  <form role="form" action="/auth/signin" method="post">
+                    <div class="mb-3">
+                      <input type="email" class="form-control  form-control-lg" placeholder="Tài Khoản" name="username"
+                        aria-label="Email">
+                    </div>
+                    <div class="mb-3">
+                      <input type="password" class="form-control form-control-lg" placeholder="Mật Khẩu" name="password"
+                        aria-label="Password">
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                      <label class="form-check-label" for="rememberMe">Ghi Nhớ</label>
+                    </div>
+                    <h4 th:text="${message}"></h4>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Đăng Nhập</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                  <p class="mb-4 text-sm mx-auto text-dark">
+                    Bạn đã có tài khoản chưa?
+                    <a th:href="@{/register}" class="text-dark font-weight-bold">Đăng Ký</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="backg col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
+              <div class="position-relative h-100 px-7 border-radius-lg d-flex justify-content-center overflow-hidden"
+                style="background-image: url(/assets/images/main_img.png);
+          background-size: cover;">
+                <span class="mask opacity-6"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!--   Core JS Files   -->
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+
+  <script>
+    // loading khi refresh
+    var loader = function () {
+      setTimeout(function () {
+        $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+      }, 2000);
+    };
+    $(function () {
+      loader();
+    });
+    // end
+
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+</body>
+
+</html>
