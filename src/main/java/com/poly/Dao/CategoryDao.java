@@ -22,5 +22,6 @@ public class CategoryDao {
         String sql = "SELECT * FROM Categories";
         list = jdbcTemplate.query(sql, new MapperCategory());
         return list;
+        //snksknsmsnsmss
     }
 }
