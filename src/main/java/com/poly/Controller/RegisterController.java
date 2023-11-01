@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import com.poly.Entity.Account;
 import com.poly.Reponsitory.AccountReponsitory;
 import com.poly.Service.AccountService;
-import com.poly.Service.MailService;
-
 @Controller
 @RequestMapping("/register")
 public class RegisterController {

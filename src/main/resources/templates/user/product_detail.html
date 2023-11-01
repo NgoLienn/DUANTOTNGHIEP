@@ -66,30 +66,25 @@
                                             </span>
                                         </div>
                                         <div class="cart-buy-item">
-                                            <a th:href="@{cart}"><button class="button-cart"><i
-                                                        class="bi bi-cart-plus"></i>
+                                            <a href="#"><button class="button-cart"><i class="bi bi-cart-plus"></i>
                                                     Thêm Giỏ
                                                     Hàng</button></a>
-                                            <a th:href="@{payment}"><button class="button-buy">Mua
+                                            <a href="#"><button class="button-buy">Mua
                                                     Ngay</button> </a>
                                         </div>
                                     </div>
                             </section>
                         </aside>
-
                         <article>
-                            <iframe th:src="@{'/assets/images/img_product/' + ${product.image}}" frameborder="0"
-                                class="if-image" name="if-image">
-                                <img th:src="@{'/assets/images/img_product/' + ${product.image}}" alt="about-banner"
-                                    class="img-food">
-                            </iframe>
                             <div class="ifarm-images">
                                 <div th:each="image : ${images}">
-                                    <a th:href="@{'/assets/images/img_product/' + ${image.url_Img}}" target="if-image">
-                                        <img th:src="@{'/assets/images/img_product/' + ${image.url_Img}}"
-                                            alt="anhSpham">
-                                    </a>
+                                    <img th:src="@{'/assets/images/img_product/' + ${image.url_Img}}" alt="anhSpham"
+                                        class="clickable-image" onclick="showImage(this.src)">
                                 </div>
+                            </div>
+                            <div id="image-container" class="hidden if-image">
+                                <img id="product-image" th:src="@{'/assets/images/img_product/' + ${product.image}}"
+                                    class="img-food">
                             </div>
                         </article>
                     </div>
@@ -406,6 +401,7 @@
         });
         // end
 
+        // navbar ẩn hiện
         $(function () {
             $(window).scroll(function () {
                 var scroll = $(window).scrollTop();
@@ -422,6 +418,16 @@
                 $(".navbar-collapse").toggleClass("show");
             });
         });
+        // end
+
+        // iframe chuyển ảnh
+        function showImage(imageSrc) {
+            var imageContainer = document.getElementById("image-container");
+            var productImage = document.getElementById("product-image");
+            productImage.src = imageSrc;
+            imageContainer.classList.toggle("hidden");
+        }
+        // end
 
     </script>
 </body>

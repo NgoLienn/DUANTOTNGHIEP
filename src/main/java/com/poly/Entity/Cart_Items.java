@@ -26,6 +26,10 @@ public class Cart_Items implements Serializable {
     private Long cartitemID;
 
     @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Products productId;
+
+    @ManyToOne
     @JoinColumn(name = "cart_id")
     private Carts Carts;
 

@@ -378,7 +378,7 @@ body {
   background: rgb(210, 17, 17);
 }
 
-.image-two header article iframe {
+.image-two header article .if-image {
   position: relative;
   top: 40px;
   left: 220px;
@@ -924,10 +924,10 @@ footer .ft ul li {
     font-size: 11px;
   }
 
-  .image-two header article iframe {
+  .image-two header article .if-image {
     position: relative;
     top: -150px;
-    left: -12px;
+    left: -18px;
     width: 400px;
     height: 400px;
     filter: none;
@@ -1145,7 +1145,7 @@ footer .ft ul li {
     margin-left: 10px;
   }
 
-  .image-two header article iframe {
+  .image-two header article .if-image {
     position: relative;
     top: -140px;
     left: 50px;
@@ -1346,7 +1346,7 @@ footer .ft ul li {
     width: 180px;
   }
 
-  .image-two header article iframe {
+  .image-two header article .if-image {
     position: relative;
     top: -320px;
     left: 200px;
@@ -1518,7 +1518,7 @@ footer .ft ul li {
     width: 120px;
   }
 
-  .image-two header article iframe {
+  .image-two header article .if-image {
     position: relative;
     top: 50px;
     left: 120px;
@@ -1664,7 +1664,7 @@ footer .ft ul li {
     text-align: center;
   }
 
-  .image-two header article iframe {
+  .image-two header article .if-image {
     position: relative;
     top: 50px;
     left: 180px;

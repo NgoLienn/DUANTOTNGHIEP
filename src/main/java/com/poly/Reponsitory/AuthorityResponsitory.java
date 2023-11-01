@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AuthorityResponsitory extends JpaRepository<Authority,Integer> {
+    
 }

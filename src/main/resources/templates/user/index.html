@@ -27,19 +27,19 @@
 							Hương Vị Tuyệt Vời <br> Dịch Vụ Chuyên Nghiệp.
 						</p>
 						<div class="girdd">
-							<a href="#pizza-tab">
+							<a href="#menu-food">
 								<div class="gird-small">
 									<img src="/assets/images/icon-pizza.png" alt="icon-pizza">
 								</div>
-							</a> <a href="#burger-tab">
+							</a> <a href="#menu-food">
 								<div class="gird-small">
 									<img src="/assets/images/icon-humberger.png" alt="icon-burger">
 								</div>
-							</a> <a href="#my-tab">
+							</a> <a href="#menu-food">
 								<div class="gird-small">
 									<img src="/assets/images/icon-noodle.png" alt="icon-noodle">
 								</div>
-							</a> <a href="#trmieng-tab">
+							</a> <a href="#menu-food">
 								<div class="gird-small">
 									<img src="/assets/images/icon-cream.png" alt="icon-kem">
 								</div>
@@ -60,26 +60,26 @@
 				<div class="food-sp1">
 					<div class="wrap-food-sp1">
 						<a href="#">
-							<div class="title text-black">hamburger</div>
+							<div class="title text-black">Pizza Pepperoni</div>
 						</a>
 						<div class="quantity">
-							View: <small style="font-weight: initial;">253 Lượt xem</small>
+							View: <small style="font-weight: initial;">1 Lượt xem</small>
 						</div>
 						<div class="evaluate">
 							<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i
 								class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i
 								class="bi bi-star-half"></i>
 						</div>
-						<div class="price">35000đ</div>
-						<div class="share">
+						<div class="price">60000$</div>
+						<!-- <div class="share">
 							<i class="bi bi-share"></i>
 						</div>
 						<div class="tym">
 							<i class="bi bi-heart-fill"></i>
-						</div>
-						<a href="#"> <span class="cart-sp1"> <i class="bi bi-cart3"></i>
+						</div> -->
+						<!-- <a href="#"> <span class="cart-sp1"> <i class="bi bi-cart3"></i>
 							</span>
-						</a>
+						</a> -->
 					</div>
 					<aside class="mota-sp1">
 						<span>Món ăn nhanh - Những lựa chọn đa dạng và ngon miệng</span>
@@ -88,30 +88,31 @@
 							ẩm thực nhanh gọn của mọi người. Hãy thưởng thức và cảm nhận
 							hương vị tuyệt vời của những món ăn nhanh ngon miệng.</p>
 					</aside>
-					<a href="#"> <img src="/assets/images/food-menu-4.png" alt="food-menu">
+					<a href="#"> <img src="../assets/images/img_product/pizza_pepperoni.png" alt="food-menu">
 					</a>
 				</div>
 
 				<div class="food-sp2">
 					<span class="wrap-food-sp2">
-						<div class="title">Chiken – Lanzhou</div>
+						<div class="title">Hamburger Classic</div>
 						<div class="quantity">
-							View: <small style="font-weight: initial;">313 Lượt xem</small>
+							View: <small style="font-weight: initial;">1 Lượt xem</small>
 						</div>
 						<div class="evaluate">
 							<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i
 								class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star"></i>
 						</div>
-						<div class="price">235$</div>
-						<div class="share">
+						<div class="price">35000$</div>
+						<!-- <div class="share">
 							<i class="bi bi-share"></i>
 						</div>
 						<div class="tym">
 							<i class="bi bi-heart-fill"></i>
-						</div> <a href="#1"> <span class="cart-sp2"> <i class="bi bi-cart3"></i>
+						</div>
+						<a href="#1"> <span class="cart-sp2"> <i class="bi bi-cart3"></i>
 							</span>
-						</a>
-					</span> <img src="/assets/images/food-menu-6.png" alt="food-menu">
+						</a> -->
+					</span> <img src="../assets/images/img_product/main_img.png" alt="food-menu">
 				</div>
 
 				<div class="food-sp3">
@@ -134,8 +135,11 @@
 					<div class="swiper-wrapper card-wrapper">
 						<div th:each="item : ${ListProduct}"
 							class="swiper-slide card show active text-center slide-card">
-							<img th:src="@{'/assets/images/img_product/' + ${item.image}}" class="card-img-top"
-								alt="anhslide">
+							<a th:href="@{/user/productDetail/{productId}(productId=${item.productId})}"
+								class="text-black">
+								<img th:src="@{'/assets/images/img_product/' + ${item.image}}" class="card-img-top"
+									alt="anhslide">
+							</a>
 							<div class="card-body">
 								<h5 class="card-title" th:text="${item.name}"></h5>
 								<p class="card-text" th:text="${item.price}">$</p>
@@ -168,36 +172,22 @@
 							<button class="nav-link text-white active custom-tab-link" id="home-tab"
 								data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab"
 								aria-controls="home-tab-pane" aria-selected="true">Tất
-								Cả</button>
-						</li>
-						<li class="nav-item" role="presentation">
-							<button class="nav-link text-white custom-tab-link" id="pizza-tab" data-bs-toggle="tab"
-								data-bs-target="#pizza-tab-pane" type="button" role="tab" aria-controls="pizza-tab-pane"
-								aria-selected="false">Pizza
+								Cả
 							</button>
 						</li>
-						<li class="nav-item" role="presentation">
-							<button class="nav-link text-white custom-tab-link" id="burger-tab" data-bs-toggle="tab"
-								data-bs-target="#burger-tab-pane" type="button" role="tab"
-								aria-controls="burger-tab-pane" aria-selected="false">Hamburger
-							</button>
-						</li>
-						<li class="nav-item" role="presentation">
-							<button class="nav-link text-white custom-tab-link" id="my-tab" data-bs-toggle="tab"
-								data-bs-target="#my-tab-pane" type="button" role="tab" aria-controls="my-tab-pane"
-								aria-selected="false">Mỳ
-							</button>
-						</li>
-						<li class="nav-item" role="presentation">
-							<button class="nav-link text-white custom-tab-link" id="trmieng-tab" data-bs-toggle="tab"
-								data-bs-target="#trmieng-tab-pane" type="button" role="tab"
-								aria-controls="trmieng-tab-pane" aria-selected="false">Tráng
-								Miệng</button>
-						</li>
+						<th:block th:each="category : ${categoryList}">
+							<li class="nav-item" role="presentation">
+								<button class="nav-link text-white custom-tab-link"
+									th:id="'pizza-tab'+ ${category.categoryId}" th:data-bs-toggle="tab"
+									th:data-bs-target="'#pizza-tab-pane' + ${category.categoryId}" type="button"
+									role="tab" th:aria-controls="'pizza-tab-pane' + ${category.categoryId}"
+									th:aria-selected="false" th:text="${category.name}">
+								</button>
+							</li>
+						</th:block>
 					</ul>
 
 					<div class="tab-content" id="myTabContent">
-
 						<section class="tab-pane fade show active" id="all-tab-pane" role="tabpanel"
 							aria-labelledby="home-tab" tabindex="0">
 							<div class="card-group justify-content-center" style="gap: 100px;">
@@ -212,7 +202,8 @@
 												<div class="title" th:text="${item.name}"></div>
 											</a>
 											<div class="quantity">
-												View: <small style="font-weight: initial;">253</small>
+												View: <small style="font-weight: initial;"
+													th:text="${item.views}"></small>
 											</div>
 											<div class="evaluate">
 												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
@@ -234,171 +225,47 @@
 									</div>
 								</div>
 							</div>
-							<nav aria-label="Page navigation example" class="mt-5 d-flex justify-content-center">
-								<ul class="pagination">
-									<li class="page-item">
-										<a class="page-link" href="#" aria-label="Previous">
-											<span aria-hidden="true">&laquo;</span>
-										</a>
-									</li>
-									<li class="page-item"><a class="page-link" href="#">1</a>
-									</li>
-									<li class="page-item"><a class="page-link" href="#">2</a>
-									</li>
-									<li class="page-item"><a class="page-link" href="#">3</a>
-									</li>
-									<li class="page-item">
-										<a class="page-link" href="#" aria-label="Next">
-											<span aria-hidden="true">&raquo;</span>
-										</a>
-									</li>
-								</ul>
-							</nav>
 						</section>
-
-						<section class="tab-pane fade" id="pizza-tab-pane" role="tabpanel" aria-labelledby="pizza-tab"
-							tabindex="0">
-							<div class="card-group justify-content-center" style="gap: 100px;">
-								<div th:each="product : ${ListProduct}">
-									<div class="card">
-										<div class=" card-body">
-											<a href="/page/user/product_detail.html" class="text-black">
-												<img class="card-img-top"
-													th:src="@{'/assets/images/img_product/' + ${product.image}}"
-													alt="food-menu">
-												<div class="title" th:text="${product.name}"></div>
-											</a>
-											<div class="quantity">
-												View: <small style="font-weight: initial;">253</small>
+						<th:block th:each="category : ${categoryList}">
+							<section class="tab-pane fade" th:id="'pizza-tab-pane' + ${category.categoryId}" role="tab"
+								th:aria-labelledby="'pizza-tab' + ${category.categoryId}" tabindex="0">
+								<div class="card-group justify-content-center" style="gap: 100px;">
+									<th:block th:each="product : ${ListProduct}"
+										th:if="${product.category.categoryId == category.categoryId}">
+										<div class="card">
+											<div class=" card-body">
+												<a th:href="@{/user/productDetail/{productId}(productId=${product.productId})}"
+													class="text-black">
+													<img class="card-img-top"
+														th:src="@{'/assets/images/img_product/' + ${product.image}}"
+														alt="food-menu">
+													<div class="title" th:text="${product.name}"></div>
+												</a>
+												<div class="quantity">
+													View: <small style="font-weight: initial;"
+														th:text="${product.views}"></small>
+												</div>
+												<div class="evaluate">
+													<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+													<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+													<i class="bi bi-star-half"></i>
+												</div>
+												<div class="price" th:text="'Price: ' + ${product.price} + '$'"></div>
+												<div class="share">
+													<i class="bi bi-share"></i>
+												</div>
+												<div class="tym">
+													<i class="bi bi-heart-fill"></i>
+												</div>
+												<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
+													</span>
+												</a>
 											</div>
-											<div class="evaluate">
-												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-half"></i>
-											</div>
-											<div class="price" th:text="'Price: ' + ${product.price} + '$'"></div>
-											<div class="share">
-												<i class="bi bi-share"></i>
-											</div>
-											<div class="tym">
-												<i class="bi bi-heart-fill"></i>
-											</div>
-											<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
-												</span>
-											</a>
 										</div>
-									</div>
+									</th:block>
 								</div>
-							</div>
-						</section>
-
-						<section class="tab-pane fade" id="burger-tab-pane" role="tabpanel" aria-labelledby="burger-tab"
-							tabindex="0">
-							<div class="card-group justify-content-center" style="gap: 100px;">
-								<div th:each="product : ${ListProduct}">
-									<div class="card">
-										<div class=" card-body">
-											<a href="/page/user/product_detail.html" class="text-black">
-												<img class="card-img-top"
-													th:src="@{'/assets/images/img_product/' + ${product.image}}"
-													alt="food-menu">
-												<div class="title" th:text="${product.name}"></div>
-											</a>
-											<div class="quantity">
-												View: <small style="font-weight: initial;">253</small>
-											</div>
-											<div class="evaluate">
-												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-half"></i>
-											</div>
-											<div class="price" th:text="'Price: ' + ${product.price} + '$'"></div>
-											<div class="share">
-												<i class="bi bi-share"></i>
-											</div>
-											<div class="tym">
-												<i class="bi bi-heart-fill"></i>
-											</div>
-											<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
-												</span>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
-
-						<section class="tab-pane fade" id="my-tab-pane" role="tabpanel" aria-labelledby="my-tab"
-							tabindex="0">
-							<div class="card-group justify-content-center" style="gap: 100px;">
-								<div th:each="product : ${ListProduct}">
-									<div class="card">
-										<div class=" card-body">
-											<a href="/page/user/product_detail.html" class="text-black">
-												<img class="card-img-top"
-													th:src="@{'/assets/images/img_product/' + ${product.image}}"
-													alt="food-menu">
-												<div class="title" th:text="${product.name}"></div>
-											</a>
-											<div class="quantity">
-												View: <small style="font-weight: initial;">253</small>
-											</div>
-											<div class="evaluate">
-												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-half"></i>
-											</div>
-											<div class="price" th:text="'Price: ' + ${product.price} + '$'"></div>
-											<div class="share">
-												<i class="bi bi-share"></i>
-											</div>
-											<div class="tym">
-												<i class="bi bi-heart-fill"></i>
-											</div>
-											<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
-												</span>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
-
-						<section class="tab-pane fade" id="trmieng-tab-pane" role="tabpanel"
-							aria-labelledby="trmieng-tab" tabindex="0">
-							<div class="card-group justify-content-center" style="gap: 100px;">
-								<div th:each="product : ${ListProduct}">
-									<div class="card">
-										<div class=" card-body">
-											<a href="/page/user/product_detail.html" class="text-black">
-												<img class="card-img-top"
-													th:src="@{'/assets/images/img_product/' + ${product.image}}"
-													alt="food-menu">
-												<div class="title" th:text="${product.name}"></div>
-											</a>
-											<div class="quantity">
-												View: <small style="font-weight: initial;">253</small>
-											</div>
-											<div class="evaluate">
-												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-half"></i>
-											</div>
-											<div class="price" th:text="'Price: ' + ${product.price} + '$'"></div>
-											<div class="share">
-												<i class="bi bi-share"></i>
-											</div>
-											<div class="tym">
-												<i class="bi bi-heart-fill"></i>
-											</div>
-											<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
-												</span>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
+							</section>
+						</th:block>
 					</div>
 				</div>
 			</section>
@@ -469,6 +336,7 @@
 			slidesPerGroup: 1,
 		});
 		// end
+
 	</script>
 </body>
 

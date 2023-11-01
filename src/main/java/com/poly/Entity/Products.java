@@ -28,7 +28,7 @@ public class Products implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Categories categories;
+    private Categories categoryId;
 
     @Column(name = "name", columnDefinition = "NVARCHAR(100)")
     private String Name;
@@ -68,5 +68,13 @@ public class Products implements Serializable {
 
     public Long getId() {
         return productId;
+    }
+
+    public Categories getCategory() {
+        return categoryId;
+    }
+
+    public void setCategory(Categories category) {
+        this.categoryId = category;
     }
 }

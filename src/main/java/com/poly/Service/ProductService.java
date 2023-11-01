@@ -5,33 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.poly.Dao.CategoryDao;
-import com.poly.Entity.Categories;
 import com.poly.Entity.Image_product;
 import com.poly.Entity.Products;
 import com.poly.Reponsitory.ProductRepository;
 
-import javax.transaction.Transactional;
-
 @Service
-@Transactional
 public class ProductService {
 
     @Autowired
     private ProductRepository productrepo;
 
-    // @Autowired
-    // private final ProductRepository productRepository;
-
     @Autowired
-    private CategoryDao categoryDao;
-
-//    @Autowired
-//    private ImageProductService imageProductService;
-
-     public ProductService(ProductRepository productRepository) {
-         this.productrepo = productRepository;
-     }
+    private ImageProductService imageProductService;
 
     public List<Products> listAll() {
         return productrepo.findAll();
@@ -49,20 +34,39 @@ public class ProductService {
         productrepo.deleteById(id);
     }
 
-    // public List<Products> getProductByCategoryId(Categories category) {
-    //     return productRepository.findByCategories(category);
+    // public List<Categories> getDataCategorys() {
+    //     return categoryDao.getDataCategorys();
     // }
 
-    public List<Categories> getDataCategorys() {
-        return categoryDao.getDataCategorys();
-    }
-
+    // load sản phẩm theo id
     public Products getProductById(Long iddetail) {
         return productrepo.findById(iddetail).get();
     }
+    // end
 
-//    public List<Image_product> getImagesByProductId(Long productId) {
-//        return imageProductService.getImagesByProductId(productId);
-//    }
+    // đưa ảnh lên theo id sản phẩm
+    public List<Image_product> getImagesByProductId(Long productId) {
+        return imageProductService.getImagesByProductId(productId);
+    }
+    // end
+
+    // sử lý viewProduct
+    public void increaseViewCount(Long iddetail) {
+        Products product = productrepo.findById(iddetail).orElse(null);
+
+        if (product != null) {
+            int views = product.getViews() != null ? product.getViews() : 0;
+            product.setViews(views + 1);
+            productrepo.save(product);
+        }
+    }
+    // end
+
+    // phân trang sản phẩm
+    // public Page<Products> getAll(int pageNo) {
+    // Pageable pageable = PageRequest.of(pageNo - 1, 8);
+    // return this.productrepo.findAll(pageable);
+    // }
+    // end
 
 }

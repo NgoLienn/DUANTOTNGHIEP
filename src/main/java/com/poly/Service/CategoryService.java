@@ -11,10 +11,10 @@ import com.poly.Reponsitory.CategoryRepository;
 @Service
 public class CategoryService {
     @Autowired
-    private static CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepo;
 
     public List<Categories> getAllCategories() {
-        return categoryRepository.findAll();
+        return categoryRepo.findAll();
     }
 
 }

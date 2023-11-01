@@ -30,9 +30,6 @@ public class Account implements Serializable {
     @Column(name = "username", columnDefinition = "NVARCHAR(100)")
     private String UserName;
 
-//    @Column(name = "email", columnDefinition = "NVARCHAR(200)")
-//    private String Email;
-
     @Column(name = "password", columnDefinition = "NVARCHAR(100)")
     private String Password;
 
@@ -44,18 +41,20 @@ public class Account implements Serializable {
 
     @Column(name = "avata", columnDefinition = "NVARCHAR(100)")
     private String Avata;
+
     @Column(name = "token")
     private String token;
+
     @Column(name = "active")
     private Boolean active;
+
     @JsonIgnore
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     List<Authority> authorities;
+
     private String encrypt(String plaintext) {
         return plaintext;
     }
-
-
 
     public void generateActivationToken() {
         String identifier = UUID.randomUUID().toString();

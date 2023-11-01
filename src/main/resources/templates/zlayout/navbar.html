@@ -20,13 +20,13 @@
                         Thiệu</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Liên
                         Hệ</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a th:href="@{/menu}" class="nav-link">Menu</a></li>
             </ul>
         </div>
         <div class="btn-groupp">
             <th:block th:unless="${#request.remoteUser}">
                 <a th:href="@{/auth/signin}">
-              <div class="btn-sign">Sign In</div>
+                    <div class="btn-sign">Sign In</div>
                 </a>
             </th:block>
             <th:block th:if="${#request.remoteUser}">

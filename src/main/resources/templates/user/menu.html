@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+<link rel="stylesheet" th:href="@{../assets/css_main/menu.css}">
+
+<body>
+	<div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+
+	<div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
+
+	<div class="containerr">
+		<div class="image_big">
+			<div class="image-one"></div>
+			<div class="image-three"></div>
+			<div class="image-two">
+				<img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
+				<nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="~{zlayout/navbar :: menu}"></nav>
+
+				<header class="banner-big">
+					<aside>
+						<img src="/assets/images/img_product/spaghetti_1.png" alt="about-banner">
+					</aside>
+
+					<article>
+						<p>
+							Hương Vị Tuyệt Vời <br> Dịch Vụ Chuyên Nghiệp.
+						</p>
+						<div class="girdd">
+							<a href="/menu#all-tab-pane">
+								<div class="gird-small">
+									<img src="/assets/images/icon-pizza.png" alt="icon-pizza">
+								</div>
+							</a> <a href="/menu#all-tab-pane">
+								<div class="gird-small">
+									<img src="/assets/images/icon-humberger.png" alt="icon-burger">
+								</div>
+							</a> <a href="/menu#all-tab-pane">
+								<div class="gird-small">
+									<img src="/assets/images/icon-noodle.png" alt="icon-noodle">
+								</div>
+							</a> <a href="/menu#all-tab-pane">
+								<div class="gird-small">
+									<img src="/assets/images/icon-cream.png" alt="icon-kem">
+								</div>
+							</a>
+						</div>
+						<div class="button-sp">
+							<a href="/menu#menu-food">
+								<button>
+									Xem Menu&nbsp;&nbsp;&nbsp; <i class="bi bi-arrow-right"></i>
+								</button>
+							</a>
+						</div>
+					</article>
+				</header>
+			</div>
+
+			<div class="image-four">
+			</div>
+			<section id="menu-food">
+				<div class="image-five">
+					<h2>Menu Món Ăn</h2>
+					<ul class="nav nav-tabs tabpanel border-bottom-0 justify-content-center flex-wrap" id="myTab"
+						role="tablist">
+						<li class="nav-item" role="presentation">
+							<button class="nav-link text-white active custom-tab-link" id="home-tab"
+								data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab"
+								aria-controls="home-tab-pane" aria-selected="true">Tất
+								Cả
+							</button>
+						</li>
+						<th:block th:each="category : ${categoryList}">
+							<li class="nav-item" role="presentation">
+								<button class="nav-link text-white custom-tab-link"
+									th:id="'pizza-tab'+ ${category.categoryId}" th:data-bs-toggle="tab"
+									th:data-bs-target="'#pizza-tab-pane' + ${category.categoryId}" type="button"
+									role="tab" th:aria-controls="'pizza-tab-pane' + ${category.categoryId}"
+									th:aria-selected="false" th:text="${category.name}">
+								</button>
+							</li>
+						</th:block>
+					</ul>
+
+					<div class="tab-content" id="myTabContent">
+						<section class="tab-pane fade show active" id="all-tab-pane" role="tabpanel"
+							aria-labelledby="home-tab" tabindex="0">
+							<div class="card-group justify-content-center" style="gap: 100px;">
+								<div th:each="item : ${ListProduct}">
+									<div class="card">
+										<div class="card-body">
+											<a th:href="@{/user/productDetail/{productId}(productId=${item.productId})}"
+												class="text-black">
+												<img class="card-img-top"
+													th:src="@{'/assets/images/img_product/' + ${item.image}}"
+													alt="food-menu" />
+												<div class="title" th:text="${item.name}"></div>
+											</a>
+											<div class="quantity">
+												View: <small style="font-weight: initial;"
+													th:text="${item.views}"></small>
+											</div>
+											<div class="evaluate">
+												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+												<i class="bi bi-star-half"></i>
+											</div>
+											<div class="price" th:text="'Price: ' + ${item.price} + '$'"></div>
+											<div class="share">
+												<i class="bi bi-share"></i>
+											</div>
+											<div class="tym">
+												<i class="bi bi-heart-fill"></i>
+											</div>
+											<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
+												</span>
+											</a>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- phân trang -->
+							<!-- <nav aria-label="Page navigation example"
+								class="navigation mt-5 d-flex justify-content-center">
+								<ul class="pagination">
+									<li class="page-item" th:if="${currentPage > 1}">
+										<a class="page-link" th:href="@{'/user/menu?pageNo=' + ${currentPage - 1}}"
+											aria-label="Previous">
+											<span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+										</a>
+									</li>
+									<li class="page-item " th:each="i:${#numbers.sequence(1,totalPage)}"
+										th:classappend="${currentPage == i ? 'active' : ''}">
+										<a class="page-link" th:href="@{'/user/menu?pageNo=' + ${i}} + '#menu-food'"
+											th:text="${i}"></a>
+									</li>
+									<li class="page-item" th:if="${currentPage < totalPage}">
+										<a class="page-link" th:href="@{'/user/menu?pageNo=' + ${currentPage + 1}}"
+											aria-label="Next">
+											<span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+										</a>
+									</li>
+								</ul>
+							</nav> -->
+							<!-- end -->
+						</section>
+						<th:block th:each="category : ${categoryList}">
+							<section class="tab-pane fade" th:id="'pizza-tab-pane' + ${category.categoryId}" role="tab"
+								th:aria-labelledby="'pizza-tab' + ${category.categoryId}" tabindex="0">
+								<div class="card-group justify-content-center" style="gap: 100px;">
+									<th:block th:each="product : ${ListProduct}"
+										th:if="${product.category.categoryId == category.categoryId}">
+										<div class="card">
+											<div class=" card-body">
+												<a th:href="@{/user/productDetail/{productId}(productId=${product.productId})}"
+													class="text-black">
+													<img class="card-img-top"
+														th:src="@{'/assets/images/img_product/' + ${product.image}}"
+														alt="food-menu">
+													<div class="title" th:text="${product.name}"></div>
+												</a>
+												<div class="quantity">
+													View: <small style="font-weight: initial;"
+														th:text="${product.views}"></small>
+												</div>
+												<div class="evaluate">
+													<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+													<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+													<i class="bi bi-star-half"></i>
+												</div>
+												<div class="price" th:text="'Price: ' + ${product.price} + '$'"></div>
+												<div class="share">
+													<i class="bi bi-share"></i>
+												</div>
+												<div class="tym">
+													<i class="bi bi-heart-fill"></i>
+												</div>
+												<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
+													</span>
+												</a>
+											</div>
+										</div>
+									</th:block>
+								</div>
+							</section>
+						</th:block>
+					</div>
+				</div>
+			</section>
+			<!-- 
+			<img class="myimage" src="/assets/images/food4.png" alt="food4"> -->
+
+
+			<div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
+		</div>
+
+		<a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+	</div>
+
+
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/bootstrap.min.js"></script>
+	<script src="../assets/fontawesome-free-6.4.0-web/js/all.js"></script>
+	<script src="../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+
+	<script>
+		// loading khi refresh
+		var loader = function () {
+			setTimeout(function () {
+				$('#loader').css({
+					'opacity': 0,
+					'visibility': 'hidden'
+				});
+			}, 500);
+		};
+		$(function () {
+			loader();
+		});
+		// end
+
+		// 
+
+		$(function () {
+			$(window).scroll(function () {
+				var scroll = $(window).scrollTop();
+				if (scroll >= 1024) {
+					$(".navb").addClass("scrolled");
+				} else {
+					$(".navb").removeClass("scrolled");
+				}
+			});
+		});
+
+		$(function () {
+			$(".navbar-toggler").click(function () {
+				$(".navbar-collapse").toggleClass("show");
+			});
+		});
+		//end
+
+		// slide show
+		var swiper = new Swiper('.swiper-container', {
+			slidesPerView: 3,
+			spaceBetween: 20,
+			navigation: {
+				nextEl: '.slide-next',
+				prevEl: '.slide-prev',
+			},
+			loop: true,
+			autoplay: {
+				delay: 5000,
+				disableOnInteraction: false,
+			},
+			slidesPerGroup: 1,
+		});
+		// end
+
+	</script>
+</body>
+
+</html>
