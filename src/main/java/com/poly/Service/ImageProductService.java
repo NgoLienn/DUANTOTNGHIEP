@@ -20,7 +20,7 @@ public class ImageProductService {
     @Autowired
     private ProductRepository productrepo;
 
-    public List<Image_product> getImagesByProductId(Long productId) {
+    public List<Image_product> getImagesByProductId(int productId) {
         // return imageProductRepository.findByProductId(productId);
         Products product = productrepo.findById(productId).orElse(null);
         if (product != null) {

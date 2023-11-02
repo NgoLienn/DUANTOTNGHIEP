@@ -26,11 +26,11 @@ public class ProductService {
         productrepo.save(product);
     }
 
-    public Products get(long id) {
+    public Products get(int id) {
         return productrepo.findById(id).get();
     }
 
-    public void delete(long id) {
+    public void delete(int id) {
         productrepo.deleteById(id);
     }
 
@@ -39,19 +39,19 @@ public class ProductService {
     // }
 
     // load sản phẩm theo id
-    public Products getProductById(Long iddetail) {
+    public Products getProductById(int iddetail) {
         return productrepo.findById(iddetail).get();
     }
     // end
 
     // đưa ảnh lên theo id sản phẩm
-    public List<Image_product> getImagesByProductId(Long productId) {
+    public List<Image_product> getImagesByProductId(int productId) {
         return imageProductService.getImagesByProductId(productId);
     }
     // end
 
     // sử lý viewProduct
-    public void increaseViewCount(Long iddetail) {
+    public void increaseViewCount(int iddetail) {
         Products product = productrepo.findById(iddetail).orElse(null);
 
         if (product != null) {

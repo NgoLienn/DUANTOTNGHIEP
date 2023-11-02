@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // phan quyen su dung
                 http.authorizeRequests()
-                                .antMatchers("/order/checkout").authenticated()
+                                .antMatchers("/addToCart/*").authenticated()
                                 .antMatchers("/admin/**").hasAnyRole("ADMIN", "DIRE").antMatchers("/api/authorities")
                                 .hasRole("DIRE")
                                 // .antMatchers("/home/users").hasAnyRole("ADMIN","USER")

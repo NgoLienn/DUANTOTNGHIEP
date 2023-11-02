@@ -26,10 +26,6 @@ public class Size_Product implements Serializable {
     private Long sizeproductID;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Products Products;
-
-    @ManyToOne
     @JoinColumn(name = "size_id")
     private Size Size;
 

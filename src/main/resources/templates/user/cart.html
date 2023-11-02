@@ -44,12 +44,12 @@
                                         <div class="product-cell">Số tiền</div>
                                         <div class="product-cell">Thao Tác</div>
                                     </div>
-                                    <div class="product-row">
+                                    <div th:each="item: ${}" class="product-row" >
                                         <input type="checkbox" class="checkb_product custom-checkbox">
                                         <a href="/page/user/product_detail.html">
                                             <img src="/assets/images/bglogin.jpg" class="img-cell" alt="prod_pm">
                                         </a>
-                                        <div class="product-cell-name">Tên sản phẩm</div>
+                                        <div class="product-cell-name"  th:text="item.prodcuts.Name">Tên sản phẩm</div>
                                         <div class="product-cell px-2">:M</div>
                                         <div class="product-cell">100.000₫</div>
                                         <div class="product-quantity px-5">
@@ -64,35 +64,10 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="product-container">
-                                    <div class="product-row header mb-4">
-                                        <div class="product-cell1">Sản phẩm</div>
-                                        <div class="product-cell">Đơn giá</div>
-                                        <div class="product-cell">Số lượng</div>
-                                        <div class="product-cell">Số tiền</div>
-                                        <div class="product-cell">Thao Tác</div>
-                                    </div>
-                                    <div class="product-row">
-                                        <input type="checkbox" class="checkb_product custom-checkbox">
-                                        <a href="/page/user/product_detail.html">
-                                            <img src="/assets/images/bglogin.jpg" class="img-cell" alt="prod_pm">
-                                        </a>
-                                        <div class="product-cell-name">Tên sản phẩm</div>
-                                        <div class="product-cell px-2">:M</div>
-                                        <div class="product-cell">100.000₫</div>
-                                        <div class="product-quantity px-5">
-                                            <button class="button-tru">-</button>
-                                            <input type="text" value="1">
-                                            <button class="button-cong">+</button>
-                                        </div>
-                                        <div class="product-cell">200.000₫</div>
-                                        <div class="button-xoa">
-                                            <button type="button" class="btn">Xóa</button>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
-                            <div class="shopping-cart-container mt-3 py-3 px-3">
+
+                            <div  class="shopping-cart-container mt-3 py-3 px-3">
                                 <div class="payment-container">
                                     <span class="text-payment">Tổng Thanh Toán: </span>
                                     <span class="px-4 price-payment-sum">1.000.000₫</span><br>

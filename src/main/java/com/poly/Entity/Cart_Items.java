@@ -34,7 +34,7 @@ public class Cart_Items implements Serializable {
     private Carts Carts;
 
     @Column(name = "quantity")
-    private Float Quantity;
+    private int Quantity;
 
     @Column(name = "price")
     private Float Price;
