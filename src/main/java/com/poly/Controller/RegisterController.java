@@ -51,7 +51,7 @@ public class RegisterController {
 
     @GetMapping("/activate")
     public String activeaccount(Model m , @RequestParam("token")String token){
-        Account acc =accountReponsitory.findToken(token);
+        Account acc =accountReponsitory.findByToken(token);
         if(acc !=null){
             accountService.SaveAccountActive(acc);
             m.addAttribute("message","Kích Hoạt Tài Khoản Thành Công");

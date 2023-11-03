@@ -1,15 +1,54 @@
 package com.poly.Controller;
 
+
+import com.poly.Entity.Account;
+import com.poly.Reponsitory.AccountReponsitory;
+import com.poly.Service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("user/profile")
 public class ProfileController {
-    @GetMapping("/profile")
-    public String ViewProfile(Model model) {
+
+    @Autowired
+    AccountService accountService;
+
+    @Autowired
+    AccountReponsitory accountReponsitory;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @RequestMapping()
+    public String account(HttpServletRequest request, Model model){
+        String username=request.getRemoteUser();
+        Account account=accountService.findByUsername(username);
+        model.addAttribute("account", new Account());
+
         return "user/profile";
+    }
+    @PostMapping()
+    public String changepass(Model m,HttpServletRequest request,
+        @ModelAttribute("account") Account account){
+
+        String username=request.getRemoteUser();
+        Account acc =accountService.findByUsername(username);
+        acc.setFullname(account.getFullname());
+        acc.setPhone(account.getPhone());
+        acc.setAddress(account.getAddress());
+        accountReponsitory.save(acc);
+        return "user/profile";
+
     }
 }

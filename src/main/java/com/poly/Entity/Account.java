@@ -27,6 +27,9 @@ public class Account implements Serializable {
     @JoinColumn(name = "blog_id")
     private Blog blog;
 
+    @Column(name = "fullname", columnDefinition = "NVARCHAR(100)")
+    private String Fullname;
+
     @Column(name = "username", columnDefinition = "NVARCHAR(100)")
     private String UserName;
 

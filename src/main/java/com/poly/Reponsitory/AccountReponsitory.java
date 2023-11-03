@@ -12,4 +12,6 @@ public interface AccountReponsitory extends JpaRepository<Account, Integer> {
     Account findByUsername(String Username);
     @Query("select u from Account u where u.resetToken=?1")
     Account findToken(String token);
+    @Query("select u from Account u where u.token=?1")
+    Account findByToken(String token);
 }

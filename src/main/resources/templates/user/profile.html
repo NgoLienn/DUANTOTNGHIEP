@@ -67,24 +67,27 @@
                                             </div>
                                         </nav>
                                     </div>
+
                                     <div class="col-md-8 ">
                                         <div class="card tab-content" id="nav-tabContent">
                                             <section class="tab-pane fade show active tab-tttk" id="nav-home"
                                                 role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"
                                                 data-bs-parent="#nav-tabContent">
+                                                <form method="post" action="user/profile" th:object="${account}">
                                                 <div class="card-header pb-0 mt-0">
                                                     <div class="d-flex align-items-center">
                                                         <p class="text-uppercase mb-0 py-2">Chỉnh Sửa Tài Khoản</p>
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
+
                                                     <p class="text-uppercase text-sm mt-3">Thông Tin Người Dùng</p>
                                                     <div class="row py-2">
                                                         <div class="col-md-6 py-3">
                                                             <div class="form-group">
                                                                 <label for="example-text-input"
                                                                     class="form-control-label mb-1">Họ Và Tên</label>
-                                                                <input class="form-control" type="text" value=""
+                                                                <input name="Fullname" class="form-control" type="text" value=""
                                                                     placeholder="Name">
                                                             </div>
                                                         </div>
@@ -92,32 +95,16 @@
                                                             <div class="form-group">
                                                                 <label for="example-text-input"
                                                                        class="form-control-label mb-1">Địa chỉ</label>
-                                                                <input class="form-control" type="text" value=""
-                                                                       placeholder="Địa chỉ">
+                                                                <textarea name="Address" class="form-control"  placeholder="Địa chỉ"></textarea>
+
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 py-3">
                                                             <div class="form-group">
                                                                 <label for="example-text-input"
                                                                        class="form-control-label mb-1">Số điện thoại</label>
-                                                                <input class="form-control" type="text" value=""
+                                                                <input name="Phone" class="form-control" type="text" value=""
                                                                        placeholder="Nhập số">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 py-3">
-                                                            <div class="form-group">
-                                                                <label for="example-text-input"
-                                                                    class="form-control-label mb-1">Email</label>
-                                                                <input class="form-control" type="email" value=""
-                                                                    placeholder="Email Address">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6 py-3">
-                                                            <div class="form-group">
-                                                                <label for="example-text-input"
-                                                                    class="form-control-label mb-1">Tài Khoản</label>
-                                                                <input class="form-control" type="text" value=""
-                                                                    placeholder="User Name">
                                                             </div>
                                                         </div>
 
@@ -142,6 +129,7 @@
                                                             style="font-size: 16px; z-index: 1;">Cập Nhật</button>
                                                     </div>
                                                 </div>
+                                    </form>
                                             </section>
                                             <section class="tab-pane fade tab-profile" id="nav-profile" role="tabpanel"
                                                 aria-labelledby="nav-profile-tab" tabindex="0"
@@ -222,6 +210,7 @@
                                             </section>
                                         </div>
                                     </div>
+
                                 </div>
                         </aside>
                     </div>
