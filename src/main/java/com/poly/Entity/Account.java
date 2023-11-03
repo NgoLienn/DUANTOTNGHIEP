@@ -47,6 +47,8 @@ public class Account implements Serializable {
 
     @Column(name = "active")
     private Boolean active;
+    @Column(name="resettoken")
+    private String resetToken;
 
     @JsonIgnore
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
@@ -62,5 +64,12 @@ public class Account implements Serializable {
         String plaintext = identifier + ":" + timestamp;
         String token = encrypt(plaintext);
         this.token = token;
+    }
+    public void ResetToken() {
+        String identifier = UUID.randomUUID().toString();
+        long timestamp = new Date().getTime();
+        String plaintext = identifier + ":" + timestamp;
+        String token = encrypt(plaintext);
+        this.resetToken = token;
     }
 }

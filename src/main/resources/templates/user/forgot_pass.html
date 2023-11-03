@@ -38,9 +38,9 @@
                   <p class="mb-0 text-dark">Nhập vào địa chỉ mail để khôi phục mật khẩu!</p>
                 </div>
                 <div class="card-body">
-                  <form role="form" th:action="@{/}">
+                  <form method="post" role="form" th:action="@{/account/quen-mat-khau}">
                     <div class="mb-3">
-                      <input type="email" class="form-control form-control-lg" placeholder="Nhập địa chỉ mail"
+                      <input name="email" type="email" class="form-control form-control-lg" placeholder="Nhập địa chỉ mail"
                         aria-label="Email">
                     </div>
                     <div class="text-center">

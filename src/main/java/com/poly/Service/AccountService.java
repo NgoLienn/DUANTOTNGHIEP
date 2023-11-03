@@ -53,6 +53,15 @@ public class AccountService {
         account.setActive(false);
         return account;
     }
+    public Account SavePass(Account account){
+        account.setResetToken(null);
+        return accountRepository.save(account);
+    }
+    public Account createToken(Account account){
+        account.ResetToken();
+        return accountRepository.save(account);
+
+    }
     public Account SaveAccountActive(Account account) {
         account.setActive(true);
         account.setToken(null);
