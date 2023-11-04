@@ -35,13 +35,12 @@ public class ProfileController {
         String username=request.getRemoteUser();
         Account account=accountService.findByUsername(username);
         model.addAttribute("account", new Account());
-
+        model.addAttribute("profile", account);
         return "user/profile";
     }
     @PostMapping()
     public String changepass(Model m,HttpServletRequest request,
         @ModelAttribute("account") Account account){
-
         String username=request.getRemoteUser();
         Account acc =accountService.findByUsername(username);
         acc.setFullname(account.getFullname());

@@ -87,7 +87,7 @@
                                                             <div class="form-group">
                                                                 <label for="example-text-input"
                                                                     class="form-control-label mb-1">Họ Và Tên</label>
-                                                                <input name="Fullname" class="form-control" type="text" value=""
+                                                                <input th:value="${profile.fullname}" name="Fullname" class="form-control" type="text" value=""
                                                                     placeholder="Name">
                                                             </div>
                                                         </div>
@@ -95,7 +95,7 @@
                                                             <div class="form-group">
                                                                 <label for="example-text-input"
                                                                        class="form-control-label mb-1">Địa chỉ</label>
-                                                                <textarea name="Address" class="form-control"  placeholder="Địa chỉ"></textarea>
+                                                                <textarea th:text="${profile.address}"  name="Address" class="form-control"  placeholder="Địa chỉ"></textarea>
 
                                                             </div>
                                                         </div>
@@ -103,7 +103,7 @@
                                                             <div class="form-group">
                                                                 <label for="example-text-input"
                                                                        class="form-control-label mb-1">Số điện thoại</label>
-                                                                <input name="Phone" class="form-control" type="text" value=""
+                                                                <input th:value="${profile.phone}" name="Phone" class="form-control" type="text"
                                                                        placeholder="Nhập số">
                                                             </div>
                                                         </div>
