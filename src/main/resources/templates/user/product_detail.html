@@ -40,23 +40,28 @@
                                                     Giá</span>
                                             </div>
                                         </div>
-                                        <div th:each="product : ${product}" >
-                                        <div class="d-flex size mb-3 mt-4">
-
-                                            <span>Size</span>&nbsp;&nbsp;&nbsp;
-                                            <div  th:each="size : ${product.size}" >
-                                                <a th:href="@{|/user/productDetail/${product.productId}?sizeId=${size.sizeID}|}"><input  type="button" class="sosize mx-1" th:value="${size.name}"></a> &nbsp;
+                                        <div th:each="product : ${product}">
+                                            <div class="size mb-3 mt-4">
+                                                <span>Size</span>&nbsp;&nbsp;&nbsp;
+                                                <div th:each="size : ${product.size}">
+                                                    <a th:href="@{|/user/productDetail/${product.productId}?sizeId=${size.sizeID}|}"
+                                                        class="text-decoration-none">
+                                                        <input type="button" class="sosize mx-1"
+                                                            th:value="${size.name}">
+                                                    </a> &nbsp;
+                                                </div>
                                             </div>
                                         </div>
-                                         </div>
                                         <div class="gia mt-4">
                                             <span>Giá</span>&nbsp;&nbsp;&nbsp;
                                             <span class="text-gach text-decoration-line-through"
                                                 th:text="${product.prices} + '$'"></span>
                                             &nbsp;
-                                            <span class="price" th:text="${sizeProduct.price} + '$'"></span>&nbsp;
+                                            <span class="price"
+                                                th:text="${#numbers.formatDecimal(sizeProduct.price , 0, 'COMMA', 0, 'POINT')} + ' VND'">
+                                            </span>&nbsp;
                                             &nbsp;
-                                            <!-- <span class="giamgia">50% GIẢM</span> -->
+                                            <!-- <span class="giamgia">10% GIẢM</span> -->
                                         </div>
                                         <div class="soluong mt-4 mb-4">
                                             <span class="cart-item-quantity">
@@ -430,6 +435,10 @@
             productImage.src = imageSrc;
             imageContainer.classList.toggle("hidden");
         }
+        // end
+
+        //giữ nguyên vị trí size
+
         // end
 
     </script>

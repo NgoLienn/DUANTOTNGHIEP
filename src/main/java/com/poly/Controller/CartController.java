@@ -1,22 +1,17 @@
 package com.poly.Controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.poly.Reponsitory.AccountReponsitory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.convert.ReadingConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.poly.Dao.ProductDao;
 import com.poly.Entity.Account;
 import com.poly.Entity.Cart_Items;
 import com.poly.Entity.Carts;
@@ -24,15 +19,12 @@ import com.poly.Entity.Products;
 import com.poly.Reponsitory.CartItemsRepository;
 import com.poly.Reponsitory.CartRepository;
 import com.poly.Reponsitory.ProductRepository;
-import com.poly.Service.CartItemsService;
-import com.poly.Service.CartService;
 import com.poly.Service.ProductService;
-import org.thymeleaf.model.IModel;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-
+@RequestMapping("/user")
 public class CartController {
 
     @Autowired
@@ -53,16 +45,10 @@ public class CartController {
     @Autowired
     private AccountReponsitory accountRepo;
 
-    @GetMapping("/product")
+    @GetMapping("/cart")
     public String listProducts(Model model) {
         List<Products> products = productService.listAll();
         model.addAttribute("products", products);
-        return "product-list";
-    }
-
-    @GetMapping("/cart")
-    public String viewCart(Model model) {
-        // Lấy thông tin giỏ hàng và hiển thị nó
         return "user/cart";
     }
 

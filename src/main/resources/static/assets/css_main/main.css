@@ -561,7 +561,8 @@ body {
 
 .containerr .image-five .card-group img:hover {
   cursor: pointer;
-  transform: scale(102%);
+  transform: scale(103%);
+  transition: all 0.4s ease ;
 }
 
 .containerr .image-five .card-group .card {
@@ -1543,31 +1544,22 @@ footer .ft ul li {
     /* Chia đều ngang 4 phần tử trên một hàng */
   }
 
-  .card-slider .card-wrapper .card {
-    width: calc(100% / 4);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-    flex: 0 0 calc(100% / 4);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-  }
-
   .card-slider .card-wrapper .card-body .card-title {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
   }
 
   .card-slider .card-wrapper .card-body .card-text {
-    font-size: 20px;
+    font-size: 15px;
   }
 
-  .card-slider .card-wrapper .card-body a {
-    font-size: 12px;
+  .card-slider .card-wrapper .card-body a button{
+    font-size: 10px;
   }
 
   .card-slider .card-wrapper .card {
-    width: calc(100% / 4);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-    flex: 0 0 calc(100% / 9);
-    /* Chia đều ngang 4 phần tử trên một hàng */
+    width: calc(100% / 3);
+    flex: 0 0 calc(100% / 14);
   }
 
   /* end */
@@ -2035,9 +2027,7 @@ footer .ft ul li {
 
   .card-slider .card-wrapper .card {
     width: calc(100% / 4);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-    flex: 0 0 calc(100% / 11);
-    /* Chia đều ngang 4 phần tử trên một hàng */
+    flex: 0 0 calc(100% / 15);
   }
 
   /* end */
@@ -2484,7 +2474,7 @@ footer .ft ul li {
 
   .card-slider .card-wrapper .card {
     width: calc(100% / 4);
-    flex: 0 0 calc(100% / 13.5);
+    flex: 0 0 calc(100% / 18);
   }
 
   /* end */
@@ -2916,12 +2906,10 @@ footer .ft ul li {
     width: 200px;
   }
 
-  .card-slider .card-wrapper .card {
+  /* .card-slider .card-wrapper .card {
     width: calc(100% / 4);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-    flex: 0 0 calc(100% / 13.5);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-  }
+    flex: 0 0 calc(100% / 4);
+  } */
 
   /* end */
 }

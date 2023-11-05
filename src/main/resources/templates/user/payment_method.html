@@ -41,7 +41,7 @@
                                             <label for="address3">Ấp Rạch Muỗi Xã Phú Hưng Huyện Cái Nước Tỉnh Cà
                                                 Mau</label>
                                         </div>
-                                        <a href="#" id="openModal"
+                                        <a th:href="@{user/payment#myModal}" id="openModal"
                                             class=" add-new-address px-3 text-location d-flex justify-content-end">
                                             Thay Đổi
                                         </a>
@@ -163,7 +163,7 @@
                                         30.000₫</span><br>
                                     <span class="text-payment">Tổng Thanh Toán: </span><span class="price-payment-sum">
                                         230.000₫</span><br>
-                                    <a th:href="@{confirmation}">
+                                    <a th:href="@{user/confirmation}">
                                         <button class="btn btn-danger tbtn-thanhtoan mt-5">Thanh
                                             Toán</button>
                                     </a>

@@ -36,7 +36,7 @@ public class Account implements Serializable {
     @Column(name = "password", columnDefinition = "NVARCHAR(100)")
     private String Password;
 
-    @Column(name = "address", columnDefinition = "TEXT")
+    @Column(name = "address", columnDefinition = "NVARCHAR(MAX)")
     private String Address;
 
     @Column(name = "phone", columnDefinition = "VARCHAR(50)")
