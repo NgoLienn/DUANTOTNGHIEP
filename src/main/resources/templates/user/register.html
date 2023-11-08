@@ -5,6 +5,8 @@
 <!-- rerister and login -->
 <link id="pagestyle" href="/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/css_main/register.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- end -->
 
 <body>
@@ -77,32 +79,28 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form" method="post" action="register" th:object="${account}">
+              <form role="form" method="post" action="register" th:object="${account}" onsubmit="return validateForm()">
                 <div class="mb-3">
-                  <input type="email" name="UserName" class="form-control" placeholder="Email" aria-label="Email">
+                  <input  id="emailInput" name="UserName" class="form-control" placeholder="Email" aria-label="Email">
                 </div>
                 <div class="mb-3">
-                  <input type="password" name="Password" class="form-control" placeholder="Mật Khẩu"
-                    aria-label="Password">
+                  <input type="password" id="passwordInput" name="Password" class="form-control" placeholder="Mật Khẩu" aria-label="Password">
                 </div>
                 <div class="mb-3">
-                  <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" aria-label="Password">
+                  <input type="password" id="confirmPasswordInput" class="form-control" placeholder="Nhập lại mật khẩu" aria-label="Password">
                 </div>
                 <div class="form-check form-check-info text-start">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
                   <label class="form-check-label" for="flexCheckDefault">
-                    Tôi đồng ý các <a href="javascript:;" class="text-dark font-weight-bolder"> điều khoản và điều
-                      kiện</a>
+                    Tôi đồng ý các <a href="javascript:;" class="text-dark font-weight-bolder"> điều khoản và điều kiện</a>
                   </label>
                   <label class="form-check-label" for="flexCheckDefault" th:text="${message}">
-
                   </label>
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Đăng Ký</button>
                   </div>
-                  <p class="text-sm mt-3 mb-0">Bạn Đã Có Tài khoản? <a th:href="@{/auth/signin}"
-                      class="text-dark font-weight-bolder">Đăng Nhập</a></p>
-
+                  <p class="text-sm mt-3 mb-0">Bạn Đã Có Tài khoản? <a th:href="@{/auth/signin}" class="text-dark font-weight-bolder">Đăng Nhập</a></p>
+                </div>
               </form>
             </div>
           </div>
@@ -129,6 +127,77 @@
       loader();
     });
     // end
+
+    function validateForm() {
+      var emailInput = document.getElementById("emailInput");
+      var passwordInput = document.getElementById("passwordInput");
+      var confirmPasswordInput = document.getElementById("confirmPasswordInput");
+
+      var email = emailInput.value;
+      var password = passwordInput.value;
+      var confirmPassword = confirmPasswordInput.value;
+
+      // Thiết lập biến để kiểm tra lỗi
+      var hasError = false;
+
+      // Kiểm tra trường email không được để trống và phải có định dạng email hợp lệ
+      if (email === "") {
+        showError("Vui lòng nhập địa chỉ email.");
+        hasError = true;
+      } else if (!isValidEmail(email)) {
+        showError("Địa chỉ email không hợp lệ.");
+        hasError = true;
+      }
+
+      // Kiểm tra mật khẩu có ít nhất 6 ký tự
+      if (password.length < 6) {
+        if (!hasError) {
+          showError("Mật khẩu phải có ít nhất 6 ký tự.");
+        }
+
+        hasError = true;
+      }
+
+      // Kiểm tra xác nhận mật khẩu phải giống mật khẩu
+      if (password !== confirmPassword) {
+        if (!hasError) {
+          showError("Xác nhận mật khẩu không khớp.");
+        }
+        hasError = true;
+
+      }
+
+      // Trả về false nếu có lỗi, ngăn form submit
+      if (hasError) {
+        return false;
+      }
+      CussTrue("Đăng ký tài khoản thành công");
+
+    }
+
+    function isValidEmail(email) {
+      // Sử dụng biểu thức chính quy để kiểm tra định dạng email
+      var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      return emailPattern.test(email);
+    }
+
+    function showError(message) {
+      Swal.fire({
+        icon: "error",
+        title: "Lỗi",
+        text: message,
+      });
+    }
+    function CussTrue(message) {
+      Swal.fire({
+        icon: "success",
+        title: "Thành Công",
+        text: message,
+      });
+
+    }
+
+
   </script>
 </body>
 

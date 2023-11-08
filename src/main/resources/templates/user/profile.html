@@ -4,6 +4,7 @@
 <head th:replace="~{zlayout/fragments :: html_head}"></head>
 
 <link rel="stylesheet" href="/assets/css_main/profile.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <body>
     <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
@@ -73,7 +74,7 @@
                                             <section class="tab-pane fade show active tab-tttk" id="nav-home"
                                                 role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"
                                                 data-bs-parent="#nav-tabContent">
-                                                <form method="post" action="user/profile" th:object="${account}">
+                                                <form id="profileForm"  method="post" action="user/profile" th:object="${account}">
                                                 <div class="card-header pb-0 mt-0">
                                                     <div class="d-flex align-items-center">
                                                         <p class="text-uppercase mb-0 py-2">Chỉnh Sửa Tài Khoản</p>
@@ -126,7 +127,7 @@
                                                     <div class="btn-update d-flex align-items-center justify-content-center"
                                                         style="display: flex; flex-wrap: wrap;">
                                                         <button class="btn btn-danger btn-sm ms-4 px-4 py-2"
-                                                            style="font-size: 16px; z-index: 1;">Cập Nhật</button>
+                                                            style="font-size: 16px; z-index: 1;" type="submit">Cập Nhật</button>
                                                     </div>
                                                 </div>
                                     </form>
@@ -229,6 +230,8 @@
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
 
+
+
     <script>
         // loading khi refresh
         var loader = function () {
@@ -263,6 +266,24 @@
 
 
         // end
+
+        document.getElementById("profileForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from submitting by default
+
+            var fullname = document.querySelector('input[name="Fullname"]').value;
+            var address = document.querySelector('textarea[name="Address"]').value;
+            var phone = document.querySelector('input[name="Phone"]').value;
+
+            if (fullname.trim() === '' || address.trim() === '' || phone.trim() === '') {
+                Swal.fire("Lỗi", "Vui lòng điền đầy đủ thông tin.", "error");
+            } else if (!/^\d{10}$/.test(phone)) {
+                Swal.fire("Lỗi", "Số điện thoại không hợp lệ. Vui lòng nhập 10 chữ số.", "error");
+            } else {
+                // If all fields are filled and phone number is in the correct format, submit the form
+                this.submit();
+            }
+        });
+
 
     </script>
 </body>

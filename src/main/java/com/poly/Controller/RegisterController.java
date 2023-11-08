@@ -55,7 +55,7 @@ public class RegisterController {
         if(acc !=null){
             accountService.SaveAccountActive(acc);
             m.addAttribute("message","Kích Hoạt Tài Khoản Thành Công");
-            return "user/register";
+            return "redirect:/auth/signin";
         }else{
             m.addAttribute("message", "Mã Token kích hoạt không hợp lệ");
             return "user/register";

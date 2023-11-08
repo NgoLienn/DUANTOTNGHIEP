@@ -41,7 +41,7 @@ public class ForgotController {
                 String token=acc.getResetToken();
                 String activationUrl = "http://localhost:8080/quenmk?token=" +token;
                 mailServiceIMPL.send( acc.getUserName(),"Quên Mật Khẩu Từ NVA3","Xin Chào  Chúng tôi đã nhận được yêu cầu Quên Mật Khẩu vào NV3 bằng địa chỉ email này. Nếu bạn muốn Thay Đổi Mật Khẩu bằng tài khoản "+acc.getUserName()+" của mình, hãy nhấp vào liên kết:"+"<a href='" + activationUrl + "'>tại đây</a>");
-                m.addAttribute("message","Quên Mật Khẩu Thành Công, Vui lòng kiểm tra email");
+                m.addAttribute("message","Vui lòng kiểm tra email");
                 return "user/forgot_pass";
             }
         }
@@ -71,7 +71,7 @@ public class ForgotController {
             accountReponsitory.save(acc);
             String script = "<script>alert('mật khẩu đã được thay đổi');</script>";
             m.addAttribute("script", script);
-            return "user/confirm_password";
+            return "redirect:/auth/signin";
         }
     }
 

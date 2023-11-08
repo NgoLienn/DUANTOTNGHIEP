@@ -47,7 +47,7 @@ public class ProfileController {
         acc.setPhone(account.getPhone());
         acc.setAddress(account.getAddress());
         accountReponsitory.save(acc);
-        return "user/profile";
+        return "redirect:/user/profile";
 
     }
 }
