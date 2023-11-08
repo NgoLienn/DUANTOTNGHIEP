@@ -1,6 +1,7 @@
 package com.poly.Entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,19 +24,22 @@ public class Reviews implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
-    private Long reviewID;
+    private int reviewID;
 
     @ManyToOne
-	@JoinColumn(name = "product_id")
-	private Products Products;
+    @JoinColumn(name = "product_id")
+    private Products Products;
 
     @ManyToOne
-	@JoinColumn(name = "account_id")
-	private Account Account;
+    @JoinColumn(name = "account_id")
+    private Account Account;
 
-    @Column(name = "rating", columnDefinition = "NVARCHAR(50)")
-    private String Rating;
+    @Column(name = "rating")
+    private int Rating;
 
-    @Column(name = "comment", columnDefinition = "TEXT")
+    @Column(name = "comment", columnDefinition = "NVACHAR(MAX)")
     private String Comment;
+
+    @Column(name = "date_post")
+    private Date Date_post;
 }

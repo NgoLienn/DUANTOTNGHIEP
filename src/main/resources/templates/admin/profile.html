@@ -91,6 +91,24 @@
             <span class="nav-link-text ms-1">Quản Lý Đơn Hàng</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/page/admin/product.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="bi bi-bag-check text-success text-sm mb-2 opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Quản Lý Sản Phẩm</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/page/admin/category.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="bi bi-bag-check text-success text-sm mb-2 opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Quản Lý Danh Mục</span>
+          </a>
+        </li>
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Tài Khoản</h6>
         </li>
@@ -316,6 +334,23 @@
                     <input class="form-control" type="text" value="" placeholder="Password">
                   </div>
                 </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Số Điện Thoại</label>
+                    <input class="form-control" type="text" value="" placeholder="Phone">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label py-2">Giới Tính</label><br>
+                    <label style="margin-right: 20px; font-size: 13px;"><input class="form-control-label"
+                        style="width: 25px; height: 15px;" name="option" type="radio" value="Admin" id="admin">
+                      Nam</label>
+                    <label style="margin-right: 20px; font-size: 13px;"><input class="form-control-label"
+                        style="width: 25px; height: 15px;" name="option" type="radio" value="User" id="user">
+                      Nữ</label>
+                  </div>
+                </div>
               </div>
               <hr class="horizontal dark">
               <p class="text-uppercase text-sm">Hình Ảnh</p>
@@ -439,7 +474,7 @@
         loader();
       });
       // end
-      
+
       var win = navigator.platform.indexOf('Win') > -1;
       if (win && document.querySelector('#sidenav-scrollbar')) {
         var options = {

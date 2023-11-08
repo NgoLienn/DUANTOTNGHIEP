@@ -156,7 +156,7 @@ body {
   top: 14%;
   /* transform: rotate(-45deg); */
   width: 25%;
-  z-index: 1;
+  z-index: 0;
 }
 
 .containerr .myimagefood5 {
@@ -303,13 +303,17 @@ body {
   color: rgb(206, 16, 16);
 }
 
+.image-two header aside #ttsanpham .container .size {
+  display: flex;
+}
+
 .image-two header aside #ttsanpham .container .size .sosize {
   padding: 8px 14px;
   border-radius: 4px;
   border: none;
 }
 
-.image-two header aside #ttsanpham .container .size .sosize:focus-within {
+.image-two header aside #ttsanpham .container .size .sosize.active {
   background: white;
   box-shadow: inset 2px 2px 5px 0 rgb(131, 131, 131);
 }
@@ -385,7 +389,7 @@ body {
   width: 40%;
   height: 300px;
   filter: drop-shadow(15px 12px 10px rgba(46, 46, 46, 0.7));
-  object-fit: contain;  
+  object-fit: contain;
 }
 
 .image-two header article .ifarm-images {
@@ -670,7 +674,7 @@ header .girdd {
   top: 13%;
   right: 8%;
   width: 250px;
-  height: 130px;
+  height: auto;
   font-size: 18px;
   background: var(--body-color);
   padding: 10px;
@@ -886,6 +890,13 @@ footer .ft ul li {
     font-size: 14px;
   }
 
+  /* size */
+  .image-two header aside #ttsanpham .container .size {
+    display: flex;
+    justify-content: center;
+  }
+  /* end */
+
   .image-two header aside #ttsanpham .container .size .sosize {
     padding: 8px 14px;
   }
@@ -975,6 +986,10 @@ footer .ft ul li {
   }
 
   /* end */
+
+  .containerr .myimage {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 576px) and (max-width: 766.5px) {
@@ -1112,6 +1127,13 @@ footer .ft ul li {
     padding: 8px 14px;
   }
 
+  /* size */
+  .image-two header aside #ttsanpham .container .size {
+    display: flex;
+    justify-content: center;
+  }
+  /* end */
+
   .image-two header aside #ttsanpham .container .size .sosize:focus-within {
     background: white;
   }
@@ -1186,6 +1208,10 @@ footer .ft ul li {
   }
 
   /* end */
+
+  .containerr .myimage {
+    display: none;
+  }
 }
 
 /* end responsive cho thiết bị di động */
@@ -1311,6 +1337,13 @@ footer .ft ul li {
     font-size: 18px;
   }
 
+  /* size */
+  .image-two header aside #ttsanpham .container .size {
+    display: flex;
+    justify-content: center;
+  }
+  /* end */
+
   .image-two header aside #ttsanpham .container .size .sosize {
     padding: 8px 14px;
   }
@@ -1382,6 +1415,10 @@ footer .ft ul li {
   }
 
   /* end */
+
+  .containerr .myimage {
+    display: none;
+  }
 }
 
 /* end responsive cho máy tính bảng */
@@ -1483,6 +1520,13 @@ footer .ft ul li {
     font-size: 18px;
   }
 
+  /* size */
+  .image-two header aside #ttsanpham .container .size {
+    display: flex;
+    justify-content: center;
+  }
+  /* end */
+
   .image-two header aside #ttsanpham .container .size .sosize {
     padding: 8px 14px;
   }
@@ -1551,6 +1595,10 @@ footer .ft ul li {
   }
 
   /* end */
+
+  .containerr .myimage {
+    display: none;
+  }
 }
 
 /* end responsive cho màn hình máy tính và laptop */
@@ -1612,10 +1660,7 @@ footer .ft ul li {
   }
 
   .containerr .myimage {
-    position: absolute;
-    left: 75%;
-    top: 14%;
-    width: 25%;
+    display: none;
   }
 
   .containerr .myimagefood5 {
@@ -1696,5 +1741,12 @@ footer .ft ul li {
     align-items: center;
   }
 
+  /* end */
+
+  /* size */
+  .image-two header aside #ttsanpham .container .size {
+    display: flex;
+    justify-content: center;
+  }
   /* end */
 }

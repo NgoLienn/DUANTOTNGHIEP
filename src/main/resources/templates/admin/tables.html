@@ -21,6 +21,11 @@
   <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <!-- flowbite tailwind -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@1.0.0/dist/flowbite.min.css" rel="stylesheet">
+  <!-- end -->
+
 
 </head>
 
@@ -87,6 +92,24 @@
               <i class="bi bi-bag-check text-success text-sm mb-2 opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Quản Lý Đơn Hàng</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/page/admin/product.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="bi bi-bag-check text-success text-sm mb-2 opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Quản Lý Sản Phẩm</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/page/admin/category.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="bi bi-bag-check text-success text-sm mb-2 opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Quản Lý Danh Mục</span>
           </a>
         </li>
         <li class="nav-item mt-3">
@@ -279,10 +302,10 @@
                   <div class="form-group">
                     <label class="form-control-label py-2">Phân Quyền</label><br>
                     <label style="margin-right: 20px; font-size: 13px;"><input class="form-control-label"
-                        style="width: 25px; height: 15px;" name="option" type="radio" value="Admin">
+                        style="width: 25px; height: 15px;" name="option" type="radio" value="Admin" id="admin">
                       Admin</label>
                     <label style="margin-right: 20px; font-size: 13px;"><input class="form-control-label"
-                        style="width: 25px; height: 15px;" name="option" type="radio" value="User">
+                        style="width: 25px; height: 15px;" name="option" type="radio" value="User" id="user">
                       User</label>
                   </div>
                 </div>
@@ -559,11 +582,15 @@
     var loader = function () {
       setTimeout(function () {
         $('#loader-page').css({ 'opacity': 0, 'visibility': 'hidden' });
-      }, 2000);
+      }, 1000);
     };
     $(function () {
       loader();
     });
+    // end
+
+    // mặc dịnh tích sẵn radio
+    document.getElementById("user").checked = true;
     // end
 
     var win = navigator.platform.indexOf('Win') > -1;
@@ -578,6 +605,9 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <!-- flowbite tailwind -->
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@1.0.0/dist/flowbite.min.js"></script>
+  <!-- end -->
 </body>
 
 </html>

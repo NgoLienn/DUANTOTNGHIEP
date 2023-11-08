@@ -1,6 +1,5 @@
 package com.poly.Config;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -38,26 +38,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // phan quyen su dung
                 http.authorizeRequests()
                                 .antMatchers("/addToCart/*").authenticated()
-                                .antMatchers("/admin/**").hasAnyRole("ADMIN", "DIRE").antMatchers("/api/authorities")
-                                .hasRole("DIRE")
-                                // .antMatchers("/home/users").hasAnyRole("ADMIN","USER")
-                                .anyRequest().permitAll();// anonymous
+                                // .antMatchers("/admin/**").hasRole("admin")
+                                .antMatchers("/api/authorities").hasRole("")
+                                .anyRequest().permitAll(); // anonymous
 
                 // dieu khien loi truy cap khong dung vai tro
-                http.exceptionHandling().accessDeniedPage("/login/unauthoried");// [/error]
-                // â
+                http.exceptionHandling().accessDeniedPage("/login/unauthorized"); // [/error]
+
                 // giao dien dang nhap
-                http.formLogin().loginPage("/auth/signin")
-                                .loginProcessingUrl("/auth/signin")// [/login]
-                                .defaultSuccessUrl("/", false).failureUrl("/login/error")
+                http.formLogin()
+                                .loginPage("/auth/signin")
+                                .loginProcessingUrl("/auth/signin") // [/login]
+                                .successHandler((req, res, auth) -> {
+                                        for (GrantedAuthority authority : auth.getAuthorities()) {
+                                                if ("admin".equals(authority.getAuthority())) {
+                                                        res.sendRedirect("/admin");
+                                                }
+                                        }
+                                        res.sendRedirect("/");
+                                })
+                                .failureUrl("/login/error")
                                 .usernameParameter("username") // [username]
-                                .passwordParameter("password");// [password]
+                                .passwordParameter("password"); // [password]
+
                 http.rememberMe().rememberMeParameter("remember").tokenValiditySeconds(86400); // [remember-me]
 
                 // dang xuat
-                http.logout().logoutUrl("/auth/logoff")// [/logout]
-                                .logoutSuccessUrl("/auth/signin");// chuyen trang
-
+                http.logout()
+                                .logoutUrl("/auth/logoff") // [/logout]
+                                .logoutSuccessUrl("/auth/signin"); // chuyen trang
         }
 
 }

@@ -511,8 +511,6 @@ body {
   padding: 30px 30px;
   /* resize: both;
     overflow: hidden; */
-  /* border-bottom-left-radius: 60px;
-    border-bottom-right-radius: 60px; */
 }
 
 /* menu sp4 */
@@ -544,6 +542,14 @@ body {
 
 /* end */
 
+/* bảng share */
+.modal-content {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+/* end */
+
+/*  */
+
 .containerr .image-five h2 {
   line-height: 4em;
   font-weight: bold;
@@ -561,7 +567,8 @@ body {
 
 .containerr .image-five .card-group img:hover {
   cursor: pointer;
-  transform: scale(102%);
+  transform: scale(103%);
+  transition: all 0.4s ease;
 }
 
 .containerr .image-five .card-group .card {
@@ -620,6 +627,14 @@ body {
   position: absolute;
   right: 3.5%;
   bottom: 25%;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.containerr .image-five .card-group .card .card-body .tuychonshare {
+  position: absolute;
+  right: 3.5%;
+  bottom: 40%;
   cursor: pointer;
   font-size: 20px;
 }
@@ -777,7 +792,7 @@ body {
   top: 15.5%;
   right: 10%;
   width: 250px;
-  height: 130px;
+  height: auto;
   font-size: 18px;
   background: var(--body-color);
   padding: 10px;
@@ -1419,17 +1434,12 @@ footer .ft ul li {
 
   .containerr .image-five .card-group {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    transform: translate(19%, 0%);
+    flex-flow: row wrap;
   }
 
   .containerr .image-five .card-group .card {
     width: 160px;
     height: 190px;
-    margin-left: -90px;
   }
 
   /*  */
@@ -1543,31 +1553,22 @@ footer .ft ul li {
     /* Chia đều ngang 4 phần tử trên một hàng */
   }
 
-  .card-slider .card-wrapper .card {
-    width: calc(100% / 4);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-    flex: 0 0 calc(100% / 4);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-  }
-
   .card-slider .card-wrapper .card-body .card-title {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
   }
 
   .card-slider .card-wrapper .card-body .card-text {
-    font-size: 20px;
+    font-size: 15px;
   }
 
-  .card-slider .card-wrapper .card-body a {
-    font-size: 12px;
+  .card-slider .card-wrapper .card-body a button {
+    font-size: 10px;
   }
 
   .card-slider .card-wrapper .card {
-    width: calc(100% / 4);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-    flex: 0 0 calc(100% / 9);
-    /* Chia đều ngang 4 phần tử trên một hàng */
+    width: calc(100% / 3);
+    flex: 0 0 calc(100% / 15);
   }
 
   /* end */
@@ -2035,9 +2036,7 @@ footer .ft ul li {
 
   .card-slider .card-wrapper .card {
     width: calc(100% / 4);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-    flex: 0 0 calc(100% / 11);
-    /* Chia đều ngang 4 phần tử trên một hàng */
+    flex: 0 0 calc(100% / 18);
   }
 
   /* end */
@@ -2484,7 +2483,7 @@ footer .ft ul li {
 
   .card-slider .card-wrapper .card {
     width: calc(100% / 4);
-    flex: 0 0 calc(100% / 13.5);
+    flex: 0 0 calc(100% / 24);
   }
 
   /* end */
@@ -2916,12 +2915,10 @@ footer .ft ul li {
     width: 200px;
   }
 
-  .card-slider .card-wrapper .card {
+  /* .card-slider .card-wrapper .card {
     width: calc(100% / 4);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-    flex: 0 0 calc(100% / 13.5);
-    /* Chia đều ngang 4 phần tử trên một hàng */
-  }
+    flex: 0 0 calc(100% / 4);
+  } */
 
   /* end */
 }

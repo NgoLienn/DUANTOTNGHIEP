@@ -141,12 +141,15 @@
 									alt="anhslide">
 							</a>
 							<form method="post" th:action="@{|/addToCart/${item.productId}|}">
-							<div class="card-body">
-								<h5 class="card-title" th:text="${item.name}"></h5>
-								<p class="card-text" th:text="${item.price}">$</p>
-								<a href="#" class="btn btn-danger d-flex justify-content-center"> <button type="submit" class="btn btn-danger d-flex justify-content-center"> Thêm
-									Giỏ Hàng </button></a>
-							</div>
+								<div class="card-body">
+									<h5 class="card-title" th:text="${item.name}"></h5>
+									<p class="card-text"
+										th:text="${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' VND'">
+									</p>
+									<a href="#" class="btn btn-danger d-flex justify-content-center"> <button
+											type="submit" class="btn btn-danger d-flex justify-content-center"> Thêm
+											Giỏ Hàng </button></a>
+								</div>
 							</form>
 						</div>
 						<!-- Add More "swiper-slide's" To Add More Slides -->
@@ -196,7 +199,7 @@
 								<div th:each="item : ${ListProduct}">
 									<div class="card">
 										<div class="card-body">
-											<a th:href="@{/user/productDetail/{productId}(productId=${item.productId})}"
+											<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"
 												class="text-black">
 												<img class="card-img-top"
 													th:src="@{'/assets/images/img_product/' + ${item.image}}"
@@ -212,19 +215,70 @@
 												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
 												<i class="bi bi-star-half"></i>
 											</div>
-											<div class="price" th:text="'Price: ' + ${item.price} + '$'"></div>
-											<div class="share">
+											<div class="price"
+												th:text="'Price: ' +${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+											</div>
+											<a class="tuychonshare text-dark" data-bs-toggle="modal"
+												data-bs-target="#exampleModal">
 												<i class="bi bi-share"></i>
+											</a>
+											<a class="share text-dark" id="shareButton"
+												th:data-product-id="@{|/user/productDetail/?productID=${item.productId}|}">
+												<i class="bi bi-clipboard2-check"></i>
+											</a>
+											<div class="alert alert-success d-none" role="alert" id="shareAlert">
+												coppy thành công!
 											</div>
-											<div class="tym">
+											<!-- <div class="tym">
 												<i class="bi bi-heart-fill"></i>
-											</div>
+											</div> -->
 											<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
 												</span>
 											</a>
 
 										</div>
 									</div>
+									<!-- Modal bảng chia sẻ-->
+									<div class="modal fade" id="exampleModal" tabindex="-1"
+										aria-labelledby="exampleModalLabel" aria-hidden="false">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h1 class="modal-title fs-5" id="exampleModalLabel">Chia Sẻ
+													</h1>
+													<button type="button" class="btn-close" data-bs-dismiss="modal"
+														aria-label="Close">
+													</button>
+												</div>
+												<div class="modal-body d-flex justify-content-center text-center">
+													<a class="sharefb text-dark" href="#1" id="shareButton"
+														th:data-product-id="@{|/user/productDetail/?productID=${item.productId}|}"
+														style="font-size: 30px; text-decoration: none;">
+														<i class="bi bi-facebook" style="color: blue;"></i><br>
+														<span style=" font-size: 12px; text-align: center; ">Chia sẻ
+															Facebook
+														</span>
+													</a>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<a class="sharepint text-dark" href="#1" id="shareButton"
+														th:data-product-id="@{|/user/productDetail/?productID=${item.productId}|}"
+														style="font-size: 30px; text-decoration: none;">
+														<i class="bi bi-pinterest" style="color: red;"></i><br>
+														<span style=" font-size: 12px; text-align: center;">Chia sẻ
+															Pinterest
+														</span>
+
+													</a>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-bs-dismiss="modal">Trở Lại
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- end -->
 								</div>
 							</div>
 						</section>
@@ -236,7 +290,7 @@
 										th:if="${product.category.categoryId == category.categoryId}">
 										<div class="card">
 											<div class=" card-body">
-												<a th:href="@{/user/productDetail/{productId}(productId=${product.productId})}"
+												<a th:href="@{|/user/productDetail/?productID=${product.productId}|}"
 													class="text-black">
 													<img class="card-img-top"
 														th:src="@{'/assets/images/img_product/' + ${product.image}}"
@@ -252,18 +306,73 @@
 													<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
 													<i class="bi bi-star-half"></i>
 												</div>
-												<div class="price" th:text="'Price: ' + ${product.price} + '$'"></div>
-												<div class="share">
+												<div class="price"
+													th:text="'Price: ' + ${#numbers.formatDecimal(product.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+												</div>
+												<a class="tuychonshare text-dark" data-bs-toggle="modal"
+													th:data-bs-target="'#exampleModal' + ${product.productId}">
 													<i class="bi bi-share"></i>
+												</a>
+												<a class="share text-dark" href="#1" id="shareButton"
+													th:data-product-id="@{|/user/productDetail/?productID=${product.productId}|}">
+													<i class="bi bi-clipboard2-check"></i>
+												</a>
+												<div class="alert alert-success d-none" role="alert" id="shareAlert">
+													coppy thành công!
 												</div>
-												<div class="tym">
+												<!-- <div class="tym">
 													<i class="bi bi-heart-fill"></i>
-												</div>
+												</div> -->
 												<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
 													</span>
 												</a>
 											</div>
 										</div>
+										<!-- Modal bảng chia sẻ-->
+										<div class="modal fade custom-modal"
+											th:id="'exampleModal' + ${product.productId}" tabindex="-1"
+											aria-labelledby="exampleModalLabel" aria-hidden="false">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h1 class="modal-title fs-5" id="exampleModalLabel">Chia Sẻ
+														</h1>
+														<button type="button" class="btn-close" data-bs-dismiss="modal"
+															aria-label="Close">
+														</button>
+													</div>
+													<div class="modal-body d-flex justify-content-center text-center">
+														<a class="sharefb text-dark" href="#1" id="shareButton"
+															th:data-product-id="@{|/user/productDetail/?productID=${product.productId}|}"
+															style="font-size: 30px; text-decoration: none;">
+															<i class="bi bi-facebook" style="color: blue;"></i><br>
+															<span style=" font-size: 12px; text-align: center; ">Chia
+																sẻ
+																Facebook
+															</span>
+														</a>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<a class="sharepint text-dark" href="#1" id="shareButton"
+															th:data-product-id="@{|/user/productDetail/?productID=${product.productId}|}"
+															style="font-size: 30px; text-decoration: none;">
+															<i class="bi bi-pinterest" style="color: red;"></i><br>
+															<span style=" font-size: 12px; text-align: center;">Chia
+																sẻ
+																Pinterest
+															</span>
+
+														</a>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary"
+															data-bs-dismiss="modal">Trở Lại
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- end -->
+
 									</th:block>
 								</div>
 							</section>
@@ -284,7 +393,7 @@
 	<script src="../assets/fontawesome-free-6.4.0-web/js/all.js"></script>
 	<script src="../assets/js/bootstrap.bundle.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
 
 	<script>
@@ -338,6 +447,81 @@
 			slidesPerGroup: 1,
 		});
 		// end
+
+		// chia sẻ sản phẩm (sao chép)
+
+		$(document).ready(function () {
+			$('.share').click(function (event) {
+				event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+				// Lấy thông tin sản phẩm từ thuộc tính data-attribute
+				var alertElement = $(this).closest('.card-body').find('.alert');
+				var productId = $(this).data('product-id');
+
+				// Tạo đường dẫn cho sản phẩm dựa trên thông tin trên
+				var shareUrl = 'http://192.168.1.38:8080' + productId;
+
+				// Sao chép đường dẫn vào bộ nhớ tạm của thiết bị
+				navigator.clipboard.writeText(shareUrl)
+					.then(function () {
+						console.log('Đường dẫn đã được sao chép thành công!');
+						// setTimeout(function () {
+						// 	// Chia sẻ trực tiếp tới Facebook
+						// 	window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl));
+						// }, 2000);
+					})
+					.catch(function () {
+						console.error('Không thể sao chép đường dẫn.');
+					})
+					.finally(function () {
+						alertElement.removeClass('d-none').fadeIn().show();
+						setTimeout(function () {
+							alertElement.fadeOut();
+						}, 1000);
+					});
+			});
+		});
+
+		// chia sẻ trên mạng xã hội
+		// chia sẻ trên fb
+		$(document).ready(function () {
+			$('.sharefb').click(function (event) {
+				event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+				// Lấy thông tin sản phẩm từ thuộc tính data-attribute
+				var productId = $(this).data('product-id');
+
+				// Tạo đường dẫn cho sản phẩm dựa trên thông tin trên
+				var shareUrl = 'http://192.168.1.38:8080' + productId;
+
+				// chia sẽ lên mạng xã hội
+
+				// Chia sẻ trực tiếp tới Facebook
+				window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl));
+
+
+
+				// // Chia sẻ trực tiếp tới Pinterest
+				// window.open("https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(shareUrl));
+			});
+		});
+
+		//chia sẻ trên pinteres
+		$(document).ready(function () {
+			$('.sharepint').click(function (event) {
+				event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+				// Lấy thông tin sản phẩm từ thuộc tính data-attribute
+				var productId = $(this).data('product-id');
+
+				// Tạo đường dẫn cho sản phẩm dựa trên thông tin trên
+				var shareUrl = 'http://192.168.1.38:8080' + productId;
+
+				// chia sẽ lên mạng xã hội
+				// // Chia sẻ trực tiếp tới Pinterest
+				window.open("https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(shareUrl));
+			});
+		});
+		// end
+		// end
+
 
 	</script>
 </body>

@@ -34,8 +34,16 @@ public class ProductService {
         productrepo.deleteById(id);
     }
 
+    public Products create(Products id) {
+        return productrepo.save(id);
+    }
+
+    public Products update(Products product) {
+        return productrepo.save(product);
+    }
+
     // public List<Categories> getDataCategorys() {
-    //     return categoryDao.getDataCategorys();
+    // return categoryDao.getDataCategorys();
     // }
 
     // load sản phẩm theo id

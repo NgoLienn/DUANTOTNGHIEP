@@ -31,5 +31,4 @@ public class Size_Product implements Serializable {
 
     @Column(name = "price")
     private Float Price;
-
 }
