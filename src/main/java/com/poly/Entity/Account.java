@@ -68,6 +68,7 @@ public class Account implements Serializable {
         String token = encrypt(plaintext);
         this.token = token;
     }
+    
     public void ResetToken() {
         String identifier = UUID.randomUUID().toString();
         long timestamp = new Date().getTime();

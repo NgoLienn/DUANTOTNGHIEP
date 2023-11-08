@@ -24,7 +24,7 @@ import com.poly.Service.ProductService;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 public class CartController {
 
     @Autowired

@@ -25,7 +25,10 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/flowbite@1.0.0/dist/flowbite.min.css" rel="stylesheet">
   <!-- end -->
-
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+  <!-- end -->
 
 </head>
 
@@ -254,7 +257,8 @@
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="row" th:if="${adminproduct}">
+    <!-- th:if="${adminproduct}" -->
+    <div class="row ">
       <div class="col-12">
         <div class="container-fluid py-4">
           <div class="card">
@@ -269,61 +273,68 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Tên Sản phẩm</label>
-                    <input class="form-control" type="text" th:value="${adminproduct.name}" placeholder="Name">
+                    <input class="form-control" type="text" value="" placeholder="Name">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Giá Cũ</label>
-                    <input class="form-control" type="text" th:value="${adminproduct.prices}" placeholder="Old Price">
+                    <input class="form-control" type="text" value="" placeholder="Old Price">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Giá Mới</label>
-                    <input class="form-control" type="text" th:value="${adminproduct.price}" placeholder="New Price">
+                    <input class="form-control" type="text" value="" placeholder="New Price">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Số Lượng</label>
-                    <input class="form-control" type="text" th:value="${adminproduct.quantity}" placeholder="Quantity">
+                    <input class="form-control" type="text" value="" placeholder="Quantity">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Ngày Tạo</label>
-                    <input class="form-control" type="date" th:value="${adminproduct.create_at}"
-                      placeholder="create at">
+                    <input class="form-control" type="date" value="" placeholder="create at">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Mô Tả Ẩn</label>
                     <textarea class="form-control" name="descriptionAn" id="descriptionAn" cols="30" rows="1"
-                      placeholder="Nhập vào mô tả sản phẩm" th:text="${adminproduct.descriptionan}"></textarea>
+                      placeholder="Nhập vào mô tả sản phẩm" text=""></textarea>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Mô Tả</label>
                     <textarea class="form-control" name="description" id="description" cols="30" rows="1"
-                      placeholder="Nhập vào mô tả sản phẩm" th:text="${adminproduct.description}"></textarea>
+                      placeholder="Nhập vào mô tả sản phẩm" text=""></textarea>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Thể Loại</label>
-                    <select class="form-control mb-2" th:each="category : ${admincategory}">
-                      <option value="1" class="" th:text="${category.name}"></option>
+                    <select class="form-control mb-2" id="example-text-input">
+                      <span th:each="category : ${admincategory}">
+                        <option th:value="${category.categoryId}" class="" th:text="${category.name}">
+                        </option>
+                      </span>
                     </select>
                   </div>
                 </div>
-                <div class="col-md-11 d-flex justify-content-center">
-                  <div class="form-group">
+                <div class="col-md-11 mt-3 d-flex justify-content-center">
+                  <div class="form-group text-center">
                     <label for="example-text-input" class="form-control-label">Hình Ảnh Đại Diện Sản Phẩm</label>
-                    <img src="../assets/images/about-banner.png" alt="">
-                    <input class="form-control" type="file" value="" placeholder="create at">
+                    <span>
+                      <img id="preview-image" src="" alt="">
+                    </span>
+                    <!-- multiple giúp chọn nhiều ảnh cùng lúc -->
+                    <input class="form-control filepond" multiple type="file" onchange="previewImage(event)"
+                      placeholder="create at">
+                    <!-- end -->
                   </div>
                 </div>
               </div>
@@ -350,7 +361,7 @@
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-center mb-0" th:each="item : ${ListProduct}">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sản phẩm</th>
@@ -367,14 +378,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr th:each="item : ${ListProduct}">
+                    <tr ng-repeat="item in pager.items">
                       <td>
-                        <div class="d-flex px-2 py-1">
+                        <div class="d-flex px-3 py-1">
                           <div>
-                            <img src="/assets/images/avatar-1.jpg" class="avatar avatar-sm me-3" alt="user1">
+                            <img th:src="@{'/assets/images/img_product/' + ${item.image}}" class="avatar avatar-lg me-3"
+                              alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm" th:text="${item.name}"></h6>
+                            <h6 class="mb-0 text-sm"></h6>
                             <!-- <p class="text-xs text-secondary mb-0">Admin</p> -->
                           </div>
                         </div>
@@ -486,13 +498,34 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+
+    // chọn ảnh đại diện sản phẩm
+    function previewImage(event) {
+      var input = event.target;
+      var reader = new FileReader();
+      reader.onload = function () {
+        var dataURL = reader.result;
+        var imgElement = document.getElementById('preview-image');
+        imgElement.src = dataURL;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+    // end
+
+
   </script>
+
+
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
   <!-- flowbite tailwind -->
   <script src="https://cdn.jsdelivr.net/npm/flowbite@1.0.0/dist/flowbite.min.js"></script>
+  <!-- end -->
+
+  <!-- filepond giúp chọn được nhiều ảnh 1 lần -->
+  <script src="https://unpkg.com/filepond@4.25.1/dist/filepond.js"></script>
   <!-- end -->
 </body>
 

@@ -683,7 +683,7 @@ body {
   top: 12.5%;
   right: 10%;
   width: 250px;
-  height: 130px;
+  height: auto;
   font-size: 18px;
   background: var(--body-color);
   padding: 10px;

@@ -156,7 +156,7 @@ body {
   top: 14%;
   /* transform: rotate(-45deg); */
   width: 25%;
-  z-index: 1;
+  z-index: 0;
 }
 
 .containerr .myimagefood5 {
@@ -313,7 +313,7 @@ body {
   border: none;
 }
 
-.image-two header aside #ttsanpham .container .size .sosize:focus-within {
+.image-two header aside #ttsanpham .container .size .sosize.active {
   background: white;
   box-shadow: inset 2px 2px 5px 0 rgb(131, 131, 131);
 }
@@ -674,7 +674,7 @@ header .girdd {
   top: 13%;
   right: 8%;
   width: 250px;
-  height: 130px;
+  height: auto;
   font-size: 18px;
   background: var(--body-color);
   padding: 10px;
@@ -986,6 +986,10 @@ footer .ft ul li {
   }
 
   /* end */
+
+  .containerr .myimage {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 576px) and (max-width: 766.5px) {
@@ -1204,6 +1208,10 @@ footer .ft ul li {
   }
 
   /* end */
+
+  .containerr .myimage {
+    display: none;
+  }
 }
 
 /* end responsive cho thiết bị di động */
@@ -1407,6 +1415,10 @@ footer .ft ul li {
   }
 
   /* end */
+
+  .containerr .myimage {
+    display: none;
+  }
 }
 
 /* end responsive cho máy tính bảng */
@@ -1583,6 +1595,10 @@ footer .ft ul li {
   }
 
   /* end */
+
+  .containerr .myimage {
+    display: none;
+  }
 }
 
 /* end responsive cho màn hình máy tính và laptop */
@@ -1644,10 +1660,7 @@ footer .ft ul li {
   }
 
   .containerr .myimage {
-    position: absolute;
-    left: 75%;
-    top: 14%;
-    width: 25%;
+    display: none;
   }
 
   .containerr .myimagefood5 {

@@ -50,22 +50,6 @@
                                             </div>
                                         </div>
 
-                                        <nav
-                                            class="d-flex align-items-start justify-content-center mt-3 tab-confirmatione">
-                                            <div class="nav flex-column me-3" id="nav-tab" role="tablist">
-                                                <button class="nav-link active mb-2" id="nav-home-tab"
-                                                    data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
-                                                    role="tab" aria-controls="nav-home" aria-selected="true">Tài Khoản
-                                                    Của
-                                                    Tôi
-                                                </button>
-                                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-                                                    data-bs-target="#nav-profile" type="button" role="tab"
-                                                    aria-controls="nav-profile" aria-selected="false">Lịch Sử
-                                                    Mua
-                                                </button>
-                                            </div>
-                                        </nav>
                                     </div>
 
                                     <div class="col-md-8 ">
@@ -110,7 +94,8 @@
                                                                         class="form-control-label mb-1">Địa chỉ</label>
                                                                     <textarea th:text="${profile.address}"
                                                                         name="Address" class="form-control"
-                                                                        placeholder="Địa chỉ" rows="3" cols="" style="background: none; border: 1px solid gray;">
+                                                                        placeholder="Địa chỉ" rows="3" cols=""
+                                                                        style="background: none; border: 1px solid gray;">
                                                                     </textarea>
                                                                 </div>
                                                             </div>
@@ -138,83 +123,7 @@
                                                     </div>
                                                 </form>
                                             </section>
-                                            <section class="tab-pane fade tab-profile" id="nav-profile" role="tabpanel"
-                                                aria-labelledby="nav-profile-tab" tabindex="0"
-                                                data-bs-parent="#nav-tabContent">
-                                                <span class="h5 px-2">Đơn Mua</span>
-                                                <div class="container-fluid py-4 mt-3">
-                                                    <div class="product-container">
-                                                        <div class="product-row header">
-                                                            <div class="product-cell">Sản phẩm</div>
-                                                            <div class="product-cell">Size</div>
-                                                            <div class="product-cell">Đơn giá</div>
-                                                            <div class="product-cell">Số lượng</div>
-                                                            <div class="product-cell">Thành tiền</div>
-                                                        </div>
-
-                                                        <div class="product-row">
-                                                            <img src="/assets/images/bglogin.jpg" class="img-cell"
-                                                                alt="prod_pm">
-                                                            <div class="product-cell ">:M</div>
-                                                            <div class="product-cell ">100.000₫</div>
-                                                            <div class="product-cell ">2</div>
-                                                            <div class="product-cell">200.000₫</div>
-                                                        </div>
-                                                    </div>
-                                                    <button type="submit"
-                                                        class="btn btn-danger d-flex mt-4 p-2 button-huy">Hủy Đơn
-                                                        Hàng
-                                                    </button>
-                                                </div>
-                                                <div class="container-fluid py-4 mt-3">
-                                                    <div class="product-container">
-                                                        <div class="product-row header">
-                                                            <div class="product-cell">Sản phẩm</div>
-                                                            <div class="product-cell">Size</div>
-                                                            <div class="product-cell">Đơn giá</div>
-                                                            <div class="product-cell">Số lượng</div>
-                                                            <div class="product-cell">Thành tiền</div>
-                                                        </div>
-
-                                                        <div class="product-row">
-                                                            <img src="/assets/images/bglogin.jpg" class="img-cell"
-                                                                alt="prod_pm">
-                                                            <div class="product-cell ">:M</div>
-                                                            <div class="product-cell ">100.000₫</div>
-                                                            <div class="product-cell ">2</div>
-                                                            <div class="product-cell">200.000₫</div>
-                                                        </div>
-                                                    </div>
-                                                    <button type="submit"
-                                                        class="btn btn-danger d-flex mt-4 p-2 button-huy">Hủy Đơn
-                                                        Hàng
-                                                    </button>
-                                                </div>
-                                                <div class="container-fluid py-4 mt-3">
-                                                    <div class="product-container">
-                                                        <div class="product-row header">
-                                                            <div class="product-cell">Sản phẩm</div>
-                                                            <div class="product-cell">Size</div>
-                                                            <div class="product-cell">Đơn giá</div>
-                                                            <div class="product-cell">Số lượng</div>
-                                                            <div class="product-cell">Thành tiền</div>
-                                                        </div>
-
-                                                        <div class="product-row">
-                                                            <img src="/assets/images/bglogin.jpg" class="img-cell"
-                                                                alt="prod_pm">
-                                                            <div class="product-cell ">:M</div>
-                                                            <div class="product-cell ">100.000₫</div>
-                                                            <div class="product-cell ">2</div>
-                                                            <div class="product-cell">200.000₫</div>
-                                                        </div>
-                                                    </div>
-                                                    <button type="submit"
-                                                        class="btn btn-danger d-flex mt-4 p-2 button-huy">Hủy Đơn
-                                                        Hàng
-                                                    </button>
-                                                </div>
-                                            </section>
+                                            <!--  -->
                                         </div>
                                     </div>
 
@@ -241,7 +150,7 @@
         var loader = function () {
             setTimeout(function () {
                 $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
-            }, 2000);
+            },0);
         };
         $(function () {
             loader();

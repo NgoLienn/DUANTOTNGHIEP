@@ -40,27 +40,34 @@
                                                     Giá</span>
                                             </div>
                                         </div>
+
                                         <div th:each="product : ${product}">
                                             <div class="size mb-3 mt-4">
                                                 <span>Size</span>&nbsp;&nbsp;&nbsp;
                                                 <div th:each="size : ${product.size}">
-                                                    <a th:href="@{|/user/productDetail/${product.productId}?sizeId=${size.sizeID}|}"
-                                                        class="text-decoration-none">
-                                                        <input type="button" class="sosize mx-1"
-                                                            th:value="${size.name}">
-                                                    </a> &nbsp;
+                                                    <!-- <a th:href="@{|/user/productDetail/${product.productId}?sizeId=${size.sizeID}|}"
+                                                        class="text-decoration-none"> -->
+                                                    <input type="button" class="sosize mx-1" th:value="${size.name}"
+                                                        th:data-product-id="${product.productId}"
+                                                        th:data-size-id="${size.sizeID}"
+                                                        th:id="'sizeButton_' + ${product.productId} + '_' + ${size.sizeID}">
+                                                    <!-- </a> &nbsp; -->
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="gia mt-4">
                                             <span>Giá</span>&nbsp;&nbsp;&nbsp;
                                             <span class="text-gach text-decoration-line-through"
-                                                th:text="${product.prices} + '$'"></span>
+                                                th:text="${#numbers.formatDecimal(product.prices , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
                                             &nbsp;
-                                            <span class="price"
-                                                th:text="${#numbers.formatDecimal(sizeProduct.price , 0, 'COMMA', 0, 'POINT')} + ' VND'">
-                                            </span>&nbsp;
-                                            &nbsp;
+                                            <span class="price total-price">
+                                                <span class="current-price "
+                                                    th:text="${#numbers.formatDecimal(sizeProduct.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+                                                </span>
+                                                <span class="total-price"></span>
+                                                &nbsp; &nbsp;
+                                            </span>
                                             <!-- <span class="giamgia">10% GIẢM</span> -->
                                         </div>
                                         <div class="soluong mt-4 mb-4">
@@ -68,7 +75,7 @@
                                                 <span class="text-soluong">Số Lượng
                                                 </span>&nbsp;&nbsp;&nbsp;
                                                 <input type="button" class="tru" value="-">
-                                                <input class="EquXA8 Wrmraq" type="text" role="spinbutton"
+                                                <input class="EquXA8 Wrmraq quantity" type="text" role="spinbutton"
                                                     aria-valuenow="1" value="1">
                                                 <input type="button" class="cong" value="+">
                                             </span>
@@ -229,70 +236,103 @@
                                         </li>
 
                                     </ul>
+                                    <br>
+                                    <div class="">
+                                        <span class="" id="rating" data-rating="3.5"
+                                            style="color: rgb(255, 140, 0); font-size: 21px;">
+                                        </span> &nbsp;
+                                        <span>317 đánh giá</span>
+                                        <br>
+                                        <div class="progress mt-2" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 220px;">
+                                            <div class="progress-bar w-75">75%</div>
+                                        </div>
+                                        <div class="progress mt-2" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 220px;">
+                                            <div class="progress-bar w-75">75%</div>
+                                        </div>
+                                        <div class="progress mt-2" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 220px;">
+                                            <div class="progress-bar w-75">75%</div>
+                                        </div>
+                                        <div class="progress mt-2" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 220px;">
+                                            <div class="progress-bar w-75">75%</div>
+                                        </div>
+                                        <div class="progress mt-2" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 220px;">
+                                            <div class="progress-bar w-75">75%</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="review tab-content" id=" myTabContent">
                                     <div class="user-review tab-pane fade show active" id="home-tab-pane"
                                         role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                                        <div class="info-all">
+                                        <div class="info-all" th:each="fivesao : ${review5}">
                                             <div class="user-info">
                                                 <span>
                                                     <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
                                                         style="width: 50px; height: 50px; border-radius: 100%;"
                                                         class="user-avatar">
-                                                    <span class="user-name">Tên người dùng</span>
+
+                                                    <span class="user-name" th:text="${fivesao.Account.fullname}">
+                                                    </span>
                                                     <br>
-                                                    <span class="review-date">Ngày giờ đăng bình
-                                                        luận</span>
+                                                    <span class="review-date" th:text="${fivesao.date_post}"></span>
                                                 </span>
                                             </div>
                                             <p class="review-content">Nội dung bình luận</p>
+
+                                            <!-- delete comment -->
+                                            <div
+                                                class="dropdown-center d-flex justify-content-end align-items-baseline">
+                                                <button class="" type="button" data-bs-toggle="dropdown"
+                                                    aria-expanded="false"
+                                                    style="background: none; border: none; font-size: 1.5rem; font-weight: bold;">
+                                                    ...
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Xóa Comment</a></li>
+                                                </ul>
+                                            </div>
+                                            <!-- end -->
+
                                         </div>
                                         <hr>
-                                        <div class="info-all">
-                                            <div class="user-info">
-                                                <span>
-                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
-                                                        style="width: 50px; height: 50px; border-radius: 100%;"
-                                                        class="user-avatar">
-                                                    <span class="user-name">Tên người dùng</span>
-                                                    <br>
-                                                    <span class="review-date">Ngày giờ đăng bình
-                                                        luận</span>
-                                                </span>
-                                            </div>
-                                            <p class="review-content">Nội dung bình luận</p>
-                                        </div>
-                                        <hr>
-                                        <div class="info-all">
-                                            <div class="user-info">
-                                                <span>
-                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
-                                                        style="width: 50px; height: 50px; border-radius: 100%;"
-                                                        class="user-avatar">
-                                                    <span class="user-name">Tên người dùng</span>
-                                                    <br>
-                                                    <span class="review-date">Ngày giờ đăng bình
-                                                        luận</span>
-                                                </span>
-                                            </div>
-                                            <p class="review-content">Nội dung bình luận</p>
-                                        </div>
                                     </div>
                                     <div class="user-review tab-pane fade " id="sao5-tab-pane" role="tabpanel"
                                         aria-labelledby="sao5-tab" tabindex="0">
-                                        <div class="info-all">
+                                        <div class="info-all" th:each="fivesao : ${review5}">
                                             <div class="user-info">
                                                 <span>
                                                     <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
                                                         style="width: 50px; height: 50px; border-radius: 100%;"
                                                         class="user-avatar">
-                                                    <span class="user-name">Tên người dùng</span>
+
+                                                    <span class="user-name" th:text="${fivesao.Account.fullname}">
+                                                    </span>
+                                                    <span class="" id="rating" data-rating="3.5">
+                                                        <span style="color: rgb(255, 145, 0); font-size: 13px;"><i
+                                                                class="bi bi-star-fill"></i></span>
+                                                        <span style="color: rgb(255, 145, 0); font-size: 13px;"><i
+                                                                class="bi bi-star-fill"></i></span>
+                                                        <span style="color: rgb(255, 145, 0); font-size: 13px;"><i
+                                                                class="bi bi-star-fill"></i></span>
+                                                        <span style="color: rgb(255, 145, 0); font-size: 13px;"><i
+                                                                class="bi bi-star-fill"></i></span>
+                                                        <span style="color: rgb(255, 145, 0); font-size: 13px;"><i
+                                                                class="bi bi-star-fill"></i></span>
+                                                    </span>
                                                     <br>
-                                                    <span class="review-date">Ngày giờ đăng bình
-                                                        luận</span>
+                                                    <span class="review-date" th:text="${fivesao.date_post}"></span>
                                                 </span>
                                             </div>
-                                            <p class="review-content">Nội dung bình luận</p>
+                                            <p class="review-content" th:text="${fivesao.comment}"></p>
                                         </div>
                                         <hr>
                                         <div class="info-all">
@@ -402,7 +442,7 @@
         var loader = function () {
             setTimeout(function () {
                 $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
-            }, 2000);
+            }, 0);
         };
         $(function () {
             loader();
@@ -437,11 +477,94 @@
         }
         // end
 
-        //giữ nguyên vị trí size
+        //giữ nguyên vị trí size Ajax
+        $(document).ready(function () {
+            $('.sosize').click(function () {
+                var productID = $(this).data('product-id');
+                var sizeID = $(this).data('size-id');
 
+                // Make the AJAX request
+                $.ajax({
+                    url: '/user/productDetail',
+                    type: 'GET',
+                    data: {
+                        productID: productID,
+                        sizeID: sizeID
+                    },
+                    success: function (response) {
+                        // Update the HTML with the server response
+                        $('.result').html(response);
+                        var currentPrice = $(response).find('.price').text();
+                        $('.current-price').text(currentPrice);
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle any errors that occur during the AJAX request
+                        console.log(error);
+                    }
+                });
+            });
+        });
+
+        // hiển thị mặc định size đầu tiên active
+        // Set the default size as "S" for all products
+        document.addEventListener("DOMContentLoaded", function () {
+            var defaultSizeButton = document.querySelector(".sosize");
+            if (defaultSizeButton) {
+                defaultSizeButton.classList.add("active");
+                var productId = defaultSizeButton.getAttribute("data-product-id");
+                var sizeId = defaultSizeButton.getAttribute("data-size-id");
+
+                // lắng nghe sự kiện click và chọn button size làm mặc định
+                var sizeButtons = document.querySelectorAll(".sosize");
+                sizeButtons.forEach(function (button) {
+                    button.addEventListener("click", function () {
+                        sizeButtons.forEach(function (button) {
+                            button.classList.remove("active");
+                        });
+                        button.classList.add("active");
+                    });
+                });
+            }
+        });
+        // end
+
+        // tính số phần trăm đánh giá sao
+        const percentage = (rating / 5) * 100;
+        document.addEventListener("DOMContentLoaded", function () {
+            const ratingDiv = document.getElementById("rating");
+            const ratingValue = parseFloat(ratingDiv.getAttribute("data-rating"));
+
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement("i");
+                star.classList.add("fas");
+                if (i <= ratingValue) {
+                    star.classList.add("fa-star");
+                } else if (i - 0.5 <= ratingValue) {
+                    star.classList.add("fa-star-half-alt");
+                } else {
+                    star.classList.add("fa-star");
+                    star.style.opacity = "0.3";
+                }
+                ratingDiv.appendChild(star);
+            }
+        });
+
+        // thanh tiến độ đánh giá
+        // JavaScript code to update the progress bar
+        function updateProgressBar(percentage) {
+            const progressBar = document.getElementById("progress-bar");
+            progressBar.style.width = percentage + "%";
+            progressBar.textContent = percentage + "%";
+        }
+
+        // Example: Update the progress bar to 50%
+        updateProgressBar(90);
+        // end
         // end
 
     </script>
+
+
 </body>
 
 </html>

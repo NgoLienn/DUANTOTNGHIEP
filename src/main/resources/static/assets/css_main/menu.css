@@ -493,6 +493,12 @@ body {
 
 /* end */
 
+/* bảng share */
+.modal-content {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+/* end */
+
 /* image five */
 .containerr #menu-food {
   background-color: var(--body-color);
@@ -511,38 +517,7 @@ body {
   padding: 30px 30px;
   /* resize: both;
     overflow: hidden; */
-  /* border-bottom-left-radius: 60px;
-    border-bottom-right-radius: 60px; */
 }
-
-/* menu sp4 */
-.containerr .image-five .tabpanel {
-  position: absolute;
-  top: 70px;
-  right: 7%;
-}
-
-.containerr .image-five .tabpanel {
-  position: absolute;
-  top: 70px;
-  right: 2%;
-}
-
-.containerr .image-five .tabpanel .custom-tab-link {
-  margin-right: 2em;
-  background-color: rgb(147, 147, 147);
-  border-radius: 10px 0 10px 0;
-  border: none;
-  border-bottom: 1px solid transparent;
-}
-
-.containerr .image-five .tabpanel .custom-tab-link.active,
-.containerr .image-five .tabpanel .custom-tab-link:hover {
-  background-color: rgb(199, 58, 58);
-  border-color: transparent;
-}
-
-/* end */
 
 .containerr .image-five h2 {
   line-height: 4em;
@@ -624,6 +599,14 @@ body {
   font-size: 20px;
 }
 
+.containerr .image-five .card-group .card .card-body .tuychonshare {
+  position: absolute;
+  right: 3.5%;
+  bottom: 40%;
+  cursor: pointer;
+  font-size: 20px;
+}
+
 .containerr .image-five .card-group .card .card-body .tym {
   position: absolute;
   right: 3.5%;
@@ -665,14 +648,14 @@ body {
   position: absolute;
   width: 150px;
   height: auto;
-  top: 7%;
+  top: 18%;
   left: 5%;
   z-index: 1;
 }
 
 .containerr .image-two .collapse .navbar-nav {
   position: absolute;
-  top: 9%;
+  top: 20%;
   left: 30%;
   justify-content: center;
   align-items: center;
@@ -725,7 +708,7 @@ body {
 .navb .btn-sign {
   position: absolute;
   right: 10%;
-  top: 9%;
+  top: 18%;
   width: 100px;
   height: 40px;
   background: var(--button-color);
@@ -734,6 +717,7 @@ body {
   text-align: center;
   border-radius: 20px;
   line-height: 40px;
+  z-index: 1;
 }
 
 .navb .btn-sign:hover {
@@ -743,7 +727,7 @@ body {
 .navb .btn-profile {
   position: absolute;
   right: 10%;
-  top: 9%;
+  top: 18%;
   width: 120px;
   height: 40px;
   color: black;
@@ -753,6 +737,7 @@ body {
   text-align: center;
   line-height: 40px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .navb .btn-profile:hover {
@@ -774,10 +759,10 @@ body {
 .profile-link .profile-menu {
   display: none;
   position: absolute;
-  top: 15.5%;
+  top: 30%;
   right: 10%;
   width: 250px;
-  height: 130px;
+  height: auto;
   font-size: 18px;
   background: var(--body-color);
   padding: 10px;
@@ -808,7 +793,7 @@ body {
 .navb .btn-cart {
   position: absolute;
   right: 21%;
-  top: 9%;
+  top: 18%;
   width: 40px;
   height: 40px;
   justify-content: center;
@@ -817,6 +802,7 @@ body {
   line-height: 40px;
   color: black;
   font-size: 18px;
+  z-index: 1;
 }
 
 .btn-cart {
@@ -943,86 +929,43 @@ body {
 }
 
 /* header */
+/* menu sp4 */
 
-.image-two header article {
-  position: absolute;
-  left: 13%;
-  top: 38%;
-  font-size: 2.5em;
+.image-two header aside .tabpanel {
+  position: relative;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin-top: 180px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-item: center;
+  gap: 30px;
+  text-align: center;
+}
+
+.image-two header aside .tabpanel .caption {
+  font-weight: bold;
+  text-align: end;
+}
+
+.image-two header aside .tabpanel .custom-tab-link {
+  border: none;
+  width: 150px;
   font-weight: bold;
 }
 
-.image-two header aside img {
-  position: relative;
-  top: 0;
-  left: 72%;
-  margin-top: 180px;
-  width: 130%;
-  height: auto;
-  filter: drop-shadow(15px 12px 10px rgba(46, 46, 46, 0.7));
-  animation: fade 5s ease infinite;
+.image-two header aside .tabpanel .custom-tab-link:hover {
+  transform: scale(1.2);
+  transition: all 0.4s ease;
 }
 
-@keyframes fade {
-  0% {
-    top: 0px;
-  }
-
-  50% {
-    top: -15px;
-  }
-
-  100% {
-    top: 0px;
-  }
-}
-
-.image-two header article p {
-  text-align: left;
-  font-size: 2.5rem;
-}
-
-.image-two header article a img {
-  width: 50px;
-  height: 50px;
-  border: none;
-  background: var(--bgtoggle-color);
-  border-radius: 10px;
-}
-
-.image-two header article a:hover {
-  transform: scale(0.96);
-}
-
-header .girdd {
-  display: flex;
-  flex-direction: center;
-  justify-content: left;
-  align-items: center;
-  margin-top: 35px;
-  gap: 50px;
-}
-
-.image-two header article .button-sp a {
-  text-decoration: none;
-  font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.image-two header article a button {
-  color: white;
-  background: black;
-  margin-top: 50px;
-  width: 220px;
-  height: 50px;
-  border: none;
-  text-align: center;
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-.image-two header article a button:hover {
-  background-color: rgb(34, 34, 34);
+.image-two header aside .tabpanel .custom-tab-link.active {
+  transform: scale(1.2);
+  background: none;
 }
 
 /* end */
@@ -1125,7 +1068,7 @@ footer .ft ul li {
 
   .containerr .image-two .collapse .navbar-nav {
     position: absolute;
-    top: 7%;
+    top: 12%;
     left: 25%;
     display: flex;
     gap: 10%;
@@ -1134,6 +1077,7 @@ footer .ft ul li {
     width: 200px;
     border-radius: 20px;
     opacity: 0.9;
+    z-index: 2;
   }
 
   .navb .btn-cart {
@@ -1390,63 +1334,39 @@ footer .ft ul li {
     text-align: center;
   }
 
-  .containerr #menu-food {
-    position: relative;
-    top: 0;
-    left: 5%;
-    width: 90%;
-    height: auto;
-    padding: 0;
-  }
-
-  /* menu sp4 */
-
-  .containerr .image-five .tabpanel {
-    position: absolute;
-    font-size: 15px;
-    top: 160px;
-    right: -5%;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 170px;
-  }
-
-  .containerr .image-five .tabpanel .custom-tab-link {
-    margin-right: 2em;
-    background-color: rgb(147, 147, 147);
-    border-radius: 10px 0 10px 0;
-    border: none;
-    border-bottom: 1px solid transparent;
-  }
-
-  .containerr .image-five .tabpanel .custom-tab-link.active,
-  .containerr .image-five .tabpanel .custom-tab-link:hover {
-    background-color: rgb(199, 58, 58);
-    border-color: transparent;
-  }
-
-  .containerr .image-five .card-group img {
-    width: 90%;
-    margin-top: -54%;
-    margin-left: 4%;
-  }
-
   .containerr .image-five .card-group {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    transform: translate(19%, 0%);
+    flex-wrap: wrap;
   }
 
   .containerr .image-five .card-group .card {
-    width: 160px;
-    height: 190px;
-    margin-left: -90px;
+    width: 170px;
+    height: 200px;
   }
+  /*  */
+
+  /* menu sp4 */
+
+  .image-two header aside .tabpanel {
+    gap: 30px;
+    margin: 0;
+    margin-top: 180px;
+    padding-bottom: 80px;
+  }
+
+  .image-two header aside .tabpanel .caption {
+  }
+
+  .image-two header aside .tabpanel .custom-tab-link {
+    margin-top: 20px;
+    padding: 10px;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  /* end */
 
   /*  */
   .containerr .image-five .card-group .card .card-body .cart-sp4 {
@@ -1620,12 +1540,13 @@ footer .ft ul li {
   .profile-link .profile-menu {
     background: rgb(211, 211, 211);
     position: absolute;
-    top: 13%;
+    right: 5%;
+    top: 17%;
   }
 
   .containerr .image-two .collapse .navbar-nav {
     position: absolute;
-    top: 9%;
+    top: 18%;
     left: 45%;
     display: flex;
     gap: 10%;
@@ -1634,6 +1555,7 @@ footer .ft ul li {
     width: 200px;
     border-radius: 20px;
     opacity: 0.9;
+    z-index: 2;
   }
 
   .navb .btn-cart {
@@ -1892,43 +1814,29 @@ footer .ft ul li {
     width: 90%;
     height: auto;
   }
+  /*  */
 
   /* menu sp4 */
 
-  .containerr .image-five .tabpanel {
-    position: absolute;
-    font-size: 15px;
-    top: 150px;
-    right: -4%;
-    height: 120px;
-    text-align: center;
+  .image-two header aside .tabpanel {
+    gap: 10px;
+    margin: 0;
+    margin-top: 180px;
+    padding-bottom: 80px;
   }
 
-  .containerr .image-five .tabpanel .custom-tab-link {
-    margin-right: 2em;
-    background-color: rgb(147, 147, 147);
-    border-radius: 10px 0 10px 0;
-    border: none;
-    border-bottom: 1px solid transparent;
+  .image-two header aside .tabpanel .caption {
   }
 
-  .containerr .image-five .tabpanel .custom-tab-link.active,
-  .containerr .image-five .tabpanel .custom-tab-link:hover {
-    background-color: rgb(199, 58, 58);
-    border-color: transparent;
+  .image-two header aside .tabpanel .custom-tab-link {
+    margin-top: 0;
+    padding: 10px;
+    position: relative;
+    top: 0;
+    left: 0;
   }
 
-  .containerr .image-five .card-group img {
-    width: 90%;
-    margin-top: -54%;
-    margin-left: 4%;
-  }
-
-  .containerr .image-five .card-group .card {
-    width: 160px;
-    height: 190px;
-  }
-
+  /* end */
   /*  */
   .containerr .image-five .card-group .card .card-body .cart-sp4 {
     position: absolute;
@@ -2089,9 +1997,16 @@ footer .ft ul li {
     height: 40px;
   }
 
+  .profile-link .profile-menu {
+    background: rgb(211, 211, 211);
+    position: absolute;
+    top: 17%;
+    right: 5%;
+  }
+
   .containerr .image-two .collapse .navbar-nav {
     position: absolute;
-    top: 9%;
+    top: 18%;
     left: 58%;
     display: flex;
     gap: 10%;
@@ -2100,6 +2015,7 @@ footer .ft ul li {
     width: 200px;
     border-radius: 20px;
     opacity: 0.9;
+    z-index: 2;
   }
 
   .navb .btn-cart {
@@ -2349,46 +2265,29 @@ footer .ft ul li {
     width: 90%;
     height: auto;
   }
+  /*  */
 
   /* menu sp4 */
 
-  .containerr .image-five .tabpanel {
-    position: absolute;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    top: 180px;
-    right: 10%;
+  .image-two header aside .tabpanel {
+    gap: 10px;
+    margin: 0;
+    margin-top: 180px;
+    padding-bottom: 80px;
   }
 
-  .containerr .image-five .tabpanel .custom-tab-link {
-    margin-right: 2em;
-    background-color: rgb(147, 147, 147);
-    border-radius: 10px 0 10px 0;
-    border: none;
-    border-bottom: 1px solid transparent;
+  .image-two header aside .tabpanel .caption {
   }
 
-  .containerr .image-five .tabpanel .custom-tab-link.active,
-  .containerr .image-five .tabpanel .custom-tab-link:hover {
-    background-color: rgb(199, 58, 58);
-    border-color: transparent;
+  .image-two header aside .tabpanel .custom-tab-link {
+    margin-top: 0;
+    position: relative;
+    top: 0;
+    left: 0;
   }
 
-  .containerr .image-five .card-group img {
-    width: 90%;
-    margin-top: -54%;
-    margin-left: 4%;
-  }
+  /* end */
 
-  .containerr .image-five .card-group .card {
-    width: 190px;
-    height: 220px;
-  }
-
-  /*  */
   .containerr .image-five .card-group .card .card-body .cart-sp4 {
     position: absolute;
     bottom: 0px;
@@ -2464,6 +2363,7 @@ footer .ft ul li {
     order: 1;
     width: 40px;
     height: 40px;
+    z-index: 1;
   }
 
   /* slider */
@@ -2516,7 +2416,7 @@ footer .ft ul li {
   .navb .btn-sign {
     position: absolute;
     right: 4%;
-    top: 9%;
+    top: 19%;
     width: 100px;
     height: 40px;
   }
@@ -2524,9 +2424,15 @@ footer .ft ul li {
   .navb .btn-profile {
     position: absolute;
     right: 4%;
-    top: 9%;
+    top: 18%;
     width: 110px;
     height: 40px;
+  }
+
+  .profile-link .profile-menu {
+    background: rgb(211, 211, 211);
+    position: absolute;
+    right: 5%;
   }
 
   .containerr .image-two .collapse .navbar-nav {
@@ -2539,7 +2445,7 @@ footer .ft ul li {
   .navb .btn-cart {
     position: absolute;
     right: 17%;
-    top: 9%;
+    top: 19%;
     width: 40px;
     height: 40px;
     font-size: 18px;
@@ -2773,38 +2679,39 @@ footer .ft ul li {
   }
 
   /* menu sp4 */
-  .containerr .image-five .tabpanel {
-    position: absolute;
-    top: 70px;
-    right: 2%;
+
+  .image-two header aside .tabpanel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 30px;
   }
 
-  .containerr .image-five .tabpanel .custom-tab-link {
-    margin-right: 2em;
-    background-color: rgb(147, 147, 147);
-    border-radius: 10px 0 10px 0;
-    border: none;
-    border-bottom: 1px solid transparent;
+  .image-two header aside .tabpanel .caption {
+    font-weight: bold;
+    text-align: end;
   }
 
-  .containerr .image-five .tabpanel .custom-tab-link.active,
-  .containerr .image-five .tabpanel .custom-tab-link:hover {
-    background-color: rgb(199, 58, 58);
-    border-color: transparent;
+  .image-two header aside .tabpanel .custom-tab-link {
+    position: relative;
+    top: 0;
+    left: 0;
   }
 
-  .containerr .image-five .card-group img {
-    width: 90%;
-    margin-top: -54%;
-    margin-left: 4%;
+  .image-two header aside .tabpanel .custom-tab-link:hover {
+    transform: scale(1.2);
+    transition: all 0.4s ease;
   }
 
-  .containerr .image-five .card-group .card {
-    width: 190px;
-    height: 220px;
+  .image-two header aside .tabpanel .custom-tab-link.active {
+    transform: scale(1.2);
+    background: none;
   }
 
-  /*  */
+  /* end */
+
   .containerr .image-five .card-group .card .card-body .cart-sp4 {
     position: absolute;
     bottom: 0px;
@@ -2877,7 +2784,7 @@ footer .ft ul li {
     position: absolute;
     width: 150px;
     height: auto;
-    top: 7%;
+    top: 16%;
     left: 3%;
   }
 
@@ -2892,7 +2799,7 @@ footer .ft ul li {
 
   .containerr .image-two .collapse .navbar-nav {
     position: absolute;
-    top: 9%;
+    top: 18%;
     left: 30%;
     justify-content: center;
     align-items: center;
@@ -2948,7 +2855,7 @@ footer .ft ul li {
   .navb .btn-sign {
     position: absolute;
     right: 10%;
-    top: 9%;
+    top: 19%;
     width: 100px;
     height: 40px;
   }
@@ -2956,7 +2863,7 @@ footer .ft ul li {
   .navb .btn-profile {
     position: absolute;
     right: 10%;
-    top: 9%;
+    top: 18%;
     width: 110px;
     height: 40px;
   }
@@ -2971,7 +2878,7 @@ footer .ft ul li {
   .navb .btn-cart {
     position: absolute;
     right: 21%;
-    top: 9%;
+    top: 19%;
     width: 40px;
     height: 40px;
     font-size: 18px;
@@ -3197,35 +3104,44 @@ footer .ft ul li {
   }
 
   /* menu sp4 */
-  .containerr .image-five .tabpanel {
-    position: absolute;
-    top: 70px;
-    right: 7%;
+
+  .image-two header aside .tabpanel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 30px;
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
   }
 
-  .containerr .image-five .tabpanel .custom-tab-link {
-    margin-right: 2em;
-    background-color: rgb(147, 147, 147);
-    border-radius: 10px 0 10px 0;
+  .image-two header aside .tabpanel .caption {
+    font-weight: bold;
+    text-align: end;
+  }
+
+  .image-two header aside .tabpanel .custom-tab-link {
     border: none;
-    border-bottom: 1px solid transparent;
+    width: 150px;
+    font-weight: bold;
+    position: relative;
+    top: 0;
+    left: 0;
   }
 
-  .containerr .image-five .tabpanel .custom-tab-link.active,
-  .containerr .image-five .tabpanel .custom-tab-link:hover {
-    background-color: rgb(199, 58, 58);
-    border-color: transparent;
+  .image-two header aside .tabpanel .custom-tab-link:hover {
+    transform: scale(1.2);
+    transition: all 0.4s ease;
   }
 
-  .containerr .image-five .card-group img {
-    width: 80%;
-    margin-top: -50%;
-    margin-left: 11%;
-  }
-
-  .containerr .image-five .card-group .card {
-    width: 220px;
-    height: 250px;
+  .image-two header aside .tabpanel .custom-tab-link.active {
+    transform: scale(1.2);
+    background: none;
   }
 
   /* end */
@@ -3304,7 +3220,7 @@ footer .ft ul li {
     position: absolute;
     width: 150px;
     height: auto;
-    top: 7%;
+    top: 16%;
     left: 5%;
   }
 
@@ -3319,7 +3235,7 @@ footer .ft ul li {
 
   .containerr .image-two .collapse .navbar-nav {
     position: absolute;
-    top: 9%;
+    top: 18%;
     left: 30%;
     justify-content: center;
     align-items: center;
