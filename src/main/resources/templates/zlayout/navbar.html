@@ -32,7 +32,7 @@
             <th:block th:if="${#request.remoteUser}">
                 <div class="profile-link">
                     <div class="btn-profile">
-                        <i class="bi bi-person-fill"></i> Cá Nhân
+                        <i class="bi bi-person-fill"></i> [[${#request.remoteUser}]]
                     </div>
                     <div class="profile-menu">
                         <a th:href="@{/user/profile}"> <i class="bi bi-person-circle"></i> Trang Cá Nhân
