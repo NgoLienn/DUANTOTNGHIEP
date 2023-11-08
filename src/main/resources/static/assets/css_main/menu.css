@@ -738,6 +738,13 @@ body {
   line-height: 40px;
   cursor: pointer;
   z-index: 1;
+  overflow-x: auto;
+  display: flex;
+  justify-content: start;
+}
+
+.navb .btn-profile::-webkit-scrollbar {
+  display: none;
 }
 
 .navb .btn-profile:hover {
