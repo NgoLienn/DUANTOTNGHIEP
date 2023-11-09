@@ -657,6 +657,13 @@ header .girdd {
   text-align: center;
   line-height: 40px;
   cursor: pointer;
+  overflow-x: auto;
+  display: flex;
+  justify-content: start;
+}
+
+.navb .btn-profile::-webkit-scrollbar {
+  display: none;
 }
 
 .navb .btn-profile:hover {

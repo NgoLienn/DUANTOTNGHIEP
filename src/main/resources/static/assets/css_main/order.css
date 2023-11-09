@@ -249,13 +249,36 @@ body {
   padding-top: 20px;
   width: 100%;
   height: auto;
-  z-index: 0;
   border-radius: 60px;
   display: flex;
   justify-content: center;
 }
 
 /* tab-confirmatione */
+
+/* đánh giá */
+
+.rating-container .star.selected {
+  color: rgb(255, 145, 0);
+}
+
+.rating-container .star{
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #ccc;
+}
+
+/* end */
+
+/* modal ẩn hiện đánh giá */
+.modal-content{
+  z-index: 99999;
+}
+
+.modal-backdrop.show {
+  z-index: -1;
+}
+/* end */
 
 .container-fluid .text-uppercase {
   font-size: 22px;
@@ -477,6 +500,13 @@ body {
   text-align: center;
   line-height: 40px;
   cursor: pointer;
+  overflow-x: auto;
+  display: flex;
+  justify-content: start;
+}
+
+.navb .btn-profile::-webkit-scrollbar {
+  display: none;
 }
 
 .navb .btn-profile:hover {
