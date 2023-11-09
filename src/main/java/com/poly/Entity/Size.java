@@ -27,6 +27,9 @@ public class Size implements Serializable {
     @OneToMany(mappedBy = "Size")
     List<Size_Product> sizeProducts;
 
-    @Column(name = "name", columnDefinition = "NVARCHAR(50)")
-    private String Name;
+    @ManyToOne
+    @JoinColumn(name="id_table_size")
+    private TableSize tableSize;
+
+
 }

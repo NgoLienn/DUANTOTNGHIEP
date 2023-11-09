@@ -2,23 +2,14 @@ package com.poly.Controller;
 
 import java.util.List;
 
-import com.poly.Reponsitory.AccountReponsitory;
+import com.poly.Entity.*;
+import com.poly.Reponsitory.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.convert.ReadingConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import com.poly.Entity.Account;
-import com.poly.Entity.Cart_Items;
-import com.poly.Entity.Carts;
-import com.poly.Entity.Products;
-import com.poly.Reponsitory.CartItemsRepository;
-import com.poly.Reponsitory.CartRepository;
-import com.poly.Reponsitory.ProductRepository;
 import com.poly.Service.ProductService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,48 +36,83 @@ public class CartController {
     @Autowired
     private AccountReponsitory accountRepo;
 
+    @Autowired
+    private SizeRepository sizeRepo;
+
+    @Autowired
+    private  SizeProductRepository sizeProductRepo;
+
     @GetMapping("/cart")
-    public String listProducts(Model model) {
-        List<Products> products = productService.listAll();
-        model.addAttribute("products", products);
+    public String listProducts(Model model, HttpServletRequest httpServletRequest) {
+        String username = httpServletRequest.getRemoteUser();
+        Carts carts = cartRepo.findByCartUser(username);
+        model.addAttribute("carts",carts);
+        Long subtotal= cartItemsRepo.getSum(carts.getCartID());
+        model.addAttribute("subtotal",subtotal);
+
         return "user/cart";
     }
 
     @PostMapping("/addToCart/{productId}")
-    public String addToCart(@PathVariable int productId, Model model, HttpServletRequest httpServletRequest) {
+    public String addToCart(@PathVariable int productId, Model model, HttpServletRequest httpServletRequest,
+                            @RequestParam("size") String size, @RequestParam("soluong") int soluong) {
         String username = httpServletRequest.getRemoteUser();
         Account account = accountRepo.findByUsername(username);
         Carts cart = cartRepo.findByCartsUsername(account.getAccountID());
+        Products product = productRepo.findByProduct(productId);
+        Size size1 = sizeRepo.findByProductAndSizeName(productId,size);
+        Size_Product sizeProduct = sizeProductRepo.findBySizeProductId(size1.getSizeID());
         if (cart == null) {
             Carts newCart = new Carts();
             newCart.setAccount(account);
             cartRepon.save(newCart);
             // Lấy sản phẩm từ cơ sở dữ liệu bằng productId
-            Products product = productRepo.findByProduct(productId);
-
             Cart_Items cartItems = new Cart_Items();
-
             cartItems.setProductId(product);
             cartItems.setCarts(newCart);
-            cartItems.setQuantity(1);
-            cartItems.setPrice(product.getPrice());
-            cartItems.setSubtotal(1 * product.getPrice());
+            cartItems.setQuantity(soluong);
+            cartItems.setPrice(sizeProduct.getPrice());
+            cartItems.setSubtotal(soluong * sizeProduct.getPrice());
+            cartItems.setSizeName(size);
             cartItemsRepo.save(cartItems);
             return "redirect:/cart";
         }
+        else {
+            Cart_Items cart_Items = cartItemsRepo.findByProductAndSize(productId,size);
+            if(cart_Items!=null){
+                Integer product1 = cart_Items.getProductId().getProductId();
+                String size2 = cart_Items.getSizeName();
 
-        // // Lấy giỏ hàng của người dùng (có thể sử dụng session để xác định người
-        // dùng)
-        // Carts userCart = getUserCart();
+                    cart_Items.setQuantity(cart_Items.getQuantity()+soluong);
+                    float quantity = cart_Items.getQuantity();
+                    cart_Items.setSubtotal((float) (quantity * cart_Items.getPrice()));
+                    cartItemsRepo.save(cart_Items);
 
-        // // Thêm sản phẩm vào giỏ hàng
-        // userCart.getProducts().add(product);
+                }else {
+                    Cart_Items cartItems = new Cart_Items();
+                    cartItems.setProductId(product);
+                    cartItems.setCarts(cart);
+                    cartItems.setQuantity(soluong);
+                    cartItems.setPrice(sizeProduct.getPrice());
+                    cartItems.setSubtotal(soluong * sizeProduct.getPrice());
+                    cartItems.setSizeName(size);
+                    cartItemsRepo.save(cartItems);
+                }
 
-        // // Lưu thông tin giỏ hàng vào cơ sở dữ liệu
-        // cartRepo.save(userCart);
 
-        return "redirect:/cart"; // Chuyển hướng đến trang giỏ hàng
+            return "redirect:/cart";
+            }
+
+
+
     }
+    @GetMapping("cart/remove/{cartitemID}")
+    public String remove(@PathVariable("cartitemID") Long Id){
+        Cart_Items cartItems = cartItemsRepo.findByCartitemID(Id);
+        cartItemsRepo.delete(cartItems);
+        return "redirect:/cart";
+    }
+
 
 
 }

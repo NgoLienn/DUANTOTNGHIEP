@@ -44,22 +44,22 @@
                                         <div class="product-cell">Số tiền</div>
                                         <div class="product-cell">Thao Tác</div>
                                     </div>
-                                   <div class="product-row" >
+                                   <div class="product-row" th:each="item : ${carts.cart_items}" >
                                         <input type="checkbox" class="checkb_product custom-checkbox">
                                         <a href="/page/user/product_detail.html">
                                             <img src="/assets/images/bglogin.jpg" class="img-cell" alt="prod_pm">
                                         </a>
-                                        <div class="product-cell-name"  th:text="item.prodcuts.Name">Tên sản phẩm</div>
-                                        <div class="product-cell px-2">:M</div>
-                                        <div class="product-cell">100.000₫</div>
+                                        <div class="product-cell-name"  th:text="${item.productId.name}"></div>
+                                        <div class="product-cell px-2" th:text="${item.sizeName}"></div>
+                                        <div class="product-cell" th:text="${item.price}"></div>
                                         <div class="product-quantity px-5">
                                             <button class="button-tru">-</button>
-                                            <input type="text" value="1">
+                                            <input type="text" th:value="${item.quantity}" >
                                             <button class="button-cong">+</button>
                                         </div>
-                                        <div class="product-cell">200.000₫</div>
+                                        <div class="product-cell" th:text="${item.subtotal}"></div>
                                         <div class="button-xoa">
-                                            <button type="button" class="btn">Xóa</button>
+                                            <a th:href="@{|/cart/remove/${item.cartitemID}|}"><button type="button" class="btn">Xóa</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                             <div  class="shopping-cart-container mt-3 py-3 px-3">
                                 <div class="payment-container">
                                     <span class="text-payment">Tổng Thanh Toán: </span>
-                                    <span class="px-4 price-payment-sum">1.000.000₫</span><br>
+                                    <span class="px-4 price-payment-sum" th:text="${#numbers.formatDecimal(subtotal , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span><br>
                                     <label for="selecAll" class="selecall">
                                         <span class="chk-all">
                                             <input type="checkbox" id="selecAll"> Chọn Tất Cả()

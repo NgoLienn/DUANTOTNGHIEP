@@ -22,7 +22,9 @@
                     <div class="wraper">
                         <aside class="">
                             <section id="ttsanpham" class="full-height px-lg-5" style=" border: none;">
+                                <form th:action="@{|/addToCart/${product.productId}|}" method="post">
                                 <div class="container col-md-12">
+                                        <input  name="size" id="size" th:value="${sizeNames}" th:data-size="${sizeNames}" type="hidden">
                                     <div class="col">
                                         <div class="title">
                                             <p th:text="${product.name}" class="text-uppercase"></p>
@@ -47,10 +49,10 @@
                                                 <div th:each="size : ${product.size}">
                                                     <!-- <a th:href="@{|/user/productDetail/${product.productId}?sizeId=${size.sizeID}|}"
                                                         class="text-decoration-none"> -->
-                                                    <input type="button" class="sosize mx-1" th:value="${size.name}"
+                                                    <input type="button" class="sosize mx-1" th:value="${size.tableSize.sizeName}"
                                                         th:data-product-id="${product.productId}"
                                                         th:data-size-id="${size.sizeID}"
-                                                        th:id="'sizeButton_' + ${product.productId} + '_' + ${size.sizeID}">
+                                                        th:id="'sizeButton_' + ${product.productId} + '_' + ${size.tableSize.id}">
                                                     <!-- </a> &nbsp; -->
                                                 </div>
                                             </div>
@@ -76,18 +78,20 @@
                                                 </span>&nbsp;&nbsp;&nbsp;
                                                 <input type="button" class="tru" value="-">
                                                 <input class="EquXA8 Wrmraq quantity" type="text" role="spinbutton"
-                                                    aria-valuenow="1" value="1">
+                                                    aria-valuenow="1" name="soluong" value="1">
                                                 <input type="button" class="cong" value="+">
                                             </span>
                                         </div>
                                         <div class="cart-buy-item">
-                                            <a href="#"><button class="button-cart"><i class="bi bi-cart-plus"></i>
+                                           <button type="submit"  class="button-cart"><i class="bi bi-cart-plus"></i>
                                                     Thêm Giỏ
-                                                    Hàng</button></a>
+                                                    Hàng</button>
                                             <a href="#"><button class="button-buy">Mua
                                                     Ngay</button> </a>
                                         </div>
                                     </div>
+                                </div>
+                                </form>
                             </section>
                         </aside>
                         <article>
@@ -489,13 +493,17 @@
                     type: 'GET',
                     data: {
                         productID: productID,
-                        sizeID: sizeID
+                        sizeID: sizeID,
                     },
                     success: function (response) {
                         // Update the HTML with the server response
                         $('.result').html(response);
                         var currentPrice = $(response).find('.price').text();
                         $('.current-price').text(currentPrice);
+
+                        // Extract sizeName from the response and set it in the input field
+                        var sizeName = $(response).find('#size').data('size');
+                        $('#size').val(sizeName);
                     },
                     error: function (xhr, status, error) {
                         // Handle any errors that occur during the AJAX request
@@ -504,6 +512,8 @@
                 });
             });
         });
+
+
 
         // hiển thị mặc định size đầu tiên active
         // Set the default size as "S" for all products

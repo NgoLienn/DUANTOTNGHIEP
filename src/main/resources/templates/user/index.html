@@ -135,7 +135,7 @@
 					<div class="swiper-wrapper card-wrapper">
 						<div th:each="item : ${ListProduct}"
 							class="swiper-slide card show active text-center slide-card">
-							<a th:href="@{/user/productDetail/{productId}(productId=${item.productId})}"
+							<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"
 								class="text-black">
 								<img th:src="@{'/assets/images/img_product/' + ${item.image}}" class="card-img-top"
 									alt="anhslide">

@@ -2,6 +2,7 @@ package com.poly.Entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -28,4 +29,6 @@ public class Carts implements Serializable {
     @Column(name = "product_add_date")
     Date ProductAddDate = new Date();
 
+    @OneToMany(mappedBy = "Carts")
+    List<Cart_Items> cart_items;
 }

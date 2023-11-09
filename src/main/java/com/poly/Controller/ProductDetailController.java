@@ -49,19 +49,18 @@ public class ProductDetailController {
         model.addAttribute("product", produc);
 
         List<Size> size = sizeRepo.findBySizeID(productId);
-
+        Long firstName = null;
         if (sizeId == null) {
             Long firstSizeId = null; // Initialize to null
-
             // Iterate through the list of sizeProducts to find the first size_id
             for (Size sizes : size) {
                 firstSizeId = sizes.getSizeID();
-                System.out.println(firstSizeId);
                 break; // Exit the loop after finding the first size_id
             }
             Size_Product sizeProduct = sizeProductRepo.findBySizeProductId(firstSizeId);
             model.addAttribute("sizeProduct", sizeProduct);
 
+            firstName = firstSizeId;
             // đếm lần xem sản phẩm
             productService.increaseViewCount(productId);
             Products product = productService.getProductById(productId);
@@ -69,7 +68,13 @@ public class ProductDetailController {
         } else {
             Size_Product sizeProduct = sizeProductRepo.findBySizeProductId(sizeId);
             model.addAttribute("sizeProduct", sizeProduct);
+            firstName = sizeId;
         }
+            Size sizeName = sizeRepo.findBySizeName(firstName);
+            String sizeNames = sizeName.getTableSize().getSizeName();
+            model.addAttribute("sizeNames",sizeNames);
+//            model.addAttribute("sizeNames",sizename);
+
 
         // lấy ảnh lên trong sản phẩm chi tiết
         List<Image_product> images = imageProductService.getImagesByProductId(productId);

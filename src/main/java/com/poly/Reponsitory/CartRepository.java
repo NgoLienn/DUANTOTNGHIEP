@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface CartRepository extends JpaRepository <Carts, Long> {
     @Query("select u from Carts u where u.Account.accountID=?1")
     Carts findByCartsUsername(int accountID);
+
+    @Query("select u from Carts  u where  u.Account.UserName=?1")
+    Carts findByCartUser (String username);
 }
