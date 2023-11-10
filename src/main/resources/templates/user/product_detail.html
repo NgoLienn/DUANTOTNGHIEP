@@ -74,12 +74,10 @@
                                         </div>
                                         <div class="soluong mt-4 mb-4">
                                             <span class="cart-item-quantity">
-                                                <span class="text-soluong">Số Lượng
-                                                </span>&nbsp;&nbsp;&nbsp;
-                                                <input type="button" class="tru" value="-">
-                                                <input class="EquXA8 Wrmraq quantity" type="text" role="spinbutton"
-                                                    aria-valuenow="1" name="soluong" value="1">
-                                                <input type="button" class="cong" value="+">
+                                                <span class="text-soluong">Số Lượng</span>&nbsp;&nbsp;&nbsp;
+                                                <input type="button" class="tru" value="-" onclick="decrementQuantity()">
+                                                <input class="EquXA8 Wrmraq quantity" type="text" role="spinbutton" aria-valuenow="1" name="soluong" value="1" id="quantityInput">
+                                                <input type="button" class="cong" value="+" onclick="incrementQuantity()">
                                             </span>
                                         </div>
                                         <div class="cart-buy-item">
@@ -570,7 +568,22 @@
         // Example: Update the progress bar to 50%
         updateProgressBar(90);
         // end
-        // end
+        // tang giam so luong
+        function incrementQuantity() {
+            var quantityInput = document.getElementById('quantityInput');
+            var currentQuantity = parseInt(quantityInput.value, 10);
+            quantityInput.value = currentQuantity + 1;
+        }
+
+        function decrementQuantity() {
+            var quantityInput = document.getElementById('quantityInput');
+            var currentQuantity = parseInt(quantityInput.value, 10);
+
+            // Đảm bảo số lượng không nhỏ hơn 1
+            if (currentQuantity > 1) {
+                quantityInput.value = currentQuantity - 1;
+            }
+        }
 
     </script>
 

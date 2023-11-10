@@ -103,8 +103,6 @@ public class CartController {
             return "redirect:/cart";
             }
 
-
-
     }
     @GetMapping("cart/remove/{cartitemID}")
     public String remove(@PathVariable("cartitemID") Long Id){
@@ -112,6 +110,38 @@ public class CartController {
         cartItemsRepo.delete(cartItems);
         return "redirect:/cart";
     }
+    @GetMapping("cart/updateCartItems")
+    public String updateQuantity( @RequestParam(value = "cartitemID",defaultValue = "") long cartitemID,
+                                  HttpServletRequest httpServletRequest, Model model){
+        Cart_Items cartItem = cartItemsRepo.findByCartitemID(cartitemID);
+        String username = httpServletRequest.getRemoteUser();
+        Carts carts = cartRepo.findByCartUser(username);
+        model.addAttribute("carts",carts);
+        Long subtotal= cartItemsRepo.getSum(carts.getCartID());
+        model.addAttribute("subtotal",subtotal);
+        int soluong = cartItem.getQuantity()-1;
+        cartItem.setQuantity(soluong);
+        cartItem.setSubtotal(cartItem.getPrice()*soluong);
+
+        cartItemsRepo.save(cartItem);
+        return "user/cart";
+    }
+    @GetMapping("cart/updateCartItemss")
+    public String updateQuantityAdd( @RequestParam(value = "cartitemID",defaultValue = "") long cartitemID,
+                                     HttpServletRequest httpServletRequest, Model model){
+        Cart_Items cartItem = cartItemsRepo.findByCartitemID(cartitemID);
+        String username = httpServletRequest.getRemoteUser();
+        Carts carts = cartRepo.findByCartUser(username);
+        model.addAttribute("carts",carts);
+        Long subtotal= cartItemsRepo.getSum(carts.getCartID());
+        model.addAttribute("subtotal",subtotal);
+        int soluong = cartItem.getQuantity()+1;
+        cartItem.setQuantity(soluong);
+        cartItem.setSubtotal(cartItem.getPrice()*soluong);
+        cartItemsRepo.save(cartItem);
+        return "user/cart";
+    }
+
 
 
 

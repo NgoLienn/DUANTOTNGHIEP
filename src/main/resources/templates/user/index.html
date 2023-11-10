@@ -146,9 +146,7 @@
 									<p class="card-text"
 										th:text="${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' VND'">
 									</p>
-									<a href="#" class="btn btn-danger d-flex justify-content-center"> <button
-											type="submit" class="btn btn-danger d-flex justify-content-center"> Thêm
-											Giỏ Hàng </button></a>
+									<a th:href="@{|/user/productDetail/?productID=${item.productId}|}" class="btn btn-danger d-flex justify-content-center">Xem Sản Phẩm</a>
 								</div>
 							</form>
 						</div>

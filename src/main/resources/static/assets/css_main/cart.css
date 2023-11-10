@@ -429,7 +429,7 @@ body {
   display: flex;
   position: relative;
   right: 85px;
-  margin-right: -60px;
+  margin-right: -70px;
   margin-left: 15px;
 }
 
@@ -457,9 +457,16 @@ body {
   .product-quantity
   .button-cong,
 .button-tru {
-  border: none;
+  border: block;
   outline: none;
   width: 25px;
+  background: gray;
+}
+.product-row .product-quantity a{
+  background: white;
+  width: 25px;
+  height: 29.9px;
+  text-align: center;
 }
 
 .product-container .button-xoa {
