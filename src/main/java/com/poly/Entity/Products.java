@@ -52,8 +52,9 @@ public class Products implements Serializable {
     @Column(name = "highlight")
     private Boolean Highlight;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "create_at")
-    private Date Create_at;
+    private Date Create_at = new Date();
 
     @Column(name = "update_at")
     private Date Update_at;
@@ -62,8 +63,7 @@ public class Products implements Serializable {
     private Integer Views;
 
     @OneToMany(mappedBy = "Products")
-    List <Size> size;
-
+    List<Size> size;
 
     public int getId() {
         return productId;
@@ -75,5 +75,17 @@ public class Products implements Serializable {
 
     public void setCategory(Categories category) {
         this.categoryId = category;
+    }
+
+    public void setId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }

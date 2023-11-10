@@ -3,6 +3,9 @@ package com.poly.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.poly.Entity.Image_product;
@@ -10,6 +13,7 @@ import com.poly.Entity.Products;
 import com.poly.Reponsitory.ProductRepository;
 
 @Service
+// @Async
 public class ProductService {
 
     @Autowired
@@ -68,13 +72,21 @@ public class ProductService {
             productrepo.save(product);
         }
     }
+
+    // end
+
+    // tìm kiếm
+    public List<Products> searchProducts(String query) {
+        return productrepo.findByNameContainingIgnoreCase(query);
+    }
     // end
 
     // phân trang sản phẩm
     // public Page<Products> getAll(int pageNo) {
-    // Pageable pageable = PageRequest.of(pageNo - 1, 8);
-    // return this.productrepo.findAll(pageable);
+    //     Pageable pageable = PageRequest.of(pageNo - 1, 6);
+    //     return productrepo.findAll(pageable);
     // }
+
     // end
 
 }

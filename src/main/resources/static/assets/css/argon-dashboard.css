@@ -75,6 +75,21 @@
   --bs-highlight-bg: #fcf8e3;
 }
 
+/* thanh trượt */
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--bgtoggle-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+/* end */
 *,
 *::before,
 *::after {

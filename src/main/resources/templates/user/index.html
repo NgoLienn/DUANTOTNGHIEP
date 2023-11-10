@@ -15,6 +15,7 @@
 			<div class="image-three"></div>
 			<div class="image-two">
 				<img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
+
 				<nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="~{zlayout/navbar :: menu}"></nav>
 
 				<header class="banner-big">
@@ -137,7 +138,7 @@
 							class="swiper-slide card show active text-center slide-card">
 							<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"
 								class="text-black">
-								<img th:src="@{'/assets/images/img_product/' + ${item.image}}" class="card-img-top"
+								<img th:src="${item.image}" class="card-img-top"
 									alt="anhslide">
 							</a>
 							<form method="post" th:action="@{|/addToCart/${item.productId}|}">
@@ -200,7 +201,7 @@
 											<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"
 												class="text-black">
 												<img class="card-img-top"
-													th:src="@{'/assets/images/img_product/' + ${item.image}}"
+													th:src="${item.image}"
 													alt="food-menu" />
 												<div class="title" th:text="${item.name}"></div>
 											</a>
@@ -290,8 +291,7 @@
 											<div class=" card-body">
 												<a th:href="@{|/user/productDetail/?productID=${product.productId}|}"
 													class="text-black">
-													<img class="card-img-top"
-														th:src="@{'/assets/images/img_product/' + ${product.image}}"
+													<img class="card-img-top" th:src="${product.image}"
 														alt="food-menu">
 													<div class="title" th:text="${product.name}"></div>
 												</a>
