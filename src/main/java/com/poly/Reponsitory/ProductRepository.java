@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.poly.Entity.Products;
 
-
 @Repository
 public interface ProductRepository extends JpaRepository<Products, Integer> {
 
@@ -17,4 +16,5 @@ public interface ProductRepository extends JpaRepository<Products, Integer> {
 
     @Query("Select u from Products u where u.Name like %?1%")
     List<Products> findByNameContainingIgnoreCase(String query);
+
 }

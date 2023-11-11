@@ -6,7 +6,7 @@
 <body class="g-sidenav-show bg-gray-100">
 
   <!-- loader khi vào -->
-  <div id="loader-page" style=" 
+  <div id="loader-page" style="
    position: fixed;
    top: 0;
    left: 0;
@@ -40,9 +40,11 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Trang</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Quản Lý Sản Phẩm</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Quản Lý Sản PHẩm</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Quản Lý Sản Phẩm</h6>
         </nav>
+
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <!-- tìm kiếm -->
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <form>
               <div class="input-group">
@@ -51,14 +53,15 @@
                     <i class="fas fa-search cursor-pointer" aria-hidden="true"></i>
                   </button>
                 </span>
-                <input type="text" class="form-control" name="query" id="searchInput"
+                <input type="text" class="form-control" name="query" th:value="${query}" id="searchInput"
                   placeholder="Tìm Kiếm...">
               </div>
             </form>
           </div>
+          <!-- end -->
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a href="/page/admin/profile.html" class="nav-link text-white font-weight-bold px-0">
+              <a href="" class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Tài Khoản</span>
               </a>
@@ -164,6 +167,7 @@
                       <label for="example-text-input" class="form-control-label">Tên Sản phẩm</label>
                       <input class="form-control" type="text" placeholder="Name" th:field="*{name}"
                         th:value="${newProduct.name}">
+                      <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -218,8 +222,9 @@
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Trang Thái</label>
                       <div class="d-flex justify-content-start align-items-center gap-3 mt-2">
-                        <label for="trueStatus" class="cursor-pointer"  style="font-size: 13px;">
-                          <input class="" id="trueStatus" name="option" type="radio" value="True" checked placeholder="">&nbsp;
+                        <label for="trueStatus" class="cursor-pointer" style="font-size: 13px;">
+                          <input class="" id="trueStatus" name="option" type="radio" value="True" checked
+                            placeholder="">&nbsp;
                           True
                         </label>
                         <label for="falseStatus" class="cursor-pointer" style="font-size: 13px;">
@@ -315,7 +320,7 @@
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0" id="productTable">
+                <table class="table align-items-center mb-0" id="customers">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sản phẩm
@@ -334,8 +339,8 @@
                         Tác</th>
                     </tr>
                   </thead>
-                  <tbody class="product-row">
-                    <tr th:each="item : ${ListProduct}">
+                  <tbody class="product-row" id="accountTableBody">
+                    <tr th:each="item : ${productPage.productsList}">
                       <td>
                         <div class="d-flex px-3 py-1">
                           <div>
@@ -370,30 +375,43 @@
                       </td>
                     </tr>
                     <!-- phân trang đầu-->
-                    <!-- <nav aria-label="Page navigation example" class="navigation mt-5 d-flex justify-content-center">
-                      <ul class="pagination">
-                        <li class="page-item" th:if="${currentPage > 1}">
-                          <a class="page-link" th:href="@{'/admin/managerProducts?pageNo=' + ${currentPage - 1}}"
-                            aria-label="Previous">
-                            <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
-                          </a>
-                        </li>
-                        <li class="page-item " th:each="i:${#numbers.sequence(1,totalPage)}"
-                          th:classappend="${currentPage == i ? 'active' : ''}">
-                          <a class="page-link text-black" th:href="@{'/admin/managerProducts?pageNo=' + ${i}}"
-                            th:text="${i}"></a>
-                        </li>
-                        <li class="page-item" th:if="${currentPage < totalPage}">
-                          <a class="page-link" th:href="@{'/admin/managerProducts?pageNo=' + ${currentPage + 1}}"
-                            aria-label="Next">
-                            <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-                          </a>
-                        </li>
-                      </ul>
-                    </nav> -->
+                    <!--                <nav aria-label="Page navigation example" class="navigation mt-5 d-flex justify-content-center">-->
+                    <!--                  <ul class="pagination">-->
+                    <!--                    <li class="page-item" th:if="${currentPage > 1}">-->
+                    <!--                      <a class="page-link" th:href="@{'/admin/managerProducts?pageNo=' + ${currentPage - 1}}"-->
+                    <!--                        aria-label="Previous">-->
+                    <!--                        <span aria-hidden="true">&laquo;</span>-->
+                    <!--                      </a>-->
+                    <!--                    </li>-->
+                    <!--                    <li th:each="i : ${#numbers.sequence(1, totalPage)}"-->
+                    <!--                      th:classappend="${currentPage == i ? 'page-item active' : 'page-item'}">-->
+                    <!--                      <a class="page-link text-black" th:href="@{'/admin/managerProducts?pageNo=' + ${i}}"-->
+                    <!--                        th:text="${i}"></a>-->
+                    <!--                    </li>-->
+                    <!--                    <li class="page-item" th:if="${currentPage < totalPage}">-->
+                    <!--                      <a class="page-link" th:href="@{'/admin/managerProducts?pageNo=' + ${currentPage + 1}}"-->
+                    <!--                        aria-label="Next">-->
+                    <!--                        <span aria-hidden="true">&raquo;</span>-->
+                    <!--                      </a>-->
+                    <!--                    </li>-->
+                    <!--                  </ul>-->
+                    <!--                </nav>-->
                     <!-- end -->
                   </tbody>
                 </table>
+                <!--              phân trang-->
+                <div class="pagination" style="padding: 40px 300px">
+                  <a href="#" th:if="${productPage.currentPage > 1}" th:onclick="'javascript:loadPage(1, event)'">«</a>
+                  <span th:each="page : ${#numbers.sequence(1, productPage.totalPages)}">
+                    <a href="#" th:class="${page == productPage.currentPage} ? active"
+                      th:onclick="'javascript:loadPage(' + ${page} + ', event)'">
+                      <span th:text="${page}"></span>
+                    </a>
+                  </span>
+                  <a href="#" th:if="${productPage.currentPage < productPage.totalPages}"
+                    th:onclick="'javascript:loadPage(' + ${productPage.totalPages} + ', event)'">»</a>
+                </div>
+                <!--              end-->
               </div>
             </div>
           </div>
@@ -504,6 +522,44 @@
     }
     //end
 
+
+    $(document).ready(function () {
+      $('.pagination .page-link').on('click', function (e) {
+        e.preventDefault();
+        var page = $(this).data('page');
+        loadProducts(page);
+      });
+
+      function loadProducts(page) {
+        $.get('/products', { pageNo: page }, function (data) {
+          $('#productListContainer').html(data);
+        });
+      }
+    });
+  </script>
+
+  <script th:inline="javascript">
+    function loadPage(page, event) {
+      if (event) {
+        event.preventDefault();
+      }
+      $.ajax({
+        url: '/admin/managerProducts',
+        data: {
+          page: page
+        },
+        success: function (response) {
+          // Cập nhật nội dung danh sách tài khoản
+          var table = $(response).find("#customers").html();
+          $("#customers").html(table);
+          var pagination = $(response).find(".pagination").html();
+          $(".pagination").html(pagination);
+        },
+        error: function (xhr, status, error) {
+          console.log("Error: " + error);
+        }
+      });
+    }
   </script>
 
 

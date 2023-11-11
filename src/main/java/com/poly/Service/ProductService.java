@@ -75,16 +75,16 @@ public class ProductService {
 
     // end
 
-    // tìm kiếm
+    // // tìm kiếm
     public List<Products> searchProducts(String query) {
         return productrepo.findByNameContainingIgnoreCase(query);
     }
-    // end
+    // // end
 
-    // phân trang sản phẩm
-    // public Page<Products> getAll(int pageNo) {
-    //     Pageable pageable = PageRequest.of(pageNo - 1, 6);
-    //     return productrepo.findAll(pageable);
+    // // phân trang sản phẩm
+    // public Page<Products> getAll(Integer pageNo) {
+    // Pageable pageable = PageRequest.of(pageNo - 1, 6);
+    // return this.productrepo.findAll(pageable);
     // }
 
     // end
