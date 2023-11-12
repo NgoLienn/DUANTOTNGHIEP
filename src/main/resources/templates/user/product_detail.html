@@ -23,85 +23,94 @@
                         <aside class="">
                             <section id="ttsanpham" class="full-height px-lg-5" style=" border: none;">
                                 <form th:action="@{|/addToCart/${product.productId}|}" method="post">
-                                <div class="container col-md-12">
-                                        <input  name="size" id="size" th:value="${sizeNames}" th:data-size="${sizeNames}" type="hidden">
-                                    <div class="col">
-                                        <div class="title">
-                                            <p th:text="${product.name}" class="text-uppercase"></p>
-                                        </div>
-                                        <div class="danhgia mb-1">
-                                            <div class="star">
-                                                <span class="sosao">4.1 </span> &nbsp;
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star"></i>
-                                                &nbsp;&nbsp;<span class="danhgia_text text-dark">|
-                                                    &nbsp; 66 Đánh
-                                                    Giá</span>
+                                    <div class="container col-md-12">
+                                        <input name="size" id="size" th:value="${sizeNames}" th:data-size="${sizeNames}"
+                                            type="hidden">
+                                        <div class="col">
+                                            <div class="title">
+                                                <p th:text="${product.name}" class="text-uppercase"></p>
                                             </div>
-                                        </div>
-
-                                        <div th:each="product : ${product}">
-                                            <div class="size mb-3 mt-4">
-                                                <span>Size</span>&nbsp;&nbsp;&nbsp;
-                                                <div th:each="size : ${product.size}">
-                                                    <!-- <a th:href="@{|/user/productDetail/${product.productId}?sizeId=${size.sizeID}|}"
-                                                        class="text-decoration-none"> -->
-                                                    <input type="button" class="sosize mx-1" th:value="${size.tableSize.sizeName}"
-                                                        th:data-product-id="${product.productId}"
-                                                        th:data-size-id="${size.sizeID}"
-                                                        th:id="'sizeButton_' + ${product.productId} + '_' + ${size.tableSize.id}">
-                                                    <!-- </a> &nbsp; -->
+                                            <div class="danhgia mb-1">
+                                                <div class="star">
+                                                    <span class="sosao">4.1 </span> &nbsp;
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star"></i>
+                                                    &nbsp;&nbsp;<span class="danhgia_text text-dark">|
+                                                        &nbsp; 66 Đánh
+                                                        Giá</span>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="gia mt-4">
-                                            <span>Giá</span>&nbsp;&nbsp;&nbsp;
-                                            <span class="text-gach text-decoration-line-through"
-                                                th:text="${#numbers.formatDecimal(product.prices , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
-                                            &nbsp;
-                                            <span class="price total-price">
-                                                <span class="current-price "
-                                                    th:text="${#numbers.formatDecimal(sizeProduct.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+                                            <div th:each="product : ${product}">
+                                                <div class="size mb-3 mt-4">
+                                                    <span>Size</span>&nbsp;&nbsp;&nbsp;
+                                                    <div th:each="size : ${product.size}">
+                                                        <!-- <a th:href="@{|/user/productDetail/${product.productId}?sizeId=${size.sizeID}|}"
+                                                        class="text-decoration-none"> -->
+                                                        <input type="button" class="sosize mx-1"
+                                                            th:value="${size.tableSize.sizeName}"
+                                                            th:data-product-id="${product.productId}"
+                                                            th:data-size-id="${size.sizeID}"
+                                                            th:id="'sizeButton_' + ${product.productId} + '_' + ${size.tableSize.id}">
+                                                        <!-- </a> &nbsp; -->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="gia mt-4">
+                                                <span>Giá</span>&nbsp;&nbsp;&nbsp;
+                                                <span class="text-gach text-decoration-line-through"
+                                                    th:text="${#numbers.formatDecimal(product.prices , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                                &nbsp;
+                                                <span class="price total-price">
+                                                    <span class="current-price "
+                                                        th:text="${#numbers.formatDecimal(sizeProduct.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+                                                    </span>
+                                                    <span class="total-price"></span>
+                                                    &nbsp; &nbsp;
                                                 </span>
-                                                <span class="total-price"></span>
-                                                &nbsp; &nbsp;
-                                            </span>
-                                            <!-- <span class="giamgia">10% GIẢM</span> -->
-                                        </div>
-                                        <div class="soluong mt-4 mb-4">
-                                            <span class="cart-item-quantity">
-                                                <span class="text-soluong">Số Lượng</span>&nbsp;&nbsp;&nbsp;
-                                                <input type="button" class="tru" value="-" onclick="decrementQuantity()">
-                                                <input class="EquXA8 Wrmraq quantity" type="text" role="spinbutton" aria-valuenow="1" name="soluong" value="1" id="quantityInput">
-                                                <input type="button" class="cong" value="+" onclick="incrementQuantity()">
-                                            </span>
-                                        </div>
-                                        <div class="cart-buy-item">
-                                           <button type="submit"  class="button-cart"><i class="bi bi-cart-plus"></i>
+                                                <!-- <span class="giamgia">10% GIẢM</span> -->
+                                            </div>
+                                            <div class="soluong mt-4 mb-4">
+                                                <span class="cart-item-quantity">
+                                                    <span class="text-soluong">Số Lượng</span>&nbsp;&nbsp;&nbsp;
+                                                    <input type="button" class="tru" value="-"
+                                                        onclick="decrementQuantity()">
+                                                    <input class="EquXA8 Wrmraq quantity" type="text" role="spinbutton"
+                                                        aria-valuenow="1" name="soluong" value="1" id="quantityInput">
+                                                    <input type="button" class="cong" value="+"
+                                                        onclick="incrementQuantity()">
+                                                </span>
+                                            </div>
+                                            <div class="cart-buy-item">
+                                                <button type="submit" class="button-cart">
+                                                    <i class="bi bi-cart-plus"></i>
                                                     Thêm Giỏ
-                                                    Hàng</button>
-                                            <a href="#"><button class="button-buy">Mua
-                                                    Ngay</button> </a>
+                                                    Hàng
+                                                </button>
+                                                <a href="#">
+                                                    <button class="button-buy">Mua
+                                                        Ngay
+                                                    </button>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 </form>
                             </section>
                         </aside>
                         <article>
                             <div class="ifarm-images">
                                 <div th:each="image : ${images}">
-                                    <img th:src="${image.url_Img}" alt="anhSpham"
-                                        class="clickable-image" onclick="showImage(this.src)">
+                                    <img th:src="${image.url_Img}" alt="anhSpham" class="clickable-image"
+                                        onclick="showImage(this.src)">
                                 </div>
                             </div>
                             <div id="image-container" class="hidden if-image">
-                                <img id="product-image" th:src="${product.image}"
-                                    class="img-food">
+                                <img id="product-image" th:src="${product.image}" class="img-food">
                             </div>
                         </article>
                     </div>

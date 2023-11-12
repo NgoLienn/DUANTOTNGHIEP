@@ -136,10 +136,8 @@
 					<div class="swiper-wrapper card-wrapper">
 						<div th:each="item : ${ListProduct}"
 							class="swiper-slide card show active text-center slide-card">
-							<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"
-								class="text-black">
-								<img th:src="${item.image}" class="card-img-top"
-									alt="anhslide">
+							<a th:href="@{|/user/productDetail/?productID=${item.productId}|}" class="text-black">
+								<img th:src="${item.image}" class="card-img-top" alt="anhslide">
 							</a>
 							<form method="post" th:action="@{|/addToCart/${item.productId}|}">
 								<div class="card-body">
@@ -147,7 +145,8 @@
 									<p class="card-text"
 										th:text="${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' VND'">
 									</p>
-									<a th:href="@{|/user/productDetail/?productID=${item.productId}|}" class="btn btn-danger d-flex justify-content-center">Xem Sản Phẩm</a>
+									<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"
+										class="btn btn-danger d-flex justify-content-center">Xem Sản Phẩm</a>
 								</div>
 							</form>
 						</div>
@@ -170,7 +169,7 @@
 			<section id="menu-food">
 				<div class="image-five">
 					<h2>Menu Món Ăn</h2>
-					<ul class="nav nav-tabs tabpanel border-bottom-0 justify-content-center flex-wrap" id="myTab"
+					<ul class="nav nav-tabs tabpanel border-bottom-0 mt-4 justify-content-center flex-wrap" id="myTab"
 						role="tablist">
 						<li class="nav-item" role="presentation">
 							<button class="nav-link text-white active custom-tab-link" id="home-tab"
@@ -199,9 +198,8 @@
 									<div class="card">
 										<div class="card-body">
 											<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"
-												class="text-black">
-												<img class="card-img-top"
-													th:src="${item.image}"
+												class="text-black ">
+												<img class="card-img-top bg-cover max-width-300" th:src="${item.image}"
 													alt="food-menu" />
 												<div class="title" th:text="${item.name}"></div>
 											</a>
@@ -291,8 +289,7 @@
 											<div class=" card-body">
 												<a th:href="@{|/user/productDetail/?productID=${product.productId}|}"
 													class="text-black">
-													<img class="card-img-top" th:src="${product.image}"
-														alt="food-menu">
+													<img class="card-img-top" th:src="${product.image}" alt="food-menu">
 													<div class="title" th:text="${product.name}"></div>
 												</a>
 												<div class="quantity">
@@ -402,7 +399,7 @@
 					'opacity': 0,
 					'visibility': 'hidden'
 				});
-			}, 2000);
+			}, 1000);
 		};
 		$(function () {
 			loader();

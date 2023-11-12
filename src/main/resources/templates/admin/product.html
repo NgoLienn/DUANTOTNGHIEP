@@ -176,7 +176,7 @@
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Giá Cũ</label>
                       <input class="form-control" type="text" id="newProduct_prices" value="" placeholder="Old Price"
-                        th:field="*{prices}" th:value="${newProduct.prices}" pattern="[0-9]{4,}">
+                        th:field="*{prices}" th:value="${newProduct.prices}">
                       <small class="text-danger" id="prices-error"></small>
                       <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
@@ -185,7 +185,7 @@
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Giá Mới</label>
                       <input class="form-control" type="text" id="newProduct_price" value="" placeholder="New Price"
-                        th:field="*{price}" th:value="${newProduct.price}" pattern="[0-9]{4,}">
+                        th:field="*{price}" th:value="${newProduct.price}">
                       <small class="text-danger" id="price-error"></small>
                       <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
@@ -194,7 +194,7 @@
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Số Lượng</label>
                       <input class="form-control" id="newProduct_quantity" type="text" value="" placeholder="Quantity"
-                        th:field="*{quantity}" th:value="${newProduct.quantity}" pattern="[0-9]+">
+                        th:field="*{quantity}" th:value="${newProduct.quantity}">
                     </div>
                     <small class="text-danger" id="quantity-error"></small>
                     <div id="form-error" class="text-danger mt-2 border-danger"></div>
@@ -255,13 +255,12 @@
                       <label for="example-text-input" class="form-control-label px-6 position-absolute">Hình Ảnh
                         Đại Diện Sản Phẩm</label>
                       <span>
-                        <img id="preview-image" class="max-width-300 pt-4" th:src="*{image}" alt="">
+                        <img id="preview-image" class="max-width-300 max-height-300 pt-4" th:src="*{image}" alt="">
                       </span>
                       <!-- multiple giúp chọn nhiều ảnh cùng lúc -->
                       <input type="hidden" name="filess" th:value="${newProduct.image}">
                       <input class="form-control filepond" id="uploadimage" name="uploadimage" type="file"
-                        onchange="previewImage(event)" placeholder="Ảnh">
-
+                        onchange="previewImage(event)" placeholder="Ảnh" th:value="${newProduct.image}">
                       <small class="text-danger" id="image-error"></small>
                       <div id="form-error" class="text-danger mt-2 border-danger"></div>
                       <!-- end -->
@@ -640,7 +639,7 @@
         category.style.borderColor = '';
       }
 
-      if (image.files.length === 0) {
+      if (image.files.files === 0) {
         image.style.borderColor = '#ff0000';
         document.getElementById('image-error').innerText = 'Vui lòng chọn ảnh';
         return false;
