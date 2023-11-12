@@ -95,12 +95,12 @@
                         <article>
                             <div class="ifarm-images">
                                 <div th:each="image : ${images}">
-                                    <img th:src="@{'/assets/images/img_product/' + ${image.url_Img}}" alt="anhSpham"
+                                    <img th:src="${image.url_Img}" alt="anhSpham"
                                         class="clickable-image" onclick="showImage(this.src)">
                                 </div>
                             </div>
                             <div id="image-container" class="hidden if-image">
-                                <img id="product-image" th:src="@{'/assets/images/img_product/' + ${product.image}}"
+                                <img id="product-image" th:src="${product.image}"
                                     class="img-food">
                             </div>
                         </article>

@@ -157,7 +157,8 @@
                 <p class="mb-0">Chỉnh Sửa Sản Phẩm </p>
               </div>
             </div>
-            <form method="post" th:object="${newProduct}" enctype="multipart/form-data">
+            <form method="post" th:object="${newProduct}" enctype="multipart/form-data" onsubmit="return validateForm()"
+              id="productForm">
               <div class="card-body">
                 <p class="text-uppercase text-sm">Thông Tin Sản Phẩm</p>
                 <div class="row">
@@ -165,44 +166,57 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Tên Sản phẩm</label>
-                      <input class="form-control" type="text" placeholder="Name" th:field="*{name}"
+                      <input class="form-control" type="text" id="newProduct_name" placeholder="Name" th:field="*{name}"
                         th:value="${newProduct.name}">
-                      <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                      <small class="text-danger" id="name-error"></small>
+                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Giá Cũ</label>
-                      <input class="form-control" type="text" value="" placeholder="Old Price" th:field="*{prices}"
-                        th:value="${newProduct.prices}">
+                      <input class="form-control" type="text" id="newProduct_prices" value="" placeholder="Old Price"
+                        th:field="*{prices}" th:value="${newProduct.prices}" pattern="[0-9]{4,}">
+                      <small class="text-danger" id="prices-error"></small>
+                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Giá Mới</label>
-                      <input class="form-control" type="text" value="" placeholder="New Price" th:field="*{price}"
-                        th:value="${newProduct.price}">
+                      <input class="form-control" type="text" id="newProduct_price" value="" placeholder="New Price"
+                        th:field="*{price}" th:value="${newProduct.price}" pattern="[0-9]{4,}">
+                      <small class="text-danger" id="price-error"></small>
+                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Số Lượng</label>
-                      <input class="form-control" type="text" value="" placeholder="Quantity" th:field="*{quantity}"
-                        th:value="${newProduct.quantity}">
+                      <input class="form-control" id="newProduct_quantity" type="text" value="" placeholder="Quantity"
+                        th:field="*{quantity}" th:value="${newProduct.quantity}" pattern="[0-9]+">
                     </div>
+                    <small class="text-danger" id="quantity-error"></small>
+                    <div id="form-error" class="text-danger mt-2 border-danger"></div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Mô Tả Ẩn</label>
                       <textarea class="form-control" name="descriptionAn" id="descriptionAn" cols="30" rows="1"
-                        placeholder="Nhập vào mô tả sản phẩm" text="" th:field="*{description_an}"></textarea>
+                        placeholder="Nhập vào mô tả sản phẩm" text="" th:field="*{description_an}">
+                      </textarea>
+                      <small class="text-danger" id="descriptionAn-error"></small>
+                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Mô Tả</label>
                       <textarea class="form-control" name="description" id="description" cols="30" rows="1"
-                        placeholder="Nhập vào mô tả sản phẩm" text="" th:field="*{description}"></textarea>
+                        placeholder="Nhập vào mô tả sản phẩm" text="" th:field="*{description}">
+                      </textarea>
+                      <small class="text-danger" id="description-error"></small>
+                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
                   </div>
                   <div class="col-md-6 custom-select">
@@ -216,6 +230,8 @@
                           </option>
                         </span>
                       </select>
+                      <small class="text-danger" id="category-error"></small>
+                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -243,8 +259,11 @@
                       </span>
                       <!-- multiple giúp chọn nhiều ảnh cùng lúc -->
                       <input type="hidden" name="filess" th:value="${newProduct.image}">
-                      <input class="form-control filepond" name="uploadimage" type="file" onchange="previewImage(event)"
-                        placeholder="create at">
+                      <input class="form-control filepond" id="uploadimage" name="uploadimage" type="file"
+                        onchange="previewImage(event)" placeholder="Ảnh">
+
+                      <small class="text-danger" id="image-error"></small>
+                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
                       <!-- end -->
                     </div>
                   </div>
@@ -340,7 +359,7 @@
                     </tr>
                   </thead>
                   <tbody class="product-row" id="accountTableBody">
-                    <tr th:each="item : ${productPage.productsList}">
+                    <tr th:each="item : ${productPage.ListProduct}">
                       <td>
                         <div class="d-flex px-3 py-1">
                           <div>
@@ -375,43 +394,33 @@
                       </td>
                     </tr>
                     <!-- phân trang đầu-->
-                    <!--                <nav aria-label="Page navigation example" class="navigation mt-5 d-flex justify-content-center">-->
-                    <!--                  <ul class="pagination">-->
-                    <!--                    <li class="page-item" th:if="${currentPage > 1}">-->
-                    <!--                      <a class="page-link" th:href="@{'/admin/managerProducts?pageNo=' + ${currentPage - 1}}"-->
-                    <!--                        aria-label="Previous">-->
-                    <!--                        <span aria-hidden="true">&laquo;</span>-->
-                    <!--                      </a>-->
-                    <!--                    </li>-->
-                    <!--                    <li th:each="i : ${#numbers.sequence(1, totalPage)}"-->
-                    <!--                      th:classappend="${currentPage == i ? 'page-item active' : 'page-item'}">-->
-                    <!--                      <a class="page-link text-black" th:href="@{'/admin/managerProducts?pageNo=' + ${i}}"-->
-                    <!--                        th:text="${i}"></a>-->
-                    <!--                    </li>-->
-                    <!--                    <li class="page-item" th:if="${currentPage < totalPage}">-->
-                    <!--                      <a class="page-link" th:href="@{'/admin/managerProducts?pageNo=' + ${currentPage + 1}}"-->
-                    <!--                        aria-label="Next">-->
-                    <!--                        <span aria-hidden="true">&raquo;</span>-->
-                    <!--                      </a>-->
-                    <!--                    </li>-->
-                    <!--                  </ul>-->
-                    <!--                </nav>-->
+                    <nav aria-label="Page navigation example"
+                      class="navigation mt-3 mb-3 d-flex justify-content-center">
+                      <ul class="pagination">
+                        <li class="page-item cursor-pointer" th:if="${productPage.currentPage > 1}">
+                          <a class="page-link" href="#" aria-label="Previous"
+                            th:onclick="'javascript:loadPage(1, event)'">
+                            <span aria-hidden="true">&laquo;</span>
+                          </a>
+                        </li>
+                        <li th:each="page : ${#numbers.sequence(1, productPage.totalPages)}"
+                          class="page-item cursor-pointer">
+                          <a class="page-link text-black" th:classappend="${page == productPage.currentPage} ? active"
+                            th:onclick="'javascript:loadPage(' + ${page} + ', event)'" th:text="${page}"></a>
+                        </li>
+                        <li class="page-item cursor-pointer"
+                          th:if="${productPage.currentPage < productPage.totalPages}">
+                          <a class="page-link" href=""
+                            th:onclick="'javascript:loadPage(' + ${productPage.totalPages} + ', event)'"
+                            aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
                     <!-- end -->
                   </tbody>
                 </table>
-                <!--              phân trang-->
-                <div class="pagination" style="padding: 40px 300px">
-                  <a href="#" th:if="${productPage.currentPage > 1}" th:onclick="'javascript:loadPage(1, event)'">«</a>
-                  <span th:each="page : ${#numbers.sequence(1, productPage.totalPages)}">
-                    <a href="#" th:class="${page == productPage.currentPage} ? active"
-                      th:onclick="'javascript:loadPage(' + ${page} + ', event)'">
-                      <span th:text="${page}"></span>
-                    </a>
-                  </span>
-                  <a href="#" th:if="${productPage.currentPage < productPage.totalPages}"
-                    th:onclick="'javascript:loadPage(' + ${productPage.totalPages} + ', event)'">»</a>
-                </div>
-                <!--              end-->
               </div>
             </div>
           </div>
@@ -423,11 +432,10 @@
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">
               <div class="copyright text-center text-sm text-muted text-lg-start">
-                ©
                 <script>
                   document.write(new Date().getFullYear())
                 </script>,
-                Được Thiết Kế Bởi FastFoodTeam
+                Fast Food Store
               </div>
             </div>
           </div>
@@ -515,14 +523,6 @@
     }
     // end
 
-    // reset form
-    function resetForm() {
-      // Reset form fields after submission
-      document.getElementById("yourFormId").reset();
-    }
-    //end
-
-
     $(document).ready(function () {
       $('.pagination .page-link').on('click', function (e) {
         e.preventDefault();
@@ -536,6 +536,8 @@
         });
       }
     });
+
+    // 
   </script>
 
   <script th:inline="javascript">
@@ -560,6 +562,96 @@
         }
       });
     }
+
+    // validate form sản phẩm
+    function validateForm() {
+      var form = document.getElementById('productForm');
+      var name = document.getElementById('newProduct_name');
+      var price = document.getElementById('newProduct_price');
+      var prices = document.getElementById('newProduct_prices');
+      var description = document.getElementById('description');
+      var descriptionAn = document.getElementById('descriptionAn');
+      var quantity = document.getElementById('newProduct_quantity');
+      var category = document.getElementById('example-text-input');
+      var image = document.getElementById('uploadimage');
+      var formError = document.getElementById('form-error');
+
+      if (!name.value) {
+        name.style.borderColor = '#ff0000';
+        document.getElementById('name-error').innerText = 'Không được để trống tên sản phẩm';
+
+        return false;
+      } else {
+        document.getElementById('name-error').innerText = '';
+        name.style.borderColor = '';
+      }
+
+      if (!prices.value) {
+        prices.style.borderColor = '#ff0000';
+        document.getElementById('prices-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
+        return false;
+      } else {
+        document.getElementById('prices-error').innerText = '';
+        prices.style.borderColor = '';
+      }
+
+      if (!price.value) {
+        price.style.borderColor = '#ff0000';
+        document.getElementById('price-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
+        return false;
+      } else {
+        document.getElementById('price-error').innerText = '';
+        price.style.borderColor = '';
+      }
+
+      if (!quantity.value) {
+        quantity.style.borderColor = '#ff0000';
+        document.getElementById('quantity-error').innerText = 'Số lượng phải nhập số';
+        return false;
+      } else {
+        document.getElementById('quantity-error').innerText = '';
+        quantity.style.borderColor = '';
+      }
+
+      if (!descriptionAn.value) {
+        descriptionAn.style.borderColor = '#ff0000';
+        document.getElementById('descriptionAn-error').innerText = 'Không được để trống mô tả';
+        return false;
+      } else {
+        document.getElementById('descriptionAn-error').innerText = '';
+        descriptionAn.style.borderColor = '';
+      }
+
+      if (!description.value) {
+        description.style.borderColor = '#ff0000';
+        document.getElementById('description-error').innerText = 'Không được để trống mô tả';
+        return false;
+      } else {
+        document.getElementById('description-error').innerText = '';
+        description.style.borderColor = '';
+      }
+
+      if (category.value === '') {
+        category.style.borderColor = '#ff0000';
+        document.getElementById('category-error').innerText = 'Vui lòng chọn thể loại';
+        return false;
+      } else {
+        document.getElementById('category-error').innerText = '';
+        category.style.borderColor = '';
+      }
+
+      if (image.files.length === 0) {
+        image.style.borderColor = '#ff0000';
+        document.getElementById('image-error').innerText = 'Vui lòng chọn ảnh';
+        return false;
+      } else {
+        document.getElementById('image-error').innerText = '';
+        image.style.borderColor = '';
+      }
+
+      return true;
+    }
+    // end
   </script>
 
 
