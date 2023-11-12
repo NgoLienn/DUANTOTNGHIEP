@@ -62,7 +62,7 @@ public class CartController {
         Products product = productRepo.findByProduct(productId);
         Size size1 = sizeRepo.findByProductAndSizeName(productId,size);
         Size_Product sizeProduct = sizeProductRepo.findBySizeProductId(size1.getSizeID());
-        if (cart == null) {
+        if (cart == null || cart.getCart_items().isEmpty()) {
             Carts newCart = new Carts();
             newCart.setAccount(account);
             cartRepon.save(newCart);

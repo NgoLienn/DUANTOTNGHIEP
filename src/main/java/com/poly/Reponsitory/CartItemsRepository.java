@@ -16,5 +16,4 @@ public interface CartItemsRepository extends JpaRepository<Cart_Items, Long> {
     @Query("select u from Cart_Items u where u.productId.productId=?1 and u.sizeName=?2")
     Cart_Items findByProductAndSize(Integer product, String size);
 
-
 }

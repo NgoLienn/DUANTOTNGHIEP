@@ -156,7 +156,7 @@
                                             <input type="checkbox" id="selecAll"> Chọn Tất Cả()
                                         </span>
                                     </label>
-                                    <a th:href="@{payment}">
+                                    <a th:href="@{/user/payment}">
                                         <button class="btn btn-danger btn-thanhtoan mt-3" type="submit">Mua
                                             Ngay</button>
                                     </a>
@@ -234,7 +234,6 @@
                         // Update the quantity on the page without refreshing
                         // You can do this dynamically based on your page structure
                         var updatedQuantity = $(response).find('#quantity').data('quantity');
-
                         // Update the quantity on the page
                         $('#quantity').val(updatedQuantity);// For simplicity, you can also reload the entire page
                         var currentPrice = $(response).find('.price').text();
@@ -258,7 +257,6 @@
                         // Update the quantity on the page without refreshing
                         // You can do this dynamically based on your page structure
                         var updatedQuantity = $(response).find('#quantity').data('quantity');
-
                         // Update the quantity on the page
                         $('#quantity').val(updatedQuantity); // For simplicity, you can also reload the entire page
                         var currentPrice = $(response).find('.price').text();

@@ -9,7 +9,7 @@
     <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
 
     <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
-
+<form action="/user/payment" method="post">
     <div class="containerr ">
         <div class="image_big">
             <div class="image-one"></div>
@@ -31,15 +31,14 @@
                                     </h4>
                                     <div class="address-card">
                                         <div class="name px-2">
-                                            <label for="address1">Lê Chí Bằng </label>
+                                            <label for="address1" th:text="${account.fullname}"></label>
                                         </div>
                                         <div class="phone">
-                                            <label for="address2"> (+84)<span> 943925652</span></label>
+                                            <label for="address2" th:text="${account.phone}"></label>
                                         </div>
 
                                         <div class="location px-5">
-                                            <label for="address3">Ấp Rạch Muỗi Xã Phú Hưng Huyện Cái Nước Tỉnh Cà
-                                                Mau</label>
+                                            <label for="address3" th:text="${account.address}"></label>
                                         </div>
                                         <a th:href="@{user/payment#myModal}" id="openModal"
                                             class=" add-new-address px-3 text-location d-flex justify-content-end">
@@ -98,32 +97,13 @@
                                         <div class="product-cell">Thành tiền</div>
                                     </div>
 
-                                    <div class="product-row">
+                                    <div class="product-row" th:each="item : ${cart.cart_items}">
                                         <img src="/assets/images/bglogin.jpg" class="img-cell" alt="prod_pm">
-                                        <div class="product-cell-name">Tên sản phẩm</div>
-                                        <div class="product-cell px-2">:M</div>
-                                        <div class="product-cell">100.000₫</div>
-                                        <div class="product-cell px-5">2</div>
-                                        <div class="product-cell">200.000₫</div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="product-container">
-                                    <div class="product-row header">
-                                        <div class="product-cell">Sản phẩm</div>
-                                        <div class="product-cell">Size</div>
-                                        <div class="product-cell">Đơn giá</div>
-                                        <div class="product-cell">Số lượng</div>
-                                        <div class="product-cell">Thành tiền</div>
-                                    </div>
-
-                                    <div class="product-row">
-                                        <img src="/assets/images/bglogin.jpg" class="img-cell" alt="prod_pm">
-                                        <div class="product-cell-name">Tên sản phẩm</div>
-                                        <div class="product-cell px-2">:M</div>
-                                        <div class="product-cell">100.000₫</div>
-                                        <div class="product-cell px-5">2</div>
-                                        <div class="product-cell">200.000₫</div>
+                                        <div class="product-cell-name" th:text="${item.productId.name}"></div>
+                                        <div class="product-cell px-2" th:text="${item.sizeName}" ></div>
+                                        <div class="product-cell" th:text="${item.price}"></div>
+                                        <div class="product-cell px-5" th:text="${item.quantity}"></div>
+                                        <div class="product-cell" th:text="${item.subtotal}"></div>
                                     </div>
                                 </div>
                             </div>
@@ -132,16 +112,16 @@
                                 <ul class="nav nav-tabs tab-pane-payment" id="myTab" role="tablist">
                                     <span class="h5">Phương Thức Thanh Toán</span>
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="tab"
-                                            data-bs-target="#pills-home" type="button" role="tab"
-                                            aria-controls="pills-home" aria-selected="true">Thanh Toán Khi Nhận Hàng
-                                        </button>
+                                        <input class="nav-link active" id="pills-home-tab" data-bs-toggle="tab"
+                                            data-bs-target="#pills-home" type="radio" role="tab"
+                                            aria-controls="pills-home" aria-selected="true" name="payment" value="true" checked>Thanh Toán Khi Nhận Hàng
+                                        </input>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                            data-bs-target="#pills-profile" type="button" role="tab"
-                                            aria-controls="pills-profile" aria-selected="false">Thanh Toán Online
-                                        </button>
+                                        <input class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                            data-bs-target="#pills-profile" type="radio" role="tab"
+                                            aria-controls="pills-profile" aria-selected="false" name="payment" value="false">Thanh Toán Online
+                                        </input>
                                     </li>
                                 </ul>
                                 <div class="tab-content mb-4" id="myTabContent">
@@ -157,12 +137,10 @@
                                     </div>
                                 </div>
                                 <div class="container-fluid-payment">
-                                    <span class="text-payment">Tổng Tiền Hàng: </span><span class="price-payment">
-                                        200.000₫</span><br>
+                                    <span class="text-payment">Tổng Tiền Hàng: </span><span class="price-payment" th:text="${#numbers.formatDecimal(subtotal , 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span><br>
                                     <span class="text-payment1">Phí Vận Chuyển: </span><span class="price-payment">
-                                        30.000₫</span><br>
-                                    <span class="text-payment">Tổng Thanh Toán: </span><span class="price-payment-sum">
-                                        230.000₫</span><br>
+                                        30,000 VNĐ</span><br>
+                                    <span class="text-payment">Tổng Thanh Toán: </span><span class="price-payment-sum" th:text="${#numbers.formatDecimal(subtotal+30000 , 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"}></span><br>
                                     <a th:href="@{user/confirmation}">
                                         <button class="btn btn-danger tbtn-thanhtoan mt-5">Thanh
                                             Toán</button>
@@ -179,7 +157,7 @@
 
         <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
     </div>
-
+</form>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>

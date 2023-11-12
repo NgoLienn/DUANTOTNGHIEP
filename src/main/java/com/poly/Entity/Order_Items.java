@@ -29,12 +29,12 @@ public class Order_Items implements Serializable {
     @JoinColumn(name = "order_id")
     private Orders Orders;
 
-    @ManyToOne
-    @JoinColumn(name = "size_product_id")
-    private Size_Product Size_Product;
+
+    @Column(name = "size_product_id")
+    private String Size_Product;
 
     @Column(name = "quantity")
-    private Float Quantity;
+    private int Quantity;
 
     @Column(name = "subtotal")
     private Float Subtotal;

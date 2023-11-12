@@ -1,16 +1,11 @@
 package com.poly.Entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,8 +29,25 @@ public class Orders implements Serializable {
     @JoinColumn(name = "status_id")
     private Status Status;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "order_time")
-    private Date orderTime;
+    private Date orderTime = new Date();
+
+    // Getter và Setter
+
+    // ...
+
+    public Timestamp getOrderTime() {
+        return new Timestamp(orderTime.getTime());
+    }
+
+    public void setOrderTime(Timestamp orderTime) {
+        this.orderTime = new Date(orderTime.getTime());
+    }
+
+    // ...
+
+
 
     @Column(name = "total_amount")
     private Float totalAmount;
@@ -43,11 +55,13 @@ public class Orders implements Serializable {
     @Column(name = "delivery_address", columnDefinition = "TEXT")
     private String deliveryAddress;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "delivery_time")
-    private Date deliveryTime;
+    private Date deliveryTime = new Date();
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "payment_date")
-    private Date paymentDate;
+    private Date paymentDate = new Date();
 
     @Column(name = "payment_method", columnDefinition = "VARCHAR(100)")
     private String paymentMethod;
