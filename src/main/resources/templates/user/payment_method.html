@@ -9,155 +9,163 @@
     <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
 
     <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
-<form action="/user/payment" method="post">
-    <div class="containerr ">
-        <div class="image_big">
-            <div class="image-one"></div>
-            <div class="image-three"></div>
-            <div class="image-two">
-                <img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
-                <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
+    <form action="/user/payment" method="post">
+        <div class="containerr ">
+            <div class="image_big">
+                <div class="image-one"></div>
+                <div class="image-three"></div>
+                <div class="image-two">
+                    <img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
+                    <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
 
-                <header class="banner-big">
-                    <div class="img-blur ">
-                        <!-- <img src="assets/images/food5.png" class="anh1" alt=""> -->
-                    </div>
-                    <div class="wraper">
-                        <aside class="">
-                            <div class="container-fluid py-4 mt-3">
-                                <span class="tttk text-uppercase px-2">Thanh Toán</span>
-                                <div class="address-section mt-4 px-2">
-                                    <h4 class="mb-3 text-danger"><i class="bi bi-geo-alt-fill"></i> Địa chỉ giao hàng
-                                    </h4>
-                                    <div class="address-card">
-                                        <div class="name px-2">
-                                            <label for="address1" th:text="${account.fullname}"></label>
-                                        </div>
-                                        <div class="phone">
-                                            <label for="address2" th:text="${account.phone}"></label>
-                                        </div>
+                    <header class="banner-big">
+                        <div class="img-blur ">
+                            <!-- <img src="assets/images/food5.png" class="anh1" alt=""> -->
+                        </div>
+                        <div class="wraper">
+                            <aside class="">
+                                <div class="container-fluid py-4 mt-3">
+                                    <span class="tttk text-uppercase px-2">Thanh Toán</span>
+                                    <div class="address-section mt-4 px-2">
+                                        <h4 class="mb-3 text-danger"><i class="bi bi-geo-alt-fill"></i> Địa chỉ giao
+                                            hàng
+                                        </h4>
+                                        <div class="address-card">
+                                            <div class="name px-2">
+                                                <label for="address1" th:text="${account.fullname}"></label>
+                                            </div>
+                                            <div class="phone">
+                                                <label for="address2" th:text="${account.phone}"></label>
+                                            </div>
 
-                                        <div class="location px-5">
-                                            <label for="address3" th:text="${account.address}"></label>
-                                        </div>
-                                        <a th:href="@{user/payment#myModal}" id="openModal"
-                                            class=" add-new-address px-3 text-location d-flex justify-content-end">
-                                            Thay Đổi
-                                        </a>
+                                            <div class="location px-5">
+                                                <label for="address3" th:text="${account.address}"></label>
+                                            </div>
+                                            <a th:href="@{user/payment#myModal}" id="openModal"
+                                                class=" add-new-address px-3 text-location d-flex justify-content-end">
+                                                Thay Đổi
+                                            </a>
 
-                                        <!-- Màng hình hiển thị -->
-                                        <div id="myModal" class="modal">
-                                            <div class="modal-content">
-                                                <h4>Địa Chỉ Mới</h4>
-                                                <form action="">
-                                                    <div class="row py-2">
-                                                        <div class="col-md-6 py-2">
-                                                            <div class="form-group">
-                                                                <input class="form-control" type="text" value=""
-                                                                    placeholder="Họ Và Tên">
+                                            <!-- Màng hình hiển thị -->
+                                            <div id="myModal" class="modal">
+                                                <div class="modal-content">
+                                                    <h4>Địa Chỉ Mới</h4>
+                                                    <form action="">
+                                                        <div class="row py-2">
+                                                            <div class="col-md-6 py-2">
+                                                                <div class="form-group">
+                                                                    <input class="form-control" type="text" value=""
+                                                                        placeholder="Họ Và Tên">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6 py-2">
-                                                            <div class="form-group">
-                                                                <input class="form-control" type="text" value=""
-                                                                    placeholder="Số Điện Thoại">
+                                                            <div class="col-md-6 py-2">
+                                                                <div class="form-group">
+                                                                    <input class="form-control" type="text" value=""
+                                                                        placeholder="Số Điện Thoại">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-12 py-2">
-                                                            <div class="form-group">
-                                                                <input class="form-control" type="text" value=""
-                                                                    placeholder="Tỉnh/Thành Phố, Quận/Huyện...">
+                                                            <div class="col-md-12 py-2">
+                                                                <div class="form-group">
+                                                                    <input class="form-control" type="text" value=""
+                                                                        placeholder="Tỉnh/Thành Phố, Quận/Huyện...">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-12 py-2">
-                                                            <div class="form-group">
-                                                                <textarea class="form-control" type="text" value=""
-                                                                    placeholder="Địa Chỉ Cụ Thể" rows="3"
-                                                                    style="vertical-align: top;">
+                                                            <div class="col-md-12 py-2">
+                                                                <div class="form-group">
+                                                                    <textarea class="form-control" type="text" value=""
+                                                                        placeholder="Địa Chỉ Cụ Thể" rows="3"
+                                                                        style="vertical-align: top;">
                                                                 </textarea>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- Các trường thông tin khác -->
-                                                    <button class="close px-4">Trở Lại</button>
-                                                    <button type="submit" class="hoanthanh px-4">Hoàn Thành</button>
-                                                </form>
+                                                        <!-- Các trường thông tin khác -->
+                                                        <button class="close px-4">Trở Lại</button>
+                                                        <button type="submit" class="hoanthanh px-4">Hoàn Thành</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="container-fluid py-4 mt-3">
-                                <div class="product-container">
-                                    <div class="product-row header">
-                                        <div class="product-cell">Sản phẩm</div>
-                                        <div class="product-cell">Size</div>
-                                        <div class="product-cell">Đơn giá</div>
-                                        <div class="product-cell">Số lượng</div>
-                                        <div class="product-cell">Thành tiền</div>
-                                    </div>
+                                <div class="container-fluid py-4 mt-3">
+                                    <div class="product-container">
+                                        <div class="product-row header">
+                                            <div class="product-cell">Sản phẩm</div>
+                                            <div class="product-cell">Size</div>
+                                            <div class="product-cell">Đơn giá</div>
+                                            <div class="product-cell">Số lượng</div>
+                                            <div class="product-cell">Thành tiền</div>
+                                        </div>
 
-                                    <div class="product-row" th:each="item : ${cart.cart_items}">
-                                        <img src="/assets/images/bglogin.jpg" class="img-cell" alt="prod_pm">
-                                        <div class="product-cell-name" th:text="${item.productId.name}"></div>
-                                        <div class="product-cell px-2" th:text="${item.sizeName}" ></div>
-                                        <div class="product-cell" th:text="${item.price}"></div>
-                                        <div class="product-cell px-5" th:text="${item.quantity}"></div>
-                                        <div class="product-cell" th:text="${item.subtotal}"></div>
+                                        <div class="product-row" th:each="item : ${cart.cart_items}">
+                                            <img th:src="${item.productId.image}" class="img-cell" alt="prod_pm">
+                                            <div class="product-cell-name" th:text="${item.productId.name}"></div>
+                                            <div class="product-cell px-2" th:text="${item.sizeName}"></div>
+                                            <div class="product-cell" th:text="${item.price}"></div>
+                                            <div class="product-cell px-5" th:text="${item.quantity}"></div>
+                                            <div class="product-cell" th:text="${item.subtotal}"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="container-fluid py-4 mt-3">
-                                <ul class="nav nav-tabs tab-pane-payment" id="myTab" role="tablist">
-                                    <span class="h5">Phương Thức Thanh Toán</span>
-                                    <li class="nav-item" role="presentation">
-                                        <input class="nav-link active" id="pills-home-tab" data-bs-toggle="tab"
-                                            data-bs-target="#pills-home" type="radio" role="tab"
-                                            aria-controls="pills-home" aria-selected="true" name="payment" value="true" checked>Thanh Toán Khi Nhận Hàng
-                                        </input>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <input class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                            data-bs-target="#pills-profile" type="radio" role="tab"
-                                            aria-controls="pills-profile" aria-selected="false" name="payment" value="false">Thanh Toán Online
-                                        </input>
-                                    </li>
-                                </ul>
-                                <div class="tab-content mb-4" id="myTabContent">
-                                    <div class="tab-pane fade show active p-4" id="pills-home" role="tabpanel"
-                                        aria-labelledby="pills-home-tab" tabindex="0">Thanh Toán Khi Nhận Hàng:
-                                        &nbsp;&nbsp;&nbsp;
-                                        Phí thu hộ: ₫0 VNĐ. Ưu đãi về phí vận chuyển (nếu có) áp dụng cả với phí thu hộ.
+                                <div class="container-fluid py-4 mt-3">
+                                    <ul class="nav nav-tabs tab-pane-payment" id="myTab" role="tablist">
+                                        <span class="h5">Phương Thức Thanh Toán</span>
+                                        <li class="nav-item" role="presentation">
+                                            <input class="nav-link active" id="pills-home-tab" data-bs-toggle="tab"
+                                                data-bs-target="#pills-home" type="radio" role="tab"
+                                                aria-controls="pills-home" aria-selected="true" name="payment"
+                                                value="true" checked>Thanh Toán Khi Nhận Hàng
+                                            </input>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <input class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                                data-bs-target="#pills-profile" type="radio" role="tab"
+                                                aria-controls="pills-profile" aria-selected="false" name="payment"
+                                                value="false">Thanh Toán Online
+                                            </input>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content mb-4" id="myTabContent">
+                                        <div class="tab-pane fade show active p-4" id="pills-home" role="tabpanel"
+                                            aria-labelledby="pills-home-tab" tabindex="0">Thanh Toán Khi Nhận Hàng:
+                                            &nbsp;&nbsp;&nbsp;
+                                            Phí thu hộ: ₫0 VNĐ. Ưu đãi về phí vận chuyển (nếu có) áp dụng cả với phí thu
+                                            hộ.
+                                        </div>
+                                        <div class="tab-pane fade p-4" id="pills-profile" role="tabpanel"
+                                            aria-labelledby="pills-profile-tab" tabindex="0"><a href="#"
+                                                class="text-decoration-none text-dark">Thanh Toán
+                                                Online</a>
+                                        </div>
                                     </div>
-                                    <div class="tab-pane fade p-4" id="pills-profile" role="tabpanel"
-                                        aria-labelledby="pills-profile-tab" tabindex="0"><a href="#"
-                                            class="text-decoration-none text-dark">Thanh Toán
-                                            Online</a>
+                                    <div class="container-fluid-payment">
+                                        <span class="text-payment">Tổng Tiền Hàng: </span><span class="price-payment"
+                                            th:text="${#numbers.formatDecimal(subtotal , 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span><br>
+                                        <span class="text-payment1">Phí Vận Chuyển: </span><span class="price-payment">
+                                            30,000 VNĐ</span><br>
+                                        <span class="text-payment">Tổng Thanh Toán: </span><span
+                                            class="price-payment-sum"
+                                            th:text="${#numbers.formatDecimal(subtotal+30000 , 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"
+                                            }></span><br>
+                                        <a th:href="@{user/confirmation}">
+                                            <button class="btn btn-danger tbtn-thanhtoan mt-5">Thanh
+                                                Toán</button>
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="container-fluid-payment">
-                                    <span class="text-payment">Tổng Tiền Hàng: </span><span class="price-payment" th:text="${#numbers.formatDecimal(subtotal , 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span><br>
-                                    <span class="text-payment1">Phí Vận Chuyển: </span><span class="price-payment">
-                                        30,000 VNĐ</span><br>
-                                    <span class="text-payment">Tổng Thanh Toán: </span><span class="price-payment-sum" th:text="${#numbers.formatDecimal(subtotal+30000 , 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"}></span><br>
-                                    <a th:href="@{user/confirmation}">
-                                        <button class="btn btn-danger tbtn-thanhtoan mt-5">Thanh
-                                            Toán</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </aside>
-                    </div>
-                </header>
+                            </aside>
+                        </div>
+                    </header>
+                </div>
+
+                <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
             </div>
-            
-            <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
-        </div>
 
-        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
-    </div>
-</form>
+            <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+        </div>
+    </form>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>

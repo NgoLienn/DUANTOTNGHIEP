@@ -563,93 +563,93 @@
     }
 
     // validate form sản phẩm
-    function validateForm() {
-      var form = document.getElementById('productForm');
-      var name = document.getElementById('newProduct_name');
-      var price = document.getElementById('newProduct_price');
-      var prices = document.getElementById('newProduct_prices');
-      var description = document.getElementById('description');
-      var descriptionAn = document.getElementById('descriptionAn');
-      var quantity = document.getElementById('newProduct_quantity');
-      var category = document.getElementById('example-text-input');
-      var image = document.getElementById('uploadimage');
-      var formError = document.getElementById('form-error');
+    // function validateForm() {
+    //   var form = document.getElementById('productForm');
+    //   var name = document.getElementById('newProduct_name');
+    //   var price = document.getElementById('newProduct_price');
+    //   var prices = document.getElementById('newProduct_prices');
+    //   var description = document.getElementById('description');
+    //   var descriptionAn = document.getElementById('descriptionAn');
+    //   var quantity = document.getElementById('newProduct_quantity');
+    //   var category = document.getElementById('example-text-input');
+    //   var image = document.getElementById('uploadimage');
+    //   var formError = document.getElementById('form-error');
 
-      if (!name.value) {
-        name.style.borderColor = '#ff0000';
-        document.getElementById('name-error').innerText = 'Không được để trống tên sản phẩm';
+    //   if (!name.value) {
+    //     name.style.borderColor = '#ff0000';
+    //     document.getElementById('name-error').innerText = 'Không được để trống tên sản phẩm';
 
-        return false;
-      } else {
-        document.getElementById('name-error').innerText = '';
-        name.style.borderColor = '';
-      }
+    //     return false;
+    //   } else {
+    //     document.getElementById('name-error').innerText = '';
+    //     name.style.borderColor = '';
+    //   }
 
-      if (!prices.value) {
-        prices.style.borderColor = '#ff0000';
-        document.getElementById('prices-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
-        return false;
-      } else {
-        document.getElementById('prices-error').innerText = '';
-        prices.style.borderColor = '';
-      }
+    //   if (!prices.value) {
+    //     prices.style.borderColor = '#ff0000';
+    //     document.getElementById('prices-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
+    //     return false;
+    //   } else {
+    //     document.getElementById('prices-error').innerText = '';
+    //     prices.style.borderColor = '';
+    //   }
 
-      if (!price.value) {
-        price.style.borderColor = '#ff0000';
-        document.getElementById('price-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
-        return false;
-      } else {
-        document.getElementById('price-error').innerText = '';
-        price.style.borderColor = '';
-      }
+    //   if (!price.value) {
+    //     price.style.borderColor = '#ff0000';
+    //     document.getElementById('price-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
+    //     return false;
+    //   } else {
+    //     document.getElementById('price-error').innerText = '';
+    //     price.style.borderColor = '';
+    //   }
 
-      if (!quantity.value) {
-        quantity.style.borderColor = '#ff0000';
-        document.getElementById('quantity-error').innerText = 'Số lượng phải nhập số';
-        return false;
-      } else {
-        document.getElementById('quantity-error').innerText = '';
-        quantity.style.borderColor = '';
-      }
+    //   if (!quantity.value) {
+    //     quantity.style.borderColor = '#ff0000';
+    //     document.getElementById('quantity-error').innerText = 'Số lượng phải nhập số';
+    //     return false;
+    //   } else {
+    //     document.getElementById('quantity-error').innerText = '';
+    //     quantity.style.borderColor = '';
+    //   }
 
-      if (!descriptionAn.value) {
-        descriptionAn.style.borderColor = '#ff0000';
-        document.getElementById('descriptionAn-error').innerText = 'Không được để trống mô tả';
-        return false;
-      } else {
-        document.getElementById('descriptionAn-error').innerText = '';
-        descriptionAn.style.borderColor = '';
-      }
+    //   if (!descriptionAn.value) {
+    //     descriptionAn.style.borderColor = '#ff0000';
+    //     document.getElementById('descriptionAn-error').innerText = 'Không được để trống mô tả';
+    //     return false;
+    //   } else {
+    //     document.getElementById('descriptionAn-error').innerText = '';
+    //     descriptionAn.style.borderColor = '';
+    //   }
 
-      if (!description.value) {
-        description.style.borderColor = '#ff0000';
-        document.getElementById('description-error').innerText = 'Không được để trống mô tả';
-        return false;
-      } else {
-        document.getElementById('description-error').innerText = '';
-        description.style.borderColor = '';
-      }
+    //   if (!description.value) {
+    //     description.style.borderColor = '#ff0000';
+    //     document.getElementById('description-error').innerText = 'Không được để trống mô tả';
+    //     return false;
+    //   } else {
+    //     document.getElementById('description-error').innerText = '';
+    //     description.style.borderColor = '';
+    //   }
 
-      if (category.value === '') {
-        category.style.borderColor = '#ff0000';
-        document.getElementById('category-error').innerText = 'Vui lòng chọn thể loại';
-        return false;
-      } else {
-        document.getElementById('category-error').innerText = '';
-        category.style.borderColor = '';
-      }
+    //   if (category.value === '') {
+    //     category.style.borderColor = '#ff0000';
+    //     document.getElementById('category-error').innerText = 'Vui lòng chọn thể loại';
+    //     return false;
+    //   } else {
+    //     document.getElementById('category-error').innerText = '';
+    //     category.style.borderColor = '';
+    //   }
 
-      if (image.files.files === 0) {
-        image.style.borderColor = '#ff0000';
-        document.getElementById('image-error').innerText = 'Vui lòng chọn ảnh';
-        return false;
-      } else {
-        document.getElementById('image-error').innerText = '';
-        image.style.borderColor = '';
-      }
+    //   if (image.files.files === 0) {
+    //     image.style.borderColor = '#ff0000';
+    //     document.getElementById('image-error').innerText = 'Vui lòng chọn ảnh';
+    //     return false;
+    //   } else {
+    //     document.getElementById('image-error').innerText = '';
+    //     image.style.borderColor = '';
+    //   }
 
-      return true;
-    }
+    //   return true;
+    // }
     // end
   </script>
 

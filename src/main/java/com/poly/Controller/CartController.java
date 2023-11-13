@@ -125,8 +125,12 @@ public class CartController {
         model.addAttribute("subtotal", subtotal);
 
         int soluong = cartItem.getQuantity() - 1;
-        cartItem.setQuantity(soluong);
-        cartItem.setSubtotal(cartItem.getPrice() * soluong);
+        if (soluong < 1) {
+
+        } else {
+            cartItem.setQuantity(soluong);
+            cartItem.setSubtotal(cartItem.getPrice() * soluong);
+        }
 
         cartItemsRepo.save(cartItem);
         return "user/cart";
@@ -150,23 +154,5 @@ public class CartController {
         cartItemsRepo.save(cartItem);
         return "user/cart";
     }
-
-    // @GetMapping("/cart/getTotalPrice")
-    // public Map<String, Object> getTotalPrice(HttpServletRequest
-    // httpServletRequest) {
-    // Map<String, Object> response = new HashMap<>();
-    // try {
-    // String username = httpServletRequest.getRemoteUser();
-    // Carts carts = cartRepo.findByCartUser(username);
-    // Long totalPrice = cartItemsRepo.getSum(carts.getCartID()); // Implement this
-    // method in your
-    // // repository
-    // response.put("totalPrice", totalPrice);
-    // } catch (Exception e) {
-    // response.put("error", "Error calculating total price");
-    // }
-
-    // return response;
-    // }
 
 }
