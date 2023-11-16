@@ -48,11 +48,21 @@ public class CartController {
     public String listProducts(Model model, HttpServletRequest httpServletRequest) {
         String username = httpServletRequest.getRemoteUser();
         Carts carts = cartRepo.findByCartUser(username);
-        model.addAttribute("carts", carts);
-        Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-        model.addAttribute("subtotal", subtotal);
-
-        return "user/cart";
+        if (carts == null || carts.getCart_items().isEmpty()) {
+            // Nếu giỏ hàng không tồn tại hoặc không có sản phẩm
+            String message = "Giỏ hàng của bạn đang trống!";
+            model.addAttribute("message", message);
+            return "user/cartNull"; // Trả về view hiển thị giỏ hàng trống
+        } else {
+            // Nếu giỏ hàng có sản phẩm, thực hiện các thao tác thông thường
+            Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+            model.addAttribute("subtotal", subtotal);
+            model.addAttribute("carts", carts);
+            return "user/cart";
+        }
+        // model.addAttribute("carts", carts);
+        // Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+        // model.addAttribute("subtotal", subtotal);
     }
 
     @PostMapping("/addToCart/{productId}")

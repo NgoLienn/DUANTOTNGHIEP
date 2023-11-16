@@ -3,24 +3,6 @@
 
 <head th:replace="~{zlayout/fragments :: html_head}"></head>
 <link rel="stylesheet" th:href="@{../assets/css_main/cart.css}">
-<style>
-    .product-quantity a {
-        text-decoration: none;
-        color: #333;
-        font-size: 18px;
-        cursor: pointer;
-    }
-
-    .product-quantity input {
-        width: 30px;
-        text-align: center;
-        margin: 0 10px;
-        border: 1px solid #ddd;
-        padding: 5px;
-        font-size: 16px;
-        color: #333;
-    }
-</style>
 
 <body>
 
@@ -60,14 +42,13 @@
                                             <div class="product-cell">Thao Tác</div>
                                         </div>
                                         <div class="product-row" th:each="item : ${carts.cart_items}">
-                                            <input type="checkbox" class="checkb_product custom-checkbox">
-                                            <a href="/page/user/product_detail.html">
+                                            <a>
                                                 <img th:src="${item.productId.image}" class="img-cell" alt="prod_pm">
                                             </a>
                                             <div class="product-cell-name" th:text="${item.productId.name}"></div>
                                             <div class="product-cell px-2" th:text="${item.sizeName}"></div>
-                                            <div cl ass="product-cell " th:text="${item.price}"></div>
-                                            <div class="product-quantity px-5">
+                                            <div cl ass="product-cell cell-price" th:text="${item.price}"></div>
+                                            <div class="product-quantity px-5 cell-quantity">
                                                 <a href="#" class="decrement-button"
                                                     th:data-cartitem-id="${item.cartitemID}">-</a>
                                                 <input th:id="'quantity' + ${item.cartitemID}" type="text"
@@ -76,49 +57,77 @@
                                                 <a href="#" class="increment-button disabled"
                                                     th:data-cartitem-id="${item.cartitemID}">+</a>
                                             </div>
-                                            <span class=" price total-price product-cell px2">
+                                            <span class=" price total-price product-cell px2 cell-total">
                                                 <span th:id="'current-price'  + ${item.cartitemID}"
                                                     th:text="${item.subtotal}">
                                                 </span>
                                                 &nbsp; &nbsp;
                                             </span>
-                                            <div class="button-xoa">
-                                                <a th:href="@{|/cart/remove/${item.cartitemID}|}"><button type="button"
-                                                        class="btn">Xóa</button></a>
+                                            <a th:href="@{|/cart/remove/${item.cartitemID}|}">
+                                                <div class="button-xoa">
+                                                    <button type="button" class="btn">Xóa
+                                                    </button>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!--data-bs-toggle="offcanvas" id="confirmDeleteModal"
+                                                data-bs-target="#confirmDeleteModal" aria-controls="confirmDeleteModal"-->
+                                </div>
+                                <hr>
+                            </div>
+
+                            <div class="shopping-cart-container mt-3 py-3 px-3">
+                                <div class="payment-container">
+                                    <span class="text-payment">Tổng Thanh Toán: </span>
+                                    <span class="px-4 price-payment-sum" id="price-payment-sum"
+                                        th:text="${#numbers.formatDecimal(subtotal , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+                                    </span><br>
+                                    <a th:href="@{/user/payment}">
+                                        <button class="btn btn-danger btn-thanhtoan mt-3" type="submit">Mua
+                                            Ngay</button>
+                                    </a>
+
+                                </div>
+                            </div>
+                            <!-- Modal hỏi trước khi xóa -->
+                            <!-- <div class="modal" id="confirmDeleteModal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Xác nhận xóa sản phẩm</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Bạn có chắc chắn muốn xóa sản phẩm này không?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy
+                                                </button>
+                                                <a th:href="@{|/cart/remove/${item.cartitemID}|}">
+                                                    <button type="button" class="btn btn-danger"
+                                                        id="confirmDeleteButton">
+                                                        Xóa
+                                                    </button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <hr>
-                                </div>
-
-                                <div class="shopping-cart-container mt-3 py-3 px-3">
-                                    <div class="payment-container">
-                                        <span class="text-payment">Tổng Thanh Toán: </span>
-                                        <span class="px-4 price-payment-sum" id="price-payment-sum"
-                                            th:text="${#numbers.formatDecimal(subtotal , 0, 'COMMA', 0, 'POINT')} + ' đ'">
-                                        </span><br>
-                                        <label for="selecAll" class="selecall">
-                                            <span class="chk-all">
-                                                <input type="checkbox" id="selecAll"> Chọn Tất Cả()
-                                            </span>
-                                        </label>
-                                        <a th:href="@{/user/payment}">
-                                            <button class="btn btn-danger btn-thanhtoan mt-3" type="submit">Mua
-                                                Ngay</button>
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </aside>
+                                </div> -->
+                            <!-- end -->
                     </div>
-                </header>
+                    </aside>
             </div>
-
-            <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
+            </header>
         </div>
 
-        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+        <div class="footer " th:replace="~{zlayout/footer :: footer}"></div>
+    </div>
+
+    <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
     </div>
 
 
@@ -131,7 +140,7 @@
         var loader = function () {
             setTimeout(function () {
                 $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
-            }, 2000);
+            }, 1000);
         };
         $(function () {
             loader();
@@ -155,17 +164,17 @@
             });
         });
 
-        // nút mua hàng nằm phía trên màng hình
-        window.addEventListener('scroll', function () {
-            var paymentContainer = document.querySelector('.payment-container');
-            if (window.scrollY <= paymentContainer.offsetHeight + paymentContainer.offsetLeft) {
-                paymentContainer.classList.add('sticky');
-            } else {
-                paymentContainer.classList.remove('sticky');
-            }
-        });
+        // // nút mua hàng nằm phía trên màng hình
+        // window.addEventListener('scroll', function () {
+        //     var paymentContainer = document.querySelector('.payment-container');
+        //     if (window.scrollY <= paymentContainer.offsetHeight + paymentContainer.offsetLeft) {
+        //         paymentContainer.classList.add('sticky');
+        //     } else {
+        //         paymentContainer.classList.remove('sticky');
+        //     }
+        // });
 
-        // end
+        // // end
 
         $(document).ready(function () {
             $(".increment-button").click(function (e) {
@@ -225,6 +234,41 @@
                 });
             });
         });
+
+        // end
+
+        // modal hỏi trước khi xóa
+        // Lắng nghe sự kiện khi người dùng nhấn nút xóa
+        $('.button-xoa button').on('click', function () {
+            // Lấy ID của sản phẩm cần xóa
+            var cartItemId = $(this).closest('.product-row').find('[th:data-cartitem-id]').attr('th:data-cartitem-id');
+
+            // Gán ID của sản phẩm vào nút xác nhận trong modal
+            $('#confirmDeleteButton').attr('th:data-cartitem-id', cartItemId);
+
+            // Hiển thị modal
+            $('#confirmDeleteModal').modal('show');
+        });
+
+        // Lắng nghe sự kiện khi người dùng xác nhận xóa sản phẩm trong modal
+        $('#confirmDeleteButton').on('click', function () {
+            var cartItemId = $(this).attr('th:data-cartitem-id');
+
+            // Gọi Ajax để xóa sản phẩm
+            $.ajax({
+                url: '/cart/remove/' + cartItemId,
+                type: 'GET',
+                success: function (response) {
+                    // Nếu xóa thành công, reload trang giỏ hàng
+                    window.location.href = '/cart';
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+
+        // end
 
     </script>
 </body>

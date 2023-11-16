@@ -3,7 +3,7 @@
 
 <head th:replace="~{zlayout/fragments :: html_head}"></head>
 
-<link rel="stylesheet" href="/assets/css_main/order.css">
+<link rel="stylesheet" href="/assets/css_main/orderitem.css">
 
 <body>
     <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
@@ -25,148 +25,124 @@
                     <div class="wraper">
                         <aside class="">
                             <div class="container-fluid py-4 mt-3">
-                                <span class="tttk text-uppercase"><b> Thông Tin Đơn Hàng</b></span>
+                                <span class="tttk text-uppercase"><b> Thông Tin Chi Tiết Đơn Hàng</b></span>
                                 <div class="row mt-3">
                                     <div class="col-md-auto">
                                         <div class="tab-pane tab-content" id="nav-tabContent">
                                             <section class=" tab-profile" id="nav-profile">
-                                                <div class="d-flex justify-content-between">
-                                                    <span class="h5 px-2">Đơn Mua</span>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="h5 px-2">Đơn Mua
+                                                    </span>
+                                                    <div class="p-4 text-end">
+                                                        <span class="order-code"></span> &nbsp; | &nbsp;
+                                                        <span class="" style="color: rgb(31, 154, 31);">
+                                                            <span th:text="'ĐƠN HÀNG ' + ${orderStatus}"
+                                                                class="text-uppercase" style="font-size: 17px;"></span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                                 <div class="container-fluid py-4 mt-3">
+
+                                                    <div class="tracking-container" id="trackingContainer">
+                                                        <label for="step1" class="step-item active" data-step="1">
+                                                            <span class="step-number"><i class="bi bi-journal"
+                                                                    style="font-size: 20px;"></i></span>
+                                                            <span class="step-label">Đã đặt hàng</span>
+                                                            <div class="step-bar step-bar-dh"></div>
+                                                        </label>
+                                                        <label for="step2" class="step-item " data-step="2">
+                                                            <span class="step-number"><i class="bi bi-journal-check"
+                                                                    style="font-size: 20px;"></i></span>
+                                                            <span class="step-label">Đã xác nhận</span>
+                                                            <div class="step-bar step-bar-xn"></div>
+                                                        </label>
+                                                        <label for="step3" class="step-item" data-step="3">
+                                                            <span class="step-number"><i class="bi bi-box-seam"
+                                                                    style="font-size: 20px;"></i></span>
+                                                            <span class="step-label">Đang giao hàng</span>
+                                                            <div class="step-bar step-bar-gh"></div>
+                                                        </label>
+                                                        <label for="step4" class="step-item" data-step="4">
+                                                            <span class="step-number"><i class="bi bi-star"
+                                                                    style="font-size: 20px;"></i></span>
+                                                            <span class="step-label">Đã giao hàng</span>
+                                                        </label>
+                                                    </div>
+
                                                     <div class="product-container table">
-                                                        <!-- <div th:if="${orderItems == null or orderItems.size() == 0}"
-                                                            class="text-center h4 " style="padding-top: 20%; ">Đơn hàng
-                                                            trống! <br>
-                                                            <br>
-                                                            Hãy đặt hàng ngay nào
-                                                            <i class="bi bi-emoji-laughing"></i>
-                                                            th:if="${orderItems != null and orderItems.size() > 0}"
-                                                        </div> -->
-                                                        <th:block th:each="item : ${orders}">
-                                                            <div class="d-flex justify-content-between">
-                                                                <span th:text="'Thời Gian Đặt: ' + ${item.orderTime}">
-                                                                </span>
-                                                                <span
-                                                                    class="h5 text-danger d-flex justify-content-end text-center"
-                                                                    th:text="${item.Status.Name}">
-                                                                </span>
-                                                            </div>
-                                                            <div class="product-row"
-                                                                th:each="order : ${item.orderitem.get(0)}"
-                                                                style="border: none;">
-                                                                <img th:each="image : ${order.product}"
+                                                        <div class="product-row header">
+                                                            <div class="product-cell">Sản phẩm</div>
+                                                            <div class="product-cell"></div>
+                                                            <div class="product-cell don-gia-cell">Đơn giá</div>
+                                                            <div class="product-cell cell-quantity">Số lượng</div>
+                                                            <div class="product-cell">Thành tiền</div>
+                                                        </div>
+
+                                                        <th:block th:each="item : ${orderItems}">
+                                                            <div class="product-row">
+                                                                <img th:each="image : ${item.product}"
                                                                     th:src="@{|${image.image}|}" class="img-cell"
                                                                     alt="prod_pm">
-                                                                <div class="product-cell cell-name"
-                                                                    th:text="${order.name}">
+                                                                <div class="product-cell px-2 cell-name"
+                                                                    th:text="${item.name}">
                                                                 </div>
                                                                 <div class="product-cell"
-                                                                    th:text="${order.Size_Product}"></div>
+                                                                    th:text="${item.Size_Product}"></div>
                                                                 <div class="product-cell"
-                                                                    th:text="${#numbers.formatDecimal(order.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+                                                                    th:text="${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
                                                                 </div>
-                                                                <div class="product-cell" th:text="${order.quantity}">
+                                                                <div class="product-cell" th:text="${item.quantity}">
                                                                 </div>
                                                                 <div class="product-cell cell-subtotal"
-                                                                    th:text="${#numbers.formatDecimal(order.subtotal , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+                                                                    th:text="${#numbers.formatDecimal(item.subtotal , 0, 'COMMA', 0, 'POINT')} + ' đ'">
                                                                 </div>
                                                             </div>
-                                                            <!-- collap sổ sản phâm trong đơn hàng -->
-                                                            <div class="text-center">
-                                                                <p class="d-inline-flex justify-content-center gap-1"
-                                                                    th:if="${#lists.size(item.orderitem) > 1}">
-                                                                    <button class="btn"
-                                                                        style="border: none; outline: none;"
-                                                                        type="button" data-bs-toggle="collapse"
-                                                                        th:data-bs-target="'#collapseExample' + ${item.orderID}"
-                                                                        aria-expanded="false"
-                                                                        aria-controls="collapseExample">
-                                                                        <i class="bi bi-caret-down-fill"
-                                                                            style="font-size: 18px; "></i>
-                                                                    </button>
-                                                                </p>
-                                                                <div class="collapse"
-                                                                    th:id="'collapseExample' + ${item.orderID}">
-                                                                    <div class="card card-body"
-                                                                        style="background: none; border: none;">
-                                                                        <div th:if="${item.orderitem.size() > 1}">
-                                                                            <div class="product-row"
-                                                                                th:each="order, iterStat : ${item.orderitem}"
-                                                                                th:unless="${iterStat.index == 0}"
-                                                                                style="border: none;">
-                                                                                <img th:each="image : ${order.product}"
-                                                                                    th:src="@{|${image.image}|}"
-                                                                                    class="img-cell" alt="prod_pm"
-                                                                                    style="width: 50px; height: 50px;">
-                                                                                <div class="product-cell cell-name"
-                                                                                    th:text="${order.name}"
-                                                                                    style="font-size: 14px;">
-                                                                                </div>
-                                                                                <div class="product-cell"
-                                                                                    th:text="${order.Size_Product}">
-                                                                                </div>
-                                                                                <div class="product-cell"
-                                                                                    th:text="${#numbers.formatDecimal(order.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
-                                                                                </div>
-                                                                                <div class="product-cell"
-                                                                                    th:text="${order.quantity}">
-                                                                                </div>
-                                                                                <div class="product-cell cell-subtotal"
-                                                                                    th:text="${#numbers.formatDecimal(order.subtotal , 0, 'COMMA', 0, 'POINT')} + ' đ'">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end -->
+                                                            <div class="d-flex gap-3 button-dg">
+                                                                <button class="btn btn-primary mt-4 button-star"
+                                                                    th:data-bs-toggle="modal"
+                                                                    th:data-bs-target="'#staticBackdrop' + ${item.orderitemID}"
+                                                                    th:attr="data-orderitemID=${item.orderitemID}"
+                                                                    th:if="${item.evaluate != true}">Đánh
+                                                                    Giá
+                                                                </button>
 
-                                                            <div
-                                                                class="d-flex justify-content-between flex-wrap align-items-center product-row">
-                                                                <div class="d-flex justify-content-start btn-huyxct">
-                                                                    <a>
-                                                                        <button type="button"
-                                                                            class="btn btn-danger mt-4 p-2 button-huy"
-                                                                            style="margin-right: 20px;">Hủy
-                                                                            Đơn
-                                                                        </button>
-                                                                    </a>
-                                                                    <a th:href="@{|/user/orderitem/${item.orderID}|}"
-                                                                        style="text-decoration: none;">
-                                                                        <button type="button"
-                                                                            class="btn mt-4 p-2 button-huy">Xem
-                                                                            chi tiết
-                                                                        </button>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="d-flex justify-content-end gap-10"
-                                                                    style="padding-top: 20px;">
-                                                                    <div class="text-right">
-                                                                        Số
-                                                                        lượng đơn hàng:
-                                                                        <span th:text="'x' + ${item.orderitem.size()}">
-                                                                        </span>
-                                                                    </div>
-
-                                                                    <div class="text-right">
-                                                                        Thành
-                                                                        Tiền:
-                                                                        <span
-                                                                            th:text="${#numbers.formatDecimal(item.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"
-                                                                            class="text-danger h5 font-weight-bold">
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
+                                                                <!-- <button class="btn btn-profile border border-dark mt-4 p-2" type="button">Liên
+                                                                    hệ</button> -->
                                                             </div>
                                                             <br>
                                                             <br>
                                                         </th:block>
+                                                        <hr>
+                                                    </div>
+                                                    <div class="dcnhanhang">
+                                                        <div class="d-flex justify-content-between flex-wrap">
+                                                            <div class="diachinh h5"> Địa Chỉ Nhận Hàng</div>
+                                                            <a th:href="@{/}">
+                                                                <button class="btn btn-outline-danger">Xem
+                                                                    shop</button>
+                                                            </a>
+                                                        </div>
+                                                        <br>
+                                                        <div class="text-start">
+                                                            <div class="name-order">Lê Chí Bằng</div>
+                                                            <div class="mt-2"
+                                                                style="font-size: 14px; color: rgb(116, 116, 116);">
+                                                                (+84)
+                                                                0943925652
+                                                            </div>
+                                                            <div class="mt-2"
+                                                                style="font-size: 14px; color: rgb(116, 116, 116);">Ấp
+                                                                Rạch
+                                                                Muỗi - Xã Phú Hưng
+                                                                - Huyện Cái Nước - Tỉnh
+                                                                Cà Mau
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!-- đánh giá -->
                                                 <!-- Modal -->
-                                                <!-- <div class="modal fade" th:each="item : ${orderItems}"
+                                                <div class="modal fade" th:each="item : ${orderItems}"
                                                     th:id="'staticBackdrop' + ${item.orderitemID}"
                                                     th:data-bs-backdrop="static" th:data-bs-keyboard="true" tabindex="1"
                                                     th:aria-labelledby="'staticBackdropLabel' + ${item.orderitemID}"
@@ -216,7 +192,7 @@
                                                                                 cols="30" rows="5"
                                                                                 placeholder="Hãy chia sẻ những điều bạn thích về sản phẩm này với người khác nhé!"></textarea>
 
-                                                                            <input type="text" name="saoo"
+                                                                            <input type="hidden" name="saoo"
                                                                                 th:id="'saoo' + ${item.orderitemID}"
                                                                                 th:attr="data-orderitemID=${item.orderitemID}"
                                                                                 class="saoo-input">
@@ -225,10 +201,11 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn px-3"
-                                                                        data-bs-dismiss="modal">Trở Lại</button>
+                                                                        data-bs-dismiss="modal">Trở Lại
+                                                                    </button>
                                                                     &nbsp; &nbsp;
                                                                     <button type="submit"
-                                                                        th:formaction="@{|user/rating/${item.orderitemID}|}"
+                                                                        th:formaction="@{|/user/rating/${item.orderitemID}|}"
                                                                         th:id="'submit'+${item.orderitemID}"
                                                                         class="btn btn-danger px-3 submit-rating"
                                                                         th:attr="data-orderitemID=${item.orderitemID}">Đánh
@@ -244,7 +221,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div> -->
+                                                </div>
                                                 <!-- end -->
                                             </section>
                                         </div>
@@ -273,7 +250,7 @@
         var loader = function () {
             setTimeout(function () {
                 $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
-            }, 1500);
+            }, 1000);
         };
         $(function () {
             loader();
@@ -400,6 +377,7 @@
                         // hiển thị thông báo vui lòng chọn sao đánh giá
                         alert('Vui lòng chọn số sao để đánh giá sản phẩm!');
                     } else {
+
                         const reviewSection = document.getElementById(`modal-an${orderItemID}`);
                         const thankYouMessage = document.getElementById(`thank-you-message${orderItemID}`);
 
@@ -416,7 +394,49 @@
 
         // end
 
+        // trạng thái đơn hàng
+        const steps = document.querySelectorAll('.step-item');
+
+        function updateActiveStep(step) {
+            steps.forEach((s) => {
+                const stepNumber = parseInt(s.getAttribute('data-step'));
+                if (stepNumber <= step) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        }
+
+        // const activeStep = 2;
+        // updateActiveStep(activeStep);
+        // end
+
+        // random mã đơn
+        function generateRandomCode() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            const length = 8; // Độ dài của phần mã đơn sau ký tự "yummy"
+            let randomCode = 'YUM';
+
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                randomCode += characters.charAt(randomIndex);
+            }
+
+            return randomCode;
+        }
+
+        // Gán mã đơn ngẫu nhiên vào phần HTML tương ứng
+        const orderCodeElement = document.querySelector('.order-code');
+        if (orderCodeElement) {
+            const generatedCode = generateRandomCode();
+            orderCodeElement.textContent = `MÃ ĐƠN: ${generatedCode}`;
+        }
+        //end
+
     </script>
+
+
 </body>
 
 </html>

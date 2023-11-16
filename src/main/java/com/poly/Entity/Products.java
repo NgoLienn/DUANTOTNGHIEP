@@ -65,6 +65,9 @@ public class Products implements Serializable {
     @OneToMany(mappedBy = "Products")
     List<Size> size;
 
+    @OneToMany(mappedBy = "product")
+    List<Order_Items> orderitems;
+
     public int getId() {
         return productId;
     }

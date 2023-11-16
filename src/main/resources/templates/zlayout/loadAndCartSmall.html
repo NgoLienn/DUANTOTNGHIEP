@@ -24,30 +24,29 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <div class="cart_small card" >
+            <!-- <div class="cart_small card" th:each="item : ${carts.cart_items}">
                 <div class="card_small" style="max-width: 540px; border: none;">
                     <div class="row g-0">
                         <div class="col-md-3 img_cart_small mb-0">
-                            <img src="/assets/images/buger.jpg" class="img-fluid" alt="...">
+                            <img th:src="${item.productId.image}" class="img-fluid" alt="...">
                         </div>
                         <div class="col-md-8">
                             <span class="delete_cart_small"><i class="bi bi-x"></i></span>
                             <div class="card-body">
-                                <h5 class="card-title">Hamburger</h5>
-                                <p class="card-text">35.000đ</p>
-                                <!-- <p class="card-text1 "><small class="text-body-secondary">Last updated 3 mins ago</small> -->
+                                <h5 class="card-title" th:text="${item.productId.name}"></h5>
+                                <p class="card-text" th:text="${item.price}"></p>
                             </div>
                         </div>
                     </div>
                     <hr style="color: rgb(151, 151, 151);">
                 </div>
-            </div>
-            <div class="sum_cart_small">
+            </div> -->
+            <div class="sum_cart_small"><!-- <p class="card-text1 "><small class="text-body-secondary">Last updated 3 mins ago</small> -->
                 <span>Tổng: </span> <span class="sum-price-small">70.000đ</span>
             </div>
             <hr>
             <div class="box_btn">
-                <a th:href="@{cart}">
+                <a th:href="@{/cart}">
                     <button type="submit" class="btn btn-danger btn-cart-small">Giỏ
                         Hàng
                     </button>

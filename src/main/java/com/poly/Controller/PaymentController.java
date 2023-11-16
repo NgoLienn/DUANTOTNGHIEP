@@ -30,28 +30,26 @@ public class PaymentController {
     @Autowired
     OrderItemRepository orderItemRepo;
 
-
-
     @GetMapping("/payment")
     public String ViewProfile(Model model, HttpServletRequest httpServletRequest) {
         String username = httpServletRequest.getRemoteUser();
         Account account = accountRepo.findByUsername(username);
         model.addAttribute("account", account);
         Carts carts = cartRepo.findByCartUser(username);
-        model.addAttribute("cart",carts);
-        Long subtotal= cartItemsRepo.getSum(carts.getCartID());
-        model.addAttribute("subtotal",subtotal);
+        model.addAttribute("cart", carts);
+        Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+        model.addAttribute("subtotal", subtotal);
 
         return "user/payment_method";
     }
 
     @PostMapping("/payment")
-    public String payment(Model model, HttpServletRequest httpServletRequest, @RequestParam("payment") String payment){
-            String username = httpServletRequest.getRemoteUser();
+    public String payment(Model model, HttpServletRequest httpServletRequest, @RequestParam("payment") String payment) {
+        String username = httpServletRequest.getRemoteUser();
         if (payment.equals("true")) {
             Account account = accountRepo.findByUsername(username);
             Carts carts = cartRepo.findByCartUser(username);
-            float subtotal= cartItemsRepo.getSum(carts.getCartID());
+            float subtotal = cartItemsRepo.getSum(carts.getCartID());
             Status status = new Status();
             status.setStatusID(1L);
             Orders orders = new Orders();
@@ -63,8 +61,9 @@ public class PaymentController {
             orders.setTotalAmount(subtotal);
             ordersRepo.save(orders);
 
-
-            for (Cart_Items cartItems : carts.getCart_items() ){
+            for (Cart_Items cartItems : carts.getCart_items()) {
+                Products product = new Products();
+                product.setProductId(cartItems.getProductId().getProductId());
                 Order_Items orderItems = new Order_Items();
                 orderItems.setOrders(orders);
                 orderItems.setSize_Product(cartItems.getSizeName());
@@ -72,6 +71,7 @@ public class PaymentController {
                 orderItems.setPrice(cartItems.getPrice());
                 orderItems.setName(cartItems.getProductId().getName());
                 orderItems.setSubtotal(cartItems.getSubtotal());
+                orderItems.setProduct(product);
                 orderItemRepo.save(orderItems);
                 System.out.println(cartItems.getQuantity());
             }

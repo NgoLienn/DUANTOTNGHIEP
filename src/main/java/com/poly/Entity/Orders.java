@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -47,8 +49,6 @@ public class Orders implements Serializable {
 
     // ...
 
-
-
     @Column(name = "total_amount")
     private Float totalAmount;
 
@@ -68,4 +68,7 @@ public class Orders implements Serializable {
 
     @Column(name = "phone", columnDefinition = "VARCHAR(50)")
     private String Phone;
+
+    @OneToMany(mappedBy = "Orders")
+    List<Order_Items> orderitem;
 }

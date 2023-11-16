@@ -106,21 +106,21 @@ body {
 /* */
 
 .containerr .myimage {
-  /* position: absolute;
-  left: 75%;
-  top: 14%;
-  width: 25%;
-  z-index: 1; */
-  display: none;
+  position: absolute;
+  left: 85%;
+  top: 5%;
+  /* transform: rotate(-45deg); */
+  width: 15%;
+  z-index: 1;
 }
 
-.containerr .myimagefood5 {
+/* .containerr .myimagefood5 {
   position: absolute;
   top: 2700px;
   left: -20px;
   width: 23%;
   z-index: 1;
-}
+} */
 
 .containerr .image-two .yum-logo {
   position: absolute;
@@ -242,112 +242,60 @@ body {
 /* header */
 
 .image-two header {
-  overflow: hidden;
   position: relative;
   top: 0;
   left: 0;
   margin-top: 180px;
   padding-top: 20px;
-  width: 90%;
+  width: 100%;
   height: auto;
-  z-index: 0;
   border-radius: 60px;
+  display: flex;
+  justify-content: center;
 }
-
-.banner-big .img-blur img {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-}
-
-.banner-big .img-blur .anh1 {
-  position: absolute;
-  top: 65%;
-  left: 0%;
-}
-
-.banner-big .wraper aside .tttk {
-  font-size: 22px;
-  font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
-}
-
-.banner-big .wraper .row .avatar img {
-  width: 280px;
-  height: 280px;
-  margin: 0;
-  background-size: cover;
-  border-radius: 20px;
-  border: 3px solid white;
-  filter: drop-shadow(12px 10px 8px rgb(160, 160, 160));
-}
-
-.banner-big .wraper .row .col-auto .text-name {
-  font-size: 22px;
-  font-weight: bold;
-  padding: 0;
-}
-
-.banner-big .wraper .shadow-lg {
-  background: var(--bgtoggle-color);
-  border: none;
-}
-
-.banner-big .wraper aside {
-  padding: 30px;
-}
-
-.banner-big .wraper aside .container-fluid {
-  /* background: var(--bgtoggle-color); */
-  border-radius: 10px;
-}
-
-.banner-big .wraper aside .container-fluid .col-md-8 > .card {
-  background: none;
-  border: none;
-}
-
-.banner-big .wraper aside .container-fluid .col-md-8 .card-body .row input {
-  background: none;
-  border: none;
-  outline: none !important;
-  box-shadow: none !important;
-  border-bottom: 1px solid gray;
-  font-size: 17.5px;
-}
-
-.banner-big .wraper aside .container-fluid .col-md-8 .card-body .row label {
-  font-size: 18px;
-}
-
-.banner-big .wraper aside .container-fluid .col-md-8 .card-header {
-  font-size: 18px;
-}
-
-/* .banner-big .wraper aside .container-fluid .tab-tttk .card-body input {
-    z-index: 0;
-} */
 
 /* tab-confirmatione */
-.tab-profile .container-fluid .tab-content {
-  position: relative;
+
+/* đánh giá */
+
+.rating-container .star.selected {
+  color: rgb(255, 145, 0);
+}
+
+.rating-container .star{
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #ccc;
+}
+
+/* end */
+
+/* modal ẩn hiện đánh giá */
+.modal-content{
+  z-index: 99999;
+}
+
+.modal-backdrop.show {
+  z-index: -1;
+}
+/* end */
+
+.container-fluid .text-uppercase {
+  font-size: 22px;
 }
 
 .tab-profile {
-  height: 500px;
+  height: 670px;
   overflow-y: auto;
   scroll-behavior: smooth;
   padding: 30px;
-  padding-top: 0;
-  position: absolute;
+  padding-top: 30px;
 }
 
 .tab-profile .container-fluid {
-  position: relative;
-  background: var(--bgtoggle-color);
+  /* background: rgba(255, 255, 255, 0.3); */
   border-radius: 10px;
-  width: 95vh;
+  width: 140vh;
 }
 
 .tab-profile .container-fluid .product-container {
@@ -365,7 +313,11 @@ body {
 }
 
 .tab-profile .container-fluid .product-container .product-row .product-cell {
-  flex-basis: 45%;
+  flex-basis: 30%;
+}
+
+.tab-profile .container-fluid .product-container .product-row .don-gia-cell{
+  padding-left: 53px;
 }
 
 .tab-profile
@@ -373,7 +325,6 @@ body {
   .product-container
   .product-row
   .product-cell:last-of-type {
-  flex-basis: 15%;
   text-align: right;
 }
 
@@ -392,6 +343,7 @@ body {
   cursor: pointer;
   object-fit: cover;
   background-size: cover;
+  border-radius: 10px;
 }
 
 .tab-profile .container-fluid .product-container .product-row:last-of-type {
@@ -410,7 +362,7 @@ body {
 .tab-profile::-webkit-scrollbar {
   width: 8px;
   background-color: var(--bgtoggle-color);
-  display: block;
+  display: none;
 }
 
 .tab-confirmatione button {
@@ -643,6 +595,7 @@ footer .ft ul li {
 /* end */
 
 /* top-home */
+
 /* nút bấm quay về đầu trang */
 .containerr .top-home i {
   position: relative;
@@ -657,11 +610,83 @@ footer .ft ul li {
 .containerr .top-home {
   scroll-behavior: smooth;
 }
+/* end */
+
+/* thanh trạng thái đớn hàng */
+.tracking-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 80px;
+}
+
+.tracking-container .step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.tracking-container .step-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(219, 219, 219);
+  /* Màu mặc định */
+  color: #595959;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 2;
+  position: relative;
+}
+
+.tracking-container .step-label {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 12px;
+  color: #727272;
+}
+
+.tracking-container .step-bar {
+  width: 320px;
+  height: 4px;
+  background-color: #c0c0c0;
+  /* Màu của thanh ngang */
+  position: absolute;
+  top: 25px;
+  left: 30%;
+  right: 0;
+  z-index: 1;
+}
+
+/* CSS cho trạng thái active */
+.tracking-container .step-item.active .step-number {
+  background-color: #28b650;
+  /* Màu khi active */
+  color: #fff;
+}
+
+/* CSS cho thanh ngang của bước active */
+.tracking-container .step-item.active .step-bar {
+  background-color: #28b650;
+  /* Màu khi active */
+}
+/* end */
 
 /* responsive */
 
 @media screen and (min-width: 375px) and (max-width: 454.5px) {
   /* CSS règles cho thiết bị tablet */
+
+  .containerr .myimage {
+    display: none;
+  }
+
   .containerr .image-two {
     position: relative;
     top: 70px;
@@ -732,119 +757,49 @@ footer .ft ul li {
 
   /* end navbar */
 
-  /* banner */
-  .image-two header article {
-    position: absolute;
-    left: 10%;
-    top: 20%;
-    font-size: 0;
-  }
-
-  .image-two header article p {
-    font-size: 1.6rem;
-  }
-
-  .image-two header article a img {
-    width: 45px;
-    height: 45px;
-    padding: 2px;
-    margin-left: -10px;
-  }
-
-  .image-two header article a button {
-    margin-top: 40px;
-    width: 180px;
-    height: 45px;
-  }
-
-  .image-two header aside img {
-    position: relative;
-    top: 0;
-    left: 0;
-    margin-top: 250px;
-    width: 100%;
-    height: auto;
-    padding-top: 220px;
-    padding-bottom: 20px;
-  }
-
-  /* end banner */
-
   /* header */
 
   .image-two header {
-    overflow: hidden;
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 90%;
+    width: 100%;
     height: auto;
   }
-
-  .banner-big .wraper .row .avatar img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    width: 60%;
-    height: 60%;
-    left: 50px;
-    margin-left: 20%;
-    padding: 0;
-  }
-
-  .banner-big .wraper .row .col-auto .text-name {
-    font-size: 22px;
-    font-weight: bold;
-    padding: 0;
-  }
-
-  .banner-big .img-blur .anh1 {
-    position: absolute;
-    top: 84%;
-    left: 0%;
-    z-index: -1;
-  }
-
-  .banner-big .img-blur .anh2 {
-    position: absolute;
-    top: 37%;
-    left: 65%;
-    width: 160px;
-    height: 160px;
-    z-index: -1;
-  }
-
-  .banner-big .wraper aside .tttk {
-    font-size: 18px;
-    text-align: center;
-  }
-
   /* tab-confirmatione */
+
+  .container-fluid .text-uppercase {
+    font-size: 18px;
+    padding-left: 30px;
+  }
+
   .tab-content {
-    padding-top: 50px;
+    padding-top: 0px;
   }
 
   .tab-profile {
     padding: 30px;
     height: 100%;
-    position: relative;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0%);
     height: 500px;
     overflow-y: auto;
+    padding-top: 0;
   }
 
   .tab-profile .container-fluid {
+    padding: 0;
     width: auto;
-    text-align: center;
+  }
+
+  .tab-profile::-webkit-scrollbar{
+    display: none;
+  }
+
+  .tab-profile{
+    padding: 0;
   }
 
   .tab-profile .container-fluid .product-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 30px;
+    padding-right: 60px;
   }
 
   .tab-profile .container-fluid .product-container .product-row {
@@ -860,6 +815,19 @@ footer .ft ul li {
     transform: translate(-25%, 0);
   }
 
+  .tab-profile .container-fluid .product-container .product-row .product-cell{
+    padding-top: 10px;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .cell-name{
+    display: none;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .don-gia-cell{
+    padding: 0;
+    margin-top: 17px;
+  }
+
   .tab-profile
     .container-fluid
     .product-container
@@ -869,8 +837,8 @@ footer .ft ul li {
   }
 
   .tab-profile .container-fluid .product-container .product-row .img-cell {
-    width: 65px;
-    height: 40px;
+    max-width: 55px;
+    max-height: 50px;
     margin: 0;
     padding: 0;
     position: relative;
@@ -881,21 +849,37 @@ footer .ft ul li {
   .tab-profile .container-fluid .product-container .product-row:first-of-type {
     margin-top: 5px;
     gap: 10px;
-    display: none;
+    display: blcok;
   }
 
-  .tab-profile .button-huy {
+  .tab-profile .button-dg button {
     width: 100%;
-    font-size: 15px;
+    font-size: 12px;
+    margin-left: 10px;
   }
 
-  .tab-confirmatione button {
-    margin-left: 15px;
-  }
+      /* thanh trạng thái đơn hàng */
+.tracking-container .step-item .step-bar-gh{
+  width: 100px; 
+}
+
+.tracking-container .step-item .step-bar-dh{
+  width: 100px; 
+}
+
+.tracking-container .step-item .step-bar-xn{
+  width: 100px; 
+}
+  /* end */
 }
 
 @media screen and (min-width: 455px) and (max-width: 575.5px) {
   /* CSS règles cho thiết bị tablet */
+
+  .containerr .myimage {
+    display: none;
+  }
+
   .containerr .image-two {
     position: relative;
     top: 70px;
@@ -966,44 +950,6 @@ footer .ft ul li {
 
   /* end navbar */
 
-  /* banner */
-  .image-two header article {
-    position: absolute;
-    left: 10%;
-    top: 20%;
-    font-size: 0;
-  }
-
-  .image-two header article p {
-    font-size: 1.6rem;
-  }
-
-  .image-two header article a img {
-    width: 45px;
-    height: 45px;
-    padding: 2px;
-    margin-left: -10px;
-  }
-
-  .image-two header article a button {
-    margin-top: 40px;
-    width: 180px;
-    height: 45px;
-  }
-
-  .image-two header aside img {
-    position: relative;
-    top: 0;
-    left: 0;
-    margin-top: 250px;
-    width: 100%;
-    height: auto;
-    padding-top: 220px;
-    padding-bottom: 20px;
-  }
-
-  /* end banner */
-
   /* header */
 
   .image-two header {
@@ -1014,46 +960,6 @@ footer .ft ul li {
     width: 90%;
     height: auto;
   }
-
-  .banner-big .wraper .row .avatar img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    width: 60%;
-    height: 240px;
-    left: 50px;
-    margin-left: 20%;
-    padding: 0;
-  }
-
-  .banner-big .wraper .row .col-auto .text-name {
-    font-size: 22px;
-    font-weight: bold;
-    padding: 0;
-  }
-
-  .banner-big .img-blur .anh1 {
-    position: absolute;
-    top: 84%;
-    left: 0%;
-    z-index: -1;
-  }
-
-  .banner-big .img-blur .anh2 {
-    position: absolute;
-    top: 37%;
-    left: 65%;
-    width: 160px;
-    height: 160px;
-    z-index: -1;
-  }
-
-  .banner-big .wraper aside .tttk {
-    font-size: 18px;
-    text-align: center;
-  }
-
   /* tab-confirmatione */
   .tab-content {
     padding-top: 50px;
@@ -1062,17 +968,13 @@ footer .ft ul li {
   .tab-profile {
     padding: 30px;
     height: 100%;
-    position: relative;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0%);
     height: 500px;
     overflow-y: auto;
   }
 
   .tab-profile .container-fluid {
-    width: auto;
     text-align: center;
+    width: 42vh;
   }
 
   .tab-profile .container-fluid .product-container {
@@ -1088,6 +990,19 @@ footer .ft ul li {
     font-size: 14px;
   }
 
+  .tab-profile .container-fluid .product-container .product-row .product-cell{
+    padding-top: 10px;
+  }
+  
+  .tab-profile .container-fluid .product-container .product-row .cell-name{
+    display: none;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .don-gia-cell{
+    padding: 0;
+    margin-top: 17px;
+  }
+
   .tab-profile
     .container-fluid
     .product-container
@@ -1097,8 +1012,8 @@ footer .ft ul li {
   }
 
   .tab-profile .container-fluid .product-container .product-row .img-cell {
-    width: 65px;
-    height: 40px;
+    max-width: 55px;
+    max-height: 50px;
     margin: 0;
     padding: 0;
     position: relative;
@@ -1111,17 +1026,32 @@ footer .ft ul li {
     gap: 10px;
   }
 
-  .tab-profile .button-huy {
-    width: 100%;
+  .product-container .button-dg button{
+    font-size: 12px;
   }
 
-  .tab-confirmatione button {
-    margin-left: 15px;
-  }
+    /* thanh trạng thái đơn hàng */
+.tracking-container .step-item .step-bar-gh{
+  width: 110px; 
+}
+
+.tracking-container .step-item .step-bar-dh{
+  width: 110px; 
+}
+
+.tracking-container .step-item .step-bar-xn{
+  width: 110px; 
+}
+  /* end */
 }
 
 @media screen and (min-width: 576px) and (max-width: 766.5px) {
   /* CSS règles cho thiết bị máy tính bảng hoặc chiều dọc điện thoại */
+
+  .containerr .myimage {
+    display: none;
+  }
+
   .containerr .image-two {
     position: relative;
     top: 70px;
@@ -1187,114 +1117,50 @@ footer .ft ul li {
 
   /* end navbar */
 
-  /* banner */
-  .image-two header article {
-    position: absolute;
-    left: 18%;
-    top: 20%;
-    font-size: 0;
-  }
-
-  .image-two header article p {
-    font-size: 2.1rem;
-  }
-
-  .image-two header article a img {
-    width: 50px;
-    height: 50px;
-    padding: 2px;
-  }
-
-  .image-two header article a button {
-    margin-top: 40px;
-    width: 200px;
-    height: 50px;
-  }
-
-  .image-two header aside img {
-    position: relative;
-    top: 60px;
-    left: -8%;
-    margin-top: 250px;
-    width: 120%;
-    height: auto;
-    padding-top: 250px;
-    padding-bottom: 80px;
-  }
-
-  /* end banner */
-
   /* header */
 
   .image-two header {
-    overflow: hidden;
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 90%;
+    width: 100%;
     height: auto;
   }
 
-  .banner-big .wraper .row .avatar img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    background-size: cover;
-    width: 60%;
-    height: 240px;
-    left: 50px;
-    margin-left: 20%;
-    padding: 0;
-  }
-
-  .banner-big .wraper .row .col-auto .text-name {
-    font-size: 22px;
-    font-weight: bold;
-    padding: 0;
-  }
-
-  .banner-big .img-blur .anh1 {
-    position: absolute;
-    top: 84%;
-    left: 0%;
-  }
-
-  .banner-big .img-blur .anh2 {
-    position: absolute;
-    top: 37%;
-    left: 65%;
-    width: 180px;
-    height: 180px;
-  }
-
   /* tab-confirmatione */
-  .tab-content {
-    padding-top: 50px;
+
+  .container-fluid .text-uppercase {
+    font-size: 22px;
+    padding-left: 30px;
   }
 
   .tab-profile {
+    height: 670px;
     padding: 30px;
-    width: 100%;
-    position: relative;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    height: 450px;
-    overflow-y: auto;
+    width: 70vh;
   }
 
   .tab-profile .container-fluid {
+    border-radius: 10px;
     width: 100%;
     text-align: center;
-    display: flex;
-    flex-direction: column;
   }
 
   .tab-profile .container-fluid .product-container .product-row .product-cell {
     flex-basis: 24%;
     text-align: center;
     font-size: 15px;
+    padding-top: 10px;
+
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .cell-name{
+    display: none;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .don-gia-cell{
+    padding-right: 50px;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .cell-quantity{
+    padding-right: 38px;
   }
 
   .tab-profile
@@ -1327,6 +1193,20 @@ footer .ft ul li {
   .tab-confirmatione button {
     margin-left: 15px;
   }
+
+  /* thanh trạng thái đơn hàng */
+.tracking-container .step-item .step-bar-gh{
+  width: 150px; 
+}
+
+.tracking-container .step-item .step-bar-dh{
+  width: 200px; 
+}
+
+.tracking-container .step-item .step-bar-xn{
+  width: 200px; 
+}
+  /* end */
 }
 
 /* end responsive cho thiết bị di động */
@@ -1334,6 +1214,11 @@ footer .ft ul li {
 /* Định nghĩa kích thước responsive cho máy tính bảng */
 @media screen and (min-width: 767px) and (max-width: 992.5px) {
   /* CSS règles cho máy tính bảng */
+
+  .containerr .myimage {
+    display: none;
+  }
+
   /* navbar */
   .navb .btn-sign {
     position: absolute;
@@ -1389,93 +1274,51 @@ footer .ft ul li {
 
   /* end navbar */
 
-  /* banner */
-  .image-two header article {
-    position: absolute;
-    left: 9%;
-    top: 38%;
-    font-size: 2.5em;
-  }
-
-  .image-two header article p {
-    font-size: 1.8rem;
-  }
-
-  .image-two header article a img {
-    width: 40px;
-    height: 40px;
-    padding: 2px;
-    margin-right: -15px;
-  }
-
-  .image-two header article a button {
-    margin-top: 40px;
-    width: 170px;
-    height: 45px;
-  }
-
-  .image-two header aside img {
-    position: relative;
-    top: 0;
-    left: 60%;
-    margin-top: 170px;
-    width: 100%;
-    height: auto;
-  }
-
-  /* end banner */
-
   /* header */
 
   .image-two header {
-    overflow: hidden;
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 90%;
     height: auto;
-  }
-
-  .banner-big .wraper .row .avatar img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    width: 110%;
-    height: 110%;
-    margin: 0;
-  }
-
-  .banner-big .wraper .row .col-auto .text-name {
-    font-size: 22px;
-    font-weight: bold;
-    padding: 0;
+    overflow: hidden;
   }
 
   /* tab-confirmatione */
-  .tab-profile {
-    padding: 30px;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -13%);
-    height: 450px;
+
+  .container-fluid .text-uppercase {
+    font-size: 22px;
+    padding-left: 30px;
   }
 
-  .banner-big .wraper aside .tttk {
-    font-size: 18px;
-    text-align: center;
+  .tab-profile {
+    height: 670px;
+    padding: 30px;
+    width: 100%;
   }
 
   .tab-profile .container-fluid {
-    width: 100%;
+    border-radius: 10px;
+    width: auto;
     text-align: center;
   }
 
   .tab-profile .container-fluid .product-container .product-row .product-cell {
     flex-basis: 24%;
     text-align: center;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row{
+    gap: 30px;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .cell-name{
+    display: none;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .don-gia-cell{
+    padding-right: 50px;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .cell-quantity{
+    padding-right: 38px;
   }
 
   .tab-profile
@@ -1507,6 +1350,12 @@ footer .ft ul li {
   .tab-confirmatione button {
     font-size: 13px;
   }
+
+  /* thanh trạng thái đơn hàng */
+.tracking-container .step-item .step-bar-gh{
+  width: 200px; 
+}
+  /* end */
 }
 
 /* end responsive cho máy tính bảng */
@@ -1514,6 +1363,14 @@ footer .ft ul li {
 /* Định nghĩa kích thước responsive cho màn hình máy tính và laptop */
 @media screen and (min-width: 993px) and (max-width: 1199.5px) {
   /* CSS règles cho màn hình máy tính và laptop */
+
+  .containerr .myimage {
+    display: none;
+  }
+
+  .containerr .myimage {
+    display: none;
+  }
 
   /* navbar */
   .navb .btn-sign {
@@ -1555,79 +1412,45 @@ footer .ft ul li {
 
   /* end navbar */
 
-  /* banner */
-  .image-two header article p {
-    font-size: 2.2rem;
-  }
-
-  .image-two header article a img {
-    width: 45px;
-    height: 45px;
-  }
-
-  .image-two header article a button {
-    margin-top: 50px;
-    width: 200px;
-    height: 45px;
-  }
-
-  .image-two header aside img {
-    position: relative;
-    top: 0;
-    left: 75%;
-    margin-top: 180px;
-    width: 110%;
-    height: auto;
-  }
-
-  /* end banner */
-
   /* header */
 
   .image-two header {
-    overflow: hidden;
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 90%;
     height: auto;
   }
 
-  .banner-big .wraper .row .avatar img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-  }
-
-  .banner-big .wraper .row .col-auto .text-name {
-    font-size: 22px;
-    font-weight: bold;
-    padding: 0;
-  }
-
   /* tab-confirmatione */
+  .container-fluid .text-uppercase {
+    font-size: 22px;
+    padding-left: 30px;
+  }
+
   .tab-profile {
-    padding: 30px;
-    position: fixed;
+    height: 670px;
+    padding-top: 30px;
     width: 100%;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -12%);
-    height: 500px;
   }
 
   .tab-profile .container-fluid {
-    width: 100%;
-    text-align: center;
+    /* background: rgba(255, 255, 255, 0.3); */
+    border-radius: 10px;
+    width: 95vh;
   }
 
-  .tab-profile .container-fluid .product-container .product-row .product-cell {
-    flex-basis: 24%;
+  .tab-profile .container-fluid .product-container .product-row{
     text-align: center;
+    gap: 50px;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .cell-name{
+    display: none;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .don-gia-cell{
+    padding-right: 50px;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .cell-quantity{
+    padding-right: 38px;
   }
 
   .tab-profile .container-fluid .product-container .product-row .img-cell {
@@ -1638,6 +1461,12 @@ footer .ft ul li {
     position: relative;
     left: 0;
   }
+
+  /* thanh trạng thái đơn hàng */
+.tracking-container .step-item .step-bar-gh{
+  width: 220px; 
+}
+  /* end */
 }
 
 /* end responsive cho màn hình máy tính và laptop */
@@ -1699,17 +1528,7 @@ footer .ft ul li {
   }
 
   .containerr .myimage {
-    position: absolute;
-    left: 75%;
-    top: 14%;
-    width: 25%;
-  }
-
-  .containerr .myimagefood5 {
-    position: absolute;
-    top: 2700px;
-    left: -20px;
-    width: 23%;
+    display: none;
   }
 
   .containerr .image-two .yum-logo {
@@ -1741,43 +1560,37 @@ footer .ft ul li {
     z-index: 1;
   }
 
-  /*  */
-
-  .banner-big .wraper .row .avatar img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    width: 240px;
-    height: 240px;
-    margin: 0;
-  }
-
-  .banner-big .wraper .row .col-auto .text-name {
-    font-size: 22px;
-    font-weight: bold;
-    padding: 0;
-  }
-
   /* tab-confirmatione */
+  .container-fluid .text-uppercase {
+    font-size: 22px;
+    padding-left: 50px;
+  }
+
   .tab-profile {
+    height: 750px;
+    width: 140vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
     padding: 30px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -10%);
-    height: 500px;
+    padding-top: 30px;
   }
 
   .tab-profile .container-fluid {
-    width: 100%;
-    text-align: center;
+    /* background: rgba(255, 255, 255, 0.3); */
+    border-radius: 10px;
+  }
+  
+  .tab-profile .container-fluid .product-container .product-row .product-cell {
+    flex-basis: 26%;
+
   }
 
-  .tab-profile .container-fluid .product-container .product-row .product-cell {
-    flex-basis: 22%;
-    text-align: center;
+  .tab-profile .container-fluid .product-container .product-row .don-gia-cell{
+    padding-left: 80px;
+  }
+
+  .tab-profile .container-fluid .product-container .product-row .cell-quantity{
+    padding-left: 47px;
   }
 
   .tab-profile .container-fluid .product-container .product-row .img-cell {
@@ -1792,20 +1605,26 @@ footer .ft ul li {
 
 /* bổ sung responsive xoay ngang cho Surface Pro 7 */
 @media screen and (max-width: 1368px) and (min-width: 912px) {
+  .container-fluid .text-uppercase {
+    font-size: 22px;
+    padding-left: 30px;
+  }
+
   .tab-profile {
+    height: 670px;
     padding: 30px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -12%);
-    height: 500px;
-    width: 100%;
   }
 
   .tab-profile .container-fluid {
+    border-radius: 10px;
     width: 100%;
     text-align: center;
   }
-}
 
-/* end */
+  .tab-profile .container-fluid .product-container .product-row .product-cell {
+    flex-basis: 24%;
+    text-align: center;
+  }
+} */
+
+/* end
