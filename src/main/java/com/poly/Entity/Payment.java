@@ -27,8 +27,8 @@ public class Payment {
     private String txnref;
     //    private int course_id;
     @ManyToOne
-    @JoinColumn(name ="product_id")
-    private Products coursePayment;
+    @JoinColumn(name ="cart_id")
+    private Carts carts;
     private String username;
 
     @OneToMany(mappedBy = "payment")
