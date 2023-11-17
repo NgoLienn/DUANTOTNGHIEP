@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.ui.Model;
 
+import com.poly.Entity.Cart_Items;
 import com.poly.Entity.Carts;
 import com.poly.Entity.Categories;
 import com.poly.Entity.Products;
@@ -42,12 +44,19 @@ public class HomeController {
         List<Categories> categoryList = categoryService.getAllCategories();
         model.addAttribute("categoryList", categoryList);
 
-        // String username = httpServletRequest.getRemoteUser();
-        // Carts carts = cartRepo.findByCartUser(username);
-        // model.addAttribute("carts", carts);
-        // Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-        // model.addAttribute("subtotal", subtotal);
+        String username = httpServletRequest.getRemoteUser();
+        Carts carts = cartRepo.findByCartUser(username);
+        model.addAttribute("carts", carts);
+        Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+        model.addAttribute("subtotal", subtotal);
 
         return "user/index";
+    }
+
+    @GetMapping("index/remove/{cartitemID}")
+    public String remove(@PathVariable("cartitemID") Long Id) {
+        Cart_Items cartItems = cartItemsRepo.findByCartitemID(Id);
+        cartItemsRepo.delete(cartItems);
+        return "redirect:/";
     }
 }

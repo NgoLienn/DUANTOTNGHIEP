@@ -33,21 +33,21 @@
                             </div>
                             <div th:if="${#lists.size(carts.cart_items) > 0}">
                                 <div class="container-fluid py-4 mt-3">
-                                    <div class="product-container">
-                                        <div class="product-row header mb-4">
+                                    <div class="product-container ">
+                                        <div class="product-row cell-header header mb-4">
                                             <div class="product-cell1">Sản phẩm</div>
                                             <div class="product-cell">Đơn giá</div>
                                             <div class="product-cell">Số lượng</div>
                                             <div class="product-cell">Số tiền</div>
                                             <div class="product-cell">Thao Tác</div>
                                         </div>
-                                        <div class="product-row" th:each="item : ${carts.cart_items}">
+                                        <div class="product-row cell-row" th:each="item : ${carts.cart_items}">
                                             <a>
                                                 <img th:src="${item.productId.image}" class="img-cell" alt="prod_pm">
                                             </a>
                                             <div class="product-cell-name" th:text="${item.productId.name}"></div>
                                             <div class="product-cell px-2" th:text="${item.sizeName}"></div>
-                                            <div cl ass="product-cell cell-price" th:text="${item.price}"></div>
+                                            <div class="product-cell cell-price" th:text="${item.price}"></div>
                                             <div class="product-quantity px-5 cell-quantity">
                                                 <a href="#" class="decrement-button"
                                                     th:data-cartitem-id="${item.cartitemID}">-</a>
@@ -63,16 +63,15 @@
                                                 </span>
                                                 &nbsp; &nbsp;
                                             </span>
-                                            <a th:href="@{|/cart/remove/${item.cartitemID}|}">
+                                            <a>
                                                 <div class="button-xoa">
-                                                    <button type="button" class="btn">Xóa
+                                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                                        th:data-bs-target="'#deletemodal' + ${item.cartitemID}">Xóa
                                                     </button>
                                                 </div>
                                             </a>
                                         </div>
                                     </div>
-                                    <!--data-bs-toggle="offcanvas" id="confirmDeleteModal"
-                                                data-bs-target="#confirmDeleteModal" aria-controls="confirmDeleteModal"-->
                                 </div>
                                 <hr>
                             </div>
@@ -80,7 +79,7 @@
                             <div class="shopping-cart-container mt-3 py-3 px-3">
                                 <div class="payment-container">
                                     <span class="text-payment">Tổng Thanh Toán: </span>
-                                    <span class="px-4 price-payment-sum" id="price-payment-sum"
+                                    <span class="px-3 price-payment-sum" id="price-payment-sum"
                                         th:text="${#numbers.formatDecimal(subtotal , 0, 'COMMA', 0, 'POINT')} + ' đ'">
                                     </span><br>
                                     <a th:href="@{/user/payment}">
@@ -91,43 +90,48 @@
                                 </div>
                             </div>
                             <!-- Modal hỏi trước khi xóa -->
-                            <!-- <div class="modal" id="confirmDeleteModal" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Xác nhận xóa sản phẩm</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
+                            <div class="modal fade" th:each="item : ${carts.cart_items}"
+                                th:id="'deletemodal' + ${item.cartitemID}" tabindex="-2"
+                                th:aria-labelledby="'deleteModalLabel' + ${item.cartitemID}" aria-hidden="false">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Xác nhận xóa sản phẩm</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Bạn có chắc chắn muốn xóa sản phẩm này không?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                aria-label="Close">Hủy
+                                            </button>
+                                            <a th:href="@{|/cart/remove/${item.cartitemID}|}">
+                                                <button type="button" class="btn btn-danger" id="confirmDeleteButton">
+                                                    Xóa
                                                 </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Bạn có chắc chắn muốn xóa sản phẩm này không?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy
-                                                </button>
-                                                <a th:href="@{|/cart/remove/${item.cartitemID}|}">
-                                                    <button type="button" class="btn btn-danger"
-                                                        id="confirmDeleteButton">
-                                                        Xóa
-                                                    </button>
-                                                </a>
-                                            </div>
+                                            </a>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
+                            </div>
+                            <style>
+                                .modal-backdrop.show {
+                                    z-index: -1;
+                                }
+                            </style>
                             <!-- end -->
+                        </aside>
                     </div>
-                    </aside>
+                </header>
             </div>
-            </header>
+
+            <div class="footer " th:replace="~{zlayout/footer :: footer}"></div>
         </div>
 
-        <div class="footer " th:replace="~{zlayout/footer :: footer}"></div>
-    </div>
-
-    <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
     </div>
 
 

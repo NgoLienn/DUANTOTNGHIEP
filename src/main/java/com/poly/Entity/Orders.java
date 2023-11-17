@@ -63,7 +63,7 @@ public class Orders implements Serializable {
     @Column(name = "payment_date")
     private Date paymentDate = new Date();
 
-    @Column(name = "payment_method", columnDefinition = "VARCHAR(100)")
+    @Column(name = "payment_method", columnDefinition = "NVARCHAR(100)")
     private String paymentMethod;
 
     @Column(name = "phone", columnDefinition = "VARCHAR(50)")

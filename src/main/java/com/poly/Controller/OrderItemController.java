@@ -53,14 +53,6 @@ public class OrderItemController {
         List<Order_Items> orderItems = orderItemRepo.finByOrderItem(id);
         model.addAttribute("orderItems", orderItems);
 
-        // Lấy trạng thái từ sản phẩm đầu tiên trong đơn hàng (nếu có)
-        String orderStatus = "";
-        if (!orderItems.isEmpty()) {
-            orderStatus = orderItems.get(0).getOrders().getStatus().getName();
-        }
-        // Truyền trạng thái đơn hàng vào model
-        model.addAttribute("orderStatus", orderStatus);
-
         return "user/orderitem";
     }
 

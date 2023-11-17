@@ -35,34 +35,42 @@
                                                     </span>
                                                     <div class="p-4 text-end">
                                                         <span class="order-code"></span> &nbsp; | &nbsp;
-                                                        <span class="" style="color: rgb(31, 154, 31);">
-                                                            <span th:text="'ĐƠN HÀNG ' + ${orderStatus}"
-                                                                class="text-uppercase" style="font-size: 17px;"></span>
+                                                        <span class="" th:each="item : ${orderItems.get(0)}"
+                                                            style="color: rgb(31, 154, 31); font-weight: bold;">
+                                                            <span th:text="'ĐƠN HÀNG ' + ${item.Orders.Status.name}"
+                                                                class="text-uppercase" style="font-size: 17px;">
+                                                            </span>
                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div class="container-fluid py-4 mt-3">
 
-                                                    <div class="tracking-container" id="trackingContainer">
-                                                        <label for="step1" class="step-item active" data-step="1">
+                                                    <div class="tracking-container" id="trackingContainer"
+                                                        th:each="item : ${orderItems.get(0)}"
+                                                        th:if="${item.Orders.Status.statusID <= 5}">
+                                                        <label for="step1" class="step-item" data-step="1"
+                                                            th:classappend="${item.Orders.Status.statusID >= 1} ? 'active' : ''">
                                                             <span class="step-number"><i class="bi bi-journal"
                                                                     style="font-size: 20px;"></i></span>
                                                             <span class="step-label">Đã đặt hàng</span>
                                                             <div class="step-bar step-bar-dh"></div>
                                                         </label>
-                                                        <label for="step2" class="step-item " data-step="2">
+                                                        <label for="step2" class="step-item " data-step="2"
+                                                            th:classappend="${item.Orders.Status.statusID >= 2} ? 'active' : ''">
                                                             <span class="step-number"><i class="bi bi-journal-check"
                                                                     style="font-size: 20px;"></i></span>
                                                             <span class="step-label">Đã xác nhận</span>
                                                             <div class="step-bar step-bar-xn"></div>
                                                         </label>
-                                                        <label for="step3" class="step-item" data-step="3">
+                                                        <label for="step3" class="step-item" data-step="3"
+                                                            th:classappend="${item.Orders.Status.statusID >= 3} ? 'active' : ''">
                                                             <span class="step-number"><i class="bi bi-box-seam"
                                                                     style="font-size: 20px;"></i></span>
                                                             <span class="step-label">Đang giao hàng</span>
                                                             <div class="step-bar step-bar-gh"></div>
                                                         </label>
-                                                        <label for="step4" class="step-item" data-step="4">
+                                                        <label for="step4" class="step-item" data-step="4"
+                                                            th:classappend="${item.Orders.Status.statusID >= 4} ? 'active' : ''">
                                                             <span class="step-number"><i class="bi bi-star"
                                                                     style="font-size: 20px;"></i></span>
                                                             <span class="step-label">Đã giao hàng</span>
@@ -102,7 +110,7 @@
                                                                     th:data-bs-toggle="modal"
                                                                     th:data-bs-target="'#staticBackdrop' + ${item.orderitemID}"
                                                                     th:attr="data-orderitemID=${item.orderitemID}"
-                                                                    th:if="${item.evaluate != true}">Đánh
+                                                                    th:if="${item.evaluate != true && item.Orders.Status.statusID <= 5 && item.Orders.Status.statusID >= 4}">Đánh
                                                                     Giá
                                                                 </button>
 
@@ -123,19 +131,21 @@
                                                             </a>
                                                         </div>
                                                         <br>
-                                                        <div class="text-start">
-                                                            <div class="name-order">Lê Chí Bằng</div>
-                                                            <div class="mt-2"
-                                                                style="font-size: 14px; color: rgb(116, 116, 116);">
-                                                                (+84)
-                                                                0943925652
+                                                        <div class="text-start" style="font-size: 16px;"
+                                                            th:each="item : ${orderItems.get(0)}">
+                                                            <div class="name-order" style="font-size: 18px;"
+                                                                th:text="${item.Orders.Account.Fullname}"></div>
+                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                                th:text="'SĐT: (84+) ' + ${item.Orders.Phone}">
                                                             </div>
-                                                            <div class="mt-2"
-                                                                style="font-size: 14px; color: rgb(116, 116, 116);">Ấp
-                                                                Rạch
-                                                                Muỗi - Xã Phú Hưng
-                                                                - Huyện Cái Nước - Tỉnh
-                                                                Cà Mau
+                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                                th:text="'Địa chỉ nhận hàng: ' + ${item.Orders.deliveryAddress}">
+                                                            </div>
+                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                                th:text="'Thời gian đặt hàng: ' + ${item.Orders.orderTime}">
+                                                            </div>
+                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                                th:text="'Phương thức thanh toán: ' + ${item.Orders.paymentMethod}">
                                                             </div>
                                                         </div>
                                                     </div>

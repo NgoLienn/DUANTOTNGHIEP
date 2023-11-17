@@ -35,20 +35,12 @@
                                                 </div>
                                                 <div class="container-fluid py-4 mt-3">
                                                     <div class="product-container table">
-                                                        <!-- <div th:if="${orderItems == null or orderItems.size() == 0}"
-                                                            class="text-center h4 " style="padding-top: 20%; ">Đơn hàng
-                                                            trống! <br>
-                                                            <br>
-                                                            Hãy đặt hàng ngay nào
-                                                            <i class="bi bi-emoji-laughing"></i>
-                                                            th:if="${orderItems != null and orderItems.size() > 0}"
-                                                        </div> -->
                                                         <th:block th:each="item : ${orders}">
                                                             <div class="d-flex justify-content-between">
                                                                 <span th:text="'Thời Gian Đặt: ' + ${item.orderTime}">
                                                                 </span>
                                                                 <span
-                                                                    class="h5 text-danger d-flex justify-content-end text-center"
+                                                                    class="h5 text-danger d-flex justify-content-end text-center" style="font-weight: bold;"
                                                                     th:text="${item.Status.Name}">
                                                                 </span>
                                                             </div>
@@ -122,13 +114,17 @@
                                                             </div>
                                                             <!-- end -->
 
-                                                            <div
-                                                                class="d-flex justify-content-between flex-wrap align-items-center product-row">
+                                                            <div class="d-flex justify-content-between flex-wrap align-items-center product-row "
+                                                                style="border-bottom: 1px solid rgb(159, 159, 159);">
                                                                 <div class="d-flex justify-content-start btn-huyxct">
-                                                                    <a>
+
+                                                                    <a th:if="${item.Status.statusID == 1}">
                                                                         <button type="button"
                                                                             class="btn btn-danger mt-4 p-2 button-huy"
-                                                                            style="margin-right: 20px;">Hủy
+                                                                            style="margin-right: 20px;"
+                                                                            data-bs-toggle="modal"
+                                                                            th:data-bs-target="'#huymodal' + ${item.orderID}"
+                                                                            th:id="'huyModalLabel' + ${item.orderID}">Hủy
                                                                             Đơn
                                                                         </button>
                                                                     </a>
@@ -136,7 +132,8 @@
                                                                         style="text-decoration: none;">
                                                                         <button type="button"
                                                                             class="btn mt-4 p-2 button-huy">Xem
-                                                                            chi tiết
+                                                                            chi tiết &nbsp;
+                                                                            <i class="bi bi-arrow-right"></i>
                                                                         </button>
                                                                     </a>
                                                                 </div>
@@ -152,100 +149,52 @@
                                                                     <div class="text-right">
                                                                         Thành
                                                                         Tiền:
-                                                                        <span
+                                                                        <span style="font-weight: bold;"
                                                                             th:text="${#numbers.formatDecimal(item.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"
-                                                                            class="text-danger h5 font-weight-bold">
+                                                                            class="text-danger h5">
                                                                         </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <!-- Modal hỏi trước khi hủy đơn -->
+                                                        <form method="post">
+                                                            <div class="modal fade" th:id="'huymodal' + ${item.orderID}"
+                                                                tabindex="-2"
+                                                                th:aria-labelledby="'huyModalLabel' + ${item.orderID}"
+                                                                aria-hidden="false">
+                                                                <div class="modal-dialog modal-dialog-centered">
+                                                                    <div class="modal-content bg-white ">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">Xác nhận hủy đơn
+                                                                                hàng</h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Bạn có chắc chắn muốn hủy đơn hàng này
+                                                                            không?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">Hủy</button>
+                                                                            <button type="submit" class="btn btn-danger"
+                                                                                id="confirmhuyButton" th:formaction="@{|/user/orderCancel/${item.orderID}|}">Xác
+                                                                                Nhận</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                            <!-- end -->
+
                                                             <br>
                                                             <br>
                                                         </th:block>
                                                     </div>
                                                 </div>
-                                                <!-- đánh giá -->
-                                                <!-- Modal -->
-                                                <!-- <div class="modal fade" th:each="item : ${orderItems}"
-                                                    th:id="'staticBackdrop' + ${item.orderitemID}"
-                                                    th:data-bs-backdrop="static" th:data-bs-keyboard="true" tabindex="1"
-                                                    th:aria-labelledby="'staticBackdropLabel' + ${item.orderitemID}"
-                                                    aria-hidden="true" th:attr="data-orderitemID=${item.orderitemID}">
-                                                    <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                                                                    Đánh Giá</h1>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close">
-                                                                </button>
-                                                            </div>
-                                                            <form action="/user/order#modal-body" method="post"
-                                                                th:id="'modal-an' + ${item.orderitemID}">
-                                                                <div class="modal-body" id="modal-body">
-                                                                    <div
-                                                                        class="rating-container d-flex align-items-center justify-content-center">
-                                                                        <div class="star"
-                                                                            th:attr="data-orderitemID=${item.orderitemID}"
-                                                                            data-rating="1">★</div>
-                                                                        <div class="star"
-                                                                            th:attr="data-orderitemID=${item.orderitemID}"
-                                                                            data-rating="2">★</div>
-                                                                        <div class="star"
-                                                                            th:attr="data-orderitemID=${item.orderitemID}"
-                                                                            data-rating="3">★</div>
-                                                                        <div class="star"
-                                                                            th:attr="data-orderitemID=${item.orderitemID}"
-                                                                            data-rating="4">★</div>
-                                                                        <div class="star"
-                                                                            th:attr="data-orderitemID=${item.orderitemID}"
-                                                                            data-rating="5">★</div>
-                                                                        &nbsp;&nbsp;&nbsp;
-                                                                        <div class="rating-count">0</div>
-                                                                    </div>
-                                                                    <div class="evaluate text-center"
-                                                                        style="margin-top: 3px;">
-                                                                        <div id="percentage-display"
-                                                                            style="color: rgb(255, 111, 0);">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-12 mt-4">
-                                                                        <div class="form-group">
-                                                                            <textarea class="form-control text-start"
-                                                                                name="description" id="description"
-                                                                                cols="30" rows="5"
-                                                                                placeholder="Hãy chia sẻ những điều bạn thích về sản phẩm này với người khác nhé!"></textarea>
-
-                                                                            <input type="text" name="saoo"
-                                                                                th:id="'saoo' + ${item.orderitemID}"
-                                                                                th:attr="data-orderitemID=${item.orderitemID}"
-                                                                                class="saoo-input">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn px-3"
-                                                                        data-bs-dismiss="modal">Trở Lại</button>
-                                                                    &nbsp; &nbsp;
-                                                                    <button type="submit"
-                                                                        th:formaction="@{|user/rating/${item.orderitemID}|}"
-                                                                        th:id="'submit'+${item.orderitemID}"
-                                                                        class="btn btn-danger px-3 submit-rating"
-                                                                        th:attr="data-orderitemID=${item.orderitemID}">Đánh
-                                                                        Giá
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                            <div th:id="'thank-you-message' + ${item.orderitemID}"
-                                                                th:attr="data-orderitemID=${item.orderitemID}"
-                                                                style="display: none; color: black; padding: 30px; font-size: 21px;"
-                                                                class="text-center">
-                                                                Cảm ơn bạn đã đánh giá sản phẩm!
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-                                                <!-- end -->
                                             </section>
                                         </div>
                                     </div>
@@ -415,6 +364,10 @@
         });
 
         // end
+
+        // xác nhận hyur đơn hàng
+       
+        //end
 
     </script>
 </body>

@@ -268,7 +268,7 @@ body {
 }
 
 .banner-big .wraper aside {
-  padding: 30px;
+  padding: 0;
 }
 
 .banner-big .wraper aside .container-fluid {
@@ -343,11 +343,44 @@ body {
   .container-fluid
   .product-container
   .product-row
+  .cell-total {
+  padding-right: 10.5%;
+  padding-top: 2%;
+}
+
+.banner-big
+  .wraper
+  aside
+  .container-fluid
+  .product-container
+  .product-row
+  .cell-price {
+  padding-left: 1%;
+}
+
+.banner-big
+  .wraper
+  aside
+  .container-fluid
+  .product-container
+  .product-row
   .product-cell1 {
   padding-right: 31%;
   margin-left: 30px;
   flex-basis: 75%;
   font-size: 18px;
+}
+
+.banner-big .wraper aside .container-fluid .product-container .cell-header {
+  border: none;
+}
+
+.banner-big .wraper aside .container-fluid .product-container .cell-row {
+  overflow: auto;
+  padding-top: 30px;
+  display: flex;
+  align-items: baseline;
+  border: none;
 }
 
 .banner-big
@@ -401,17 +434,6 @@ body {
   aside
   .container-fluid
   .product-container
-  .product-row:last-of-type {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.banner-big
-  .wraper
-  aside
-  .container-fluid
-  .product-container
   .product-row
   .checkb_product {
   transform: scale(1.5);
@@ -427,8 +449,9 @@ body {
   .product-row
   .product-quantity {
   display: flex;
+  align-item: center;
   position: relative;
-  right: 85px;
+  right: 8%;
   margin-right: -70px;
   margin-left: 15px;
 }
@@ -920,10 +943,6 @@ footer .ft ul li {
     font-family: Arial, Helvetica, sans-serif;
   }
 
-  .banner-big .wraper aside {
-    padding: 30px;
-  }
-
   /*  */
   /* search */
   .container-fluid .search-box {
@@ -954,26 +973,7 @@ footer .ft ul li {
 
   .banner-big .wraper aside .container-fluid .product-container {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: stretch;
     flex: 1;
-  }
-
-  .banner-big .wraper aside .container-fluid .product-container .product-row {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #ccc;
-    padding: 10px;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    line-height: 50px;
-    margin-top: 30px;
   }
 
   .banner-big .wraper aside .container-fluid {
@@ -987,11 +987,7 @@ footer .ft ul li {
     .product-container
     .product-row
     .product-cell1 {
-    position: relative;
-    top: 20px;
     font-size: 15px;
-    line-height: 24px;
-    padding-bottom: 80px;
   }
 
   .banner-big
@@ -1015,16 +1011,6 @@ footer .ft ul li {
     position: relative;
     left: 50px;
     top: 30px;
-  }
-
-  .banner-big
-    .wraper
-    aside
-    .container-fluid
-    .product-container
-    .product-row
-    .product-cell:last-of-type {
-    text-align: right;
   }
 
   .banner-big
@@ -1090,7 +1076,28 @@ footer .ft ul li {
     .product-quantity {
     position: relative;
     right: 38px;
-    padding-top: 20px;
+  }
+
+  .banner-big .wraper aside .container-fluid .product-container .cell-header {
+    display: none;
+    border: none;
+  }
+
+  .banner-big .wraper aside .container-fluid .product-container .cell-row {
+    overflow: auto;
+    padding-top: 30px;
+    display: flex;
+    align-items: baseline;
+    border: none;
+  }
+
+  .banner-big
+    .wraper
+    aside
+    .container-fluid
+    .product-container
+    .cell-row::-webkit-scrollbar {
+    display: none;
   }
 
   .banner-big .container-fluid .product-row .product-quantity input {
@@ -1110,7 +1117,6 @@ footer .ft ul li {
     border: none;
     outline: none;
     width: 20px;
-    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1136,7 +1142,7 @@ footer .ft ul li {
     .shopping-cart-container
     .payment-container
     .price-payment-sum {
-    font-size: 22px;
+    font-size: 17px;
   }
 
   .shopping-cart-container .selecall {
@@ -1161,15 +1167,14 @@ footer .ft ul li {
     height: 40px;
   }
 
-  .payment-container.sticky {
-    position: fixed;
-    right: 17%;
-    bottom: 10px;
-    z-index: 999;
-    width: 66%;
-    padding: 15px;
-    background: var(--cart-item-color);
-    border-radius: 10px;
+  .banner-big
+    .wraper
+    aside
+    .container-fluid
+    .product-container
+    .product-row
+    .cell-price {
+    margin-top: 10px;
   }
 }
 
@@ -1303,10 +1308,6 @@ footer .ft ul li {
     font-family: Arial, Helvetica, sans-serif;
   }
 
-  .banner-big .wraper aside {
-    padding: 30px;
-  }
-
   /*  */
   /* search */
   .container-fluid .search-box {
@@ -1336,26 +1337,28 @@ footer .ft ul li {
 
   .banner-big .wraper aside .container-fluid .product-container {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: stretch;
-    flex: 1;
   }
 
-  .banner-big .wraper aside .container-fluid .product-container .product-row {
+  .banner-big .wraper aside .container-fluid .product-container .cell-header {
+    display: none;
+    border: none;
+  }
+
+  .banner-big .wraper aside .container-fluid .product-container .cell-row {
+    overflow: auto;
+    padding-top: 30px;
     display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #ccc;
-    padding: 10px;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    line-height: 50px;
-    margin-top: 30px;
+    align-items: baseline;
+    border: none;
+  }
+
+  .banner-big
+    .wraper
+    aside
+    .container-fluid
+    .product-container
+    .cell-row::-webkit-scrollbar {
+    display: none;
   }
 
   .banner-big .wraper aside .container-fluid {
@@ -1661,16 +1664,17 @@ footer .ft ul li {
     font-size: 15px;
   }
 
-  .banner-big
-    .wraper
-    aside
-    .container-fluid
-    .product-container
-    .product-row
-    .product-cell1 {
-    font-size: 16px;
-    padding-right: 30px;
-    margin-left: 15px;
+  .banner-big .wraper aside .container-fluid .product-container .cell-header {
+    display: none;
+    border: none;
+  }
+
+  .banner-big .wraper aside .container-fluid .product-container .cell-row {
+    overflow: auto;
+    padding-top: 40px;
+    display: flex;
+    align-items: baseline;
+    border: none;
   }
 
   .banner-big
@@ -1691,7 +1695,7 @@ footer .ft ul li {
     .product-container
     .product-row
     .product-cell:last-of-type {
-    text-align: right;
+    text-align: center;
   }
 
   .banner-big
@@ -1701,7 +1705,7 @@ footer .ft ul li {
     .product-container
     .product-row
     .product-cell {
-    flex-basis: 52%;
+    flex-basis: 55%;
   }
 
   .product-cell1 + .product-cell + .product-cell + .product-cell {
@@ -1720,17 +1724,6 @@ footer .ft ul li {
     margin-top: 0;
     width: 60px;
     height: 60px;
-  }
-
-  .banner-big
-    .wraper
-    aside
-    .container-fluid
-    .product-container
-    .product-row
-    .product-quantity {
-    position: relative;
-    right: 50px;
   }
 }
 
@@ -1821,24 +1814,23 @@ footer .ft ul li {
     font-family: Arial, Helvetica, sans-serif;
   }
 
-  .banner-big .wraper aside {
-    padding: 30px;
-  }
-
   /*  */
 
   .banner-big .wraper aside .container-fluid {
     font-size: 15px;
   }
 
-  .banner-big
-    .wraper
-    aside
-    .container-fluid
-    .product-container
-    .product-row
-    .product-cell1 {
-    font-size: 16px;
+  .banner-big .wraper aside .container-fluid .product-container .cell-header {
+    display: none;
+    border: none;
+  }
+
+  .banner-big .wraper aside .container-fluid .product-container .cell-row {
+    overflow: auto;
+    padding-top: 40px;
+    display: flex;
+    align-items: baseline;
+    border: none;
   }
 
   .banner-big
@@ -1894,7 +1886,26 @@ footer .ft ul li {
     .product-row
     .product-quantity {
     position: relative;
-    right: 50px;
+    right: 9%;
+  }
+  .banner-big
+    .wraper
+    aside
+    .container-fluid
+    .product-container
+    .product-row
+    .cell-total {
+    padding-right: 7%;
+  }
+
+  .banner-big
+    .wraper
+    aside
+    .container-fluid
+    .product-container
+    .product-row
+    .cell-price {
+    padding-left: 2%;
   }
 }
 
@@ -2031,6 +2042,18 @@ footer .ft ul li {
     text-align: right;
   }
 
+  .banner-big .wraper aside .container-fluid .product-container .cell-header {
+    border: none;
+  }
+
+  .banner-big .wraper aside .container-fluid .product-container .cell-row {
+    overflow: auto;
+    padding-top: 30px;
+    display: flex;
+    align-items: baseline;
+    border: none;
+  }
+
   .banner-big
     .wraper
     aside
@@ -2051,6 +2074,25 @@ footer .ft ul li {
     .product-row
     .product-quantity {
     position: relative;
-    right: 60px;
+    right: 7%;
+  }
+  .banner-big
+    .wraper
+    aside
+    .container-fluid
+    .product-container
+    .product-row
+    .cell-total {
+    padding-right: 7%;
+  }
+
+  .banner-big
+    .wraper
+    aside
+    .container-fluid
+    .product-container
+    .product-row
+    .cell-price {
+    padding-left: 2%;
   }
 }
