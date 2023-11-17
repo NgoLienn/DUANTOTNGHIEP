@@ -48,21 +48,14 @@ public class CartController {
     public String listProducts(Model model, HttpServletRequest httpServletRequest) {
         String username = httpServletRequest.getRemoteUser();
         Carts carts = cartRepo.findByCartUser(username);
-        if (carts == null || carts.getCart_items().isEmpty()) {
-            // Nếu giỏ hàng không tồn tại hoặc không có sản phẩm
-            String message = "Giỏ hàng của bạn đang trống!";
-            model.addAttribute("message", message);
-            return "user/cartNull"; // Trả về view hiển thị giỏ hàng trống
-        } else {
-            // Nếu giỏ hàng có sản phẩm, thực hiện các thao tác thông thường
+        model.addAttribute("carts", carts);
+        if(carts==null){
+            return "redirect:/user/CartNull";
+        }else {
             Long subtotal = cartItemsRepo.getSum(carts.getCartID());
             model.addAttribute("subtotal", subtotal);
-            model.addAttribute("carts", carts);
-            return "user/cart";
         }
-        // model.addAttribute("carts", carts);
-        // Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-        // model.addAttribute("subtotal", subtotal);
+           return "user/cart";
     }
 
     @PostMapping("/addToCart/{productId}")
@@ -135,12 +128,8 @@ public class CartController {
         model.addAttribute("subtotal", subtotal);
 
         int soluong = cartItem.getQuantity() - 1;
-        if (soluong < 1) {
-
-        } else {
-            cartItem.setQuantity(soluong);
-            cartItem.setSubtotal(cartItem.getPrice() * soluong);
-        }
+        cartItem.setQuantity(soluong);
+        cartItem.setSubtotal(cartItem.getPrice() * soluong);
 
         cartItemsRepo.save(cartItem);
         return "user/cart";
@@ -164,5 +153,23 @@ public class CartController {
         cartItemsRepo.save(cartItem);
         return "user/cart";
     }
+
+    // @GetMapping("/cart/getTotalPrice")
+    // public Map<String, Object> getTotalPrice(HttpServletRequest
+    // httpServletRequest) {
+    // Map<String, Object> response = new HashMap<>();
+    // try {
+    // String username = httpServletRequest.getRemoteUser();
+    // Carts carts = cartRepo.findByCartUser(username);
+    // Long totalPrice = cartItemsRepo.getSum(carts.getCartID()); // Implement this
+    // method in your
+    // // repository
+    // response.put("totalPrice", totalPrice);
+    // } catch (Exception e) {
+    // response.put("error", "Error calculating total price");
+    // }
+
+    // return response;
+    // }
 
 }

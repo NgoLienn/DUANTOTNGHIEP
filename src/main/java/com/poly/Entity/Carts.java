@@ -31,4 +31,7 @@ public class Carts implements Serializable {
 
     @OneToMany(mappedBy = "Carts")
     List<Cart_Items> cart_items;
+
+    @OneToMany(mappedBy = "carts")
+    List<Payment> payments;
 }
