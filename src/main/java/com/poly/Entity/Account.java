@@ -56,6 +56,8 @@ public class Account implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     List<Authority> authorities;
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
 
     private String encrypt(String plaintext) {
         return plaintext;

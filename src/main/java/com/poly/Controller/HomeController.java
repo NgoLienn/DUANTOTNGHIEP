@@ -45,10 +45,10 @@ public class HomeController {
         model.addAttribute("categoryList", categoryList);
 
         String username = httpServletRequest.getRemoteUser();
-        Carts carts = cartRepo.findByCartUser(username);
-        model.addAttribute("carts", carts);
-        Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-        model.addAttribute("subtotal", subtotal);
+//        Carts carts = cartRepo.findByCartUser(username);
+////        model.addAttribute("carts", carts);
+//        Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+//        model.addAttribute("subtotal", subtotal);
 
         return "user/index";
     }

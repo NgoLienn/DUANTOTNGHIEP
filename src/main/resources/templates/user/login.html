@@ -38,6 +38,7 @@
                   <p class="mb-0 text-dark">Nhập tài khoản và mật khẩu để đăng nhập!</p>
                 </div>
                 <div class="card-body">
+                  <h4><a th:href="@{/oauth2/authorization/google}">Login with Google</a></h4>
                   <form role="form" action="/auth/signin" method="post">
                     <div class="mb-3">
                       <input type="email" class="form-control  form-control-lg" placeholder="Tài Khoản" name="username"
