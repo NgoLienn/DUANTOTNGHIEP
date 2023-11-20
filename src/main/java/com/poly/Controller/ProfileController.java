@@ -55,10 +55,18 @@ public class ProfileController {
         return "user/profile";
     }
     @PostMapping
-    public String changepass(Model m,HttpServletRequest request,
+    public String changepass(Model m,Authentication authentication,
         @ModelAttribute("account") Account account){
-        String username=request.getRemoteUser();
-        Account acc =accountService.findByUsername(username);
+        String users = "";
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+
+        }
+        Account acc =accountService.findByUsername(users);
         acc.setFullname(account.getFullname());
         acc.setPhone(account.getPhone());
         acc.setAddress(account.getAddress());

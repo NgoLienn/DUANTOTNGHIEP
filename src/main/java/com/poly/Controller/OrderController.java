@@ -6,6 +6,10 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,10 +55,16 @@ public class OrderController {
     StatusRepository statusRepo;
 
     @GetMapping("/order")
-    public String HistoryOrder(Model model, HttpServletRequest httpServlet) {
-
-        Account account = accountRepo.findByUsername(httpServlet.getRemoteUser());
-
+    public String HistoryOrder(Model model, Authentication authentication) {
+        String users = "";
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }
+        Account account = accountRepo.findByUsername(users);
         List<Orders> orders = ordersRepo.finByUsernam(account.getUserName());
 
         // Sắp xếp danh sách đơn hàng theo thời gian đặt hàng từ mới nhất đến cũ nhất

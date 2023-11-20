@@ -56,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // phan quyen su dung
                 http.authorizeRequests()
-                        .antMatchers("/addToCart/*", "/cart", "/user/order", "/user/orderitem").authenticated()
+                        .antMatchers("/addToCart/*","/user/profile", "/cart", "/user/order", "/user/orderitem").authenticated()
                         // .antMatchers("/admin/**").hasRole("admin")
                         .antMatchers("/api/authorities").hasRole("")
                         .anyRequest().permitAll(); // anonymous
@@ -90,7 +90,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         })
                 ;
                 // [password]
-
                 http.rememberMe().rememberMeParameter("remember").tokenValiditySeconds(86400); // [remember-me]
 
                 // dang xuat
@@ -98,7 +97,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .logoutUrl("/auth/logoff") // [/logout]
                         .logoutSuccessUrl("/auth/signin"); // chuyen trang
         }
-
 
 
 }

@@ -4,6 +4,10 @@ import com.poly.Config.Config;
 import com.poly.Entity.*;
 import com.poly.Reponsitory.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,11 +45,18 @@ public class PaymentController {
     PaymentRepository paymentRepository;
 
     @GetMapping("/payment")
-    public String ViewProfile(Model model, HttpServletRequest httpServletRequest) {
-        String username = httpServletRequest.getRemoteUser();
-        Account account = accountRepo.findByUsername(username);
+    public String ViewProfile(Model model, Authentication authentication) {
+        String users = "";
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }
+        Account account = accountRepo.findByUsername(users);
         model.addAttribute("account", account);
-        Carts carts = cartRepo.findByCartUser(username);
+        Carts carts = cartRepo.findByCartUser(users);
         model.addAttribute("cart", carts);
         Long subtotal = cartItemsRepo.getSum(carts.getCartID());
         model.addAttribute("subtotal", subtotal);
@@ -54,12 +65,19 @@ public class PaymentController {
     }
 
     @PostMapping("/payment")
-    public String payment(Model model, HttpServletRequest req, @RequestParam("payment") String payment,
+    public String payment(Model model, Authentication authentication,HttpServletRequest req, @RequestParam("payment") String payment,
                           HttpServletResponse resp) throws IOException {
-        String username = req.getRemoteUser();
+        String users = "";
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }
         if (payment.equals("true")) {
-            Account account = accountRepo.findByUsername(username);
-            Carts carts = cartRepo.findByCartUser(username);
+            Account account = accountRepo.findByUsername(users);
+            Carts carts = cartRepo.findByCartUser(users);
             float subtotal = cartItemsRepo.getSum(carts.getCartID());
             Status status = new Status();
             status.setStatusID(1L);
@@ -133,7 +151,7 @@ public class PaymentController {
             paymentEntity.setCreatedate(vnp_CreateDate);
             paymentEntity.setBankcode(bank_code);
             paymentEntity.setCurrcode(vnp_CurrCode);
-            paymentEntity.setUsername(username);
+            paymentEntity.setUsername(users);
             paymentEntity.setCarts(carts);
             paymentRepository.save(paymentEntity);
 

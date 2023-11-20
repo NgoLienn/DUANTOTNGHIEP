@@ -8,6 +8,10 @@ import com.poly.Entity.*;
 import com.poly.Reponsitory.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.convert.ReadingConverter;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,9 +49,16 @@ public class CartController {
     private SizeProductRepository sizeProductRepo;
 
     @GetMapping("/cart")
-    public String listProducts(Model model, HttpServletRequest httpServletRequest) {
-        String username = httpServletRequest.getRemoteUser();
-        Carts carts = cartRepo.findByCartUser(username);
+    public String listProducts(Model model, Authentication authentication) {
+        String users = "";
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }
+        Carts carts = cartRepo.findByCartUser(users);
         model.addAttribute("carts", carts);
         if(carts==null){
             return "redirect:/user/CartNull";
@@ -59,10 +70,17 @@ public class CartController {
     }
 
     @PostMapping("/addToCart/{productId}")
-    public String addToCart(@PathVariable int productId, Model model, HttpServletRequest httpServletRequest,
+    public String addToCart(@PathVariable int productId, Model model,Authentication authentication ,
             @RequestParam("size") String size, @RequestParam("soluong") int soluong) {
-        String username = httpServletRequest.getRemoteUser();
-        Account account = accountRepo.findByUsername(username);
+        String users = "";
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }
+        Account account = accountRepo.findByUsername(users);
         Carts cart = cartRepo.findByCartsUsername(account.getAccountID());
         Products product = productRepo.findByProduct(productId);
         Size size1 = sizeRepo.findByProductAndSizeName(productId, size);
@@ -102,7 +120,6 @@ public class CartController {
                 cartItems.setSizeName(size);
                 cartItemsRepo.save(cartItems);
             }
-
             return "redirect:/cart";
         }
 
