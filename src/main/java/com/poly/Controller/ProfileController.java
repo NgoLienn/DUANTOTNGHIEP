@@ -37,7 +37,7 @@ public class ProfileController {
     PasswordEncoder passwordEncoder;
     @Autowired
     UserServiceGoogle userServiceGoogle;
-    @RequestMapping
+    @GetMapping
     public String account(Model model,
                           Authentication authentication){
         String users = "";
@@ -45,10 +45,9 @@ public class ProfileController {
             OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
             OAuth2User user = oauthToken.getPrincipal();
             users = user.getAttribute("email");
-            System.out.println(1);
         } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
             users = authentication.getName();
-            System.out.println(2);
+
         }
         Account account=accountService.findByUsername(users);
         model.addAttribute("account", new Account());
@@ -65,6 +64,5 @@ public class ProfileController {
         acc.setAddress(account.getAddress());
         accountReponsitory.save(acc);
         return "redirect:/user/profile";
-
     }
 }
