@@ -38,7 +38,7 @@
                   <p class="mb-0 text-dark">Nhập tài khoản và mật khẩu để đăng nhập!</p>
                 </div>
                 <div class="card-body">
-                  <h4><a th:href="@{/oauth2/authorization/google}">Login with Google</a></h4>
+
                   <form role="form" action="/auth/signin" method="post">
                     <div class="mb-3">
                       <input type="email" class="form-control  form-control-lg" placeholder="Tài Khoản" name="username"
@@ -61,7 +61,10 @@
                       <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-2 mb-0">Đăng Nhập</button>
                     </div>
                   </form>
+                  <h4><a th:href="@{/oauth2/authorization/google}">Login with Google</a></h4>
+                  <h4><a th:href="@{/oauth2/authorization/facebook}">Login with facebook</a></h4>
                 </div>
+
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-sm mx-auto text-dark">
                     Bạn đã có tài khoản chưa?
@@ -82,6 +85,7 @@
         </div>
       </div>
     </section>
+
   </main>
   <!--   Core JS Files   -->
   <script src="/assets/js/jquery.min.js"></script>

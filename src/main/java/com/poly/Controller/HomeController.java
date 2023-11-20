@@ -43,7 +43,6 @@ public class HomeController {
         // sản phẩm theo thể loại
         List<Categories> categoryList = categoryService.getAllCategories();
         model.addAttribute("categoryList", categoryList);
-
         String username = httpServletRequest.getRemoteUser();
 //        Carts carts = cartRepo.findByCartUser(username);
 ////        model.addAttribute("carts", carts);
