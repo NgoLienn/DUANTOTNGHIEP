@@ -2,15 +2,12 @@ package com.poly.Service;
 
 import java.util.List;
 
-import com.poly.Entity.Authority;
-import com.poly.Entity.Blog;
+import com.poly.Entity.*;
 import com.poly.Reponsitory.AuthorityResponsitory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.poly.Entity.Account;
-import com.poly.Entity.Roles;
 import com.poly.Reponsitory.AccountReponsitory;
 
 @Service
@@ -39,6 +36,7 @@ public class AccountService {
         blog.setBlogID(1);
         account.setPassword(encodedPassword);
         account.setBlog(blog);
+        account.setProvider(Provider.LOCAL);
         account.setActive(false);
         accountRepository.save(account);
         if (account.getAuthorities() == null || account.getAuthorities().isEmpty()) {
