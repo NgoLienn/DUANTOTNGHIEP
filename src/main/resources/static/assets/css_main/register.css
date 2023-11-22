@@ -1,87 +1,82 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    list-style: none;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  list-style: none;
+  text-decoration: none;
 }
 
 body {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-image: url(/assets/images/sandwich.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: url(/assets/images/sandwich.jpg);
 }
 
 #loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99999;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
-    background-color: var(--bgtoggle-color);
+  width: 8px;
+  background-color: var(--bgtoggle-color);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 4px;
+  background-color: #888;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
+  background-color: #555;
 }
 
 :root {
-    /* ===== Colors ===== */
-    --body-color: rgba(255, 255, 255, 0.5);
-    --bgtoggle-color: rgba(255, 255, 255, 0.3);
-    --bgthree-color: rgba(197, 197, 197, 0.5);
-    --button-color: rgb(219, 2, 2);
-    --sidebar-color: #0d1116;
-    --primary-color: #3a3b3c;
-    --primary-color-light: #0d1116;
-    --toggle-color: #fff;
-    --text-color: #ccc;
+  /* ===== Colors ===== */
+  --body-color: rgba(255, 255, 255, 0.5);
+  --bgtoggle-color: rgba(255, 255, 255, 0.3);
+  --bgthree-color: rgba(197, 197, 197, 0.5);
+  --button-color: rgb(219, 2, 2);
+  --sidebar-color: #0d1116;
+  --primary-color: #3a3b3c;
+  --primary-color-light: #0d1116;
+  --toggle-color: #fff;
+  --text-color: #ccc;
 
-
-    /* ====== Transition ====== */
-    --tran-03: all 0.2s ease;
-    --tran-03: all 0.3s ease;
-    --tran-04: all 0.4s ease;
-    --tran-05: all 0.5s ease;
+  /* ====== Transition ====== */
+  --tran-03: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.4s ease;
+  --tran-05: all 0.5s ease;
 }
 
 /* register */
 
 .container .row .khung1 {
-    position: absolute;
-    top: 0;
-    width: 408px;
-    height: 560px;
-    background: var(--bgtoggle-color);
-    z-index: -1;
-    box-shadow: 7px 5px 20px 0 rgb(169, 169, 169);
+  background: rgba(255, 255, 255, 0.3);
+  z-index: -1;
+  box-shadow: 7px 5px 20px 0 rgb(169, 169, 169);
 }
 
 .khung .card-plain {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 /* end register */

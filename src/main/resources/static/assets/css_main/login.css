@@ -63,12 +63,12 @@ body {
 } */
 .container .row .bgound-mo {
     position: relative;
-    top: 0%;
+    top: 10%;
     left: -3%;
     padding: 30px 30px;
     margin: 0;
     width: 365px;
-    height: 450px;
+    height: 550px;
     border-radius: 25px;
     border: 0.5px solid rgb(179, 179, 179);
     box-shadow: inset 5px 5px 12px 0px rgb(92, 92, 92);
@@ -84,6 +84,7 @@ body {
 
 .container .row .card .text-card {
     padding-left: 25px;
+    padding-top: 0;
 }
 
 .container .row .card .img-blur .anh1 {
