@@ -47,9 +47,11 @@
                                                             <div class="product-row"
                                                                 th:each="order : ${item.orderitem.get(0)}"
                                                                 style="border: none;">
-                                                                <img th:each="image : ${order.product}"
-                                                                    th:src="@{|${image.image}|}" class="img-cell"
-                                                                    alt="prod_pm">
+                                                                <a th:href="@{|/user/orderitem/${order.orders.orderID}|}">
+                                                                    <img th:each="image : ${order.product}"
+                                                                        th:src="@{|${image.image}|}" class="img-cell"
+                                                                        alt="prod_pm">
+                                                                </a>
                                                                 <div class="product-cell cell-name"
                                                                     th:text="${order.name}">
                                                                 </div>
@@ -87,10 +89,12 @@
                                                                                 th:each="order, iterStat : ${item.orderitem}"
                                                                                 th:unless="${iterStat.index == 0}"
                                                                                 style="border: none;">
-                                                                                <img th:each="image : ${order.product}"
-                                                                                    th:src="@{|${image.image}|}"
-                                                                                    class="img-cell" alt="prod_pm"
-                                                                                    style="width: 50px; height: 50px;">
+                                                                                <a th:href="@{|/user/orderitem/${order.orders.orderID}|}">
+                                                                                    <img th:each="image : ${order.product}"
+                                                                                        th:src="@{|${image.image}|}"
+                                                                                        class="img-cell" alt="prod_pm"
+                                                                                        style="width: 50px; height: 50px;">
+                                                                                </a>        
                                                                                 <div class="product-cell cell-name"
                                                                                     th:text="${order.name}"
                                                                                     style="font-size: 14px;">
@@ -116,8 +120,8 @@
 
                                                             <div class="d-flex justify-content-between flex-wrap align-items-center product-row "
                                                                 style="border-bottom: 1px solid rgb(159, 159, 159);">
+                                                               <form method="post">
                                                                 <div class="d-flex justify-content-start btn-huyxct">
-
                                                                     <a th:if="${item.Status.statusID == 1}">
                                                                         <button type="button"
                                                                             class="btn btn-danger mt-4 p-2 button-huy"
@@ -126,6 +130,13 @@
                                                                             th:data-bs-target="'#huymodal' + ${item.orderID}"
                                                                             th:id="'huyModalLabel' + ${item.orderID}">Hủy
                                                                             Đơn
+                                                                        </button>
+                                                                    </a>
+                                                                    <a th:if="${item.Status.statusID == 4}">
+                                                                        <button type="submit"
+                                                                            class="btn btn-danger mt-4 p-2 button-huy"
+                                                                            style="margin-right: 20px;" 
+                                                                            th:formaction="@{|/user/orderReceived/${item.orderID}|}">Đã nhận hàng
                                                                         </button>
                                                                     </a>
                                                                     <a th:href="@{|/user/orderitem/${item.orderID}|}"
@@ -137,6 +148,7 @@
                                                                         </button>
                                                                     </a>
                                                                 </div>
+                                                               </form>
                                                                 <div class="d-flex justify-content-end gap-10"
                                                                     style="padding-top: 20px;">
                                                                     <div class="text-right">
@@ -222,7 +234,7 @@
         var loader = function () {
             setTimeout(function () {
                 $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
-            }, 1500);
+            }, 1000);
         };
         $(function () {
             loader();

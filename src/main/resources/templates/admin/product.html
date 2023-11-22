@@ -255,12 +255,18 @@
                       <label for="example-text-input" class="form-control-label px-6 position-absolute">Hình Ảnh
                         Đại Diện Sản Phẩm</label>
                       <span>
-                        <img id="preview-image" class="max-width-300 max-height-300 pt-4" th:src="*{image}" alt="">
+                        <img id="preview-image" class="max-width-300 max-height-300 pt-4" th:src="*{image}" alt=""
+                          style="padding-left: 15px;">
+                        <!-- <img id="preview-image" class="max-width-300 max-height-300 pt-4" th:if="${image < 1 }"
+                          th:src="@{https://res.cloudinary.com/dlhd6e29k/image/upload/v1700330104/Images_FastFoodStore/qgakvof0en31fy9yx89x.png}"
+                          alt="" style="padding-left: 15px;"> -->
+
                       </span>
                       <!-- multiple giúp chọn nhiều ảnh cùng lúc -->
                       <input type="hidden" name="filess" th:value="${newProduct.image}">
                       <input class="form-control filepond" id="uploadimage" name="uploadimage" type="file"
                         onchange="previewImage(event)" placeholder="Ảnh" th:value="${newProduct.image}">
+
                       <small class="text-danger" id="image-error"></small>
                       <div id="form-error" class="text-danger mt-2 border-danger"></div>
                       <!-- end -->
@@ -442,39 +448,9 @@
       </footer>
     </div>
   </main>
-  <div class="fixed-plugin">
-    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
-      <i class="fa fa-cog py-2"> </i>
-    </a>
-    <div class="card shadow-lg">
-      <div class="card-header pb-0 pt-3 ">
-        <div class="float-start">
-          <h5 class="mt-3 mb-0">Cài Đặt</h5>
-          <p>Người Dùng Admin</p>
-        </div>
-        <div class="float-end mt-4">
-          <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
-            <i class="fa fa-close"></i>
-          </button>
-        </div>
-        <!-- End Toggle Button -->
-      </div>
-      <hr class="horizontal dark my-1">
-      <div class="card-body pt-sm-3 pt-0 overflow-auto">
-        <!-- Sidebar Backgrounds -->
-        <div>
-          <h6 class="mb-0">hé lô</h6>
-        </div>
-        <!-- Sidenav Type -->
-        <div class="mt-3">
-          <h6 class="mb-0">Điền các cài đặt vô đây</h6>
-          <p class="text-sm">ít thôi, hong xử lý chtme</p>
-        </div>
-        <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
-        <!-- Navbar Fixed -->
-      </div>
-    </div>
-  </div>
+
+  <div class="" th:replace="~{zlayout/navbarAdmin :: menu-admin-right}"></div>
+
   <!--   Core JS Files   -->
   <script src="/assets/js/jquery.min.js"></script>
   <script src="/assets/js/bootstrap.bundle.min.js"></script>
@@ -495,10 +471,6 @@
     $(function () {
       loader();
     });
-    // end
-
-    // mặc dịnh tích sẵn radio
-    document.getElementById("user").checked = true;
     // end
 
     var win = navigator.platform.indexOf('Win') > -1;
@@ -522,6 +494,7 @@
     }
     // end
 
+    // phân trang
     $(document).ready(function () {
       $('.pagination .page-link').on('click', function (e) {
         e.preventDefault();
@@ -535,6 +508,7 @@
         });
       }
     });
+    // end
 
     // 
   </script>
@@ -563,93 +537,101 @@
     }
 
     // validate form sản phẩm
-    // function validateForm() {
-    //   var form = document.getElementById('productForm');
-    //   var name = document.getElementById('newProduct_name');
-    //   var price = document.getElementById('newProduct_price');
-    //   var prices = document.getElementById('newProduct_prices');
-    //   var description = document.getElementById('description');
-    //   var descriptionAn = document.getElementById('descriptionAn');
-    //   var quantity = document.getElementById('newProduct_quantity');
-    //   var category = document.getElementById('example-text-input');
-    //   var image = document.getElementById('uploadimage');
-    //   var formError = document.getElementById('form-error');
+    function validateForm() {
+      var form = document.getElementById('productForm');
+      var name = document.getElementById('newProduct_name');
+      var price = document.getElementById('newProduct_price');
+      var prices = document.getElementById('newProduct_prices');
+      var description = document.getElementById('description');
+      var descriptionAn = document.getElementById('descriptionAn');
+      var quantity = document.getElementById('newProduct_quantity');
+      var category = document.getElementById('example-text-input');
+      var image = document.getElementById('uploadimage');
+      var formError = document.getElementById('form-error');
 
-    //   if (!name.value) {
-    //     name.style.borderColor = '#ff0000';
-    //     document.getElementById('name-error').innerText = 'Không được để trống tên sản phẩm';
+      if (!name.value) {
+        name.style.borderColor = '#ff0000';
+        document.getElementById('name-error').innerText = 'Không được để trống tên sản phẩm';
 
-    //     return false;
-    //   } else {
-    //     document.getElementById('name-error').innerText = '';
-    //     name.style.borderColor = '';
-    //   }
+        return false;
+      } else {
+        document.getElementById('name-error').innerText = '';
+        name.style.borderColor = '';
+      }
 
-    //   if (!prices.value) {
-    //     prices.style.borderColor = '#ff0000';
-    //     document.getElementById('prices-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
-    //     return false;
-    //   } else {
-    //     document.getElementById('prices-error').innerText = '';
-    //     prices.style.borderColor = '';
-    //   }
+      if (!isValidNumber(prices.value) || prices.value.length < 4) {
+        prices.style.borderColor = '#ff0000';
+        document.getElementById('prices-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
+        return false;
+      } else {
+        document.getElementById('prices-error').innerText = '';
+        prices.style.borderColor = '';
+      }
 
-    //   if (!price.value) {
-    //     price.style.borderColor = '#ff0000';
-    //     document.getElementById('price-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
-    //     return false;
-    //   } else {
-    //     document.getElementById('price-error').innerText = '';
-    //     price.style.borderColor = '';
-    //   }
+      if (!isValidNumber(price.value) || price.value.length < 4) {
+        price.style.borderColor = '#ff0000';
+        document.getElementById('price-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
+        return false;
+      } else {
+        document.getElementById('price-error').innerText = '';
+        price.style.borderColor = '';
+      }
 
-    //   if (!quantity.value) {
-    //     quantity.style.borderColor = '#ff0000';
-    //     document.getElementById('quantity-error').innerText = 'Số lượng phải nhập số';
-    //     return false;
-    //   } else {
-    //     document.getElementById('quantity-error').innerText = '';
-    //     quantity.style.borderColor = '';
-    //   }
+      if (!isValidNumberr(quantity.value)) {
+        quantity.style.borderColor = '#ff0000';
+        document.getElementById('quantity-error').innerText = 'Số lượng phải nhập số và ít nhất 2 chữ số';
+        return false;
+      } else {
+        document.getElementById('quantity-error').innerText = '';
+        quantity.style.borderColor = '';
+      }
 
-    //   if (!descriptionAn.value) {
-    //     descriptionAn.style.borderColor = '#ff0000';
-    //     document.getElementById('descriptionAn-error').innerText = 'Không được để trống mô tả';
-    //     return false;
-    //   } else {
-    //     document.getElementById('descriptionAn-error').innerText = '';
-    //     descriptionAn.style.borderColor = '';
-    //   }
+      if (!descriptionAn.value) {
+        descriptionAn.style.borderColor = '#ff0000';
+        document.getElementById('descriptionAn-error').innerText = 'Không được để trống mô tả';
+        return false;
+      } else {
+        document.getElementById('descriptionAn-error').innerText = '';
+        descriptionAn.style.borderColor = '';
+      }
 
-    //   if (!description.value) {
-    //     description.style.borderColor = '#ff0000';
-    //     document.getElementById('description-error').innerText = 'Không được để trống mô tả';
-    //     return false;
-    //   } else {
-    //     document.getElementById('description-error').innerText = '';
-    //     description.style.borderColor = '';
-    //   }
+      if (!description.value) {
+        description.style.borderColor = '#ff0000';
+        document.getElementById('description-error').innerText = 'Không được để trống mô tả';
+        return false;
+      } else {
+        document.getElementById('description-error').innerText = '';
+        description.style.borderColor = '';
+      }
 
-    //   if (category.value === '') {
-    //     category.style.borderColor = '#ff0000';
-    //     document.getElementById('category-error').innerText = 'Vui lòng chọn thể loại';
-    //     return false;
-    //   } else {
-    //     document.getElementById('category-error').innerText = '';
-    //     category.style.borderColor = '';
-    //   }
+      if (category.value === '') {
+        category.style.borderColor = '#ff0000';
+        document.getElementById('category-error').innerText = 'Vui lòng chọn thể loại';
+        return false;
+      } else {
+        document.getElementById('category-error').innerText = '';
+        category.style.borderColor = '';
+      }
 
-    //   if (image.files.files === 0) {
-    //     image.style.borderColor = '#ff0000';
-    //     document.getElementById('image-error').innerText = 'Vui lòng chọn ảnh';
-    //     return false;
-    //   } else {
-    //     document.getElementById('image-error').innerText = '';
-    //     image.style.borderColor = '';
-    //   }
+      // if (image.files.length === 0) {
+      //   image.style.borderColor = '#ff0000';
+      //   document.getElementById('image-error').innerText = 'Vui lòng chọn ảnh';
+      //   return false;
+      // } else {
+      //   document.getElementById('image-error').innerText = '';
+      //   image.style.borderColor = '';
+      // }
 
-    //   return true;
-    // }
+      return true;
+    }
+
+    function isValidNumberr(value) {
+      return /^[0-9]+$/.test(value) && value.length >= 2;
+    }
+
+    function isValidNumber(value) {
+      return /^[0-9]+$/.test(value) && value.length >= 4;
+    }
     // end
   </script>
 

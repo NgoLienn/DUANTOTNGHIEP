@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -43,7 +45,8 @@ public class Reviews implements Serializable {
     @Column(name = "comment", columnDefinition = "NVACHAR(MAX)")
     private String Comment;
 
+    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     @Column(name = "date_post")
-    private Date Date_post;
+    private Date Date_post = new Date();;
 }

@@ -59,18 +59,18 @@ public class CartController {
             users = authentication.getName();
         }
         Carts carts = cartRepo.findByCartUser(users);
-        model.addAttribute("carts", carts);
-        if(carts==null){
+        if (carts == null) {
             return "redirect:/user/CartNull";
-        }else {
+        } else {
             Long subtotal = cartItemsRepo.getSum(carts.getCartID());
             model.addAttribute("subtotal", subtotal);
+            model.addAttribute("carts", carts);
         }
-           return "user/cart";
+        return "user/cart";
     }
 
     @PostMapping("/addToCart/{productId}")
-    public String addToCart(@PathVariable int productId, Model model,Authentication authentication ,
+    public String addToCart(@PathVariable int productId, Model model, Authentication authentication,
             @RequestParam("size") String size, @RequestParam("soluong") int soluong) {
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
@@ -145,8 +145,12 @@ public class CartController {
         model.addAttribute("subtotal", subtotal);
 
         int soluong = cartItem.getQuantity() - 1;
-        cartItem.setQuantity(soluong);
-        cartItem.setSubtotal(cartItem.getPrice() * soluong);
+        if (soluong < 1) {
+
+        } else {
+            cartItem.setQuantity(soluong);
+            cartItem.setSubtotal(cartItem.getPrice() * soluong);
+        }
 
         cartItemsRepo.save(cartItem);
         return "user/cart";

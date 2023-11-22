@@ -1,6 +1,7 @@
 package com.poly.Controller;
 
-
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.poly.Entity.Account;
 import com.poly.Reponsitory.AccountReponsitory;
 import com.poly.Service.AccountService;
@@ -19,9 +20,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
 
 @Controller
 @RequestMapping("user/profile")
@@ -35,11 +39,16 @@ public class ProfileController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
     @Autowired
     UserServiceGoogle userServiceGoogle;
+
+    @Autowired
+    Cloudinary cloudinary;
+
     @GetMapping
     public String account(Model model,
-                          Authentication authentication){
+            Authentication authentication) {
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
             OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
@@ -49,14 +58,17 @@ public class ProfileController {
             users = authentication.getName();
 
         }
-        Account account=accountService.findByUsername(users);
+        Account account = accountService.findByUsername(users);
         model.addAttribute("account", new Account());
         model.addAttribute("profile", account);
         return "user/profile";
     }
+
     @PostMapping
-    public String changepass(Model m,Authentication authentication,
-        @ModelAttribute("account") Account account){
+    public String changepass(Model m, Authentication authentication,
+            @ModelAttribute("account") Account account, @RequestParam("uploadimage") MultipartFile file,
+            @RequestParam("filess") String filess, HttpServletRequest httpServletRequest) {
+
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
             OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
@@ -64,13 +76,36 @@ public class ProfileController {
             users = user.getAttribute("email");
         } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
             users = authentication.getName();
+        }
+
+        Account acc = accountService.findByUsername(users);
+
+        Map<String, Object> params = ObjectUtils.asMap(
+                "folder", "Images_FastFoodStore",
+                "resource_type", "image");
+        try {
+
+            acc.setFullname(account.getFullname());
+            acc.setPhone(account.getPhone());
+            acc.setAddress(account.getAddress());
+
+            String temp = null;
+            if (file != null && !file.isEmpty()) {
+                try {
+                    Map uploadResult = cloudinary.uploader().upload(file.getBytes(), params);
+                    String url = uploadResult.get("url").toString();
+
+                    temp = url;
+                } catch (Exception e) {
+                }
+            } else {
+                temp = filess;
+            }
+            acc.setAvata(temp);
+            accountReponsitory.save(acc);
+        } catch (Exception e) {
 
         }
-        Account acc =accountService.findByUsername(users);
-        acc.setFullname(account.getFullname());
-        acc.setPhone(account.getPhone());
-        acc.setAddress(account.getAddress());
-        accountReponsitory.save(acc);
         return "redirect:/user/profile";
     }
 }

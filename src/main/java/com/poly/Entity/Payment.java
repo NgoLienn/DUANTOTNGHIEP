@@ -34,8 +34,4 @@ public class Payment {
     @OneToMany(mappedBy = "payment")
     private Set<Transactionentity> transaction;
 
-
-
-
-
 }

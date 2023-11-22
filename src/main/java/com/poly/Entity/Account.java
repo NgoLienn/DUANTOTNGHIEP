@@ -42,7 +42,7 @@ public class Account implements Serializable {
     @Column(name = "phone", columnDefinition = "VARCHAR(50)")
     private String Phone;
 
-    @Column(name = "avata", columnDefinition = "NVARCHAR(100)")
+    @Column(name = "avata", columnDefinition = "NVARCHAR(MAX)")
     private String Avata;
 
     @Column(name = "token")

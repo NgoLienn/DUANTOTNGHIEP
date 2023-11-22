@@ -1,6 +1,7 @@
 package com.poly.Controller.admin;
 
 import java.io.File;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -68,9 +69,24 @@ public class ManagerProducts {
         if (query.equals("")) {
             listProduct = productRepo.findAll();
         } else {
-
             listProduct = productService.searchProducts(query);
+
         }
+
+        // Sắp xếp danh sách sản phẩm theo thời gian tạo (createAt) chỉ khi createAt
+        // không null
+        listProduct.sort((p1, p2) -> {
+            if (p1.getCreate_at() != null && p2.getCreate_at() != null) {
+                return p2.getCreate_at().compareTo(p1.getCreate_at());
+            } else if (p1.getCreate_at() == null && p2.getCreate_at() == null) {
+                return 0;
+            } else if (p1.getCreate_at() == null) {
+                return 1;
+            } else {
+                return -1;
+            }
+        });
+
         model.addAttribute("query", query);
         model.addAttribute("ListProduct", listProduct);
         // end

@@ -469,6 +469,8 @@ body {
   border: none;
   outline: none;
   text-align: center;
+  background: none;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .banner-big
@@ -478,16 +480,37 @@ body {
   .product-container
   .product-row
   .product-quantity
-  .decrement-button,
-.increment-button {
+  .decrement-button {
   text-decoration: none;
   color: #333;
   font-size: 18px;
   cursor: pointer;
   border: block;
   outline: none;
-  width: 25px;
+  width: 28px;
+  background: none;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
+.banner-big
+  .wraper
+  aside
+  .container-fluid
+  .product-container
+  .product-row
+  .product-quantity
+  .increment-button {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+  border: block;
+  outline: none;
+  width: 28px;
+  background: none;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
 .product-row .product-quantity a {
   background: white;
   width: 25px;

@@ -1,7 +1,6 @@
 package com.poly.Controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,13 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.Entity.Account;
-import com.poly.Entity.Order_Items;
 import com.poly.Entity.Orders;
-import com.poly.Entity.Products;
-import com.poly.Entity.Reviews;
 import com.poly.Entity.Size_Product;
 import com.poly.Entity.Status;
 import com.poly.Reponsitory.AccountReponsitory;
@@ -77,16 +72,36 @@ public class OrderController {
         return "user/order";
     }
 
+    // hủy đơn hàng
     @PostMapping("/orderCancel/{orderId}")
     public String cancelOrder(@PathVariable Long orderId, Model model) {
         // Tìm đơn hàng dựa trên orderId từ cơ sở dữ liệu
         Orders order = ordersRepo.findById(orderId).orElse(null);
         if (order != null) {
             // Lấy trạng thái "Đã hủy đơn" từ cơ sở dữ liệu
-            Status cancelledStatus = statusRepo.findByStatusName("Đã hủy đơn");
+            Status cancelledStatus = statusRepo.findById(6L).orElse(null); // Assuming the ID for "Đã hủy đơn" is 6
             // Kiểm tra xem trạng thái đã tìm được hay không
             if (cancelledStatus != null) {
                 // Cập nhật trạng thái đơn hàng thành "Đã hủy đơn"
+                order.setStatus(cancelledStatus);
+                // Lưu thay đổi vào cơ sở dữ liệu
+                ordersRepo.save(order);
+            }
+        }
+        return "redirect:/user/order";
+    }
+
+    // đã nhận hàng
+    @PostMapping("/orderReceived/{orderId}")
+    public String receivedOrder(@PathVariable Long orderId, Model model) {
+        // Tìm đơn hàng dựa trên orderId từ cơ sở dữ liệu
+        Orders order = ordersRepo.findById(orderId).orElse(null);
+        if (order != null) {
+            // Lấy trạng thái "Đã nhận hàng" từ cơ sở dữ liệu
+            Status cancelledStatus = statusRepo.findById(5L).orElse(null); // Assuming the ID for "Đã nhận hàng" is 6
+            // Kiểm tra xem trạng thái đã tìm được hay không
+            if (cancelledStatus != null) {
+                // Cập nhật trạng thái đơn hàng thành "Đã nhận hàng"
                 order.setStatus(cancelledStatus);
                 // Lưu thay đổi vào cơ sở dữ liệu
                 ordersRepo.save(order);

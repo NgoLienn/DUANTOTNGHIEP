@@ -70,15 +70,28 @@ public class ProductDetailController {
             model.addAttribute("sizeProduct", sizeProduct);
             firstName = sizeId;
         }
-            Size sizeName = sizeRepo.findBySizeName(firstName);
-            String sizeNames = sizeName.getTableSize().getSizeName();
-            model.addAttribute("sizeNames",sizeNames);
-//            model.addAttribute("sizeNames",sizename);
-
+        Size sizeName = sizeRepo.findBySizeName(firstName);
+        String sizeNames = sizeName.getTableSize().getSizeName();
+        model.addAttribute("sizeNames", sizeNames);
+        // model.addAttribute("sizeNames",sizename);
 
         // lấy ảnh lên trong sản phẩm chi tiết
         List<Image_product> images = imageProductService.getImagesByProductId(productId);
         model.addAttribute("images", images);
+
+        // tính trung bình số sao
+        List<Reviews> reviews = reviewRepo.finByProductRating(productId);
+        float star = 0;
+        int i = 0;
+        int totalReviews = reviews.size();
+        for (Reviews rv : reviews) {
+            star += rv.getRating();
+            i += 1;
+        }
+
+        System.out.println(star / i);
+        model.addAttribute("star", star / i);
+        model.addAttribute("reviews", reviews);
 
         // đánh giá
         List<Reviews> review1 = reviewRepo.finByProductAndRatingOne(productId);

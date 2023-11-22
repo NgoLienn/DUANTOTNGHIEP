@@ -98,7 +98,7 @@
                                     </div>
 
                                     <div class="product-row" th:each="item : ${cart.cart_items}">
-                                        <img src="/assets/images/bglogin.jpg" class="img-cell" alt="prod_pm">
+                                        <img th:src="${item.productId.image}" class="img-cell" alt="prod_pm">
                                         <div class="product-cell-name" th:text="${item.productId.name}"></div>
                                         <div class="product-cell px-2" th:text="${item.sizeName}" ></div>
                                         <div class="product-cell" th:text="${item.price}"></div>
