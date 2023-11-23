@@ -47,6 +47,8 @@ public class ProductDetailController {
         // lấy id sản phẩm
         Products produc = productService.getProductById(productId);
         model.addAttribute("product", produc);
+        // lấy idcategory
+        model.addAttribute("productCategory", produc.getCategoryId());
 
         List<Size> size = sizeRepo.findBySizeID(productId);
         Long firstName = null;

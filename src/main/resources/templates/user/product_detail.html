@@ -85,16 +85,20 @@
                                                 </span>
                                             </div>
                                             <div class="cart-buy-item">
-                                                <button type="submit" class="button-cart">
-                                                    <i class="bi bi-cart-plus"></i>
-                                                    Thêm Giỏ
-                                                    Hàng
+                                                <button type="submit" class="button-cart"
+                                                    th:if="${productCategory.categoryId != 4}"
+                                                    th:disabled="${productCategory.categoryId == 4}">
+                                                    <i class="bi bi-cart-plus"></i> Thêm Giỏ Hàng
                                                 </button>
                                                 <a th:href="@{/user/payment}">
-                                                    <button class="button-buy">Mua
-                                                        Ngay
+                                                    <button class="button-buy"
+                                                        th:if="${productCategory.categoryId != 4}"
+                                                        th:disabled="${productCategory.categoryId == 4}">
+                                                        Mua Ngay
                                                     </button>
                                                 </a>
+                                                <div th:if="${productCategory.categoryId == 4}" class=""
+                                                    style="font-size: 18px;">Sản phẩm chỉ mua tại cửa hàng!</div>
                                             </div>
                                         </div>
                                     </div>
