@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ManagerSize {
     @GetMapping("/managerSize")
     public String ViewSize(Model model) {
-        return "null";
+        return "admin/size";
     }
 }

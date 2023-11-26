@@ -33,9 +33,9 @@
                                             <div class="col gx-5 justify-content-center text-center">
                                                 <div class="col-auto">
                                                     <div class="avatar avatar-xl position-relative">
-                                                        <img src="/assets/images/avata_user.jpg" alt="profile_image"
-                                                            class=" border-radius-lg shadow-sm"
-                                                            style="object-fit: cover; cursor: pointer;">
+                                                        <img th:src="${profile.avata}" id="preview-image"
+                                                            alt="profile_image" class="border-radius-lg border-0"
+                                                            style="object-fit: cover; cursor: pointer; max-width: 250px; max-height: 250px;">
                                                     </div>
                                                 </div>
                                                 <div class="col-auto my-auto mt-5">
@@ -58,7 +58,7 @@
                                                 role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"
                                                 data-bs-parent="#nav-tabContent">
                                                 <form id="profileForm" method="post" action="user/profile"
-                                                    th:object="${account}">
+                                                    enctype="multipart/form-data" th:object="${account}">
                                                     <div class="card-header pb-0 mt-0">
                                                         <div class="d-flex align-items-center">
                                                             <p class="text-uppercase mb-0 py-2">Chỉnh Sửa Tài Khoản</p>
@@ -81,17 +81,6 @@
                                                             <div class="col-md-6 py-3">
                                                                 <div class="form-group">
                                                                     <label for="example-text-input"
-                                                                        class="form-control-label mb-1">Địa chỉ</label>
-                                                                    <textarea th:text="${profile.address}"
-                                                                        name="Address" class="form-control"
-                                                                        placeholder="Địa chỉ"
-                                                                        style="background: none; border: 1px solid gray;"></textarea>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6 py-3">
-                                                                <div class="form-group">
-                                                                    <label for="example-text-input"
                                                                         class="form-control-label mb-1">Số điện
                                                                         thoại</label>
                                                                     <input th:value="${profile.phone}" name="Phone"
@@ -99,22 +88,34 @@
                                                                         placeholder="Nhập số">
                                                                 </div>
                                                             </div>
-
-                                                        </div>
-                                                        <hr class="horizontal dark">
-                                                        <p class="text-uppercase text-sm mb-1">Hình Ảnh</p>
-                                                        <div class="row">
                                                             <div class="col-md-6 py-2">
                                                                 <div class="form-group">
                                                                     <label for="example-text-input"
-                                                                        class="form-control-label mb-1">Chọn Hình
-                                                                        Ảnh</label>
-                                                                    <input class="form-control" type="file" value="">
+                                                                        class="form-control-label mb-3">Chọn
+                                                                        Avata</label>
+
+                                                                    <input type="hidden" name="filess"
+                                                                        th:value="${profile.avata}">
+                                                                    <input class="form-control" type="file"
+                                                                        th:value="${profile.avata}" id="uploadimage"
+                                                                        name="uploadimage"
+                                                                        onchange="previewImage(event)">
                                                                 </div>
                                                             </div>
-
+                                                            <div class="col-md-6 py-3">
+                                                                <div class="form-group">
+                                                                    <label for="example-text-input"
+                                                                        class="form-control-label mb-1">Địa chỉ</label>
+                                                                    <textarea th:text="${profile.address}"
+                                                                        name="Address" class="form-control"
+                                                                        placeholder="Địa chỉ" rows="1"
+                                                                        style="background: none; border: none; border-bottom: 1px solid gray; box-shadow: none;">
+                                                                    </textarea>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <hr class="py-2">
+
+                                                        <br class="py-2">
                                                         <div class="btn-update d-flex align-items-center justify-content-center"
                                                             style="display: flex; flex-wrap: wrap;">
                                                             <button class="btn btn-danger btn-sm ms-4 px-4 py-2"
@@ -127,6 +128,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </aside>
                     </div>
                 </header>
@@ -151,7 +153,7 @@
         var loader = function () {
             setTimeout(function () {
                 $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
-            }, 2000);
+            }, 1000);
         };
         $(function () {
             loader();
@@ -178,6 +180,18 @@
 
         // ẩn hiên tab
 
+        // chọn ảnh đại diện sản phẩm
+        function previewImage(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function () {
+                var dataURL = reader.result;
+                var imgElement = document.getElementById('preview-image');
+                imgElement.src = dataURL;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+        // end
 
         // end
 

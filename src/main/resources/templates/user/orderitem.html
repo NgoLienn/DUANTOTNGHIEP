@@ -25,7 +25,15 @@
                     <div class="wraper">
                         <aside class="">
                             <div class="container-fluid py-4 mt-3">
-                                <span class="tttk text-uppercase"><b> Thông Tin Chi Tiết Đơn Hàng</b></span>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="tttk text-uppercase"><b> Thông Tin Chi Tiết Đơn Hàng</b></span>
+                                    <span>
+                                        <a th:href="@{/user/order}" class="text-decoration-none text-dark"
+                                            style="font-size: 16px;">
+                                            <i class="bi bi-arrow-left"></i> TRỞ LẠI
+                                        </a>
+                                    </span>
+                                </div>
                                 <div class="row mt-3">
                                     <div class="col-md-auto">
                                         <div class="tab-pane tab-content" id="nav-tabContent">
@@ -33,11 +41,13 @@
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <span class="h5 px-2">Đơn Mua
                                                     </span>
-                                                    <div class="p-4 text-end">
-                                                        <span class="order-code"></span> &nbsp; | &nbsp;
-                                                        <span class="" th:each="item : ${orderItems.get(0)}"
+                                                    <div class="p-4 text-end" th:each="item : ${orderItems.get(0)}">
+                                                        <span class="order-code"
+                                                            th:text="'MÃ ĐƠN: ' + ${item.Orders.orderID}"></span> &nbsp;
+                                                        | &nbsp;
+                                                        <span class=""
                                                             style="color: rgb(31, 154, 31); font-weight: bold;">
-                                                            <span th:text="'ĐƠN HÀNG ' + ${item.Orders.Status.name}"
+                                                            <span th:text="${item.Orders.Status.name}"
                                                                 class="text-uppercase" style="font-size: 17px;">
                                                             </span>
                                                         </span>
@@ -120,6 +130,16 @@
                                                             <br>
                                                             <br>
                                                         </th:block>
+
+                                                        <div class="text-right d-flex justify-content-end"
+                                                            th:each="item : ${orderItems.get(0)}">
+                                                            Tổng
+                                                            Tiền: &nbsp;
+                                                            <span style="font-weight: bold;"
+                                                                th:text="${#numbers.formatDecimal(item.Orders.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"
+                                                                class="text-danger h5">
+                                                            </span>
+                                                        </div>
                                                         <hr>
                                                     </div>
                                                     <div class="dcnhanhang">
@@ -423,25 +443,25 @@
         // end
 
         // random mã đơn
-        function generateRandomCode() {
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            const length = 8; // Độ dài của phần mã đơn sau ký tự "yummy"
-            let randomCode = 'YUM';
+        // function generateRandomCode() {
+        //     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        //     const length = 8; // Độ dài của phần mã đơn sau ký tự "yummy"
+        //     let randomCode = 'YUM';
 
-            for (let i = 0; i < length; i++) {
-                const randomIndex = Math.floor(Math.random() * characters.length);
-                randomCode += characters.charAt(randomIndex);
-            }
+        //     for (let i = 0; i < length; i++) {
+        //         const randomIndex = Math.floor(Math.random() * characters.length);
+        //         randomCode += characters.charAt(randomIndex);
+        //     }
 
-            return randomCode;
-        }
+        //     return randomCode;
+        // }
 
-        // Gán mã đơn ngẫu nhiên vào phần HTML tương ứng
-        const orderCodeElement = document.querySelector('.order-code');
-        if (orderCodeElement) {
-            const generatedCode = generateRandomCode();
-            orderCodeElement.textContent = `MÃ ĐƠN: ${generatedCode}`;
-        }
+        // // Gán mã đơn ngẫu nhiên vào phần HTML tương ứng
+        // const orderCodeElement = document.querySelector('.order-code');
+        // if (orderCodeElement) {
+        //     const generatedCode = generateRandomCode();
+        //     orderCodeElement.textContent = `MÃ ĐƠN: ${generatedCode}`;
+        // }
         //end
 
     </script>

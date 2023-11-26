@@ -43,11 +43,17 @@ public class HomeController {
         // sản phẩm theo thể loại
         List<Categories> categoryList = categoryService.getAllCategories();
         model.addAttribute("categoryList", categoryList);
+
         String username = httpServletRequest.getRemoteUser();
-//        Carts carts = cartRepo.findByCartUser(username);
-////        model.addAttribute("carts", carts);
-//        Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-//        model.addAttribute("subtotal", subtotal);
+        Carts carts = cartRepo.findByCartUser(username);
+        if (carts == null || carts.getCartID() == null) {
+            // Nếu giỏ hàng hoặc cartID là null, chuyển hướng người dùng đến trang thông báo
+            return "user/index";
+        } else {
+            Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+            model.addAttribute("carts", carts);
+            model.addAttribute("subtotal", subtotal);
+        }
 
         return "user/index";
     }
