@@ -68,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 http.formLogin()
                         .loginPage("/auth/signin")
                         .loginProcessingUrl("/auth/signin") // [/login]
-                        .defaultSuccessUrl("/", false)
+                        .successHandler(myAuthenticationSuccessHandler())
                         .failureUrl("/login/error")
                         .usernameParameter("username") // [username]
                         .passwordParameter("password").and().oauth2Login()
@@ -97,6 +97,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .logoutUrl("/auth/logoff") // [/logout]
                         .logoutSuccessUrl("/auth/signin"); // chuyen trang
         }
-
+        @Bean
+        public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+                return new CustomSuccessHandler();
+        }
 
 }
