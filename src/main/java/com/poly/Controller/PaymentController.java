@@ -76,11 +76,15 @@ public class PaymentController {
             users = authentication.getName();
         }
         if (payment.equals("true")) {
+            String selectedProvince = req.getParameter("province");
+            String selectedDistrict = req.getParameter("district");
+            String selectedWard = req.getParameter("ward");
             Account account = accountRepo.findByUsername(users);
             Carts carts = cartRepo.findByCartUser(users);
             float subtotal = cartItemsRepo.getSum(carts.getCartID());
             Status status = new Status();
             status.setStatusID(1L);
+            account.setAddress(selectedProvince + ", " + selectedDistrict + ", " + selectedWard);
             Orders orders = new Orders();
             orders.setAccount(account);
             orders.setStatus(status);
@@ -89,6 +93,7 @@ public class PaymentController {
             orders.setPaymentMethod("Thanh toán khi nhận hàng");
             orders.setTotalAmount(subtotal);
             ordersRepo.save(orders);
+
 
             for (Cart_Items cartItems : carts.getCart_items()) {
                 Products product = new Products();
