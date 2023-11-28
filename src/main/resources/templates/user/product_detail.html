@@ -32,14 +32,15 @@
                                             </div>
                                             <div class="danhgia mb-1">
                                                 <div class="star">
-                                                    <span id="percentage1" class="sosao"> </span> &nbsp;
-                                                    <span class="text-danger" id="rating1" th:data-rating="${star}"
-                                                        style=" font-size: 21px;">
-                                                    </span> &nbsp;
-                                                    &nbsp;&nbsp;<span class="danhgia_text text-dark"
-                                                        th:text="${reviews.size()} + ' Đánh giá'">|
-                                                        &nbsp;
-                                                    </span>
+                                                    <span class="sosao">4.1 </span> &nbsp;
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star-fill"></i>
+                                                    <i class="bi bi-star"></i>
+                                                    &nbsp;&nbsp;<span class="danhgia_text text-dark">|
+                                                        &nbsp; 66 Đánh
+                                                        Giá</span>
                                                 </div>
                                             </div>
 
@@ -85,20 +86,16 @@
                                                 </span>
                                             </div>
                                             <div class="cart-buy-item">
-                                                <button type="submit" class="button-cart"
-                                                    th:if="${productCategory.categoryId != 4}"
-                                                    th:disabled="${productCategory.categoryId == 4}">
-                                                    <i class="bi bi-cart-plus"></i> Thêm Giỏ Hàng
+                                                <button type="submit" class="button-cart">
+                                                    <i class="bi bi-cart-plus"></i>
+                                                    Thêm Giỏ
+                                                    Hàng
                                                 </button>
-                                                <a th:href="@{/user/payment}">
-                                                    <button class="button-buy"
-                                                        th:if="${productCategory.categoryId != 4}"
-                                                        th:disabled="${productCategory.categoryId == 4}">
-                                                        Mua Ngay
+                                                <a href="#">
+                                                    <button class="button-buy">Mua
+                                                        Ngay
                                                     </button>
                                                 </a>
-                                                <div th:if="${productCategory.categoryId == 4}" class=""
-                                                    style="font-size: 18px;">Sản phẩm chỉ mua tại cửa hàng!</div>
                                             </div>
                                         </div>
                                     </div>
@@ -252,157 +249,184 @@
                                     </ul>
                                     <br>
                                     <div class="">
-                                        <span id="percentage" class=""> </span>
-                                        <span class="text-danger" id="rating" th:data-rating="${star}"
-                                            style=" font-size: 21px;">
+                                        <span class="" id="rating" data-rating="3.5"
+                                            style="color: rgb(255, 140, 0); font-size: 21px;">
                                         </span> &nbsp;
-                                        <span th:text="${reviews.size()} + ' Đánh giá'"></span>
+                                        <span>317 đánh giá</span>
+                                        <br>
+                                        <div class="progress mt-2" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 220px;">
+                                            <div class="progress-bar w-75">75%</div>
+                                        </div>
+                                        <div class="progress mt-2" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 220px;">
+                                            <div class="progress-bar w-75">75%</div>
+                                        </div>
+                                        <div class="progress mt-2" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 220px;">
+                                            <div class="progress-bar w-75">75%</div>
+                                        </div>
+                                        <div class="progress mt-2" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 220px;">
+                                            <div class="progress-bar w-75">75%</div>
+                                        </div>
+                                        <div class="progress mt-2" role="progressbar" aria-label="Basic example"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 220px;">
+                                            <div class="progress-bar w-75">75%</div>
+                                        </div>
                                     </div>
-                                    <br>
                                 </div>
-                                <div class="review tab-content" id="myTabContent">
+                                <div class="review tab-content" id=" myTabContent">
                                     <div class="user-review tab-pane fade show active" id="home-tab-pane"
                                         role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                                        <div class="info-all" th:each="item : ${reviews}">
+                                        <div class="info-all" th:each="fivesao : ${review5}">
+                                            <div class="user-info">
+                                                <span>
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
+                                                        style="width: 50px; height: 50px; border-radius: 100%;"
+                                                        class="user-avatar">
+
+                                                    <span class="user-name" th:text="${fivesao.Account.fullname}">
+                                                    </span>
+                                                    <br>
+                                                    <span class="review-date" th:text="${fivesao.date_post}"></span>
+                                                </span>
+                                            </div>
+                                            <p class="review-content">Nội dung bình luận</p>
+
                                             <!-- delete comment -->
-                                            <div class="dropdown-center d-flex justify-content-end align-items-center">
-                                                <button class="position-absolute" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"
+                                            <div
+                                                class="dropdown-center d-flex justify-content-end align-items-baseline">
+                                                <button class="" type="button" data-bs-toggle="dropdown"
+                                                    aria-expanded="false"
                                                     style="background: none; border: none; font-size: 1.5rem; font-weight: bold;">
                                                     ...
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#1">Xóa Comment</a></li>
+                                                    <li><a class="dropdown-item" href="#">Xóa Comment</a></li>
                                                 </ul>
                                             </div>
                                             <!-- end -->
-                                            <div class="user-info">
-                                                <span>
-                                                    <img th:src="${item.Account.avata}" alt="User Avatar"
-                                                        style="width: 50px; height: 50px; border-radius: 100%;"
-                                                        class="user-avatar">
 
-                                                    <span class="user-name" th:text="${item.Account.fullname}">
-                                                    </span>
-                                                    <span class="text-danger" id="danhgia"
-                                                        th:data-rating="${item.rating}" style="font-size: 16px;">
-                                                    </span>
-                                                    <br>
-                                                    <span class="review-date" th:text="${item.date_post}"></span>
-                                                </span>
-                                            </div>
-                                            <p class="review-content mt-3" th:text="${item.comment}"></p>
-                                            <hr>
                                         </div>
+                                        <hr>
                                     </div>
                                     <div class="user-review tab-pane fade " id="sao5-tab-pane" role="tabpanel"
                                         aria-labelledby="sao5-tab" tabindex="0">
                                         <div class="info-all" th:each="fivesao : ${review5}">
                                             <div class="user-info">
                                                 <span>
-                                                    <img th:src="${fivesao.Account.avata}" alt="User Avatar"
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
                                                         style="width: 50px; height: 50px; border-radius: 100%;"
                                                         class="user-avatar">
 
                                                     <span class="user-name" th:text="${fivesao.Account.fullname}">
                                                     </span>
-                                                    <span class="text-danger" id="danhgia"
-                                                        th:data-rating="${fivesao.rating}" style="font-size: 16px;">
+                                                    <span class="" id="rating" data-rating="3.5">
+                                                        <span style="color: rgb(255, 145, 0); font-size: 13px;"><i
+                                                                class="bi bi-star-fill"></i></span>
+                                                        <span style="color: rgb(255, 145, 0); font-size: 13px;"><i
+                                                                class="bi bi-star-fill"></i></span>
+                                                        <span style="color: rgb(255, 145, 0); font-size: 13px;"><i
+                                                                class="bi bi-star-fill"></i></span>
+                                                        <span style="color: rgb(255, 145, 0); font-size: 13px;"><i
+                                                                class="bi bi-star-fill"></i></span>
+                                                        <span style="color: rgb(255, 145, 0); font-size: 13px;"><i
+                                                                class="bi bi-star-fill"></i></span>
                                                     </span>
                                                     <br>
                                                     <span class="review-date" th:text="${fivesao.date_post}"></span>
                                                 </span>
                                             </div>
-                                            <p class="review-content mt-3" th:text="${fivesao.comment}"></p>
-                                            <hr>
+                                            <p class="review-content" th:text="${fivesao.comment}"></p>
+                                        </div>
+                                        <hr>
+                                        <div class="info-all">
+                                            <div class="user-info">
+                                                <span>
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
+                                                        style="width: 50px; height: 50px; border-radius: 100%;"
+                                                        class="user-avatar">
+                                                    <span class="user-name">Tên người dùng</span>
+                                                    <br>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
+                                                </span>
+                                            </div>
+                                            <p class="review-content">Nội dung bình luận</p>
                                         </div>
                                     </div>
                                     <div class="user-review tab-pane fade" id="sao4-tab-pane" role="tabpanel"
                                         aria-labelledby="sao4-tab" tabindex="0">
-                                        <div class="info-all" th:each="foursao : ${review4}">
+                                        <div class="info-all">
                                             <div class="user-info">
                                                 <span>
-                                                    <img th:src="${foursao.Account.avata}" alt="User Avatar"
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
                                                         style="width: 50px; height: 50px; border-radius: 100%;"
                                                         class="user-avatar">
-
-                                                    <span class="user-name" th:text="${foursao.Account.fullname}">
-                                                    </span>
-                                                    <span class="text-danger" id="danhgia"
-                                                        th:data-rating="${foursao.rating}" style="font-size: 16px;">
-                                                    </span>
+                                                    <span class="user-name">Tên người dùng</span>
                                                     <br>
-                                                    <span class="review-date" th:text="${foursao.date_post}"></span>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
                                                 </span>
                                             </div>
-                                            <p class="review-content mt-3" th:text="${foursao.comment}"></p>
-                                            <hr>
+                                            <p class="review-content">Nội dung bình luận</p>
                                         </div>
                                     </div>
                                     <div class="user-review tab-pane fade" id="sao3-tab-pane" role="tabpanel"
                                         aria-labelledby="sao3-tab" tabindex="0">
-                                        <div class="info-all" th:each="threesao : ${review3}">
+                                        <div class="info-all">
                                             <div class="user-info">
                                                 <span>
-                                                    <img th:src="${threesao.Account.avata}" alt="User Avatar"
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
                                                         style="width: 50px; height: 50px; border-radius: 100%;"
                                                         class="user-avatar">
-
-                                                    <span class="user-name" th:text="${threesao.Account.fullname}">
-                                                    </span>
-                                                    <span class="text-danger" id="danhgia"
-                                                        th:data-rating="${threesao.rating}" style="font-size: 16px;">
-                                                    </span>
+                                                    <span class="user-name">Tên người dùng</span>
                                                     <br>
-                                                    <span class="review-date" th:text="${threesao.date_post}"></span>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
                                                 </span>
                                             </div>
-                                            <p class="review-content mt-3" th:text="${threesao.comment}"></p>
-                                            <hr>
+                                            <p class="review-content">Nội dung bình luận</p>
                                         </div>
                                     </div>
                                     <div class="user-review tab-pane fade" id="sao2-tab-pane" role="tabpanel"
                                         aria-labelledby="sao2-tab" tabindex="0">
-                                        <div class="info-all" th:each="twosao : ${review2}">
+                                        <div class="info-all">
                                             <div class="user-info">
                                                 <span>
-                                                    <img th:src="${twosao.Account.avata}" alt="User Avatar"
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
                                                         style="width: 50px; height: 50px; border-radius: 100%;"
                                                         class="user-avatar">
-
-                                                    <span class="user-name" th:text="${twosao.Account.fullname}">
-                                                    </span>
-                                                    <span class="text-danger" id="danhgia"
-                                                        th:data-rating="${twosao.rating}" style="font-size: 16px;">
-                                                    </span>
+                                                    <span class="user-name">Tên người dùng</span>
                                                     <br>
-                                                    <span class="review-date" th:text="${twosao.date_post}"></span>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
                                                 </span>
                                             </div>
-                                            <p class="review-content mt-3" th:text="${twosao.comment}"></p>
-                                            <hr>
+                                            <p class="review-content">Nội dung bình luận</p>
                                         </div>
                                     </div>
                                     <div class="user-review tab-pane fade" id="sao1-tab-pane" role="tabpanel"
                                         aria-labelledby="sao1-tab" tabindex="0">
-                                        <div class="info-all" th:each="onesao : ${review1}">
+                                        <div class="info-all">
                                             <div class="user-info">
                                                 <span>
-                                                    <img th:src="${onesao.Account.avata}" alt="User Avatar"
+                                                    <img src="/assets/images/avatar-1.jpg" alt="User Avatar"
                                                         style="width: 50px; height: 50px; border-radius: 100%;"
                                                         class="user-avatar">
-
-                                                    <span class="user-name" th:text="${onesao.Account.fullname}">
-                                                    </span>
-                                                    <span class="text-danger" id="danhgia"
-                                                        th:data-rating="${onesao.rating}" style="font-size: 16px;">
-                                                    </span>
+                                                    <span class="user-name">Tên người dùng</span>
                                                     <br>
-                                                    <span class="review-date" th:text="${onesao.date_post}"></span>
+                                                    <span class="review-date">Ngày giờ đăng bình
+                                                        luận</span>
                                                 </span>
                                             </div>
-                                            <p class="review-content mt-3" th:text="${onesao.comment}"></p>
-                                            <hr>
+                                            <p class="review-content">Nội dung bình luận</p>
                                         </div>
                                     </div>
                                     <!--  -->
@@ -498,7 +522,7 @@
 
 
 
-        // hiển thị mặc định size đầu tiên "size S" active
+        // hiển thị mặc định size đầu tiên active
         // Set the default size as "S" for all products
         document.addEventListener("DOMContentLoaded", function () {
             var defaultSizeButton = document.querySelector(".sosize");
@@ -521,129 +545,38 @@
         });
         // end
 
-        // tính số phần trăm đánh giá, trung bình của sao
+        // tính số phần trăm đánh giá sao
+        const percentage = (rating / 5) * 100;
         document.addEventListener("DOMContentLoaded", function () {
             const ratingDiv = document.getElementById("rating");
-            const ratingValue = parseFloat(ratingDiv.getAttribute("data-rating")); // Lấy giá trị từ thuộc tính 'data-rating'
-
-            const roundedRating = Math.floor(ratingValue); // Số sao full
-            const decimalPart = ratingValue - roundedRating; // Phần thập phân
-
-            const ratingText = document.getElementById("percentage");
-            ratingDiv.appendChild(ratingText);
-
-            if (!isNaN(ratingValue) && ratingValue >= 1) {
-                ratingText.textContent = ` ${ratingValue.toFixed(1)} `; // Hiển thị giá trị đánh giá kế bên sao
-            } else {
-                ratingText.textContent = ' 0 '; // Hiển thị thông báo khi không có đánh giá hoặc giá trị nhỏ hơn 1
-            }
+            const ratingValue = parseFloat(ratingDiv.getAttribute("data-rating"));
 
             for (let i = 1; i <= 5; i++) {
                 const star = document.createElement("i");
                 star.classList.add("fas");
-
-                if (i <= roundedRating) {
+                if (i <= ratingValue) {
                     star.classList.add("fa-star");
-                } else if (i === roundedRating + 1 && decimalPart > 0) {
-                    // Xử lý hiển thị nửa sao nếu có
-                    if (decimalPart >= 0.75) {
-                        star.classList.add("fa-star");
-                    } else if (decimalPart >= 0.25) {
-                        star.classList.add("fa-star-half-alt");
-                    }
+                } else if (i - 0.5 <= ratingValue) {
+                    star.classList.add("fa-star-half-alt");
                 } else {
                     star.classList.add("fa-star");
                     star.style.opacity = "0.3";
                 }
-
                 ratingDiv.appendChild(star);
             }
-
         });
-
-        // tính trung bình sao trên detail
-        document.addEventListener("DOMContentLoaded", function () {
-            const ratingDiv = document.getElementById("rating1");
-            const ratingValue = parseFloat(ratingDiv.getAttribute("data-rating")); // Lấy giá trị từ thuộc tính 'data-rating'
-
-            const roundedRating = Math.floor(ratingValue); // Số sao full
-            const decimalPart = ratingValue - roundedRating; // Phần thập phân
-
-            const ratingText = document.getElementById("percentage1");
-            ratingDiv.appendChild(ratingText);
-
-            if (!isNaN(ratingValue) && ratingValue >= 1) {
-                ratingText.textContent = ` ${ratingValue.toFixed(1)} `; // Hiển thị giá trị đánh giá kế bên sao
-            } else {
-                ratingText.textContent = ' 0 '; // Hiển thị thông báo khi không có đánh giá hoặc giá trị nhỏ hơn 1
-            }
-
-            for (let i = 1; i <= 5; i++) {
-                const star = document.createElement("i");
-                star.classList.add("fas");
-
-                if (i <= roundedRating) {
-                    star.classList.add("fa-star");
-                } else if (i === roundedRating + 1 && decimalPart > 0) {
-                    // Xử lý hiển thị nửa sao nếu có
-                    if (decimalPart >= 0.75) {
-                        star.classList.add("fa-star");
-                    } else if (decimalPart >= 0.25) {
-                        star.classList.add("fa-star-half-alt");
-                    }
-                } else {
-                    star.classList.add("fa-star");
-                    star.style.opacity = "0.3";
-                }
-
-                ratingDiv.appendChild(star);
-            }
-
-        });
-        // end
-
-        // end
-
-        // hiển thị ra số sao của người dùng
-        document.addEventListener("DOMContentLoaded", function () {
-            const ratingDivs = document.querySelectorAll("#danhgia");
-
-            ratingDivs.forEach(ratingDiv => {
-                const ratingValue = parseFloat(ratingDiv.getAttribute("data-rating")); // Get rating value here
-
-                const percentage = (ratingValue / 5) * 100;
-
-                for (let i = 1; i <= 5; i++) {
-                    const star = document.createElement("i");
-                    star.classList.add("fas");
-
-                    if (i <= ratingValue) {
-                        star.classList.add("fa-star");
-                    } else if (i - 0.5 <= ratingValue) {
-                        star.classList.add("fa-star-half-alt");
-                    } else {
-                        star.classList.add("fa-star");
-                        star.style.opacity = "0.3";
-                    }
-                    ratingDiv.appendChild(star);
-                }
-            });
-        });
-        // end
-
 
         // thanh tiến độ đánh giá
         // JavaScript code to update the progress bar
-        // function updateProgressBar(percentage) {
-        //     const progressBar = document.getElementById("progress-bar");
-        //     progressBar.style.width = percentage + "%";
-        //     progressBar.textContent = percentage + "%";
-        // }
+        function updateProgressBar(percentage) {
+            const progressBar = document.getElementById("progress-bar");
+            progressBar.style.width = percentage + "%";
+            progressBar.textContent = percentage + "%";
+        }
 
-        // // Example: Update the progress bar to 50%
-        // updateProgressBar(90);
+        // Example: Update the progress bar to 50%
+        updateProgressBar(90);
         // end
-
         // tang giam so luong
         function incrementQuantity() {
             var quantityInput = document.getElementById('quantityInput');

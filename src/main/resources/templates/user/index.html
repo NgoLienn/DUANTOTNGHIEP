@@ -216,9 +216,16 @@
 												th:text="'Price: ' +${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
 											</div>
 											<a class="tuychonshare text-dark" data-bs-toggle="modal"
-												th:data-bs-target="'#exampleModalAll' + ${item.productId}">
+												data-bs-target="#exampleModal">
 												<i class="bi bi-share"></i>
 											</a>
+											<a class="share text-dark" id="shareButton"
+												th:data-product-id="@{|/user/productDetail/?productID=${item.productId}|}">
+												<i class="bi bi-clipboard2-check"></i>
+											</a>
+											<div class="alert alert-success d-none" role="alert" id="shareAlert">
+												coppy thành công!
+											</div>
 											<!-- <div class="tym">
 												<i class="bi bi-heart-fill"></i>
 											</div> -->
@@ -229,12 +236,12 @@
 										</div>
 									</div>
 									<!-- Modal bảng chia sẻ-->
-									<div class="modal fade" th:id="'exampleModalAll' + ${item.productId}" tabindex="-1"
-										aria-labelledby="exampleModalLabelAll" aria-hidden="false">
+									<div class="modal fade" id="exampleModal" tabindex="-1"
+										aria-labelledby="exampleModalLabel" aria-hidden="false">
 										<div class="modal-dialog modal-dialog-centered">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h1 class="modal-title fs-5" id="exampleModalLabelAll">Chia Sẻ
+													<h1 class="modal-title fs-5" id="exampleModalLabel">Chia Sẻ
 													</h1>
 													<button type="button" class="btn-close" data-bs-dismiss="modal"
 														aria-label="Close">
@@ -257,17 +264,8 @@
 														<span style=" font-size: 12px; text-align: center;">Chia sẻ
 															Pinterest
 														</span>
+
 													</a>
-													<a class="share text-dark text-decoration-none" id="shareButton"
-														th:data-product-id="@{|/user/productDetail/?productID=${item.productId}|}">
-														<i class="bi bi-clipboard2-check" style="font-size: 25px;"></i>
-														<div class="" style="font-size: 12px; text-align: center;">coppy
-														</div>
-													</a>
-													<div class="alert alert-success d-none position-absolute"
-														role="alert" id="shareAlert">
-														coppy thành công!
-													</div>
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
@@ -310,6 +308,13 @@
 													th:data-bs-target="'#exampleModal' + ${product.productId}">
 													<i class="bi bi-share"></i>
 												</a>
+												<a class="share text-dark" href="#1" id="shareButton"
+													th:data-product-id="@{|/user/productDetail/?productID=${product.productId}|}">
+													<i class="bi bi-clipboard2-check"></i>
+												</a>
+												<div class="alert alert-success d-none" role="alert" id="shareAlert">
+													coppy thành công!
+												</div>
 												<!-- <div class="tym">
 													<i class="bi bi-heart-fill"></i>
 												</div> -->
@@ -350,19 +355,8 @@
 																sẻ
 																Pinterest
 															</span>
+
 														</a>
-														<a class="share text-dark text-decoration-none" id="shareButton"
-															th:data-product-id="@{|/user/productDetail/?productID=${product.productId}|}">
-															<i class="bi bi-clipboard2-check"
-																style="font-size: 25px;"></i>
-															<div class="" style="font-size: 12px; text-align: center;">
-																coppy
-															</div>
-														</a>
-														<div class="alert alert-success d-none position-absolute"
-															role="alert" id="shareAlert">
-															coppy thành công!
-														</div>
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-secondary"
@@ -455,7 +449,7 @@
 			$('.share').click(function (event) {
 				event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
 				// Lấy thông tin sản phẩm từ thuộc tính data-attribute
-				var alertElement = $(this).closest('.modal').find('.alert');
+				var alertElement = $(this).closest('.card-body').find('.alert');
 				var productId = $(this).data('product-id');
 
 				// Tạo đường dẫn cho sản phẩm dựa trên thông tin trên

@@ -47,6 +47,7 @@ public class IPNController {
             @RequestParam String vnp_TransactionStatus,
             @RequestParam String vnp_TxnRef,
             @RequestParam String vnp_SecureHash,
+
             HttpServletResponse resp, Model m, HttpServletRequest request) {
 
         Payment paymentEntity = paymentRepository.timma(vnp_TxnRef);
@@ -76,7 +77,7 @@ public class IPNController {
             paymentEntity.setStatus("YES");
             paymentRepository.save(paymentEntity);
 
-            //lưu khóa học vào order
+            //lưu vào order
             String username = request.getRemoteUser();
             Account account = accountRepo.findByUsername(username);
             Carts carts = cartRepo.findByCartUser(username);
@@ -110,7 +111,7 @@ public class IPNController {
             cartRepo.delete(carts);
         }
 
-        return "redirect:/user/index";
+        return "redirect:/user/confirmation";
     }
 
 

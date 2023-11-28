@@ -1,36 +1,54 @@
-$(function () {
-    apiProvince=(prodvince)=>{
-        let district;
-    
-        prodvince.forEach(element => {
-            $('#province').append(`<option value="${element.code}">${element.name}</option>`)
+// 1. what is API
+// 2. How do I call API
+// 3. Explain code
+const host = "https://provinces.open-api.vn/api/";
+var callAPI = (api) => {
+    return axios.get(api)
+        .then((response) => {
+            renderData(response.data, "province");
         });
-        $('#province').change(function () {
-            $('#district').html('<option value="-1">Chọn quận/huyện</option>')
-            $('#town').html('<option value = "-1"> Chọn phường/xã </option>')
-            let value = $(this).val();
-            $.each(prodvince,function(index,element){
-                if (element.code == value) {
-                    district = element.districts;
-                    $.each(element.districts,function(index,element1){
-                        $('#district').append(`<option value="${element1.code}">${element1.name}</option>`)
-                    })
-                    
-                }
-            })         
-        });    
-        $('#district').change(function () {
-            $('#town').html('<option value = "-1"> Chọn phường/xã </option>')
-            let value = $(this).val();
-            $.each(district,function(index,element){
-                if (element.code == value) {
-                    element.wards.forEach(element1 => {
-                        $('#town').append(`<option value="${element1.code}">${element1.name}</option>`)
-                    });
-                }
-            })       
+}
+callAPI('https://provinces.open-api.vn/api/?depth=1');
+var callApiDistrict = (api) => {
+    return axios.get(api)
+        .then((response) => {
+            renderData(response.data.districts, "district");
         });
-    }
-    prodvince = JSON.parse(data);
-     apiProvince(prodvince);
+}
+var callApiWard = (api) => {
+    return axios.get(api)
+        .then((response) => {
+            renderData(response.data.wards, "ward");
+        });
+}
+
+var renderData = (array, select) => {
+    let row = ' <option disable value="">chọn</option>';
+    array.forEach(element => {
+        row += `<option value="${element.code}">${element.name}</option>`
+    });
+    document.querySelector("#" + select).innerHTML = row
+}
+
+$("#province").change(() => {
+    callApiDistrict(host + "p/" + $("#province").val() + "?depth=2");
+    printResult();
+});
+$("#district").change(() => {
+    callApiWard(host + "d/" + $("#district").val() + "?depth=2");
+    printResult();
+});
+$("#ward").change(() => {
+    printResult();
 })
+
+var printResult = () => {
+    if ($("#district").val() != "" && $("#province").val() != "" &&
+        $("#ward").val() != "") {
+        let result = $("#province option:selected").text() +
+            " | " + $("#district option:selected").text() + " | " +
+            $("#ward option:selected").text();
+        $("#result").text(result)
+    }
+
+}
