@@ -27,12 +27,6 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException {
-//        String targetUrl = determineTargetUrl(authentication);
-//        if (response.isCommitted()) {
-//            System.out.println("Can't redirect");
-//            return;
-//        }
-//        System.out.println(targetUrl);
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
             OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
@@ -49,29 +43,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
             redirectStrategy.sendRedirect(request, response, "/");
         }
     }
-    private String determineTargetUrl(Authentication authentication, HttpServletRequest request){
-        String url="";
-        List<String> roles = SecurityUtils.getAuthorities();
-        if(isAdmin(roles)){
-            url = "Admin/";
 
-        }else if (isUser(roles)){
-            url = "/";
-        }
-        return url;
-    }
-    private Boolean isAdmin(List<String> roles){
-        if(roles.contains("admin")){
-        return true;
-        }
-        return false;
-    }
-    private Boolean isUser(List<String> roles){
-        if(roles.contains("user")){
-            return true;
-        }
-        return false;
-    }
     public void setRedirectStrategy(RedirectStrategy redirectStrategy) {
         this.redirectStrategy = redirectStrategy;
     }

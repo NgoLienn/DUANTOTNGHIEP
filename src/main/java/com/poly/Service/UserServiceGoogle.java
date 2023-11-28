@@ -1,16 +1,16 @@
 package com.poly.Service;
 
-import com.poly.Entity.Account;
-import com.poly.Entity.Blog;
-import com.poly.Entity.Provider;
+import com.poly.Entity.*;
 import com.poly.Reponsitory.AccountReponsitory;
+import com.poly.Reponsitory.AuthorityResponsitory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceGoogle {
-
+    @Autowired
+    AuthorityResponsitory authorityResponsitory;
     @Autowired
     private AccountReponsitory repo;
 
@@ -28,9 +28,16 @@ public class UserServiceGoogle {
             newUser.setProvider(Provider.GOOGLE);
             newUser.setActive(true);
 
+            Roles roles = new Roles();
+            roles.setId("2");
+            Authority authority = new Authority();
+            authority.setAccount(newUser);
+            authority.setRole(roles);
+
+
 
             repo.save(newUser);
-
+            authorityResponsitory.save(authority);
             System.out.println("Created new user: " + username);
         }
 

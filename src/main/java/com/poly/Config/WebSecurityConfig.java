@@ -1,7 +1,9 @@
 package com.poly.Config;
 
 
+import com.poly.Entity.Authority;
 import com.poly.Reponsitory.AccountReponsitory;
+import com.poly.Reponsitory.AuthorityResponsitory;
 import com.poly.Service.CustomOAuth2User;
 import com.poly.Service.CustomOAuth2UserService;
 import com.poly.Service.UserServiceGoogle;
@@ -29,7 +31,8 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+        @Autowired
+        AuthorityResponsitory authorityResponsitory;
         @Autowired
         UserService userService;
         @Autowired
@@ -56,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // phan quyen su dung
                 http.authorizeRequests()
-                        .antMatchers("/addToCart/*","/user/profile", "/cart", "/user/order", "/user/orderitem").authenticated()
+                        .antMatchers("/addToCart/*","/user/profile", "/cart", "/user/order", "/user/orderitem", "/admin/**").authenticated()
                         // .antMatchers("/admin/**").hasRole("admin")
                         .antMatchers("/api/authorities").hasRole("")
                         .anyRequest().permitAll(); // anonymous
@@ -84,8 +87,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                         System.out.println("Authentication name: " + authentication.getName());
                                         CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
                                         userServicegg.processOAuthPostLogin(oauthUser.getEmail());
-
-                                        response.sendRedirect("http://localhost:8080/");
+                                        String users = oauthUser.getAttribute("email");
+                                        Authority authority = authorityResponsitory.findByUserName(users);
+                                        String Roles = authority.getRole().getName();
+                                        if(Roles.equals("admin")){
+                                                response.sendRedirect( "/admin/managerAccount");
+                                        }else{
+                                                response.sendRedirect( "/");
+                                        }
                                 }
                         })
                 ;
