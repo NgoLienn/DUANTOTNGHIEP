@@ -91,4 +91,7 @@ public class Products implements Serializable {
     public void setProductId(int productId) {
         this.productId = productId;
     }
+
+    @OneToMany(mappedBy = "productId")
+    List<Image_product> iamgeproduct;
 }
