@@ -76,9 +76,9 @@ public class PaymentController {
             users = authentication.getName();
         }
         if (payment.equals("true")) {
-            String selectedProvince = req.getParameter("province");
-            String selectedDistrict = req.getParameter("district");
-            String selectedWard = req.getParameter("ward");
+            String selectedProvince = req.getParameter("tinh");
+            String selectedDistrict = req.getParameter("huyen");
+            String selectedWard = req.getParameter("xa");
             Account account = accountRepo.findByUsername(users);
             Carts carts = cartRepo.findByCartUser(users);
             float subtotal = cartItemsRepo.getSum(carts.getCartID());

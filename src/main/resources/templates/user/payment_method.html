@@ -65,17 +65,14 @@
                                                         </div>
                                                         <div class="col-md-12 py-2">
                                                             <div class="form-group">
-                                                                <select class="form-control" id="province" name="province" required>
-                                                                    <!-- Tùy chọn sẽ được thêm bằng JavaScript -->
-                                                                    <option></option>
+                                                                <select name="tinh" id="province">
+                                                                    <option value="-1">Tỉnh Thành/Chọn tỉnh thành</option>
                                                                 </select>
-                                                                <select class="form-control" id="district" name="district" required>
-                                                                    <!-- Tùy chọn sẽ được thêm bằng JavaScript -->
-                                                                    <option></option>
+                                                                <select name="huyen" id="district">
+                                                                    <option value="-1">Quận Huyện/Chọn quận/huyện</option>
                                                                 </select>
-                                                                <select class="form-control" id="ward" name="ward" required>
-                                                                    <!-- Tùy chọn sẽ được thêm bằng JavaScript -->
-                                                                    <option></option>
+                                                                <select name="xa" id="town">
+                                                                    <option value="-1">Chọn Xã/Chọn phường/xã</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -173,8 +170,16 @@
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="data.json"></script>
     <script src="/assets/js/api.js"></script>
 
 
@@ -182,8 +187,7 @@
 
     <script>
         //address
-
-
+       
         // loading khi refresh
         var loader = function () {
             setTimeout(function () {

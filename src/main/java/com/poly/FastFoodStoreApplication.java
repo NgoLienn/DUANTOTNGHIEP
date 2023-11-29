@@ -12,17 +12,17 @@ import java.text.SimpleDateFormat;
 @EnableAsync(proxyTargetClass = true)
 public class FastFoodStoreApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(FastFoodStoreApplication.class, args);
+    public static void main(String[] args) {
+        SpringApplication.run(FastFoodStoreApplication.class, args);
 
-		Orders entity = new Orders();
+        Orders entity = new Orders();
 
-		// Lấy ngày và giờ hiện tại
-		Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
-		entity.setOrderTime(currentTimestamp);
+        // Lấy ngày và giờ hiện tại
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+        entity.setOrderTime(currentTimestamp);
 
-		// Định dạng và hiển thị ngày và giờ
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	}
+        // Định dạng và hiển thị ngày và giờ
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    }
 
 }
