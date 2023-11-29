@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // phan quyen su dung
                 http.authorizeRequests()
-                        .antMatchers("/addToCart/*","/user/profile", "/cart", "/user/order", "/user/orderitem", "/admin/**").authenticated()
+                        .antMatchers("/addToCart/*", "/cart","/user/**", "/admin/**").authenticated()
                         // .antMatchers("/admin/**").hasRole("admin")
                         .antMatchers("/api/authorities").hasRole("")
                         .anyRequest().permitAll(); // anonymous
@@ -72,8 +72,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 http.formLogin()
                         .loginPage("/auth/signin")
                         .loginProcessingUrl("/auth/signin") // [/login]
-                        .successHandler(myAuthenticationSuccessHandler())
-                        .failureUrl("/login/error")
+                        .successHandler(myAuthenticationSuccessHandler()) // succeshadler la truy cap đúng mk thì sẽ trả về trag url
+                        .failureUrl("/login/error") //đăng nhập sai tra ve trang error
                         .usernameParameter("username") // [username]
                         .passwordParameter("password").and().oauth2Login()
                         .loginPage("/auth/signin")
