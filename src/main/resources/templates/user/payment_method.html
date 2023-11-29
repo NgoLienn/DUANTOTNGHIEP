@@ -6,9 +6,9 @@
 <link rel="stylesheet" href="/assets/css_main/payment_method.css">
 
 <body>
-    <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+<div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
 
-    <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
+<div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
 <form action="/user/payment" method="post">
     <div class="containerr ">
         <div class="image_big">
@@ -41,7 +41,7 @@
                                             <label for="address3" th:text="${account.address}"></label>
                                         </div>
                                         <a th:href="@{user/payment#myModal}" id="openModal"
-                                            class=" add-new-address px-3 text-location d-flex justify-content-end">
+                                           class=" add-new-address px-3 text-location d-flex justify-content-end">
                                             Thay Đổi
                                         </a>
 
@@ -54,13 +54,13 @@
                                                         <div class="col-md-6 py-2">
                                                             <div class="form-group">
                                                                 <input class="form-control" type="text" value=""
-                                                                    placeholder="Họ Và Tên">
+                                                                       placeholder="Họ Và Tên">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 py-2">
                                                             <div class="form-group">
                                                                 <input class="form-control" type="text" value=""
-                                                                    placeholder="Số Điện Thoại">
+                                                                       placeholder="Số Điện Thoại">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12 py-2">
@@ -79,8 +79,8 @@
                                                         <div class="col-md-12 py-2">
                                                             <div class="form-group">
                                                                 <textarea class="form-control" type="text" value=""
-                                                                    placeholder="Địa Chỉ Cụ Thể" rows="3"
-                                                                    style="vertical-align: top;">
+                                                                          placeholder="Địa Chỉ Cụ Thể" rows="3"
+                                                                          style="vertical-align: top;">
                                                                 </textarea>
                                                             </div>
                                                         </div>
@@ -114,34 +114,34 @@
                                     </div>
                                 </div>
                             </div>
-                                    <input type="hidden" th:value="${subtotal}" name="vnp_Amount">
-                                    <input type="hidden" th:value="${cart.cartID}" name="oder">
+                            <input type="hidden" th:value="${subtotal}" name="vnp_Amount">
+                            <input type="hidden" th:value="${cart.cartID}" name="oder">
                             <div class="container-fluid py-4 mt-3">
                                 <ul class="nav nav-tabs tab-pane-payment" id="myTab" role="tablist">
                                     <span class="h5">Phương Thức Thanh Toán</span>
                                     <li class="nav-item" role="presentation">
                                         <input class="nav-link active" id="pills-home-tab" data-bs-toggle="tab"
-                                            data-bs-target="#pills-home" type="radio" role="tab"
-                                            aria-controls="pills-home" aria-selected="true" name="payment" value="true" checked>Thanh Toán Khi Nhận Hàng
+                                               data-bs-target="#pills-home" type="radio" role="tab"
+                                               aria-controls="pills-home" aria-selected="true" name="payment" value="true" checked>Thanh Toán Khi Nhận Hàng
                                         </input>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <input class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                            data-bs-target="#pills-profile" type="radio" role="tab"
-                                            aria-controls="pills-profile" aria-selected="false" name="payment" value="false">Thanh Toán Online
+                                               data-bs-target="#pills-profile" type="radio" role="tab"
+                                               aria-controls="pills-profile" aria-selected="false" name="payment" value="false">Thanh Toán Online
                                         </input>
                                     </li>
                                 </ul>
                                 <div class="tab-content mb-4" id="myTabContent">
                                     <div class="tab-pane fade show active p-4" id="pills-home" role="tabpanel"
-                                        aria-labelledby="pills-home-tab" tabindex="0">Thanh Toán Khi Nhận Hàng:
+                                         aria-labelledby="pills-home-tab" tabindex="0">Thanh Toán Khi Nhận Hàng:
                                         &nbsp;&nbsp;&nbsp;
                                         Phí thu hộ: ₫0 VNĐ. Ưu đãi về phí vận chuyển (nếu có) áp dụng cả với phí thu hộ.
                                     </div>
                                     <div class="tab-pane fade p-4" id="pills-profile" role="tabpanel"
-                                        aria-labelledby="pills-profile-tab" tabindex="0"><a href="#"
-                                            class="text-decoration-none text-dark">Thanh Toán
-                                            Online</a>
+                                         aria-labelledby="pills-profile-tab" tabindex="0"><a href="#"
+                                                                                             class="text-decoration-none text-dark">Thanh Toán
+                                        Online</a>
                                     </div>
                                 </div>
                                 <div class="container-fluid-payment">
@@ -159,7 +159,7 @@
                     </div>
                 </header>
             </div>
-            
+
             <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
         </div>
 
@@ -167,94 +167,94 @@
     </div>
 </form>
 
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="data.json"></script>
-    <script src="/assets/js/api.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="data.json"></script>
+<script src="/assets/js/api.js"></script>
 
 
 
 
-    <script>
-        //address
-       
-        // loading khi refresh
-        var loader = function () {
-            setTimeout(function () {
-                $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
-            }, 2000);
-        };
-        $(function () {
-            loader();
-        });
-        // end
+<script>
+    //address
 
-        $(function () {
-            $(window).scroll(function () {
-                var scroll = $(window).scrollTop();
-                if (scroll >= 1024) {
-                    $(".navb").addClass("scrolled");
-                } else {
-                    $(".navb").removeClass("scrolled");
-                }
-            });
-        });
+    // loading khi refresh
+    var loader = function () {
+        setTimeout(function () {
+            $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+        }, 2000);
+    };
+    $(function () {
+        loader();
+    });
+    // end
 
-        $(function () {
-            $(".navbar-toggler").click(function () {
-                $(".navbar-collapse").toggleClass("show");
-            });
-        });
-
-        // Ẩn hiện iframe thay đổi địa chỉ nhận hàng
-
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById("openModal");
-        var span = document.getElementsByClassName("close")[0];
-
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+    $(function () {
+        $(window).scroll(function () {
+            var scroll = $(window).scrollTop();
+            if (scroll >= 1024) {
+                $(".navb").addClass("scrolled");
+            } else {
+                $(".navb").removeClass("scrolled");
             }
-        }
-        // end
-        // Lấy giá trị được nhập từ form thay đổi địa chỉ
-        document.querySelector('.hoanthanh').addEventListener('click', function (event) {
-            event.preventDefault();
-
-            var fullName = document.querySelector('input[placeholder="Họ Và Tên"]').value;
-            var phoneNumber = document.querySelector('input[placeholder="Số Điện Thoại"]').value;
-            var address = document.querySelector('input[placeholder="Tỉnh/Thành Phố, Quận/Huyện..."]').value;
-
-            document.querySelector('label[for="address1"]').textContent = fullName;
-            document.querySelector('label[for="address2"]').textContent = "(+84) " + phoneNumber;
-            document.querySelector('label[for="address3"]').textContent = address;
-
-            // Đóng modal
-            var modal = document.getElementById('myModal');
-            modal.style.display = "none";
         });
+    });
 
-        // end
-    </script>
+    $(function () {
+        $(".navbar-toggler").click(function () {
+            $(".navbar-collapse").toggleClass("show");
+        });
+    });
+
+    // Ẩn hiện iframe thay đổi địa chỉ nhận hàng
+
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("openModal");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    // end
+    // Lấy giá trị được nhập từ form thay đổi địa chỉ
+    document.querySelector('.hoanthanh').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var fullName = document.querySelector('input[placeholder="Họ Và Tên"]').value;
+        var phoneNumber = document.querySelector('input[placeholder="Số Điện Thoại"]').value;
+        var address = document.querySelector('input[placeholder="Tỉnh/Thành Phố, Quận/Huyện..."]').value;
+
+        document.querySelector('label[for="address1"]').textContent = fullName;
+        document.querySelector('label[for="address2"]').textContent = "(+84) " + phoneNumber;
+        document.querySelector('label[for="address3"]').textContent = address;
+
+        // Đóng modal
+        var modal = document.getElementById('myModal');
+        modal.style.display = "none";
+    });
+
+    // end
+</script>
 </body>
 
 </html>

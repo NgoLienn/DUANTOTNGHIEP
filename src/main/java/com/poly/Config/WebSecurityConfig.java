@@ -65,6 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .antMatchers("/api/authorities").hasRole("")
                         .anyRequest().permitAll(); // anonymous
 
+
                 // dieu khien loi truy cap khong dung vai tro
                 http.exceptionHandling().accessDeniedPage("/login/unauthorized"); // [/error]
 

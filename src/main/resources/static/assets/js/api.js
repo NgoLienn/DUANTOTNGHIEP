@@ -1,36 +1,41 @@
 $(function () {
-    apiProvince=(prodvince)=>{
-        let district;
-    
-        prodvince.forEach(element => {
-            $('#province').append(`<option value="${element.code}">${element.name}</option>`)
+    apiProvince = (provinces) => {
+        let districts;
+
+        provinces.forEach(province => {
+            $('#province').append(`<option value="${province.name}">${province.name}</option>`);
         });
+
         $('#province').change(function () {
-            $('#district').html('<option value="-1">Chọn quận/huyện</option>')
-            $('#town').html('<option value = "-1"> Chọn phường/xã </option>')
+            $('#district').html('<option value="-1">Chọn quận/huyện</option>');
+            $('#town').html('<option value="-1"> Chọn phường/xã </option>');
+
             let value = $(this).val();
-            $.each(prodvince,function(index,element){
-                if (element.code == value) {
-                    district = element.districts;
-                    $.each(element.districts,function(index,element1){
-                        $('#district').append(`<option value="${element1.code}">${element1.name}</option>`)
-                    })
-                    
-                }
-            })         
-        });    
-        $('#district').change(function () {
-            $('#town').html('<option value = "-1"> Chọn phường/xã </option>')
-            let value = $(this).val();
-            $.each(district,function(index,element){
-                if (element.code == value) {
-                    element.wards.forEach(element1 => {
-                        $('#town').append(`<option value="${element1.code}">${element1.name}</option>`)
+
+            $.each(provinces, function (index, province) {
+                if (province.name === value) {
+                    districts = province.districts;
+                    $.each(province.districts, function (index, district) {
+                        $('#district').append(`<option value="${district.name}">${district.name}</option>`);
                     });
                 }
-            })       
+            });
+        });
+
+        $('#district').change(function () {
+            $('#town').html('<option value="-1"> Chọn phường/xã </option>');
+            let value = $(this).val();
+
+            $.each(districts, function (index, district) {
+                if (district.name === value) {
+                    district.wards.forEach(ward => {
+                        $('#town').append(`<option value="${ward.name}">${ward.name}</option>`);
+                    });
+                }
+            });
         });
     }
-    prodvince = JSON.parse(data);
-     apiProvince(prodvince);
-})
+
+    let provinces = JSON.parse(data);
+    apiProvince(provinces);
+});
