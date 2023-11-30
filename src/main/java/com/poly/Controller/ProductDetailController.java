@@ -85,14 +85,21 @@ public class ProductDetailController {
         List<Reviews> reviews = reviewRepo.finByProductRating(productId);
         float star = 0;
         int i = 0;
-        int totalReviews = reviews.size();
-        for (Reviews rv : reviews) {
-            star += rv.getRating();
-            i += 1;
-        }
 
-        System.out.println(star / i);
-        model.addAttribute("star", star / i);
+        // Kiểm tra xem có đánh giá nào không trước khi tính toán trung bình số sao
+        if (!reviews.isEmpty()) {
+            for (Reviews rv : reviews) {
+                star += rv.getRating();
+                i += 1;
+            }
+            float averageRating = star / i;
+            System.out.println(averageRating);
+            model.addAttribute("star", averageRating);
+        } else {
+            // Nếu không có đánh giá nào, gán giá trị mặc định hoặc xử lý theo ý của bạn
+            model.addAttribute("star", 0); // hoặc có thể gán giá trị mặc định khác tùy thuộc vào logic của ứng dụng
+        }
+        
         model.addAttribute("reviews", reviews);
 
         // đánh giá

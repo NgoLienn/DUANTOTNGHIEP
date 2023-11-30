@@ -15,7 +15,7 @@ import com.poly.Reponsitory.ProductRepository;
 public class ImageProductService {
 
     @Autowired
-    private ImageProductRepository imageProductRepository;
+    private ImageProductRepository imageProductRepo;
 
     @Autowired
     private ProductRepository productrepo;
@@ -24,8 +24,18 @@ public class ImageProductService {
         // return imageProductRepository.findByProductId(productId);
         Products product = productrepo.findById(productId).orElse(null);
         if (product != null) {
-            return imageProductRepository.findByProductId(product);
+            return imageProductRepo.findByProductId(product);
         }
         return Collections.emptyList();
+    }
+
+    // load sản phẩm theo id
+    public Image_product getImageProductById(Long imageproductId) {
+        return imageProductRepo.findById(imageproductId).get();
+    }
+    // end
+
+    public void delete(Long iamgeproduct) {
+        imageProductRepo.deleteById(iamgeproduct);
     }
 }

@@ -45,4 +45,7 @@ public class Image_product implements Serializable {
         return productId.getId();
     }
 
+    public Long getId() {
+        return imageproductId;
+    }
 }

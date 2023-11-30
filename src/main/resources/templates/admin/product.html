@@ -61,9 +61,9 @@
           <!-- end -->
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a href="" class="nav-link text-white font-weight-bold px-0">
+              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Tài Khoản</span>
+                <span class="d-sm-inline d-none fixed-plugin-button-nav">Tài Khoản</span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -76,8 +76,8 @@
               </a>
             </li>
             <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              <a href="javascript:;" class="nav-link text-white p-0 font-weight-bold">
+                <!-- <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i> -->
               </a>
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
@@ -257,10 +257,6 @@
                       <span>
                         <img id="preview-image" class="max-width-300 max-height-300 pt-4" th:src="*{image}" alt=""
                           style="padding-left: 15px;">
-                        <!-- <img id="preview-image" class="max-width-300 max-height-300 pt-4" th:if="${image < 1 }"
-                          th:src="@{https://res.cloudinary.com/dlhd6e29k/image/upload/v1700330104/Images_FastFoodStore/qgakvof0en31fy9yx89x.png}"
-                          alt="" style="padding-left: 15px;"> -->
-
                       </span>
                       <!-- multiple giúp chọn nhiều ảnh cùng lúc -->
                       <input type="hidden" name="filess" th:value="${newProduct.image}">
@@ -293,7 +289,6 @@
                     th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit')}">
                     Xóa
                   </button>
-
 
                   <a th:href="@{/admin/managerProducts}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts')}"

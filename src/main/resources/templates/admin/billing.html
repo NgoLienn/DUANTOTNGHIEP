@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head th:replace="~{zlayout/fragmentsAdmin :: html_headAdmin}"></head>
+<style>
+  .emailtable::-webkit-scrollbar {
+    display: none;
+  }
+</style>
 
 <body class="g-sidenav-show bg-gray-100">
   <!-- loader khi vào -->
@@ -50,9 +55,9 @@
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a href="../pages/profile.html" class="nav-link text-white font-weight-bold px-0">
+              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Tài Khoản</span>
+                <span class="d-sm-inline d-none fixed-plugin-button-nav">Tài Khoản</span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -65,8 +70,8 @@
               </a>
             </li>
             <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              <a href="javascript:;" class="nav-link text-white p-0 font-weight-bold">
+                <!-- <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i> -->
               </a>
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
@@ -138,298 +143,1211 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-md-7 mt-4">
+        <div class="col-md-12 mt-4">
           <div class="card">
-            <div class="card-header pb-0 px-3">
-              <h6 class="mb-0">Thông Tin Đặt Hàng</h6>
+            <div class="card-header pb-0 px-3 d-flex align-items-center justify-content-between">
+              <h6 class="mb-0">Thông Tin Đơn Hàng</h6>
+              <div class="d-flex justify-content-end ">
+                <i class="far fa-calendar-alt me-2 pt-1"></i>
+                <small>
+                  <script>
+                    document.write(new Date().getDate(), ' Tháng ')
+                    document.write(new Date().getMonth() + 1, ' Năm ')
+                    document.write(new Date().getFullYear())
+                  </script>
+                </small>
+              </div>
             </div>
+            <nav class="pt-4 ps-3 pe-3">
+              <div class="nav nav-tabs gap-6 border-0" id="nav-tab" role="tablist">
+                <a class="nav-link active border-bottom" id="nav-home-tab-all" data-bs-toggle="tab" href="#nav-home-all"
+                  role="tab" aria-controls="nav-home-alll" aria-selected="true">Tất Cả
+                </a>
+                <a class="nav-link border-bottom" id="nav-home-tab-cho" data-bs-toggle="tab" href="#nav-home-cho"
+                  role="tab" aria-controls="nav-home-cho" aria-selected="false">Chờ Xác Nhận
+                </a>
+                <a class="nav-link border-bottom" id="nav-home-tab-da" data-bs-toggle="tab" href="#nav-home-da"
+                  role="tab" aria-controls="nav-home-da" aria-selected="false">Đã Xác Nhận
+                </a>
+                <a class="nav-link border-bottom" id="nav-home-tab-dang-giao" data-bs-toggle="tab"
+                  href="#nav-home-dang-giao" role="tab" aria-controls="nav-home-dang-giao" aria-selected="false">Đang
+                  giao hàng
+                </a>
+                <a class="nav-link border-bottom" id="nav-home-tab-da-giao" data-bs-toggle="tab"
+                  href="#nav-home-da-giao" role="tab" aria-controls="nav-home-da-giao" aria-selected="false">Đã giao
+                  hàng
+                </a>
+                <a class="nav-link border-bottom" id="nav-home-tab-da-nhan" data-bs-toggle="tab"
+                  href="#nav-home-da-nhan" role="tab" aria-controls="nav-home-tab-da-nhan" aria-selected="false">Đã Nhận
+                </a>
+                <a class="nav-link border-bottom" id="nav-home-tab-da-huy" data-bs-toggle="tab" href="#nav-home-da-huy"
+                  role="tab" aria-controls="nav-home-tab-da-huy" aria-selected="false">Đã hủy
+                </a>
+              </div>
+            </nav>
             <form method="post">
-              <div class="card-body pt-4 p-3">
-                <div th:each="item : ${orders}">
-                  <ul class="list-group">
-                    <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                      <div class="d-flex flex-column">
-                        <span class="mb-2 text-xs">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
-                            th:text="${item.orderID}"></span>
-                        </span>
-                        <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
-                        <span class="mb-2 text-xs">Địa Chỉ: <span class="text-dark font-weight-bold ms-sm-2"
-                            th:text="${item.deliveryAddress}"></span>
-                        </span>
-                        <span class="mb-2 text-xs">Email:
-                          <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
-                          </span>
-                        </span>
-                        <span class="text-xs mb-2">Phone:
-                          <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.phone}"></span>
-                        </span>
-                        <span class="text-xs mb-2">Tình Trạng:
-                          <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Status.Name}"></span>
-                        </span>
-                        <span class="text-xs mb-2">Số Lượng Đơn:
-                          <span class="text-dark ms-sm-2 font-weight-bold"
-                            th:text="'x' + ${item.orderitem.size()}"></span>
-                        </span>
-                        <span class="text-xs mb-2">Tổng Thanh Toán:
-                          <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.totalAmount}"></span>
-                        </span>
-                        <span class="text-xs pt-2">Phương Thức Thanh Toán:
-                          <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
-                        </span>
-                        <br>
-                        <span class="d-inline-flex gap-1 justify-content-between"
-                          th:each="orderitem : ${item.orderitem.get(0)}">
-                          <h6 class="mb-3 text-sm">Đơn Hàng</h6>
-                          <button class="btn py-2" type="button" data-bs-toggle="collapse"
-                            th:data-bs-target="'#collapseExample' + ${orderitem.Orders.orderID}" aria-expanded="false"
-                            aria-controls="collapseExample">
-                            <i class="bi bi-caret-down" style="font-size: 17px;"></i>
-                          </button>
-                        </span>
-                        <div class="collapse" th:each="orderitem : ${item.orderitem}"
-                          th:id="'collapseExample' + ${orderitem.Orders.orderID}">
-                          <div class="card-body d-flex flex-column">
-                            <h6 class="mb-3 text-sm" th:text="${orderitem.Name}"></h6>
-                            <span class="text-xs mb-2">Giá:
-                              <span class="text-dark ms-sm-2 font-weight-bold"
-                                th:text="${#numbers.formatDecimal(orderitem.Price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
-                            </span>
-                            <span class="text-xs mb-2">Số Lượng:
-                              <span class="text-dark ms-sm-2 font-weight-bold" th:text="${orderitem.Quantity}"></span>
-                            </span>
-                            <span class="text-xs mb-2">Size:
-                              <span class="text-dark ms-sm-2 font-weight-bold"
-                                th:text="${orderitem.Size_Product}"></span>
-                            </span>
-                            </span>
-                            <span class="text-xs pt-2">Thời Gian Đặt Hàng:
-                              <span class="text-xs" th:text="${orderitem.Orders.orderTime}"></span>
-                            </span>
-                          </div>
-                          <div class="ms-auto text-end">
-                          </div>
+              <div class="card-body pt-4 p-3 ">
+                <!-- <table class="table table-borderless border-0 overflow-auto">
+                  <thead class="border-0" style="position: sticky; top: 0; z-index: 100;  background: rgb(248, 248, 248);
+                  transition: top 0.3s ease-in-out; border-radius: 10px;" id="sticky-header">
+                    <tr class="border-0">
+                      <th scope="col" class="text-sm">Tên</th>
+                      <th scope="col" class="text-sm ps-5">Địa Chỉ</th>
+                      <th scope="col" class="text-sm ps-6">Email</th>
+                      <th scope="col" class="text-sm ps-8">SĐT</th>
+                      <th scope="col" class="text-sm">Tình Trạng</th>
+                      <th scope="col" class="text-sm">Số Lượng Đơn</th>
+                      <th scope="col" class="text-sm">Tổng Thanh Toán</th>
+                      <th scope="col" class="text-sm">Thao Tác</th>
+                    </tr>
+                  </thead>
+                </table> -->
+                <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-home-all" role="tabpanel"
+                    aria-labelledby="nav-home-alll">
+                    <div class="d-flex align-items-center gap-5">
+                      <!-- xuát file excel cho tất cả đơn hàng-->
+                      <a href="javascript:;" onclick="exportToExcel()" class="btn"><i class="bi bi-filetype-exe"></i>
+                        &nbsp;
+                        Xuất All Excel</a>
+                      <div class="col-8 d-flex pb-3 gap-4">
+                        <div class="col-4">
+                          <label for="startDate">Ngày bắt đầu</label>
+                          <input type="date" name="startDate" id="startDate" class="form-control">
+                        </div>
+                        <div class="col-4">
+                          <label for="endDate">Ngày kết thúc</label>
+                          <input type="date" name="endDate" id="endDate" class="form-control">
                         </div>
                       </div>
-                      <div class="ms-auto text-end">
-                        <button class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal"
-                          th:data-bs-target="'#exampleModalTuChoi' + ${item.orderID}" type="button"
-                          th:if="${item.Status.statusID == 1}"><i class="bi bi-x-lg"></i> Từ
-                          Chối
-                        </button>
-                        <button class="btn btn-link text-dark px-3 mb-0"
-                          th:formaction="@{|/admin/managerOrderSuccess/${item.orderID}|}"
-                          th:if="${item.Status.statusID == 1}"><i class=" bi bi-check-lg"></i>
-                          Xác
-                          Nhận
-                        </button>
-                        <button class="btn btn-link text-dark px-3 mb-0"
-                          th:formaction="@{|/admin/managerOrderDelivering/${item.orderID}|}"
-                          th:if="${item.Status.statusID == 2}"><i class=" bi bi-check-lg"></i>
-                          Xác
-                          Nhận Đang Giao Hàng
-                        </button>
-                        <button class="btn btn-link text-dark px-3 mb-0"
-                          th:formaction="@{|/admin/managerOrderDelivered/${item.orderID}|}"
-                          th:if="${item.Status.statusID == 3}"><i class="bi bi-check-lg"></i>
-                          Xác
-                          Nhận Đã Giao Hàng
-                        </button>
-                      </div>
+                    </div>
+                    <!-- end -->
+                    <div id="ordersContainer">
+                      <div th:each="item : ${orders}">
+                        <ul class="list-group">
+                          <div class="d-flex justify-content-between align-items-center py-3">
 
-                      <!-- Modal xác nhận từ chối đơn hàng-->
-                      <div class="modal fade" th:id="'exampleModalTuChoi' + ${item.orderID}" tabindex="-3"
-                        th:aria-labelledby="'exampleModalLabelTuChoi' + ${item.orderID}" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" th:id="'exampleModalLabelTuChoi' + ${item.orderID}">Từ Chối
-                                Đơn Hàng</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                            <!-- xuất excel theo id cho từng đơn hàng -->
+                            <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                              onclick="exportToExcell()">
+                              <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
+                            </a>
+                            <!-- end -->
+
+                            <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                            <a th:id="'invoiceLink' + ${item.orderID}"
+                              th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                              <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
+                            </a>
+                            <iframe id="invoiceFrame" style="display:none;"></iframe>
+                          </div>
+                          <!-- end -->
+
+                          <div class="d-flex justify-content-between align-items-center card-header"
+                            style="background: rgb(248, 248, 248);">
+                            <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
+                                th:text="${item.orderID}"></span>
+                            </span>
+                            <span class="text-xs pb-3">Phương Thức Thanh Toán:
+                              <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
+                            </span>
+                          </div>
+                          <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                            <div class="d-flex flex-column" style="overflow: auto;">
+                              <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
+                                <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
+                                <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
+                                    class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
+                                </span>
+                                <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                                  <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
+                                  </span>
+                                </span>
+                                <span class="text-xs mb-2">
+                                  <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.phone}"></span>
+                                </span>
+                                <span class="text-xs mb-2">
+                                  <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Status.Name}"></span>
+                                </span>
+                                <span class="text-xs mb-2">
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="'x' + ${item.orderitem.size()}"></span>
+                                </span>
+                                <span class="text-xs mb-2">
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${#numbers.formatDecimal(item.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                </span>
+                              </div>
+
+                              <br>
+                              <span class="d-inline-flex gap-1 justify-content-start align-items-center gap-10"
+                                th:each="orderitem : ${item.orderitem.get(0)}">
+                                <h6 class="mb-3 text-sm">Chi Tiết Đơn Hàng</h6>
+                                <button class="btn py-1" type="button" data-bs-toggle="collapse"
+                                  th:data-bs-target="'#collapseExample' + ${orderitem.Orders.orderID}"
+                                  aria-expanded="false" aria-controls="collapseExample">
+                                  <i class="bi bi-caret-down" style="font-size: 15px;"></i>
+                                </button>
+                              </span>
+                              <div class="collapse" th:each="orderitem : ${item.orderitem}"
+                                th:id="'collapseExample' + ${orderitem.Orders.orderID}">
+                                <div class="card-body d-flex flex-row align-items-center gap-5">
+                                  <div class="d-flex align-items-center">
+                                    <img th:src="${orderitem.product.image} " class=""
+                                      style="max-width: 80px; max-height: 80px;"></img> &nbsp;&nbsp;&nbsp;
+                                    <h6 class="text-xs pt-1" th:text="${orderitem.Name}"></h6>
+                                  </div>
+                                  <span class="text-xs">Giá:
+                                    <span class="text-dark ms-sm-2 font-weight-bold"
+                                      th:text="${#numbers.formatDecimal(orderitem.Price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                  </span>
+                                  <span class="text-xs">Số Lượng:
+                                    <span class="text-dark ms-sm-2 font-weight-bold"
+                                      th:text="${orderitem.Quantity}"></span>
+                                  </span>
+                                  <span class="text-xs">Size:
+                                    <span class="text-dark ms-sm-2 font-weight-bold"
+                                      th:text="${orderitem.Size_Product}"></span>
+                                  </span>
+                                  </span>
+                                  <span class="text-xs">Thời Gian Đặt Hàng:
+                                    <span class="text-xs" th:text="${orderitem.Orders.orderTime}"></span>
+                                  </span>
+                                </div>
+                                <div class="ms-auto text-end">
+                                </div>
+                              </div>
                             </div>
-                            <div class="modal-body">
-                              Bạn có chắc muốn từ chối đơn hàng không?
+                            <div class="ms-auto text-end" style="margin-top: -30px;">
+                              <div class="pt-4">
+                                <button class="btn btn-link text-danger text-gradient px-2 mb-0" data-bs-toggle="modal"
+                                  th:data-bs-target="'#exampleModalTuChoi' + ${item.orderID}" type="button"
+                                  th:if="${item.Status.statusID == 1}"><i class="bi bi-x-lg"></i> Từ
+                                  Chối
+                                </button>
+                                <button class="btn btn-link text-dark px-2 mb-0"
+                                  th:formaction="@{|/admin/managerOrderSuccess/${item.orderID}|}"
+                                  th:if="${item.Status.statusID == 1}"><i class=" bi bi-check-lg"></i>
+                                  Xác
+                                  Nhận
+                                </button>
+                              </div>
+                              <div class="" th:if="${item.Status.statusID == 2}">
+                                <div class="text-xs text-center pb-2"> Đang Giao Hàng</div>
+                                <button class="btn text-white px-3 mb-0 btn-primary"
+                                  th:formaction="@{|/admin/managerOrderDelivering/${item.orderID}|}"><i
+                                    class=" bi bi-check-lg"></i>
+                                  Xác
+                                  Nhận
+                                </button>
+                              </div>
+                              <div class="" th:if="${item.Status.statusID == 3}">
+                                <div class="text-xs text-center pb-2"> Đã Giao Hàng</div>
+                                <button class="btn text-white px-3 mb-0 btn-success"
+                                  th:formaction="@{|/admin/managerOrderDelivered/${item.orderID}|}"><i
+                                    class="bi bi-check-lg"></i>
+                                  Xác
+                                  Nhận
+                                </button>
+                              </div>
                             </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                              <button type="submit" class="btn btn-primary"
-                                th:formaction="@{|/admin/managerOrderCancel/${item.orderID}|}">Xác Nhận</button>
+
+                            <!-- Modal xác nhận từ chối đơn hàng-->
+                            <div class="modal fade" th:id="'exampleModalTuChoi' + ${item.orderID}" tabindex="-3"
+                              th:aria-labelledby="'exampleModalLabelTuChoi' + ${item.orderID}" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" th:id="'exampleModalLabelTuChoi' + ${item.orderID}">Từ
+                                      Chối
+                                      Đơn Hàng</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    Bạn có chắc muốn từ chối đơn hàng không?
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                    <button type="submit" class="btn btn-primary"
+                                      th:formaction="@{|/admin/managerOrderCancel/${item.orderID}|}">Xác Nhận</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- end -->
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- tab chờ xác nhận -->
+                  <div class="tab-pane fade" id="nav-home-cho" role="tabpanel" aria-labelledby="nav-home-tab-cho">
+                    <div th:each="item : ${orders}" th:if="${item.Status.statusID == 1}">
+                      <ul class="list-group">
+                        <div class="d-flex justify-content-between align-items-center py-3">
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()">
+                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
+                          </a>
+                          <!-- end -->
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
+                        </div>
+                        <!-- end -->
+
+                        <div class="d-flex justify-content-between align-items-center card-header"
+                          style="background: rgb(248, 248, 248);">
+                          <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
+                              th:text="${item.orderID}"></span>
+                          </span>
+                          <span class="text-xs pb-3">Phương Thức Thanh Toán:
+                            <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
+                          </span>
+                        </div>
+                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                          <div class="d-flex flex-column" style="overflow: auto;">
+                            <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
+                              <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
+                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
+                              </span>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
+                                </span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.phone}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Status.Name}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="'x' + ${item.orderitem.size()}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="${#numbers.formatDecimal(item.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                              </span>
+                            </div>
+
+                            <br>
+                            <span class="d-inline-flex gap-1 justify-content-start align-items-center gap-10"
+                              th:each="orderitem : ${item.orderitem.get(0)}">
+                              <h6 class="mb-3 text-sm">Chi Tiết Đơn Hàng</h6>
+                              <button class="btn py-1" type="button" data-bs-toggle="collapse"
+                                th:data-bs-target="'#collapseExample' + ${orderitem.Orders.orderID}"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                <i class="bi bi-caret-down" style="font-size: 15px;"></i>
+                              </button>
+                            </span>
+                            <div class="collapse" th:each="orderitem : ${item.orderitem}"
+                              th:id="'collapseExample' + ${orderitem.Orders.orderID}">
+                              <div class="card-body d-flex flex-row align-items-center gap-5">
+                                <div class="d-flex align-items-center">
+                                  <img th:src="${orderitem.product.image} " class=""
+                                    style="max-width: 80px; max-height: 80px;"></img> &nbsp;&nbsp;&nbsp;
+                                  <h6 class="text-xs pt-1" th:text="${orderitem.Name}"></h6>
+                                </div>
+                                <span class="text-xs">Giá:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${#numbers.formatDecimal(orderitem.Price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                </span>
+                                <span class="text-xs">Số Lượng:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Quantity}"></span>
+                                </span>
+                                <span class="text-xs">Size:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Size_Product}"></span>
+                                </span>
+                                </span>
+                                <span class="text-xs">Thời Gian Đặt Hàng:
+                                  <span class="text-xs" th:text="${orderitem.Orders.orderTime}"></span>
+                                </span>
+                              </div>
+                              <div class="ms-auto text-end">
+                              </div>
                             </div>
                           </div>
+                          <div class="ms-auto text-end" style="margin-top: -30px;">
+                            <div class="pt-4">
+                              <button class="btn btn-link text-danger text-gradient px-2 mb-0" data-bs-toggle="modal"
+                                th:data-bs-target="'#exampleModalTuChoi' + ${item.orderID}" type="button"
+                                th:if="${item.Status.statusID == 1}"><i class="bi bi-x-lg"></i> Từ
+                                Chối
+                              </button>
+                              <button class="btn btn-link text-dark px-2 mb-0"
+                                th:formaction="@{|/admin/managerOrderSuccess/${item.orderID}|}"
+                                th:if="${item.Status.statusID == 1}"><i class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 2}">
+                              <div class="text-xs text-center pb-2"> Đang Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-primary"
+                                th:formaction="@{|/admin/managerOrderDelivering/${item.orderID}|}"><i
+                                  class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 3}">
+                              <div class="text-xs text-center pb-2"> Đã Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-success"
+                                th:formaction="@{|/admin/managerOrderDelivered/${item.orderID}|}"><i
+                                  class="bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                          </div>
+
+                          <!-- Modal xác nhận từ chối đơn hàng-->
+                          <div class="modal fade" th:id="'exampleModalTuChoi' + ${item.orderID}" tabindex="-3"
+                            th:aria-labelledby="'exampleModalLabelTuChoi' + ${item.orderID}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" th:id="'exampleModalLabelTuChoi' + ${item.orderID}">Từ
+                                    Chối
+                                    Đơn Hàng</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  Bạn có chắc muốn từ chối đơn hàng không?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                  <button type="submit" class="btn btn-primary"
+                                    th:formaction="@{|/admin/managerOrderCancel/${item.orderID}|}">Xác Nhận</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end -->
+
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- end -->
+
+                  <!-- tab đã xác nhận -->
+                  <div class="tab-pane fade" id="nav-home-da" role="tabpanel" aria-labelledby="nav-home-tab-da">
+                    <div th:each="item : ${orders}" th:if="${item.Status.statusID == 2}">
+                      <ul class="list-group">
+                        <div class="d-flex justify-content-between align-items-center py-3">
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()">
+                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
+                          </a>
+                          <!-- end -->
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
                         </div>
-                      </div>
-                      <!-- end -->
-                    </li>
-                  </ul>
+                        <!-- end -->
+
+                        <div class="d-flex justify-content-between align-items-center card-header"
+                          style="background: rgb(248, 248, 248);">
+                          <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
+                              th:text="${item.orderID}"></span>
+                          </span>
+                          <span class="text-xs pb-3">Phương Thức Thanh Toán:
+                            <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
+                          </span>
+                        </div>
+                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                          <div class="d-flex flex-column" style="overflow: auto;">
+                            <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
+                              <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
+                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
+                              </span>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
+                                </span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.phone}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Status.Name}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="'x' + ${item.orderitem.size()}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="${#numbers.formatDecimal(item.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                              </span>
+                            </div>
+
+                            <br>
+                            <span class="d-inline-flex gap-1 justify-content-start align-items-center gap-10"
+                              th:each="orderitem : ${item.orderitem.get(0)}">
+                              <h6 class="mb-3 text-sm">Chi Tiết Đơn Hàng</h6>
+                              <button class="btn py-1" type="button" data-bs-toggle="collapse"
+                                th:data-bs-target="'#collapseExample' + ${orderitem.Orders.orderID}"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                <i class="bi bi-caret-down" style="font-size: 15px;"></i>
+                              </button>
+                            </span>
+                            <div class="collapse" th:each="orderitem : ${item.orderitem}"
+                              th:id="'collapseExample' + ${orderitem.Orders.orderID}">
+                              <div class="card-body d-flex flex-row align-items-center gap-5">
+                                <div class="d-flex align-items-center">
+                                  <img th:src="${orderitem.product.image} " class=""
+                                    style="max-width: 80px; max-height: 80px;"></img> &nbsp;&nbsp;&nbsp;
+                                  <h6 class="text-xs pt-1" th:text="${orderitem.Name}"></h6>
+                                </div>
+                                <span class="text-xs">Giá:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${#numbers.formatDecimal(orderitem.Price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                </span>
+                                <span class="text-xs">Số Lượng:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Quantity}"></span>
+                                </span>
+                                <span class="text-xs">Size:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Size_Product}"></span>
+                                </span>
+                                </span>
+                                <span class="text-xs">Thời Gian Đặt Hàng:
+                                  <span class="text-xs" th:text="${orderitem.Orders.orderTime}"></span>
+                                </span>
+                              </div>
+                              <div class="ms-auto text-end">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="ms-auto text-end" style="margin-top: -30px;">
+                            <div class="pt-4">
+                              <button class="btn btn-link text-danger text-gradient px-2 mb-0" data-bs-toggle="modal"
+                                th:data-bs-target="'#exampleModalTuChoi' + ${item.orderID}" type="button"
+                                th:if="${item.Status.statusID == 1}"><i class="bi bi-x-lg"></i> Từ
+                                Chối
+                              </button>
+                              <button class="btn btn-link text-dark px-2 mb-0"
+                                th:formaction="@{|/admin/managerOrderSuccess/${item.orderID}|}"
+                                th:if="${item.Status.statusID == 1}"><i class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 2}">
+                              <div class="text-xs text-center pb-2"> Đang Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-primary"
+                                th:formaction="@{|/admin/managerOrderDelivering/${item.orderID}|}"><i
+                                  class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 3}">
+                              <div class="text-xs text-center pb-2"> Đã Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-success"
+                                th:formaction="@{|/admin/managerOrderDelivered/${item.orderID}|}"><i
+                                  class="bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                          </div>
+
+                          <!-- Modal xác nhận từ chối đơn hàng-->
+                          <div class="modal fade" th:id="'exampleModalTuChoi' + ${item.orderID}" tabindex="-3"
+                            th:aria-labelledby="'exampleModalLabelTuChoi' + ${item.orderID}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" th:id="'exampleModalLabelTuChoi' + ${item.orderID}">Từ
+                                    Chối
+                                    Đơn Hàng</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  Bạn có chắc muốn từ chối đơn hàng không?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                  <button type="submit" class="btn btn-primary"
+                                    th:formaction="@{|/admin/managerOrderCancel/${item.orderID}|}">Xác Nhận</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end -->
+
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- end -->
+
+                  <!-- tab đang giao hàng -->
+                  <div class="tab-pane fade" id="nav-home-dang-giao" role="tabpanel"
+                    aria-labelledby="nav-home-tab-dang-giao">
+                    <div th:each="item : ${orders}" th:if="${item.Status.statusID == 3}">
+                      <ul class="list-group">
+                        <div class="d-flex justify-content-between align-items-center py-3">
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()">
+                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
+                          </a>
+                          <!-- end -->
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
+                        </div>
+                        <!-- end -->
+
+                        <div class="d-flex justify-content-between align-items-center card-header"
+                          style="background: rgb(248, 248, 248);">
+                          <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
+                              th:text="${item.orderID}"></span>
+                          </span>
+                          <span class="text-xs pb-3">Phương Thức Thanh Toán:
+                            <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
+                          </span>
+                        </div>
+                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                          <div class="d-flex flex-column" style="overflow: auto;">
+                            <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
+                              <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
+                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
+                              </span>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
+                                </span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.phone}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Status.Name}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="'x' + ${item.orderitem.size()}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="${#numbers.formatDecimal(item.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                              </span>
+                            </div>
+
+                            <br>
+                            <span class="d-inline-flex gap-1 justify-content-start align-items-center gap-10"
+                              th:each="orderitem : ${item.orderitem.get(0)}">
+                              <h6 class="mb-3 text-sm">Chi Tiết Đơn Hàng</h6>
+                              <button class="btn py-1" type="button" data-bs-toggle="collapse"
+                                th:data-bs-target="'#collapseExample' + ${orderitem.Orders.orderID}"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                <i class="bi bi-caret-down" style="font-size: 15px;"></i>
+                              </button>
+                            </span>
+                            <div class="collapse" th:each="orderitem : ${item.orderitem}"
+                              th:id="'collapseExample' + ${orderitem.Orders.orderID}">
+                              <div class="card-body d-flex flex-row align-items-center gap-5">
+                                <div class="d-flex align-items-center">
+                                  <img th:src="${orderitem.product.image} " class=""
+                                    style="max-width: 80px; max-height: 80px;"></img> &nbsp;&nbsp;&nbsp;
+                                  <h6 class="text-xs pt-1" th:text="${orderitem.Name}"></h6>
+                                </div>
+                                <span class="text-xs">Giá:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${#numbers.formatDecimal(orderitem.Price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                </span>
+                                <span class="text-xs">Số Lượng:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Quantity}"></span>
+                                </span>
+                                <span class="text-xs">Size:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Size_Product}"></span>
+                                </span>
+                                </span>
+                                <span class="text-xs">Thời Gian Đặt Hàng:
+                                  <span class="text-xs" th:text="${orderitem.Orders.orderTime}"></span>
+                                </span>
+                              </div>
+                              <div class="ms-auto text-end">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="ms-auto text-end" style="margin-top: -30px;">
+                            <div class="pt-4">
+                              <button class="btn btn-link text-danger text-gradient px-2 mb-0" data-bs-toggle="modal"
+                                th:data-bs-target="'#exampleModalTuChoi' + ${item.orderID}" type="button"
+                                th:if="${item.Status.statusID == 1}"><i class="bi bi-x-lg"></i> Từ
+                                Chối
+                              </button>
+                              <button class="btn btn-link text-dark px-2 mb-0"
+                                th:formaction="@{|/admin/managerOrderSuccess/${item.orderID}|}"
+                                th:if="${item.Status.statusID == 1}"><i class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 2}">
+                              <div class="text-xs text-center pb-2"> Đang Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-primary"
+                                th:formaction="@{|/admin/managerOrderDelivering/${item.orderID}|}"><i
+                                  class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 3}">
+                              <div class="text-xs text-center pb-2"> Đã Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-success"
+                                th:formaction="@{|/admin/managerOrderDelivered/${item.orderID}|}"><i
+                                  class="bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                          </div>
+
+                          <!-- Modal xác nhận từ chối đơn hàng-->
+                          <div class="modal fade" th:id="'exampleModalTuChoi' + ${item.orderID}" tabindex="-3"
+                            th:aria-labelledby="'exampleModalLabelTuChoi' + ${item.orderID}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" th:id="'exampleModalLabelTuChoi' + ${item.orderID}">Từ
+                                    Chối
+                                    Đơn Hàng</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  Bạn có chắc muốn từ chối đơn hàng không?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                  <button type="submit" class="btn btn-primary"
+                                    th:formaction="@{|/admin/managerOrderCancel/${item.orderID}|}">Xác Nhận</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end -->
+
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- end -->
+
+                  <!-- tab đã giao hàng -->
+                  <div class="tab-pane fade" id="nav-home-da-giao" role="tabpanel"
+                    aria-labelledby="nav-home-tab-da-giao">
+                    <div th:each="item : ${orders}" th:if="${item.Status.statusID == 4}">
+                      <ul class="list-group">
+                        <div class="d-flex justify-content-between align-items-center py-3">
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()">
+                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
+                          </a>
+                          <!-- end -->
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
+                        </div>
+                        <!-- end -->
+
+                        <div class="d-flex justify-content-between align-items-center card-header"
+                          style="background: rgb(248, 248, 248);">
+                          <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
+                              th:text="${item.orderID}"></span>
+                          </span>
+                          <span class="text-xs pb-3">Phương Thức Thanh Toán:
+                            <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
+                          </span>
+                        </div>
+                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                          <div class="d-flex flex-column" style="overflow: auto;">
+                            <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
+                              <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
+                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
+                              </span>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
+                                </span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.phone}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Status.Name}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="'x' + ${item.orderitem.size()}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="${#numbers.formatDecimal(item.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                              </span>
+                            </div>
+
+                            <br>
+                            <span class="d-inline-flex gap-1 justify-content-start align-items-center gap-10"
+                              th:each="orderitem : ${item.orderitem.get(0)}">
+                              <h6 class="mb-3 text-sm">Chi Tiết Đơn Hàng</h6>
+                              <button class="btn py-1" type="button" data-bs-toggle="collapse"
+                                th:data-bs-target="'#collapseExample' + ${orderitem.Orders.orderID}"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                <i class="bi bi-caret-down" style="font-size: 15px;"></i>
+                              </button>
+                            </span>
+                            <div class="collapse" th:each="orderitem : ${item.orderitem}"
+                              th:id="'collapseExample' + ${orderitem.Orders.orderID}">
+                              <div class="card-body d-flex flex-row align-items-center gap-5">
+                                <div class="d-flex align-items-center">
+                                  <img th:src="${orderitem.product.image} " class=""
+                                    style="max-width: 80px; max-height: 80px;"></img> &nbsp;&nbsp;&nbsp;
+                                  <h6 class="text-xs pt-1" th:text="${orderitem.Name}"></h6>
+                                </div>
+                                <span class="text-xs">Giá:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${#numbers.formatDecimal(orderitem.Price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                </span>
+                                <span class="text-xs">Số Lượng:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Quantity}"></span>
+                                </span>
+                                <span class="text-xs">Size:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Size_Product}"></span>
+                                </span>
+                                </span>
+                                <span class="text-xs">Thời Gian Đặt Hàng:
+                                  <span class="text-xs" th:text="${orderitem.Orders.orderTime}"></span>
+                                </span>
+                              </div>
+                              <div class="ms-auto text-end">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="ms-auto text-end" style="margin-top: -30px;">
+                            <div class="pt-4">
+                              <button class="btn btn-link text-danger text-gradient px-2 mb-0" data-bs-toggle="modal"
+                                th:data-bs-target="'#exampleModalTuChoi' + ${item.orderID}" type="button"
+                                th:if="${item.Status.statusID == 1}"><i class="bi bi-x-lg"></i> Từ
+                                Chối
+                              </button>
+                              <button class="btn btn-link text-dark px-2 mb-0"
+                                th:formaction="@{|/admin/managerOrderSuccess/${item.orderID}|}"
+                                th:if="${item.Status.statusID == 1}"><i class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 2}">
+                              <div class="text-xs text-center pb-2"> Đang Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-primary"
+                                th:formaction="@{|/admin/managerOrderDelivering/${item.orderID}|}"><i
+                                  class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 3}">
+                              <div class="text-xs text-center pb-2"> Đã Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-success"
+                                th:formaction="@{|/admin/managerOrderDelivered/${item.orderID}|}"><i
+                                  class="bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                          </div>
+
+                          <!-- Modal xác nhận từ chối đơn hàng-->
+                          <div class="modal fade" th:id="'exampleModalTuChoi' + ${item.orderID}" tabindex="-3"
+                            th:aria-labelledby="'exampleModalLabelTuChoi' + ${item.orderID}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" th:id="'exampleModalLabelTuChoi' + ${item.orderID}">Từ
+                                    Chối
+                                    Đơn Hàng</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  Bạn có chắc muốn từ chối đơn hàng không?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                  <button type="submit" class="btn btn-primary"
+                                    th:formaction="@{|/admin/managerOrderCancel/${item.orderID}|}">Xác Nhận</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end -->
+
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- end -->
+
+                  <!-- tab đã nhan hàng -->
+                  <div class="tab-pane fade" id="nav-home-da-nhan" role="tabpanel"
+                    aria-labelledby="nav-home-tab-da-nhan">
+                    <div th:each="item : ${orders}" th:if="${item.Status.statusID == 5}">
+                      <ul class="list-group">
+                        <div class="d-flex justify-content-between align-items-center py-3">
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()">
+                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
+                          </a>
+                          <!-- end -->
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
+                        </div>
+                        <!-- end -->
+
+                        <div class="d-flex justify-content-between align-items-center card-header"
+                          style="background: rgb(248, 248, 248);">
+                          <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
+                              th:text="${item.orderID}"></span>
+                          </span>
+                          <span class="text-xs pb-3">Phương Thức Thanh Toán:
+                            <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
+                          </span>
+                        </div>
+                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                          <div class="d-flex flex-column" style="overflow: auto;">
+                            <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
+                              <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
+                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
+                              </span>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
+                                </span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.phone}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Status.Name}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="'x' + ${item.orderitem.size()}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="${#numbers.formatDecimal(item.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                              </span>
+                            </div>
+
+                            <br>
+                            <span class="d-inline-flex gap-1 justify-content-start align-items-center gap-10"
+                              th:each="orderitem : ${item.orderitem.get(0)}">
+                              <h6 class="mb-3 text-sm">Chi Tiết Đơn Hàng</h6>
+                              <button class="btn py-1" type="button" data-bs-toggle="collapse"
+                                th:data-bs-target="'#collapseExample' + ${orderitem.Orders.orderID}"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                <i class="bi bi-caret-down" style="font-size: 15px;"></i>
+                              </button>
+                            </span>
+                            <div class="collapse" th:each="orderitem : ${item.orderitem}"
+                              th:id="'collapseExample' + ${orderitem.Orders.orderID}">
+                              <div class="card-body d-flex flex-row align-items-center gap-5">
+                                <div class="d-flex align-items-center">
+                                  <img th:src="${orderitem.product.image} " class=""
+                                    style="max-width: 80px; max-height: 80px;"></img> &nbsp;&nbsp;&nbsp;
+                                  <h6 class="text-xs pt-1" th:text="${orderitem.Name}"></h6>
+                                </div>
+                                <span class="text-xs">Giá:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${#numbers.formatDecimal(orderitem.Price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                </span>
+                                <span class="text-xs">Số Lượng:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Quantity}"></span>
+                                </span>
+                                <span class="text-xs">Size:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Size_Product}"></span>
+                                </span>
+                                </span>
+                                <span class="text-xs">Thời Gian Đặt Hàng:
+                                  <span class="text-xs" th:text="${orderitem.Orders.orderTime}"></span>
+                                </span>
+                              </div>
+                              <div class="ms-auto text-end">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="ms-auto text-end" style="margin-top: -30px;">
+                            <div class="pt-4">
+                              <button class="btn btn-link text-danger text-gradient px-2 mb-0" data-bs-toggle="modal"
+                                th:data-bs-target="'#exampleModalTuChoi' + ${item.orderID}" type="button"
+                                th:if="${item.Status.statusID == 1}"><i class="bi bi-x-lg"></i> Từ
+                                Chối
+                              </button>
+                              <button class="btn btn-link text-dark px-2 mb-0"
+                                th:formaction="@{|/admin/managerOrderSuccess/${item.orderID}|}"
+                                th:if="${item.Status.statusID == 1}"><i class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 2}">
+                              <div class="text-xs text-center pb-2"> Đang Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-primary"
+                                th:formaction="@{|/admin/managerOrderDelivering/${item.orderID}|}"><i
+                                  class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 3}">
+                              <div class="text-xs text-center pb-2"> Đã Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-success"
+                                th:formaction="@{|/admin/managerOrderDelivered/${item.orderID}|}"><i
+                                  class="bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                          </div>
+
+                          <!-- Modal xác nhận từ chối đơn hàng-->
+                          <div class="modal fade" th:id="'exampleModalTuChoi' + ${item.orderID}" tabindex="-3"
+                            th:aria-labelledby="'exampleModalLabelTuChoi' + ${item.orderID}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" th:id="'exampleModalLabelTuChoi' + ${item.orderID}">Từ
+                                    Chối
+                                    Đơn Hàng</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  Bạn có chắc muốn từ chối đơn hàng không?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                  <button type="submit" class="btn btn-primary"
+                                    th:formaction="@{|/admin/managerOrderCancel/${item.orderID}|}">Xác Nhận</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end -->
+
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- end -->
+
+                  <!-- tab đã hủy đơn -->
+                  <div class="tab-pane fade" id="nav-home-da-huy" role="tabpanel" aria-labelledby="nav-home-tab-da-huy">
+                    <div th:each="item : ${orders}" th:if="${item.Status.statusID == 6}">
+                      <ul class="list-group">
+                        <div class="d-flex justify-content-between align-items-center py-3">
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()">
+                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
+                          </a>
+                          <!-- end -->
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
+                        </div>
+                        <!-- end -->
+
+                        <div class="d-flex justify-content-between align-items-center card-header"
+                          style="background: rgb(248, 248, 248);">
+                          <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
+                              th:text="${item.orderID}"></span>
+                          </span>
+                          <span class="text-xs pb-3">Phương Thức Thanh Toán:
+                            <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
+                          </span>
+                        </div>
+                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                          <div class="d-flex flex-column" style="overflow: auto;">
+                            <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
+                              <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
+                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
+                              </span>
+                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
+                                </span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.phone}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Status.Name}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="'x' + ${item.orderitem.size()}"></span>
+                              </span>
+                              <span class="text-xs mb-2">
+                                <span class="text-dark ms-sm-2 font-weight-bold"
+                                  th:text="${#numbers.formatDecimal(item.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                              </span>
+                            </div>
+
+                            <br>
+                            <span class="d-inline-flex gap-1 justify-content-start align-items-center gap-10"
+                              th:each="orderitem : ${item.orderitem.get(0)}">
+                              <h6 class="mb-3 text-sm">Chi Tiết Đơn Hàng</h6>
+                              <button class="btn py-1" type="button" data-bs-toggle="collapse"
+                                th:data-bs-target="'#collapseExample' + ${orderitem.Orders.orderID}"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                <i class="bi bi-caret-down" style="font-size: 15px;"></i>
+                              </button>
+                            </span>
+                            <div class="collapse" th:each="orderitem : ${item.orderitem}"
+                              th:id="'collapseExample' + ${orderitem.Orders.orderID}">
+                              <div class="card-body d-flex flex-row align-items-center gap-5">
+                                <div class="d-flex align-items-center">
+                                  <img th:src="${orderitem.product.image} " class=""
+                                    style="max-width: 80px; max-height: 80px;"></img> &nbsp;&nbsp;&nbsp;
+                                  <h6 class="text-xs pt-1" th:text="${orderitem.Name}"></h6>
+                                </div>
+                                <span class="text-xs">Giá:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${#numbers.formatDecimal(orderitem.Price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                </span>
+                                <span class="text-xs">Số Lượng:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Quantity}"></span>
+                                </span>
+                                <span class="text-xs">Size:
+                                  <span class="text-dark ms-sm-2 font-weight-bold"
+                                    th:text="${orderitem.Size_Product}"></span>
+                                </span>
+                                </span>
+                                <span class="text-xs">Thời Gian Đặt Hàng:
+                                  <span class="text-xs" th:text="${orderitem.Orders.orderTime}"></span>
+                                </span>
+                              </div>
+                              <div class="ms-auto text-end">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="ms-auto text-end" style="margin-top: -30px;">
+                            <div class="pt-4">
+                              <button class="btn btn-link text-danger text-gradient px-2 mb-0" data-bs-toggle="modal"
+                                th:data-bs-target="'#exampleModalTuChoi' + ${item.orderID}" type="button"
+                                th:if="${item.Status.statusID == 1}"><i class="bi bi-x-lg"></i> Từ
+                                Chối
+                              </button>
+                              <button class="btn btn-link text-dark px-2 mb-0"
+                                th:formaction="@{|/admin/managerOrderSuccess/${item.orderID}|}"
+                                th:if="${item.Status.statusID == 1}"><i class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 2}">
+                              <div class="text-xs text-center pb-2"> Đang Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-primary"
+                                th:formaction="@{|/admin/managerOrderDelivering/${item.orderID}|}"><i
+                                  class=" bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                            <div class="" th:if="${item.Status.statusID == 3}">
+                              <div class="text-xs text-center pb-2"> Đã Giao Hàng</div>
+                              <button class="btn text-white px-3 mb-0 btn-success"
+                                th:formaction="@{|/admin/managerOrderDelivered/${item.orderID}|}"><i
+                                  class="bi bi-check-lg"></i>
+                                Xác
+                                Nhận
+                              </button>
+                            </div>
+                          </div>
+
+                          <!-- Modal xác nhận từ chối đơn hàng-->
+                          <div class="modal fade" th:id="'exampleModalTuChoi' + ${item.orderID}" tabindex="-3"
+                            th:aria-labelledby="'exampleModalLabelTuChoi' + ${item.orderID}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" th:id="'exampleModalLabelTuChoi' + ${item.orderID}">Từ
+                                    Chối
+                                    Đơn Hàng</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  Bạn có chắc muốn từ chối đơn hàng không?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                  <button type="submit" class="btn btn-primary"
+                                    th:formaction="@{|/admin/managerOrderCancel/${item.orderID}|}">Xác Nhận</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end -->
+
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- end -->
+
                 </div>
               </div>
             </form>
-          </div>
-        </div>
-        <div class="col-md-5 mt-4">
-          <div class="card h-100 mb-4">
-            <div class="card-header pb-0 px-3">
-              <div class="row">
-                <div class="col-md-6">
-                  <h6 class="mb-0">Thông Tin Đơn Hàng</h6>
-                </div>
-                <div class="col-md-6 d-flex justify-content-end align-items-center">
-                  <i class="far fa-calendar-alt me-2"></i>
-                  <small>
-                    <script>
-                      document.write(new Date().getDate(), ' Tháng ')
-                      document.write(new Date().getMonth(), ' Năm ')
-                      document.write(new Date().getFullYear())
-                    </script>
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="card-body pt-4 p-3">
-              <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab"
-                    aria-controls="nav-home" aria-selected="true">Đã hủy
-                  </a>
-                  <a class="nav-link" id="nav-profile-tab-chua" data-bs-toggle="tab" href="#nav-chua-xac-nhan"
-                    role="tab" aria-controls="nav-chua-xac-nhan" aria-selected="false">Đã Nhận
-                  </a>
-                </div>
-              </nav>
-
-              <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                  <!-- Hiển thị danh sách các đơn hàng đã hủy -->
-                  <th:block th:each="item : ${orders}" th:if="${item.Status.statusID == 6}">
-                    <div class="d-flex flex-column mt-3">
-                      <span class="mb-2 text-xs">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
-                          th:text="${item.orderID}"></span>
-                      </span>
-                      <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
-                      <span class="mb-2 text-xs">Địa Chỉ: <span class="text-dark font-weight-bold ms-sm-2"
-                          th:text="${item.deliveryAddress}"></span>
-                      </span>
-                      <span class="mb-2 text-xs">Email:
-                        <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
-                        </span>
-                      </span>
-                      <span class="text-xs mb-2">Phone:
-                        <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.phone}"></span>
-                      </span>
-                      <span class="text-xs mb-2">Tình Trạng:
-                        <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Status.Name}"></span>
-                      </span>
-                      <span class="text-xs mb-2">Số Lượng Đơn:
-                        <span class="text-dark ms-sm-2 font-weight-bold"
-                          th:text="'x' + ${item.orderitem.size()}"></span>
-                      </span>
-                      <span class="text-xs mb-2">Tổng Thanh Toán:
-                        <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.totalAmount}"></span>
-                      </span>
-                      <span class="text-xs pt-2">Phương Thức Thanh Toán:
-                        <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
-                      </span>
-                      <br>
-                      <span class="d-inline-flex gap-1 justify-content-between"
-                        th:each="orderitem : ${item.orderitem.get(0)}">
-                        <h6 class="mb-3 text-sm">Đơn Hàng</h6>
-                        <button class="btn py-2" type="button" data-bs-toggle="collapse"
-                          th:data-bs-target="'#collapseExample' + ${orderitem.Orders.orderID}" aria-expanded="false"
-                          aria-controls="collapseExample">
-                          <i class="bi bi-caret-down" style="font-size: 17px;"></i>
-                        </button>
-                      </span>
-                      <div class="collapse" th:each="orderitem : ${item.orderitem}"
-                        th:id="'collapseExample' + ${orderitem.Orders.orderID}">
-                        <div class="card-body d-flex flex-column">
-                          <h6 class="mb-3 text-sm" th:text="${orderitem.Name}"></h6>
-                          <span class="text-xs mb-2">Giá:
-                            <span class="text-dark ms-sm-2 font-weight-bold"
-                              th:text="${#numbers.formatDecimal(orderitem.Price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
-                          </span>
-                          <span class="text-xs mb-2">Số Lượng:
-                            <span class="text-dark ms-sm-2 font-weight-bold" th:text="${orderitem.Quantity}"></span>
-                          </span>
-                          <span class="text-xs mb-2">Size:
-                            <span class="text-dark ms-sm-2 font-weight-bold" th:text="${orderitem.Size_Product}"></span>
-                          </span>
-                          </span>
-                          <span class="text-xs pt-2">Thời Gian Đặt Hàng:
-                            <span class="text-xs" th:text="${orderitem.Orders.orderTime}"></span>
-                          </span>
-                        </div>
-                        <div class="ms-auto text-end">
-                        </div>
-                      </div>
-                    </div>
-                  </th:block>
-                </div>
-                <div class="tab-pane fade" id="nav-chua-xac-nhan" role="tabpanel"
-                  aria-labelledby="nav-profile-tab-chua">
-                  <!-- Hiển thị danh sách các đơn hàng chưa xác nhận -->
-                  <th:block th:each="item : ${orders}" th:if="${item.Status.statusID == 5}">
-                    <div class="d-flex flex-column mt-3">
-                      <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
-                      <span class="mb-2 text-xs">Địa Chỉ: <span class="text-dark font-weight-bold ms-sm-2"
-                          th:text="${item.deliveryAddress}"></span>
-                      </span>
-                      <span class="mb-2 text-xs">Email:
-                        <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
-                        </span>
-                      </span>
-                      <span class="text-xs mb-2">Phone:
-                        <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.phone}"></span>
-                      </span>
-                      <span class="text-xs mb-2">Tình Trạng:
-                        <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Status.Name}"></span>
-                      </span>
-                      <span class="text-xs mb-2">Số Lượng Đơn:
-                        <span class="text-dark ms-sm-2 font-weight-bold"
-                          th:text="'x' + ${item.orderitem.size()}"></span>
-                      </span>
-                      <span class="text-xs mb-2">Tổng Thanh Toán:
-                        <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.totalAmount}"></span>
-                      </span>
-                      <span class="text-xs pt-2">Phương Thức Thanh Toán:
-                        <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
-                      </span>
-                      <br>
-                      <span class="d-inline-flex gap-1 justify-content-between"
-                        th:each="orderitem : ${item.orderitem.get(0)}">
-                        <h6 class="mb-3 text-sm">Đơn Hàng</h6>
-                        <button class="btn py-2" type="button" data-bs-toggle="collapse"
-                          th:data-bs-target="'#collapseExample' + ${orderitem.Orders.orderID}" aria-expanded="false"
-                          aria-controls="collapseExample">
-                          <i class="bi bi-caret-down" style="font-size: 17px;"></i>
-                        </button>
-                      </span>
-                      <div class="collapse" th:each="orderitem : ${item.orderitem}"
-                        th:id="'collapseExample' + ${orderitem.Orders.orderID}">
-                        <div class="card-body d-flex flex-column">
-                          <h6 class="mb-3 text-sm" th:text="${orderitem.Name}"></h6>
-                          <span class="text-xs mb-2">Giá:
-                            <span class="text-dark ms-sm-2 font-weight-bold"
-                              th:text="${#numbers.formatDecimal(orderitem.Price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
-                          </span>
-                          <span class="text-xs mb-2">Số Lượng:
-                            <span class="text-dark ms-sm-2 font-weight-bold" th:text="${orderitem.Quantity}"></span>
-                          </span>
-                          <span class="text-xs mb-2">Size:
-                            <span class="text-dark ms-sm-2 font-weight-bold" th:text="${orderitem.Size_Product}"></span>
-                          </span>
-                          </span>
-                          <span class="text-xs pt-2">Thời Gian Đặt Hàng:
-                            <span class="text-xs" th:text="${orderitem.Orders.orderTime}"></span>
-                          </span>
-                        </div>
-                        <div class="ms-auto text-end">
-                        </div>
-                      </div>
-                    </div>
-                  </th:block>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -460,6 +1378,8 @@
   <script src="/assets/js/core/bootstrap.min.js"></script>
   <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
   <script>
 
     // loading khi refresh
@@ -480,6 +1400,104 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+
+    // giữ lại header table nằm trên đầu khi cuộn trang
+    // JavaScript
+    window.addEventListener('scroll', function () {
+      var header = document.getElementById('sticky-header');
+      var offset = header.offsetTop;
+      var thCells = header.getElementsByTagName('th');
+
+      if (window.pageYOffset > offset) {
+        header.style.position = 'fixed';
+        header.style.width = '77%';
+        header.style.border = '0';
+        header.style.left = '20';
+        header.style.top = '20px';
+        // header.style.background = 'rgb(240, 240, 240)';
+
+        // Thêm khoảng cách bằng JavaScript
+        for (var i = 0; i < thCells.length; i++) {
+          thCells[i].style.paddingRight = '40px';
+        }
+
+      } else {
+        header.style.position = 'sticky';
+        header.style.top = ''; // Xóa giá trị top để header trở về vị trí ban đầu
+      }
+
+    });
+    // end
+
+    // xử lý in hóa đơn ra iframe
+    function printInvoice(event) {
+      event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+
+      // Lấy đối tượng thẻ <a> theo ID - sử dụng orderId để tạo ID động
+      var orderId = event.target.id.replace('invoiceLink', '');
+
+      var invoiceLink = document.getElementById('invoiceLink' + orderId);
+
+      // Lấy giá trị của thuộc tính href
+      var hrefValue = invoiceLink.getAttribute('href');
+
+      // Lấy đối tượng iframe theo ID
+      var invoiceFrame = document.getElementById('invoiceFrame');
+
+      // Tải hóa đơn vào iframe ẩn
+      fetch(hrefValue)
+        .then(response => response.blob())
+        .then(blob => {
+          var url = URL.createObjectURL(blob);
+          invoiceFrame.src = url;
+
+          // In hóa đơn sau khi tải
+          invoiceFrame.onload = function () {
+            setTimeout(function () {
+              invoiceFrame.contentWindow.print();
+            }, 400); // Đợi 1 giây trước khi in, bạn có thể điều chỉnh thời gian chờ tùy ý
+          };
+        });
+    }
+    // end
+
+    // khi xuất excel chuyển hướng đến đường dẫn không cần load lại trang và hiện ra cửa sổ mới
+    function exportToExcel() {
+      const startDate = document.getElementById('startDate').value;
+      const endDate = document.getElementById('endDate').value;
+
+      // Gửi yêu cầu xuất Excel với tham số thời gian
+      fetch(`/admin/exportOrdersToExcel?startDate=${startDate}&endDate=${endDate}`)
+        .then(response => response.blob())
+        .then(blob => {
+          const url = window.URL.createObjectURL(new Blob([blob]));
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'Orders.xlsx';
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+        });
+    }
+
+    // xuất excel theo id hóa đơn
+    function exportToExcell() {
+      fetch('/admin/exportOrderToExcel/' + orderId)
+        .then(response => response.blob())
+        .then(blob => {
+          const url = window.URL.createObjectURL(new Blob([blob]));
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'Order_' + orderId + '.xlsx';
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+        });
+    }
+    // end
+
+    // lọc và hiển thị đơn hàng theo thời gian trước khi xuất excel
+    // end
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
