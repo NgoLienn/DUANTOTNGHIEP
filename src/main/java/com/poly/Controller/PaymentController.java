@@ -79,12 +79,13 @@ public class PaymentController {
             String selectedProvince = req.getParameter("tinh");
             String selectedDistrict = req.getParameter("huyen");
             String selectedWard = req.getParameter("xa");
+            String selectedChitiet = req.getParameter("chitiet");
             Account account = accountRepo.findByUsername(users);
             Carts carts = cartRepo.findByCartUser(users);
             float subtotal = cartItemsRepo.getSum(carts.getCartID());
             Status status = new Status();
             status.setStatusID(1L);
-            account.setAddress(selectedProvince + ", " + selectedDistrict + ", " + selectedWard);
+            account.setAddress(selectedProvince + ", " + selectedDistrict + ", " + selectedWard+","+selectedChitiet);
             Orders orders = new Orders();
             orders.setAccount(account);
             orders.setStatus(status);
