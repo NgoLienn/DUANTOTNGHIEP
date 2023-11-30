@@ -1,6 +1,5 @@
 package com.poly.Config;
 
-
 import com.poly.Entity.Authority;
 import com.poly.Reponsitory.AccountReponsitory;
 import com.poly.Reponsitory.AuthorityResponsitory;
@@ -23,7 +22,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.poly.Service.UserService;
 import java.io.IOException;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -60,62 +58,74 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // phan quyen su dung
                 http.authorizeRequests()
-                        .antMatchers("/addToCart/*", "/cart","/user/**", "/admin/**").authenticated()
-                        // .antMatchers("/admin/**").hasRole("admin")
-                        .antMatchers("/api/authorities").hasRole("")
-                        .anyRequest().permitAll(); // anonymous
+                                .antMatchers("/addToCart/*", "/cart", "/user/**", "/admin/**").authenticated()
+                                // .antMatchers("/admin/**").hasRole("admin")
+                                .antMatchers("/api/authorities").hasRole("")
+                                .anyRequest().permitAll(); // anonymous
 
+
+                // lưu thông tin đăng nhập
+                http.rememberMe()
+                                .rememberMeParameter("rememberMe")
+                                .tokenValiditySeconds(86400) // Thời gian hiệu lực của token, 1 ngày
+                                .userDetailsService(userService); // userService là implementation của
+                                                                  // UserDetailsService của bạn
 
                 // dieu khien loi truy cap khong dung vai tro
                 http.exceptionHandling().accessDeniedPage("/login/unauthorized"); // [/error]
 
                 // giao dien dang nhap
                 http.formLogin()
-                        .loginPage("/auth/signin")
-                        .loginProcessingUrl("/auth/signin") // [/login]
-                        .successHandler(myAuthenticationSuccessHandler()) // succeshadler la truy cap đúng mk thì sẽ trả về trag url
-                        .failureUrl("/login/error") //đăng nhập sai tra ve trang error
-                        .usernameParameter("username") // [username]
-                        .passwordParameter("password").and().oauth2Login()
-                        .loginPage("/auth/signin")
-                        .userInfoEndpoint()
-                        .userService(oauthUserService)
-                        .and()
-                        .successHandler(new AuthenticationSuccessHandler() {
-                                @Override
-                                public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                                    Authentication authentication) throws IOException, ServletException {
-                                        System.out.println("AuthenticationSuccessHandler invoked");
-                                        System.out.println("Authentication name: " + authentication.getName());
-                                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
-                                        userServicegg.processOAuthPostLogin(oauthUser.getEmail());
-                                        String users = oauthUser.getAttribute("email");
-                                        Authority authority = authorityResponsitory.findByUserName(users);
-                                        String Roles = authority.getRole().getName();
-                                        if(Roles.equals("admin")){
-                                                response.sendRedirect( "/admin/managerAccount");
-                                        }else{
-                                                response.sendRedirect( "/");
+                                .loginPage("/auth/signin")
+                                .loginProcessingUrl("/auth/signin") // [/login]
+                                .successHandler(myAuthenticationSuccessHandler()) // succeshadler la truy cap đúng mk
+                                                                                  // thì sẽ trả về trag url
+                                .failureUrl("/login/error") // đăng nhập sai tra ve trang error
+                                .usernameParameter("username") // [username]
+                                .passwordParameter("password").and().oauth2Login()
+                                .loginPage("/auth/signin")
+                                .userInfoEndpoint()
+                                .userService(oauthUserService)
+                                .and()
+                                .successHandler(new AuthenticationSuccessHandler() {
+                                        @Override
+                                        public void onAuthenticationSuccess(HttpServletRequest request,
+                                                        HttpServletResponse response,
+                                                        Authentication authentication)
+                                                        throws IOException, ServletException {
+                                                System.out.println("AuthenticationSuccessHandler invoked");
+                                                System.out.println("Authentication name: " + authentication.getName());
+                                                CustomOAuth2User oauthUser = (CustomOAuth2User) authentication
+                                                                .getPrincipal();
+                                                userServicegg.processOAuthPostLogin(oauthUser.getEmail());
+                                                String users = oauthUser.getAttribute("email");
+                                                Authority authority = authorityResponsitory.findByUserName(users);
+                                                String Roles = authority.getRole().getName();
+                                                if (Roles.equals("admin")) {
+                                                        response.sendRedirect("/admin/managerAccount");
+                                                } else {
+                                                        response.sendRedirect("/");
+                                                }
                                         }
-                                }
-                        })
-                ;
+                                });
                 // [password]
                 http.rememberMe().rememberMeParameter("remember").tokenValiditySeconds(86400); // [remember-me]
 
                 // dang xuat
                 http.logout()
-                        .logoutUrl("/auth/logoff") // [/logout]
-                        .logoutSuccessUrl("/auth/signin"); // chuyen trang
+                                .logoutUrl("/auth/logoff") // [/logout]
+                                .logoutSuccessUrl("/auth/signin"); // chuyen trang
         }
+
         @Override
         public void configure(WebSecurity web) throws Exception {
                 web
-                        .ignoring()
-                        .antMatchers("/data.json"); // Đặt đường dẫn tới file JSON cần truy cập ở đây
+                                .ignoring()
+                                .antMatchers("/data.json"); // Đặt đường dẫn tới file JSON cần truy cập ở đây
         }
+
         @Bean
-        public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
                 return new CustomSuccessHandler();
         }
 

@@ -591,18 +591,16 @@ body {
   font-weight: bold;
 }
 
-.containerr .image-five .card-group .card .card-body .share {
-  position: absolute;
-  right: 3.5%;
-  bottom: 25%;
+.containerr .image-five .card-group .share {
+  margin-top: -5px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .containerr .image-five .card-group .card .card-body .tuychonshare {
   position: absolute;
   right: 3.5%;
-  bottom: 40%;
+  bottom: 30%;
   cursor: pointer;
   font-size: 20px;
 }

@@ -72,6 +72,7 @@ public class ProductDetailController {
             model.addAttribute("sizeProduct", sizeProduct);
             firstName = sizeId;
         }
+        
         Size sizeName = sizeRepo.findBySizeName(firstName);
         String sizeNames = sizeName.getTableSize().getSizeName();
         model.addAttribute("sizeNames", sizeNames);

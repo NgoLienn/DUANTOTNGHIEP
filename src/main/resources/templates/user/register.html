@@ -50,16 +50,16 @@
                     aria-label="Password">
                 </div>
                 <div class="form-check form-check-info text-start">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                  <label class="form-check-label text-white" for="flexCheckDefault">
+                  <input class="form-check-input" type="checkbox" value="" id="agreeCheckbox">
+                  <label class="form-check-label text-white" for="agreeCheckbox">
                     Tôi đồng ý các <a href="javascript:;" class="text-white font-weight-bolder"> điều khoản và điều
                       kiện</a>
                   </label>
                   <label class="form-check-label" for="flexCheckDefault" th:text="${message}">
                   </label>
                   <div class="text-center">
-                    <button type="submit"
-                      class="btn bg-gradient-dark w-100 my-4 mb-2 d-flex justify-content-center">Đăng Ký</button>
+                    <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2 d-flex justify-content-center"
+                      id="registerButton">Đăng Ký</button>
                   </div>
                   <p class="text-sm mt-3 mb-0 text-white">Bạn đã có tài khoản? <a th:href="@{/auth/signin}"
                       class="text-dark font-weight-bolder text-white">Đăng Nhập</a></p>
@@ -159,6 +159,28 @@
       });
 
     }
+
+    // vô hiệu hóa nut button khi người dùng không chọn đồng ý với các điều khoản
+    document.addEventListener("DOMContentLoaded", function () {
+      var agreeCheckbox = document.getElementById("agreeCheckbox");
+      var registerButton = document.getElementById("registerButton");
+
+      // Khai báo hàm để kiểm tra trạng thái của checkbox
+      function checkAgreement() {
+        if (agreeCheckbox.checked) {
+          registerButton.removeAttribute("disabled"); // Kích hoạt nút đăng ký
+        } else {
+          registerButton.setAttribute("disabled", "disabled"); // Vô hiệu hóa nút đăng ký
+        }
+      }
+
+      // Gắn sự kiện change cho checkbox để kiểm tra khi người dùng thay đổi trạng thái
+      agreeCheckbox.addEventListener("change", checkAgreement);
+
+      // Kiểm tra trạng thái ban đầu của checkbox
+      checkAgreement();
+    });
+    // end
 
 
   </script>
