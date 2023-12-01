@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 
 import com.poly.Entity.Categories;
 import com.poly.Entity.Products;
+import com.poly.Entity.Reviews;
 import com.poly.Reponsitory.ProductRepository;
+import com.poly.Reponsitory.ReviewReponsitory;
 import com.poly.Service.CategoryService;
 
 @Controller
@@ -24,10 +26,39 @@ public class MenuController {
     @Autowired
     ProductRepository productRepo;
 
+    @Autowired
+    ReviewReponsitory reviewRepo;
+
     @GetMapping("/menu")
     public String ViewMenuProducts(Model model, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo) {
         // load toàn bộ sản phẩm
         List<Products> listProduct = productRepo.findAll();
+
+        for (Products product : listProduct) {
+            int productId = product.getId();
+            List<Reviews> reviews = reviewRepo.finByProductRating(productId); // Lấy đánh giá cho sản phẩm cụ thể
+
+            float star = 0;
+            int reviewCount = reviews.size();
+
+            if (reviewCount > 0) {
+                for (Reviews rv : reviews) {
+                    star += rv.getRating();
+                }
+                float averageRating = star / reviewCount;
+                System.out.println("Product ID: " + productId + ", Average Rating: " + averageRating);
+
+                // Đặt giá trị trung bình vào thuộc tính của sản phẩm
+                product.setAverage_rating(averageRating);
+
+                // Gán trung bình số sao vào model để hiển thị trên giao diện
+                model.addAttribute("star", product); // Đặt tên thuộc tính tương ứng với sản phẩm
+
+            } else {
+                // Xử lý nếu không có đánh giá cho sản phẩm
+                model.addAttribute("star", 0);
+            }
+        }
         model.addAttribute("ListProduct", listProduct);
 
         // sản phẩm theo thể loại

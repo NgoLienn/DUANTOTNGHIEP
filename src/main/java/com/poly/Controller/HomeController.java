@@ -59,12 +59,15 @@ public class HomeController {
                 float averageRating = star / reviewCount;
                 System.out.println("Product ID: " + productId + ", Average Rating: " + averageRating);
 
+                // Đặt giá trị trung bình vào thuộc tính của sản phẩm
+                product.setAverage_rating(averageRating);
+
                 // Gán trung bình số sao vào model để hiển thị trên giao diện
-                model.addAttribute("star" + productId, averageRating); // Đặt tên thuộc tính tương ứng với sản phẩm
+                model.addAttribute("star", product); // Đặt tên thuộc tính tương ứng với sản phẩm
+
             } else {
                 // Xử lý nếu không có đánh giá cho sản phẩm
-                model.addAttribute("star" + productId, 0); // Gán giá trị mặc định hoặc xử lý tùy thuộc vào logic của
-                                                           // ứng dụng
+                model.addAttribute("star", 0);
             }
         }
 

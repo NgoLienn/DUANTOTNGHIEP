@@ -204,7 +204,7 @@
 												<div class="title" th:text="${item.name}"></div>
 											</a>
 											<div class="quantity">
-												View: <small style="font-weight: initial;"
+												Views: <small style="font-weight: initial;"
 													th:text="${item.views}"></small>
 											</div>
 											<div class="evaluate" th:id="'danhgiaa' + ${item.productId}">
@@ -212,11 +212,13 @@
 													<span th:id="'percentagee' + ${item.productId}"
 														class="sosao"></span> &nbsp;
 													<span class="text-danger" th:id="'ratingg' + ${item.productId}"
-														th:data-rating="${star}" style="font-size: 17px;"></span>
+														th:data-average-rating="${item.average_rating}"
+														style="font-size: 17px;"></span>
 												</div>
 											</div>
+
 											<div class=" price"
-												th:text="'Price: ' + ${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+												th:text="'Giá: ' + ${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
 											</div>
 											<a class="tuychonshare text-dark" data-bs-toggle="modal"
 												th:data-bs-target="'#exampleModalAll' + ${item.productId}">
@@ -225,7 +227,8 @@
 											<!-- <div class="tym">
 												<i class="bi bi-heart-fill"></i>
 											</div> -->
-											<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
+											<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"> <span
+													class="cart-sp4"> <i class="bi bi-cart3"></i>
 												</span>
 											</a>
 
@@ -304,10 +307,15 @@
 													View: <small style="font-weight: initial;"
 														th:text="${product.views}"></small>
 												</div>
-												<div class="evaluate">
-													<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-													<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-													<i class="bi bi-star-half"></i>
+												<div class="evaluate" th:id="'danhgiaa' + ${product.productId}">
+													<div class="star">
+														<span th:id="'percentagee' + ${product.productId}"
+															class="sosao"></span> &nbsp;
+														<span class="text-danger"
+															th:id="'ratingg' + ${product.productId}"
+															th:data-average-rating="${product.average_rating}"
+															style="font-size: 17px;"></span>
+													</div>
 												</div>
 												<div class="price"
 													th:text="'Price: ' + ${#numbers.formatDecimal(product.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
@@ -319,7 +327,8 @@
 												<!-- <div class="tym">
 													<i class="bi bi-heart-fill"></i>
 												</div> -->
-												<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
+												<a th:href="@{|/user/productDetail/?productID=${product.productId}|}">
+													<span class="cart-sp4"> <i class="bi bi-cart3"></i>
 													</span>
 												</a>
 											</div>
@@ -402,6 +411,7 @@
 	<script src="../assets/js/bootstrap.bundle.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 
 
 	<script>
@@ -529,24 +539,16 @@
 		// end
 		// end
 
-		// tính trung bình sao trên detail
+		// tính trung bình sao đánh giá
 		document.addEventListener("DOMContentLoaded", function () {
 			const ratingDivs = document.querySelectorAll("[id^='ratingg']");
 
 			ratingDivs.forEach(ratingDiv => {
 				const productId = ratingDiv.id.replace("ratingg", ""); // Lấy productId từ id
 
-				const ratingValue = parseFloat(ratingDiv.getAttribute("data-rating"));
+				const ratingValue = parseFloat(ratingDiv.getAttribute("data-average-rating"));
 				const roundedRating = Math.floor(ratingValue);
 				const decimalPart = ratingValue - roundedRating;
-
-				const ratingText = document.getElementById("percentagee" + productId);
-
-				if (!isNaN(ratingValue) && ratingValue >= 1) {
-					ratingText.textContent = ` ${ratingValue.toFixed(1)} `;
-				} else {
-					ratingText.textContent = '';
-				}
 
 				// Xóa các sao cũ trong ratingDiv trước khi thêm sao mới
 				ratingDiv.innerHTML = '';

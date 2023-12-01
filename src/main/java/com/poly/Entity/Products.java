@@ -62,6 +62,9 @@ public class Products implements Serializable {
     @Column(name = "views")
     private Integer Views;
 
+    @Column(name = "average_rating")
+    private Float average_rating;
+
     @OneToMany(mappedBy = "Products")
     List<Size> size;
 

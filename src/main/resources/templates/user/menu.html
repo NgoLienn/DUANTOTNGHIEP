@@ -67,10 +67,14 @@
 												View: <small style="font-weight: initial;"
 													th:text="${item.views}"></small>
 											</div>
-											<div class="evaluate">
-												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-												<i class="bi bi-star-half"></i>
+											<div class="evaluate" th:id="'danhgiaa' + ${item.productId}">
+												<div class="star">
+													<span th:id="'percentagee' + ${item.productId}"
+														class="sosao"></span> &nbsp;
+													<span class="text-danger" th:id="'ratingg' + ${item.productId}"
+														th:data-average-rating="${item.average_rating}"
+														style="font-size: 17px;"></span>
+												</div>
 											</div>
 											<div class="price"
 												th:text="'Price: ' +${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
@@ -82,7 +86,8 @@
 											<!-- <div class="tym">
 												<i class="bi bi-heart-fill"></i>
 											</div> -->
-											<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
+											<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"> <span
+													class="cart-sp4"> <i class="bi bi-cart3"></i>
 												</span>
 											</a>
 
@@ -185,10 +190,15 @@
 													View: <small style="font-weight: initial;"
 														th:text="${product.views}"></small>
 												</div>
-												<div class="evaluate">
-													<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-													<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-													<i class="bi bi-star-half"></i>
+												<div class="evaluate" th:id="'danhgiaa' + ${product.productId}">
+													<div class="star">
+														<span th:id="'percentagee' + ${product.productId}"
+															class="sosao"></span> &nbsp;
+														<span class="text-danger"
+															th:id="'ratingg' + ${product.productId}"
+															th:data-average-rating="${product.average_rating}"
+															style="font-size: 17px;"></span>
+													</div>
 												</div>
 												<div class="price"
 													th:text="'Price: ' + ${#numbers.formatDecimal(product.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
@@ -200,7 +210,8 @@
 												<!-- <div class="tym">
 													<i class="bi bi-heart-fill"></i>
 												</div> -->
-												<a href="#1"> <span class="cart-sp4"> <i class="bi bi-cart3"></i>
+												<a th:href="@{|/user/productDetail/?productID=${product.productId}|}">
+													<span class="cart-sp4"> <i class="bi bi-cart3"></i>
 													</span>
 												</a>
 											</div>
@@ -409,6 +420,42 @@
 		});
 		// end
 		// end
+
+		// tính trung bình sao đánh giá
+		document.addEventListener("DOMContentLoaded", function () {
+			const ratingDivs = document.querySelectorAll("[id^='ratingg']");
+
+			ratingDivs.forEach(ratingDiv => {
+				const productId = ratingDiv.id.replace("ratingg", ""); // Lấy productId từ id
+
+				const ratingValue = parseFloat(ratingDiv.getAttribute("data-average-rating"));
+				const roundedRating = Math.floor(ratingValue);
+				const decimalPart = ratingValue - roundedRating;
+
+				// Xóa các sao cũ trong ratingDiv trước khi thêm sao mới
+				ratingDiv.innerHTML = '';
+
+				for (let i = 1; i <= 5; i++) {
+					const star = document.createElement("i");
+					star.classList.add("fas");
+
+					if (i <= roundedRating) {
+						star.classList.add("fa-star");
+					} else if (i === roundedRating + 1 && decimalPart > 0) {
+						if (decimalPart >= 0.75) {
+							star.classList.add("fa-star");
+						} else if (decimalPart >= 0.25) {
+							star.classList.add("fa-star-half-alt");
+						}
+					} else {
+						star.classList.add("fa-star");
+						star.style.opacity = "0.3";
+					}
+
+					ratingDiv.appendChild(star);
+				}
+			});
+		});
 
 		// end
 
