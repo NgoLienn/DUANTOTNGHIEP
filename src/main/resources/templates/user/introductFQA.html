@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+<link rel="stylesheet" th:href="@{../assets/css_main/introductFQA.css}">
+
+<body>
+
+    <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+
+    <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div>
+    <div class="containerr ">
+        <div class="image_big">
+            <div class="image-one"></div>
+            <div class="image-three"></div>
+            <div class="image-two">
+                <img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
+                <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
+
+                <header class="banner-big">
+                    <div class="img-blur ">
+                        <!-- <img src="assets/images/food5.png" class="anh1" alt=""> -->
+                    </div>
+                    <div class="wraper">
+                        <div class="text-center text-uppercase wraper-title"
+                            style="font-weight: bold; font-size: 28px; color: rgb(55, 55, 55);">Cảm ơn bạn đã ghé thăm
+                            cửa hàng của chúng tôi
+                        </div>
+                        <div class="row d-flex justify-content-center align-items-center flex-wrap wraper-con">
+                            <aside class="col-md-10">
+                                <div class="mt-4 text-center">
+                                    <p class="" style="font-size: 18px; color: rgb(76, 76, 76); line-height: 32px;">Chào
+                                        mừng bạn đến với
+                                        Yummy - điểm đến lý tưởng cho những người yêu thích thức ăn
+                                        nhanh và ngon miệng! Yummy tự hào là địa chỉ uy tín cung cấp những món ăn ngon,
+                                        đa dạng và chất lượng, đem lại trải nghiệm ẩm thực tuyệt vời.
+                                    </p>
+                                    <p style="font-size: 18px; color: rgb(76, 76, 76); line-height: 32px;">
+                                        Tại Yummy, chúng tôi không chỉ đơn thuần là một cửa hàng thức ăn nhanh mà còn là
+                                        điểm đến của sự sáng tạo và đổi mới trong việc phục vụ món ăn. Với danh sách đa
+                                        dạng các món ăn từ các món bánh ngọt hấp dẫn, combo bữa ăn cơ bản đến các món
+                                        đặc sản độc đáo, chúng tôi cam kết mang đến sự phong phú và đa dạng cho thực đơn
+                                        của bạn.
+                                    </p>
+                                    <p style="font-size: 18px; color: rgb(76, 76, 76); line-height: 32px;">Chất lượng là
+                                        tiêu chí hàng đầu
+                                        tại Yummy. Chúng tôi sử dụng nguyên liệu tươi
+                                        ngon nhất và tuân thủ các tiêu chuẩn vệ sinh an toàn thực phẩm nghiêm ngặt để
+                                        đảm bảo mỗi món ăn đều được chế biến và phục vụ với chất lượng tốt nhất.
+                                    </p>
+                                    <p style="font-size: 18px; color: rgb(76, 76, 76); line-height: 32px;">
+                                        Đến với Yummy, bạn sẽ không chỉ được thưởng thức những bữa ăn ngon miệng mà còn
+                                        trải nghiệm dịch vụ chuyên nghiệp, thân thiện và tiện lợi. Hãy ghé thăm Yummy
+                                        ngay hôm nay để khám phá và thưởng thức những hương vị tuyệt vời nhất của chúng
+                                        tôi!
+                                    </p>
+                                </div>
+                            </aside>
+
+                            <div class="d-flex justify-content-center align-items-center">
+                                <iframe class=" w-responsive col-10" width="100%" height="450px"
+                                    src="https://www.youtube.com/embed/EIA_1rbxyQA?si=WNjHxJ5oipogFdjC" frameborder="0"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="mt-5 col-md-10">
+                                <h4 class="ps-3 pb-3">Câu hỏi thường gặp</h4>
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <style>
+                                        .accordion-item {
+                                            background: none;
+                                            border: none;
+                                        }
+
+                                        .accordion-button {
+                                            background: none;
+                                        }
+
+                                        .accordion-header {
+                                            outline: none;
+                                        }
+                                    </style>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                aria-expanded="false" aria-controls="flush-collapseOne"
+                                                style="font-size: 18px;">
+                                                Thực đơn của bạn bao gồm những món gì?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <p>
+                                                    Chúng tôi cung cấp một thực đơn đa dạng với các món ăn ngon từ
+                                                    pizza,
+                                                    burger, salad đến đồ uống, tráng miệng và set combo phong phú.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                                aria-expanded="false" aria-controls="flush-collapseTwo"
+                                                style="font-size: 18px;">
+                                                Phí vận chuyển và thời gian giao hàng như thế nào?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <p>
+                                                    Phí vận chuyển và thời gian giao hàng cụ thể sẽ được tính dựa trên
+                                                    địa chỉ nhận hàng và món đặt hàng. Thông tin chi tiết sẽ được cung
+                                                    cấp khi thanh toán.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                                aria-expanded="false" aria-controls="flush-collapseThree"
+                                                style="font-size: 18px;">
+                                                Phương thức thanh toán nào được chấp nhận?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <p>
+                                                    Chúng tôi chấp nhận thanh toán qua vnpay, chuyển khoản
+                                                    ngân hàng và tiền mặt khi nhận hàng (COD).
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseThreee"
+                                                aria-expanded="false" aria-controls="flush-collapseThree"
+                                                style="font-size: 18px;">
+                                                Quy định đổi trả hàng hoá như thế nào?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseThreee" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExamplee">
+                                            <div class="accordion-body">
+                                                <p>
+                                                    Bạn có thể liên hệ chúng tôi và chúng tôi chấp nhận đổi trả hàng hoá
+                                                    trong vòng 7 ngày kể từ khi
+                                                    nhận hàng, với điều kiện sản phẩm vẫn nguyên vẹn và không bị hỏng
+                                                    hóc.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseThreees"
+                                                aria-expanded="false" aria-controls="flush-collapseThree"
+                                                style="font-size: 18px;">
+                                                Làm thế nào để liên hệ với bộ phận hỗ trợ khách hàng?
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseThreees" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExamplees">
+                                            <div class="accordion-body">
+                                                <p>
+                                                    Bạn có thể liên hệ với chúng tôi qua số điện thoại hotline hoặc
+                                                    email được cung cấp trong trang web.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            </div>
+
+        </div>
+
+        <div class="footer " th:replace="~{zlayout/footer :: footer}"></div>
+    </div>
+
+    <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+    </div>
+
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // end
+
+        // loading khi refresh
+        var loader = function () {
+            setTimeout(function () {
+                $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+            }, 1000);
+        };
+        $(function () {
+            loader();
+        });
+        // end
+
+        $(function () {
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 1024) {
+                    $(".navb").addClass("scrolled");
+                } else {
+                    $(".navb").removeClass("scrolled");
+                }
+            });
+        });
+
+        $(function () {
+            $(".navbar-toggler").click(function () {
+                $(".navbar-collapse").toggleClass("show");
+            });
+        });
+
+        $(document).ready(function () {
+            $(".increment-button").click(function (e) {
+                e.preventDefault();
+                var cartitemId = $(this).data("cartitem-id");
+                var id = '#quantity' + cartitemId;
+                var subtotal = '#current-price' + cartitemId;
+
+                $.ajax({
+                    type: "GET",
+                    url: "/cart/updateCartItemss",
+                    data: { cartitemID: cartitemId },
+                    success: function (response) {
+                        // Update the quantity on the page without refreshing
+                        // You can do this dynamically based on your page structure
+                        var updatedQuantity = $(response).find(id).data('quantity');
+                        // Update the quantity on the page
+                        $(id).val(updatedQuantity);// For simplicity, you can also reload the entire page
+                        var currentPrice = $(response).find(subtotal).text();
+                        $(subtotal).text(currentPrice);
+
+                        var priceSum = $(response).find('#price-payment-sum').text();
+                        $('#price-payment-sum').text(priceSum);
+                    },
+                    error: function (error) {
+                        console.log("Error:", error);
+                    }
+                });
+            });
+
+            $(".decrement-button").click(function (e) {
+                e.preventDefault();
+                var cartitemId = $(this).data("cartitem-id");
+                // console.log(cartitemId);
+                var id = '#quantity' + cartitemId;
+                var subtotal = '#current-price' + cartitemId;
+
+                $.ajax({
+                    type: "GET",
+                    url: "/cart/updateCartItems",
+                    data: { cartitemID: cartitemId },
+                    success: function (response) {
+                        // Update the quantity on the page without refreshing
+                        // You can do this dynamically based on your page structure
+                        var updatedQuantity = $(response).find(id).data('quantity');
+                        // Update the quantity on the page
+                        $(id).val(updatedQuantity); // For simplicity, you can also reload the entire page
+                        var currentPrice = $(response).find(subtotal).text();
+                        $(subtotal).text(currentPrice);
+
+                        var priceSum = $(response).find('#price-payment-sum').text();
+                        $('#price-payment-sum').text(priceSum);
+                    },
+                    error: function (error) {
+                        console.log("Error:", error);
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>
