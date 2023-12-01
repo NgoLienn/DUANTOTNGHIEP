@@ -88,13 +88,13 @@ public class OrderController {
             users = authentication.getName();
         }
         Carts carts = cartRepo.findByCartUser(users);
-        if (carts == null) {
-            return "redirect:/user/CartNull";
-        } else {
-            Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-            model.addAttribute("subtotal", subtotal);
-            model.addAttribute("carts", carts);
-        }
+        // if (carts == null) {
+        //     return "redirect:/user/CartNull";
+        // } else {
+        //     Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+        //     model.addAttribute("subtotal", subtotal);
+        //     model.addAttribute("carts", carts);
+        // }
         // end
 
         return "user/order";
@@ -105,17 +105,17 @@ public class OrderController {
     public String cancelOrder(@PathVariable Long orderId, Model model) {
         // Tìm đơn hàng dựa trên orderId từ cơ sở dữ liệu
         Orders order = ordersRepo.findById(orderId).orElse(null);
-        if (order != null) {
-            // Lấy trạng thái "Đã hủy đơn" từ cơ sở dữ liệu
-            Status cancelledStatus = statusRepo.findById(6L).orElse(null); // Assuming the ID for "Đã hủy đơn" is 6
-            // Kiểm tra xem trạng thái đã tìm được hay không
-            if (cancelledStatus != null) {
-                // Cập nhật trạng thái đơn hàng thành "Đã hủy đơn"
-                order.setStatus(cancelledStatus);
-                // Lưu thay đổi vào cơ sở dữ liệu
-                ordersRepo.save(order);
-            }
-        }
+        // if (order != null) {
+        //     // Lấy trạng thái "Đã hủy đơn" từ cơ sở dữ liệu
+        //     Status cancelledStatus = statusRepo.findById(6L).orElse(null); // Assuming the ID for "Đã hủy đơn" is 6
+        //     // Kiểm tra xem trạng thái đã tìm được hay không
+        //     if (cancelledStatus != null) {
+        //         // Cập nhật trạng thái đơn hàng thành "Đã hủy đơn"
+        //         order.setStatus(cancelledStatus);
+        //         // Lưu thay đổi vào cơ sở dữ liệu
+        //         ordersRepo.save(order);
+        //     }
+        // }
         return "redirect:/user/order";
     }
 
@@ -124,17 +124,17 @@ public class OrderController {
     public String receivedOrder(@PathVariable Long orderId, Model model) {
         // Tìm đơn hàng dựa trên orderId từ cơ sở dữ liệu
         Orders order = ordersRepo.findById(orderId).orElse(null);
-        if (order != null) {
-            // Lấy trạng thái "Đã nhận hàng" từ cơ sở dữ liệu
-            Status cancelledStatus = statusRepo.findById(5L).orElse(null); // Assuming the ID for "Đã nhận hàng" is 6
-            // Kiểm tra xem trạng thái đã tìm được hay không
-            if (cancelledStatus != null) {
-                // Cập nhật trạng thái đơn hàng thành "Đã nhận hàng"
-                order.setStatus(cancelledStatus);
-                // Lưu thay đổi vào cơ sở dữ liệu
-                ordersRepo.save(order);
-            }
-        }
+        // if (order != null) {
+        //     // Lấy trạng thái "Đã nhận hàng" từ cơ sở dữ liệu
+        //     Status cancelledStatus = statusRepo.findById(5L).orElse(null); // Assuming the ID for "Đã nhận hàng" is 6
+        //     // Kiểm tra xem trạng thái đã tìm được hay không
+        //     if (cancelledStatus != null) {
+        //         // Cập nhật trạng thái đơn hàng thành "Đã nhận hàng"
+        //         order.setStatus(cancelledStatus);
+        //         // Lưu thay đổi vào cơ sở dữ liệu
+        //         ordersRepo.save(order);
+        //     }
+        // }
         return "redirect:/user/order";
     }
 
