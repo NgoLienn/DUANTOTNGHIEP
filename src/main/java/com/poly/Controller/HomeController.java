@@ -5,11 +5,15 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
+import org.springframework.security.core.Authentication;
 
 import com.poly.Entity.Cart_Items;
 import com.poly.Entity.Carts;
@@ -41,7 +45,7 @@ public class HomeController {
     ReviewReponsitory reviewRepo;
 
     @GetMapping(value = { "/", "/user/index" })
-    public String ViewProduct(Model model, HttpServletRequest httpServletRequest) {
+    public String ViewProduct(Model model, HttpServletRequest httpServletRequest, Authentication authentication) {
         // load toàn bộ sản phẩm
         List<Products> listProduct = productRepo.findAll(); // Lấy danh sách sản phẩm
 
@@ -79,24 +83,29 @@ public class HomeController {
         List<Categories> categoryList = categoryService.getAllCategories();
         model.addAttribute("categoryList", categoryList);
 
-        String username = httpServletRequest.getRemoteUser();
-        Carts carts = cartRepo.findByCartUser(username);
-        if (carts == null || carts.getCartID() == null) {
-            // Nếu giỏ hàng hoặc cartID là null, chuyển hướng người dùng đến trang thông báo
-            return "user/index";
+        String users = "";
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }
+        Carts carts = cartRepo.findByCartUser(users);
+        if (carts == null) {
+            return "redirect:/user/CartNull";
         } else {
             Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-            model.addAttribute("carts", carts);
             model.addAttribute("subtotal", subtotal);
+            model.addAttribute("carts", carts);
         }
-
         return "user/index";
     }
 
-    @GetMapping("index/remove/{cartitemID}")
-    public String remove(@PathVariable("cartitemID") Long Id) {
-        Cart_Items cartItems = cartItemsRepo.findByCartitemID(Id);
-        cartItemsRepo.delete(cartItems);
-        return "redirect:/";
-    }
+    // @GetMapping("index/remove/{cartitemID}")
+    // public String remove(@PathVariable("cartitemID") Long Id) {
+    //     Cart_Items cartItems = cartItemsRepo.findByCartitemID(Id);
+    //     cartItemsRepo.delete(cartItems);
+    //     return "redirect:/";
+    // }
 }

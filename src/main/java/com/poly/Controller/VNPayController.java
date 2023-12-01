@@ -127,9 +127,6 @@ public class VNPayController {
 //        resp.getWriter().write(gson.toJson(job));
         return "redirect:" + paymentUrl;
     }
-
-
-
 }
 
 

@@ -56,17 +56,36 @@ public class PaymentController {
         }
         Account account = accountRepo.findByUsername(users);
         model.addAttribute("account", account);
+        // Carts carts = cartRepo.findByCartUser(users);
+        // model.addAttribute("cart", carts);
+        // Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+        // model.addAttribute("subtotal", subtotal);
+
+        // cart small
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }
         Carts carts = cartRepo.findByCartUser(users);
-        model.addAttribute("cart", carts);
-        Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-        model.addAttribute("subtotal", subtotal);
+        if (carts == null) {
+            return "redirect:/user/CartNull";
+        } else {
+            Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+            model.addAttribute("subtotal", subtotal);
+            model.addAttribute("carts", carts);
+        }
+        // end
 
         return "user/payment_method";
     }
 
     @PostMapping("/payment")
-    public String payment(Model model, Authentication authentication,HttpServletRequest req, @RequestParam("payment") String payment,
-                          HttpServletResponse resp) throws IOException {
+    public String payment(Model model, Authentication authentication, HttpServletRequest req,
+            @RequestParam("payment") String payment,
+            HttpServletResponse resp) throws IOException {
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
             OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
@@ -85,7 +104,8 @@ public class PaymentController {
             float subtotal = cartItemsRepo.getSum(carts.getCartID());
             Status status = new Status();
             status.setStatusID(1L);
-            account.setAddress(selectedProvince + ", " + selectedDistrict + ", " + selectedWard+","+selectedChitiet);
+            account.setAddress(
+                    selectedProvince + ", " + selectedDistrict + ", " + selectedWard + "," + selectedChitiet);
             Orders orders = new Orders();
             orders.setAccount(account);
             orders.setStatus(status);
@@ -94,7 +114,6 @@ public class PaymentController {
             orders.setPaymentMethod("Thanh toán khi nhận hàng");
             orders.setTotalAmount(subtotal);
             ordersRepo.save(orders);
-
 
             for (Cart_Items cartItems : carts.getCart_items()) {
                 Products product = new Products();
@@ -113,17 +132,16 @@ public class PaymentController {
             cartItemsRepo.deleteAll(carts.getCart_items());
             cartRepo.delete(carts);
             return "redirect:/user/confirmation";
-        }
-        else{
+        } else {
             String vnp_Version = "2.1.0";
             String vnp_Command = "pay";
-            String vnp_CurrCode="VND";
+            String vnp_CurrCode = "VND";
             String vnp_OrderInfo = req.getParameter("oder");
             String orderType = "1";
             String vnp_TxnRef = Config.getRandomNumber(8);
             String vnp_IpAddr = Config.getIpAddress(req);
             String vnp_TmnCode = Config.vnp_TmnCode;
-            int amount = Integer.parseInt(req.getParameter("vnp_Amount"))*100;
+            int amount = Integer.parseInt(req.getParameter("vnp_Amount")) * 100;
             Map<String, String> vnp_Params = new HashMap<>();
             vnp_Params.put("vnp_Version", vnp_Version);
             vnp_Params.put("vnp_Command", vnp_Command);
@@ -134,13 +152,16 @@ public class PaymentController {
             vnp_Params.put("vnp_OrderInfo", vnp_OrderInfo);
             vnp_Params.put("vnp_OrderType", orderType);
             String bank_code = req.getParameter("bankcode");
-            if (bank_code != null && !bank_code.isEmpty()) vnp_Params.put("vnp_BankCode", bank_code);
+            if (bank_code != null && !bank_code.isEmpty())
+                vnp_Params.put("vnp_BankCode", bank_code);
             vnp_Params.put("vnp_ReturnUrl", Config.vnp_Returnurl);
             vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
             String locate = req.getParameter("language");
-            if (locate != null && !locate.isEmpty()) vnp_Params.put("vnp_Locale", locate);
-            else vnp_Params.put("vnp_Locale", "vn");
+            if (locate != null && !locate.isEmpty())
+                vnp_Params.put("vnp_Locale", locate);
+            else
+                vnp_Params.put("vnp_Locale", "vn");
 
             Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
             SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -150,8 +171,8 @@ public class PaymentController {
             String vnp_ExpireDate = formatter.format(cld.getTime());
             Carts carts = new Carts();
             carts.setCartID(Long.valueOf(vnp_OrderInfo));
-            Payment paymentEntity=new Payment();
-            paymentEntity.setAmount(amount/100);
+            Payment paymentEntity = new Payment();
+            paymentEntity.setAmount(amount / 100);
             paymentEntity.setStatus("NO");
             paymentEntity.setTxnref(vnp_TxnRef);
             paymentEntity.setCreatedate(vnp_CreateDate);
@@ -160,7 +181,6 @@ public class PaymentController {
             paymentEntity.setUsername(users);
             paymentEntity.setCarts(carts);
             paymentRepository.save(paymentEntity);
-
 
             vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
             List fieldNames = new ArrayList(vnp_Params.keySet());
@@ -185,7 +205,7 @@ public class PaymentController {
                 }
             }
             String queryUrl = query.toString();
-            String hr =Config.vnp_HashSecret;
+            String hr = Config.vnp_HashSecret;
             System.out.println(hr);
             String vnp_SecureHash = Config.hmacSHA512(Config.vnp_HashSecret, hashData.toString());
             System.out.println(vnp_SecureHash);

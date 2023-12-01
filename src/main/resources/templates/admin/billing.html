@@ -253,13 +253,24 @@
                             </span>
                           </div>
                           <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                            <div class="d-flex flex-column" style="overflow: auto;">
+                            <div class="d-flex flex-column">
                               <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
-                                <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
-                                <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
-                                    class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
-                                </span>
-                                <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                                <h6 class="mb-2 text-sm" th:text="${item.Account.Fullname}"></h6>
+                                <div class="dropdown mb-2 text-sm">
+                                  <a class="dropdown-toggle text-dark" href="javascript:;" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="text-dark text-sm font-weight-bold">
+                                      Xem địa chỉ nhận hàng
+                                    </span>
+                                  </a>
+                                  <div class="dropdown-menu p-3" style="max-width: 500px;">
+                                    <p>
+                                      <span class="text-dark font-weight-bold text-sm"
+                                        th:text="${item.deliveryAddress}">
+                                    </p>
+                                  </div>
+                                </div>
+                                <span class="mb-2 text-xs" style="max-width: 180px; overflow: auto;">
                                   <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
                                   </span>
                                 </span>
@@ -412,13 +423,23 @@
                           </span>
                         </div>
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                          <div class="d-flex flex-column" style="overflow: auto;">
+                          <div class="d-flex flex-column">
                             <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
                               <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
-                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
-                              </span>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                              <div class="dropdown mb-2 text-sm">
+                                <a class="dropdown-toggle text-dark" href="javascript:;" role="button"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+                                  <span class="text-dark text-sm font-weight-bold">
+                                    Xem địa chỉ nhận hàng
+                                  </span>
+                                </a>
+                                <div class="dropdown-menu p-3" style="max-width: 500px;">
+                                  <p>
+                                    <span class="text-dark font-weight-bold text-sm" th:text="${item.deliveryAddress}">
+                                  </p>
+                                </div>
+                              </div>
+                              <span class="mb-2 text-xs" style="max-width: 180px; overflow: auto;">
                                 <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
                                 </span>
                               </span>
@@ -572,13 +593,23 @@
                           </span>
                         </div>
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                          <div class="d-flex flex-column" style="overflow: auto;">
+                          <div class="d-flex flex-column">
                             <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
                               <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
-                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
-                              </span>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                              <div class="dropdown mb-2 text-sm">
+                                <a class="dropdown-toggle text-dark" href="javascript:;" role="button"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+                                  <span class="text-dark text-sm font-weight-bold">
+                                    Xem địa chỉ nhận hàng
+                                  </span>
+                                </a>
+                                <div class="dropdown-menu p-3" style="max-width: 500px;">
+                                  <p>
+                                    <span class="text-dark font-weight-bold text-sm" th:text="${item.deliveryAddress}">
+                                  </p>
+                                </div>
+                              </div>
+                              <span class="mb-2 text-xs" style="max-width: 180px; overflow: auto;">
                                 <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
                                 </span>
                               </span>
@@ -733,13 +764,23 @@
                           </span>
                         </div>
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                          <div class="d-flex flex-column" style="overflow: auto;">
+                          <div class="d-flex flex-column">
                             <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
                               <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
-                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
-                              </span>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                              <div class="dropdown mb-2 text-sm">
+                                <a class="dropdown-toggle text-dark" href="javascript:;" role="button"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+                                  <span class="text-dark text-sm font-weight-bold">
+                                    Xem địa chỉ nhận hàng
+                                  </span>
+                                </a>
+                                <div class="dropdown-menu p-3" style="max-width: 500px;">
+                                  <p>
+                                    <span class="text-dark font-weight-bold text-sm" th:text="${item.deliveryAddress}">
+                                  </p>
+                                </div>
+                              </div>
+                              <span class="mb-2 text-xs" style="max-width: 180px; overflow: auto;">
                                 <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
                                 </span>
                               </span>
@@ -894,13 +935,23 @@
                           </span>
                         </div>
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                          <div class="d-flex flex-column" style="overflow: auto;">
+                          <div class="d-flex flex-column">
                             <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
                               <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
-                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
-                              </span>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                              <div class="dropdown mb-2 text-sm">
+                                <a class="dropdown-toggle text-dark" href="javascript:;" role="button"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+                                  <span class="text-dark text-sm font-weight-bold">
+                                    Xem địa chỉ nhận hàng
+                                  </span>
+                                </a>
+                                <div class="dropdown-menu p-3" style="max-width: 500px;">
+                                  <p>
+                                    <span class="text-dark font-weight-bold text-sm" th:text="${item.deliveryAddress}">
+                                  </p>
+                                </div>
+                              </div>
+                              <span class="mb-2 text-xs" style="max-width: 180px; overflow: auto;">
                                 <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
                                 </span>
                               </span>
@@ -1055,13 +1106,23 @@
                           </span>
                         </div>
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                          <div class="d-flex flex-column" style="overflow: auto;">
+                          <div class="d-flex flex-column">
                             <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
                               <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
-                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
-                              </span>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                              <div class="dropdown mb-2 text-sm">
+                                <a class="dropdown-toggle text-dark" href="javascript:;" role="button"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+                                  <span class="text-dark text-sm font-weight-bold">
+                                    Xem địa chỉ nhận hàng
+                                  </span>
+                                </a>
+                                <div class="dropdown-menu p-3" style="max-width: 500px;">
+                                  <p>
+                                    <span class="text-dark font-weight-bold text-sm" th:text="${item.deliveryAddress}">
+                                  </p>
+                                </div>
+                              </div>
+                              <span class="mb-2 text-xs" style="max-width: 180px; overflow: auto;">
                                 <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
                                 </span>
                               </span>
@@ -1215,13 +1276,23 @@
                           </span>
                         </div>
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                          <div class="d-flex flex-column" style="overflow: auto;">
+                          <div class="d-flex flex-column">
                             <div class="d-flex flex-row gap-5 align-items-center flex-wrap">
                               <h6 class="mb-3 text-sm" th:text="${item.Account.Fullname}"></h6>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;"><span
-                                  class="text-dark font-weight-bold ms-sm-2" th:text="${item.deliveryAddress}"></span>
-                              </span>
-                              <span class="mb-2 text-xs" style="max-width: 200px; overflow: auto;">
+                              <div class="dropdown mb-2 text-sm">
+                                <a class="dropdown-toggle text-dark" href="javascript:;" role="button"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+                                  <span class="text-dark text-sm font-weight-bold">
+                                    Xem địa chỉ nhận hàng
+                                  </span>
+                                </a>
+                                <div class="dropdown-menu p-3" style="max-width: 500px;">
+                                  <p>
+                                    <span class="text-dark font-weight-bold text-sm" th:text="${item.deliveryAddress}">
+                                  </p>
+                                </div>
+                              </div>
+                              <span class="mb-2 text-xs" style="max-width: 180px; overflow: auto;">
                                 <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.Account.UserName}">
                                 </span>
                               </span>

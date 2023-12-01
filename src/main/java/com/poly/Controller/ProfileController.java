@@ -3,7 +3,10 @@ package com.poly.Controller;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.poly.Entity.Account;
+import com.poly.Entity.Carts;
 import com.poly.Reponsitory.AccountReponsitory;
+import com.poly.Reponsitory.CartItemsRepository;
+import com.poly.Reponsitory.CartRepository;
 import com.poly.Service.AccountService;
 import com.poly.Service.CustomOAuth2User;
 import com.poly.Service.UserServiceGoogle;
@@ -46,6 +49,12 @@ public class ProfileController {
     @Autowired
     Cloudinary cloudinary;
 
+    @Autowired
+    private CartRepository cartRepo;
+
+    @Autowired
+    private CartItemsRepository cartItemsRepo;
+
     @GetMapping
     public String account(Model model,
             Authentication authentication) {
@@ -61,6 +70,25 @@ public class ProfileController {
         Account account = accountService.findByUsername(users);
         model.addAttribute("account", new Account());
         model.addAttribute("profile", account);
+
+        // cart small
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }
+        Carts carts = cartRepo.findByCartUser(users);
+        if (carts == null) {
+            return "redirect:/user/CartNull";
+        } else {
+            Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+            model.addAttribute("subtotal", subtotal);
+            model.addAttribute("carts", carts);
+        }
+        // end
+
         return "user/profile";
     }
 

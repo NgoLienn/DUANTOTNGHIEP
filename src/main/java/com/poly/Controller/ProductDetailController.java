@@ -4,15 +4,22 @@ import java.util.List;
 
 import com.poly.Entity.Size;
 import com.poly.Entity.Size_Product;
+import com.poly.Reponsitory.CartItemsRepository;
+import com.poly.Reponsitory.CartRepository;
 import com.poly.Reponsitory.ReviewReponsitory;
 import com.poly.Reponsitory.SizeProductRepository;
 import com.poly.Reponsitory.SizeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.poly.Entity.Carts;
 import com.poly.Entity.Image_product;
 import com.poly.Entity.Products;
 import com.poly.Entity.Reviews;
@@ -39,10 +46,16 @@ public class ProductDetailController {
     @Autowired
     ReviewReponsitory reviewRepo;
 
+    @Autowired
+    private CartRepository cartRepo;
+
+    @Autowired
+    private CartItemsRepository cartItemsRepo;
+
     @GetMapping("/productDetail")
     public String getProducts(Model model,
             @RequestParam(value = "sizeID", defaultValue = "") Long sizeId,
-            @RequestParam(value = "productID", defaultValue = "") int productId) {
+            @RequestParam(value = "productID", defaultValue = "") int productId, Authentication authentication) {
 
         // lấy id sản phẩm
         Products produc = productService.getProductById(productId);
@@ -72,7 +85,7 @@ public class ProductDetailController {
             model.addAttribute("sizeProduct", sizeProduct);
             firstName = sizeId;
         }
-        
+
         Size sizeName = sizeRepo.findBySizeName(firstName);
         String sizeNames = sizeName.getTableSize().getSizeName();
         model.addAttribute("sizeNames", sizeNames);
@@ -100,7 +113,7 @@ public class ProductDetailController {
             // Nếu không có đánh giá nào, gán giá trị mặc định hoặc xử lý theo ý của bạn
             model.addAttribute("star", 0); // hoặc có thể gán giá trị mặc định khác tùy thuộc vào logic của ứng dụng
         }
-        
+
         model.addAttribute("reviews", reviews);
 
         // đánh giá
@@ -118,6 +131,25 @@ public class ProductDetailController {
 
         List<Reviews> review5 = reviewRepo.finByProductAndRatingFive(productId);
         model.addAttribute("review5", review5);
+        // end
+
+        // cart small
+        String users = "";
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }
+        Carts carts = cartRepo.findByCartUser(users);
+        if (carts == null) {
+            return "redirect:/user/CartNull";
+        } else {
+            Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+            model.addAttribute("subtotal", subtotal);
+            model.addAttribute("carts", carts);
+        }
         // end
 
         return "user/product_detail";
