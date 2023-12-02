@@ -143,7 +143,7 @@
         <div class="row gx-4">
           <div class="col-auto">
             <div class="avatar avatar-xl position-relative">
-              <img src="/assets/images/avata_user.jpg" alt="profile_image"
+              <img th:src="${profile.avata}" alt="profile_image"
                 class="w-100 h-100 border-radius-lg shadow-sm" style="object-fit: cover; cursor: pointer;">
             </div>
           </div>
@@ -196,58 +196,50 @@
                 <p class="mb-0">Chỉnh Sửa Tài Khoản</p>
               </div>
             </div>
+            <form id="profileForm" method="post" action="admin/profile"
+                  enctype="multipart/form-data" th:object="${account}">
             <div class="card-body">
               <p class="text-uppercase text-sm">Thông Tin Người Dùng</p>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Họ Và Tên</label>
-                    <input class="form-control" type="text" value="" placeholder="Name">
+                    <input name="ten" class="form-control" type="text" th:value="${profile.fullname}" placeholder="Name">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Email</label>
-                    <input class="form-control" type="email" value="" placeholder="Email Address">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Tài Khoản</label>
-                    <input class="form-control" type="text" value="" placeholder="User Name">
+                    <input class="form-control" type="email" th:value="${profile.userName}" placeholder="Email Address">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Mật Khẩu</label>
-                    <input class="form-control" type="text" value="" placeholder="Password">
+                    <input class="form-control" type="password" th:value="${profile.password}" placeholder="Password">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Số Điện Thoại</label>
-                    <input class="form-control" type="text" value="" placeholder="Phone">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label py-2">Giới Tính</label><br>
-                    <label style="margin-right: 20px; font-size: 13px;"><input class="form-control-label"
-                        style="width: 25px; height: 15px;" name="option" type="radio" value="Admin" id="admin" checked>
-                      Nam</label>
-                    <label style="margin-right: 20px; font-size: 13px;"><input class="form-control-label"
-                        style="width: 25px; height: 15px;" name="option" type="radio" value="User" id="user">
-                      Nữ</label>
+                    <input class="form-control" type="text" th:value="${profile.phone}" name="phone" placeholder="Phone">
                   </div>
                 </div>
               </div>
               <hr class="horizontal dark">
-              <p class="text-uppercase text-sm">Hình Ảnh</p>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Chọn Hình Ảnh</label>
-                    <input class="form-control" type="file" value="">
+                    <label for="example-text-input"
+                           class="form-control-label mb-3">Chọn
+                      Avata</label>
+
+                    <input type="hidden" name="filess"
+                           th:value="${profile.avata}">
+                    <input class="form-control" type="file"
+                           th:value="${profile.avata}" id="uploadimage"
+                           name="uploadimage"
+                           onchange="previewImage(event)">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -263,6 +255,7 @@
                   Nhật</button>
               </div>
             </div>
+            </form>
           </div>
         </div>
         <div class="col-md-4">

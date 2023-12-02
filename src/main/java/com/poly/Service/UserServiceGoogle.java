@@ -22,23 +22,17 @@ public class UserServiceGoogle {
             Account newUser = new Account();
             Blog blog = new Blog();
             blog.setBlogID(1);
-//            newUser.setFullname(name);
             newUser.setBlog(blog);
             newUser.setUserName(username);
             newUser.setProvider(Provider.GOOGLE);
             newUser.setActive(true);
-
             Roles roles = new Roles();
             roles.setId("2");
             Authority authority = new Authority();
             authority.setAccount(newUser);
             authority.setRole(roles);
-
-
-
             repo.save(newUser);
             authorityResponsitory.save(authority);
-            System.out.println("Created new user: " + username);
         }
 
     }
