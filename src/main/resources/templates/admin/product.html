@@ -181,7 +181,7 @@
                       <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
                   </div>
-                  <!-- <div class="col-md-6">
+                  <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Giá Mới</label>
                       <input class="form-control" type="text" id="newProduct_price" value="" placeholder="New Price"
@@ -189,7 +189,7 @@
                       <small class="text-danger" id="price-error"></small>
                       <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
-                  </div> -->
+                  </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Số Lượng</label>
@@ -239,13 +239,13 @@
                       <label for="example-text-input" class="form-control-label">Trang Thái</label>
                       <div class="d-flex justify-content-start align-items-center gap-3 mt-2">
                         <label for="trueStatus" class="cursor-pointer" style="font-size: 13px;">
-                          <input class="" id="trueStatus" name="option" type="radio" value="True" checked
-                            placeholder="">&nbsp;
+                          <input class="" id="trueStatus" name="option" type="radio" value="True" checked placeholder=""
+                            th:field="*{status_prod}" th:value="${newProduct.status_prod}">&nbsp;
                           True
                         </label>
                         <label for="falseStatus" class="cursor-pointer" style="font-size: 13px;">
-                          <input class="" id="falseStatus" name="option" type="radio" value="false"
-                            placeholder="">&nbsp; False
+                          <input class="" id="falseStatus" name="option" type="radio" value="false" placeholder=""
+                            th:field="*{status_prod}" th:value="${newProduct.status_prod}">&nbsp; False
                         </label>
                       </div>
                     </div>
@@ -354,6 +354,9 @@
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Số
                         Lượng
                       </th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trang
+                        Thái
+                      </th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Thao
                         Tác</th>
                     </tr>
@@ -385,6 +388,10 @@
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold quantity"
                           th:text="${item.quantity}"></span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold quantity"
+                          th:text="${item.status_prod}"></span>
                       </td>
                       <td class="align-middle text-center">
                         <a th:href="@{/admin/managerProducts/edit/{productId}(productId=${item.productId})}"
@@ -490,25 +497,26 @@
     // end
 
     // phân trang
-    $(document).ready(function () {
-      $('.pagination .page-link').on('click', function (e) {
-        e.preventDefault();
-        var page = $(this).data('page');
-        loadProducts(page);
-      });
+    // $(document).ready(function () {
+    //   $('.pagination .page-link').on('click', function (e) {
+    //     e.preventDefault();
+    //     var page = $(this).data('page');
+    //     loadProducts(page);
+    //   });
 
-      function loadProducts(page) {
-        $.get('/products', { pageNo: page }, function (data) {
-          $('#productListContainer').html(data);
-        });
-      }
-    });
+    //   function loadProducts(page) {
+    //     $.get('/products', { pageNo: page }, function (data) {
+    //       $('#productListContainer').html(data);
+    //     });
+    //   }
+    // });
     // end
 
     // 
   </script>
 
   <script th:inline="javascript">
+    //phân trang sản phẩm
     function loadPage(page, event) {
       if (event) {
         event.preventDefault();
@@ -530,6 +538,7 @@
         }
       });
     }
+    // end
 
     // validate form sản phẩm
     function validateForm() {
@@ -554,23 +563,23 @@
         name.style.borderColor = '';
       }
 
-      if (!isValidNumber(prices.value) || prices.value.length < 4) {
-        prices.style.borderColor = '#ff0000';
-        document.getElementById('prices-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
-        return false;
-      } else {
-        document.getElementById('prices-error').innerText = '';
-        prices.style.borderColor = '';
-      }
+      // if (!isValidNumber(prices.value) || prices.value.length < 4) {
+      //   prices.style.borderColor = '#ff0000';
+      //   document.getElementById('prices-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
+      //   return false;
+      // } else {
+      //   document.getElementById('prices-error').innerText = '';
+      //   prices.style.borderColor = '';
+      // }
 
-      if (!isValidNumber(price.value) || price.value.length < 4) {
-        price.style.borderColor = '#ff0000';
-        document.getElementById('price-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
-        return false;
-      } else {
-        document.getElementById('price-error').innerText = '';
-        price.style.borderColor = '';
-      }
+      // if (!isValidNumber(price.value) || price.value.length < 4) {
+      //   price.style.borderColor = '#ff0000';
+      //   document.getElementById('price-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
+      //   return false;
+      // } else {
+      //   document.getElementById('price-error').innerText = '';
+      //   price.style.borderColor = '';
+      // }
 
       if (!isValidNumberr(quantity.value)) {
         quantity.style.borderColor = '#ff0000';

@@ -12,8 +12,18 @@ import lombok.NoArgsConstructor;
 public class Page {
     private List<Products> ListProduct;
 
+    private List<Image_product> imageProduct;
+
     private int totalPages;
     private int currentPage;
+
+    public List<Image_product> getProductsImageList() {
+        return imageProduct;
+    }
+
+    public void setProductsImageList(List<Image_product> imageProduct) {
+        this.imageProduct = imageProduct;
+    }
 
     public List<Products> getProductsList() {
         return ListProduct;

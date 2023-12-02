@@ -29,19 +29,20 @@ public class WaitConfirmationController {
 
         // String users = "";
         // if (authentication instanceof OAuth2AuthenticationToken) {
-        //     OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
-        //     OAuth2User user = oauthToken.getPrincipal();
-        //     users = user.getAttribute("email");
+        // OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken)
+        // authentication;
+        // OAuth2User user = oauthToken.getPrincipal();
+        // users = user.getAttribute("email");
         // } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
-        //     users = authentication.getName();
+        // users = authentication.getName();
         // }
         // Carts carts = cartRepo.findByCartUser(users);
         // if (carts == null) {
-        //     return "redirect:/user/CartNull";
+        // return "redirect:/user/confirmation";
         // } else {
-        //     Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-        //     model.addAttribute("subtotal", subtotal);
-        //     model.addAttribute("carts", carts);
+        // Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+        // model.addAttribute("subtotal", subtotal);
+        // model.addAttribute("carts", carts);
         // }
 
         return "user/wait_confirmation";

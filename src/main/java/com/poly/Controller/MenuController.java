@@ -85,22 +85,22 @@ public class MenuController {
         // model.addAttribute("currentPage", pageNo);
         // model.addAttribute("totalPage", listpage.getTotalPages());
 
-        String users = "";
-        if (authentication instanceof OAuth2AuthenticationToken) {
-            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
-            OAuth2User user = oauthToken.getPrincipal();
-            users = user.getAttribute("email");
-        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
-            users = authentication.getName();
-        }
-        Carts carts = cartRepo.findByCartUser(users);
-        if (carts == null) {
-            return "redirect:/user/CartNull";
-        } else {
-            Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-            model.addAttribute("subtotal", subtotal);
-            model.addAttribute("carts", carts);
-        }
+        // String users = "";
+        // if (authentication instanceof OAuth2AuthenticationToken) {
+        //     OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+        //     OAuth2User user = oauthToken.getPrincipal();
+        //     users = user.getAttribute("email");
+        // } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+        //     users = authentication.getName();
+        // }
+        // Carts carts = cartRepo.findByCartUser(users);
+        // if (carts == null) {
+        //     return "redirect:/menu";
+        // } else {
+        //     Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+        //     model.addAttribute("subtotal", subtotal);
+        //     model.addAttribute("carts", carts);
+        // }
 
         return "user/menu";
     }

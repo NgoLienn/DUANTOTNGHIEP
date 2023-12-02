@@ -25,11 +25,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.poly.Entity.Image_product;
+import com.poly.Entity.Page;
 import com.poly.Entity.Products;
 import com.poly.Reponsitory.ImageProductRepository;
 import com.poly.Reponsitory.ProductRepository;
 import com.poly.Service.CategoryService;
 import com.poly.Service.ImageProductService;
+import com.poly.Service.ProductService;
 
 @Controller
 @RequestMapping("/admin")
@@ -48,18 +50,52 @@ public class ManagerImageProduct {
     CategoryService categoryService;
 
     @Autowired
+    ProductService productService;
+
+    @Autowired
     Cloudinary cloudinary;
 
-    @GetMapping("/managerImageProduct")
-    public String ViewCategory(Model model) {
+    private final int pageSize = 6;
 
-        List<Image_product> imageProduct = imageProductRepo.findAll();
-        model.addAttribute("imageProduct", imageProduct);
+    @GetMapping("/managerImageProduct")
+    public String ViewCategory(Model model, @RequestParam(defaultValue = "1") int page,
+            @RequestParam(value = "query", defaultValue = "") String query) {
+
+        List<Image_product> imageProduct;
 
         List<Products> products = productRepo.findAll();
-        model.addAttribute("products", products);
 
         model.addAttribute("newImageProduct", new Image_product());
+
+        // tìm kiếm sản phẩm
+        if (query.equals("")) {
+            imageProduct = imageProductRepo.findAll();
+        } else {
+            imageProduct = imageProductService.searchProducts(query);
+        }
+
+        model.addAttribute("query", query);
+        model.addAttribute("imageProduct", imageProduct);
+        model.addAttribute("products", products);
+
+        // phân trang sản phẩm
+        int totalProduct = imageProduct.size();
+        int totalPages = (int) Math.ceil(totalProduct / (double) pageSize);
+
+        // Lấy danh sách tài khoản trên trang hiện tại
+        int start = (page - 1) * pageSize;
+
+        int end = Math.min(start + pageSize, totalProduct);
+        List<Image_product> productsOnPage = imageProduct.subList(start, end);
+
+        // Đưa thông tin về dữ liệu và phân trang vào Model
+        Page productPage = new Page();
+        productPage.setProductsImageList(productsOnPage);
+        productPage.setTotalPages(totalPages);
+        productPage.setCurrentPage(page);
+        model.addAttribute("productPage", productPage);
+        // end
+
         return "admin/image_product";
     }
 

@@ -144,7 +144,7 @@ public class ProductDetailController {
         // }
         // Carts carts = cartRepo.findByCartUser(users);
         // if (carts == null) {
-        //     return "redirect:/user/CartNull";
+        //     return "redirect:/user/productDetail";
         // } else {
         //     Long subtotal = cartItemsRepo.getSum(carts.getCartID());
         //     model.addAttribute("subtotal", subtotal);

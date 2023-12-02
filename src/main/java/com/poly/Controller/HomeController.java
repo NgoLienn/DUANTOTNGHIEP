@@ -93,7 +93,7 @@ public class HomeController {
         // }
         // Carts carts = cartRepo.findByCartUser(users);
         // if (carts == null) {
-        //     return "redirect:/user/CartNull";
+        //     return "redirect:/";
         // } else {
         //     Long subtotal = cartItemsRepo.getSum(carts.getCartID());
         //     model.addAttribute("subtotal", subtotal);
@@ -104,8 +104,8 @@ public class HomeController {
 
     // @GetMapping("index/remove/{cartitemID}")
     // public String remove(@PathVariable("cartitemID") Long Id) {
-    //     Cart_Items cartItems = cartItemsRepo.findByCartitemID(Id);
-    //     cartItemsRepo.delete(cartItems);
-    //     return "redirect:/";
+    // Cart_Items cartItems = cartItemsRepo.findByCartitemID(Id);
+    // cartItemsRepo.delete(cartItems);
+    // return "redirect:/";
     // }
 }

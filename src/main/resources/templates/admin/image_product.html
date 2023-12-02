@@ -43,12 +43,21 @@
           <h6 class="font-weight-bolder text-white mb-0">Quản Lý Ảnh Sản Phẩm</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <!-- tìm kiếm -->
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group">
-              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Tìm Kiếm...">
-            </div>
+            <form>
+              <div class="input-group">
+                <span class="input-group-text text-body">
+                  <button class="btn btn-primary input-group-text mb-0 py-1" type="submit">
+                    <i class="fas fa-search cursor-pointer" aria-hidden="true"></i>
+                  </button>
+                </span>
+                <input type="text" class="form-control" name="query" th:value="${query}" id="searchInput"
+                  placeholder="Tìm Kiếm...">
+              </div>
+            </form>
           </div>
+          <!-- end -->
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
@@ -155,7 +164,8 @@
                       <label for="example-text-input" class="form-control-label">Tên Sản Phẩm</label>
                       <select class="form-control" th:field="*{productId.id}">
                         <option th:each="product : ${products}" th:value="${product.id}"
-                          th:text="${product.Name} + ' - ' + ${product.categoryId.Name}"></option>
+                          th:text="${product.Name} + ' - ' + ${product.categoryId.Name}">
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -185,11 +195,14 @@
                   <button class="btn btn-info btn-sm ms-4"
                     th:formaction="@{|/admin/managerImageProducts/update/${imageproductIdd}|}"
                     th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}"
-                    type="submit">Sửa</button>
-                  <button class="btn btn-danger btn-sm ms-4"
-                    th:formaction="@{|/admin/managerImageProducts/delete/${imageproductIdd}|}"
-                    th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}"
-                    type="submit">Xóa</button>
+                    type="submit">Sửa
+                  </button>
+
+                  <button class="btn btn-danger btn-sm ms-4" type="button" data-bs-toggle="modal"
+                    data-bs-target="#confirmDeleteModal"
+                    th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}">
+                    Xóa
+                  </button>
 
                   <a th:href="@{/admin/managerImageProduct}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProduct')}"
@@ -201,6 +214,28 @@
                     <button class="btn btn-dark btn-sm ms-4" type="button">Làm Mới</button>
                   </a>
                 </div>
+                <!-- Modal hỏi xóa sản phẩm-->
+                <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
+                  aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xóa ảnh sản phẩm</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Bạn có chắc chắn muốn xóa ảnh của sản phẩm này không?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-danger"
+                          th:formaction="@{|/admin/managerImageProducts/delete/${imageproductIdd}|}"
+                          id="confirmDeleteButton">Xóa</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end -->
               </div>
             </form>
           </div>
@@ -217,7 +252,7 @@
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-center mb-0" id="customers">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mã Sản Phẩm</th>
@@ -231,7 +266,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr th:each="item : ${imageProduct}">
+                    <tr th:each="item : ${productPage.imageProduct}">
                       <td class="align-middle px text-sm ps-5">
                         <span class="badge badge-sm text-dark text-xs " th:text="${item.productId.productId}"></span>
                       </td>
@@ -255,6 +290,32 @@
                         </a>
                       </td>
                     </tr>
+                    <!-- phân trang đầu-->
+                    <nav aria-label="Page navigation example"
+                      class="navigation mt-3 mb-3 d-flex justify-content-center">
+                      <ul class="pagination">
+                        <li class="page-item cursor-pointer" th:if="${productPage.currentPage > 1}">
+                          <a class="page-link" href="#" aria-label="Previous"
+                            th:onclick="'javascript:loadPage(1, event)'">
+                            <span aria-hidden="true">&laquo;</span>
+                          </a>
+                        </li>
+                        <li th:each="page : ${#numbers.sequence(1, productPage.totalPages)}"
+                          class="page-item cursor-pointer">
+                          <a class="page-link text-black" th:classappend="${page == productPage.currentPage} ? active"
+                            th:onclick="'javascript:loadPage(' + ${page} + ', event)'" th:text="${page}"></a>
+                        </li>
+                        <li class="page-item cursor-pointer"
+                          th:if="${productPage.currentPage < productPage.totalPages}">
+                          <a class="page-link" href=""
+                            th:onclick="'javascript:loadPage(' + ${productPage.totalPages} + ', event)'"
+                            aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                    <!-- end -->
                   </tbody>
                 </table>
               </div>
@@ -303,10 +364,6 @@
     });
     // end
 
-    // mặc dịnh tích sẵn radio
-    document.getElementById("user").checked = true;
-    // end
-
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
       var options = {
@@ -317,7 +374,6 @@
 
     // chọn ảnh, giới hạn người dùng chọn tối đa 3 ảnh
     // end
-
 
     // chọn ảnh đại diện sản phẩm
     function previewImage(event) {
@@ -341,6 +397,30 @@
       }
     }
 
+    // end
+
+    //phân trang sản phẩm
+    function loadPage(page, event) {
+      if (event) {
+        event.preventDefault();
+      }
+      $.ajax({
+        url: '/admin/managerImageProduct',
+        data: {
+          page: page
+        },
+        success: function (response) {
+          // Cập nhật nội dung danh sách tài khoản
+          var table = $(response).find("#customers").html();
+          $("#customers").html(table);
+          var pagination = $(response).find(".pagination").html();
+          $(".pagination").html(pagination);
+        },
+        error: function (xhr, status, error) {
+          console.log("Error: " + error);
+        }
+      });
+    }
     // end
 
   </script>

@@ -27,7 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.poly.Entity.Categories;
+import com.poly.Entity.Order_Items;
 import com.poly.Entity.Products;
+import com.poly.Entity.Reviews;
 import com.poly.Reponsitory.CategoryRepository;
 import com.poly.Reponsitory.ProductRepository;
 import com.poly.Service.CategoryService;
@@ -64,6 +66,14 @@ public class ManagerProducts {
         model.addAttribute("newProduct", new Products());
 
         model.addAttribute("true", true);
+
+        // for (Products product : listProduct) {
+        // int productId = product.getId();
+        // Products listProductt = productRepo.getById(productId);
+        // listProductt.setStatus_prod(true);
+        // productRepo.save(productId);
+
+        // }
 
         // tìm kiếm sản phẩm
         if (query.equals("")) {
@@ -216,6 +226,16 @@ public class ManagerProducts {
             categories.setCategoryId(category);
             product.setCategoryId(categories);
             product.setImage(url);
+            product.setStatus_prod(true);
+            if (product.getStatus_prod() != null) {
+                if (product.getStatus_prod()) {
+                    // Nếu trạng thái là true, hiển thị sản phẩm
+                    product.setStatus_prod(false);
+                } else {
+                    // Nếu trạng thái là false, ẩn sản phẩm
+                    product.setStatus_prod(true);
+                }
+            }
             productRepo.save(product);
 
             // Delete the original image
@@ -249,6 +269,17 @@ public class ManagerProducts {
             existingProduct.setCreate_at(product.getCreate_at());
             existingProduct.setDescription_an(product.getDescription_an());
             existingProduct.setDescription(product.getDescription());
+            existingProduct.setStatus_prod(true);
+            // Kiểm tra trạng thái mới của sản phẩm để ẩn hoặc hiển thị
+            if (existingProduct.getStatus_prod() != null) {
+                if (existingProduct.getStatus_prod()) {
+                    // Nếu trạng thái là true, hiển thị sản phẩm
+                    existingProduct.setStatus_prod(false);
+                } else {
+                    // Nếu trạng thái là false, ẩn sản phẩm
+                    existingProduct.setStatus_prod(true);
+                }
+            }
             existingProduct.setCategory(product.getCategory());
             // Thêm các trường còn lại tương ứng
 

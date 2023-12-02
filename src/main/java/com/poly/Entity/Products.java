@@ -41,7 +41,7 @@ public class Products implements Serializable {
     private String Description_an;
 
     @Column(name = "quantity")
-    private Float Quantity;
+    private Integer Quantity;
 
     @Column(name = "image", columnDefinition = "VARCHAR(MAX)")
     private String Image;
@@ -70,6 +70,9 @@ public class Products implements Serializable {
 
     @OneToMany(mappedBy = "product")
     List<Order_Items> orderitems;
+
+    @Column(name = "status_prod")
+    private Boolean status_prod;
 
     public int getId() {
         return productId;

@@ -17,4 +17,6 @@ public interface ProductRepository extends JpaRepository<Products, Integer> {
     @Query("Select u from Products u where u.Name like %?1%")
     List<Products> findByNameContainingIgnoreCase(String query);
 
+    void save(int productId);
+
 }

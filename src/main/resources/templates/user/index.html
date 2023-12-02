@@ -194,7 +194,7 @@
 						<section class="tab-pane fade show active" id="all-tab-pane" role="tabpanel"
 							aria-labelledby="home-tab" tabindex="0">
 							<div class="card-group justify-content-center" style="gap: 100px;">
-								<div th:each="item : ${ListProduct}">
+								<div th:each="item : ${ListProduct}" th:if="${item.status_prod != false}">
 									<div class="card">
 										<div class="card-body">
 											<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"
@@ -295,7 +295,7 @@
 								th:aria-labelledby="'pizza-tab' + ${category.categoryId}" tabindex="0">
 								<div class="card-group justify-content-center" style="gap: 100px;">
 									<th:block th:each="product : ${ListProduct}"
-										th:if="${product.category.categoryId == category.categoryId}">
+										th:if="${product.category.categoryId == category.categoryId && product.status_prod != false}">
 										<div class="card">
 											<div class=" card-body">
 												<a th:href="@{|/user/productDetail/?productID=${product.productId}|}"
@@ -514,10 +514,6 @@
 				// Chia sẻ trực tiếp tới Facebook
 				window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl));
 
-
-
-				// // Chia sẻ trực tiếp tới Pinterest
-				// window.open("https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(shareUrl));
 			});
 		});
 

@@ -38,4 +38,10 @@ public class ImageProductService {
     public void delete(Long iamgeproduct) {
         imageProductRepo.deleteById(iamgeproduct);
     }
+
+    // // tìm kiếm
+    public List<Image_product> searchProducts(String query) {
+        return imageProductRepo.findByNameContainingIgnoreCase(query);
+    }
+    // // end
 }
