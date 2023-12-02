@@ -204,7 +204,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Họ Và Tên</label>
-                    <input name="ten" class="form-control" type="text" th:value="${profile.fullname}" placeholder="Name">
+                    <input name="Fullname" class="form-control" type="text" th:value="${profile.fullname}" placeholder="Name">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -222,7 +222,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Số Điện Thoại</label>
-                    <input class="form-control" type="text" th:value="${profile.phone}" name="phone" placeholder="Phone">
+                    <input class="form-control" type="text" th:value="${profile.phone}" name="Phone" placeholder="Phone">
                   </div>
                 </div>
               </div>
@@ -251,7 +251,7 @@
               </div>
               <hr class="py-2">
               <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
-                <button class="btn btn-primary btn-sm ms-4 px-5" type="submit" style="font-size: 14px;">Cập
+                <button class="btn btn-primary btn-sm ms-4 px-5" style="font-size: 14px;">Cập
                   Nhật</button>
               </div>
             </div>
@@ -316,8 +316,24 @@
     <script src="/assets/js/core/bootstrap.min.js"></script>
     <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+      //bắt lỗi form
+      document.getElementById("profileForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent the form from submitting by default
 
+        var fullname = document.querySelector('input[name="Fullname"]').value;
+        var phone = document.querySelector('input[name="Phone"]').value;
+
+        if (fullname.trim() === '' || phone.trim() === '') {
+          Swal.fire("Lỗi", "Vui lòng điền đầy đủ thông tin.", "error");
+        } else if (!/^\d{10}$/.test(phone)) {
+          Swal.fire("Lỗi", "Số điện thoại không hợp lệ. Vui lòng nhập 10 chữ số.", "error");
+        } else {
+          // If all fields are filled and phone number is in the correct format, submit the form
+          this.submit();
+        }
+      });
       // loading khi refresh
       var loader = function () {
         setTimeout(function () {
@@ -336,6 +352,9 @@
         }
         Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
       }
+
+
+
     </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

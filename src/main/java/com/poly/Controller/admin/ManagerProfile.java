@@ -77,8 +77,8 @@ public class ManagerProfile {
                 "folder", "Images_FastFoodStore",
                 "resource_type", "image");
         try {
-            String fullnamee = httpServletRequest.getParameter("ten");
-            String Phone = httpServletRequest.getParameter("phone");
+            String fullnamee = httpServletRequest.getParameter("Fullname");
+            String Phone = httpServletRequest.getParameter("Phone");
             account.setFullname(fullnamee);
             account.setPhone(Phone);
             acc.setFullname(account.getFullname());
