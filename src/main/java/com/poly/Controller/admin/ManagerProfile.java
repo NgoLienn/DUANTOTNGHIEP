@@ -68,7 +68,7 @@ public class ManagerProfile {
             OAuth2User user = oauthToken.getPrincipal();
             users = user.getAttribute("email");
         } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
-            users = authentication.getName();
+            users = authentication.getName();//
         }
 
         Account acc = accountService.findByUsername(users);
