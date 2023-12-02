@@ -10,42 +10,51 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Page {
-    private List<Products> ListProduct;
+	private List<Products> ListProduct;
 
-    private List<Image_product> imageProduct;
+	private List<Image_product> imageProduct;
 
-    private int totalPages;
-    private int currentPage;
+	private int totalPages;
+	private int currentPage;
+	private List<Reviews> listReview;
 
-    public List<Image_product> getProductsImageList() {
-        return imageProduct;
-    }
+	public List<Reviews> getReviewsList() {
+		return listReview;
+	}
 
-    public void setProductsImageList(List<Image_product> imageProduct) {
-        this.imageProduct = imageProduct;
-    }
+	public void setReviewList(List<Reviews> listReview) {
+		this.listReview = listReview;
+	}
 
-    public List<Products> getProductsList() {
-        return ListProduct;
-    }
+	public List<Image_product> getProductsImageList() {
+		return imageProduct;
+	}
 
-    public void setProductsList(List<Products> ListProduct) {
-        this.ListProduct = ListProduct;
-    }
+	public void setProductsImageList(List<Image_product> imageProduct) {
+		this.imageProduct = imageProduct;
+	}
 
-    public int getTotalPages() {
-        return totalPages;
-    }
+	public List<Products> getProductsList() {
+		return ListProduct;
+	}
 
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
-    }
+	public void setProductsList(List<Products> ListProduct) {
+		this.ListProduct = ListProduct;
+	}
 
-    public int getCurrentPage() {
-        return currentPage;
-    }
+	public int getTotalPages() {
+		return totalPages;
+	}
 
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
-    }
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
 }
