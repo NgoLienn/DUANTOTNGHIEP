@@ -71,7 +71,7 @@ public class Products implements Serializable {
     @OneToMany(mappedBy = "product")
     List<Order_Items> orderitems;
 
-    @Column(name = "status_prod")
+    @Column(name = "status")
     private Boolean status_prod;
 
     public int getId() {

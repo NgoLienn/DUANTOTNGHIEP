@@ -56,13 +56,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
                 // CDRP, CORS
-                http.csrf().disable().cors().disable();
+                http.csrf().disable().cors().disable(); //
 
                 // phan quyen su dung
                 http.authorizeRequests()
-                        .antMatchers("/addToCart/*", "/cart","/user/**", "/admin/**").authenticated()
-                        // .antMatchers("/admin/**").hasRole("admin")
-                        .antMatchers("/api/authorities").hasRole("")
+                        .antMatchers("/admin/**").hasRole("1")
+                        .antMatchers("/addToCart/*", "/cart","/user/**").authenticated()
+//                        .antMatchers("/api/authorities").hasRole("")
                         .anyRequest().permitAll(); // anonymous
 
                 // dieu khien loi truy cap khong dung vai tro
@@ -87,7 +87,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                         System.out.println("AuthenticationSuccessHandler invoked");
                                         System.out.println("Authentication name: " + authentication.getName());
                                         CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
-                                        userServicegg.processOAuthPostLogin(oauthUser.getEmail());
+                                        userServicegg.processOAuthPostLogin(oauthUser.getEmail(),authentication);
                                         String users = oauthUser.getAttribute("email");
                                         Authority authority = authorityResponsitory.findByUserName(users);
                                         String Roles = authority.getRole().getName();

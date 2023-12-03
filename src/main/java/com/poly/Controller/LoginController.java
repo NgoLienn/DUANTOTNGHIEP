@@ -22,7 +22,7 @@ public class LoginController {
         m.addAttribute("message","Sai thông tin Đăng Nhập");
         return "user/login";
     }
-    @RequestMapping("/login/unauthoried")
+    @RequestMapping("/login/unauthorized")
     public String unauthoried(Model m){
         m.addAttribute("message","Không Có Quyền Truy Xuất");
         return "user/login";    

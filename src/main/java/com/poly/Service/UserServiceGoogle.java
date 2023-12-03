@@ -15,16 +15,24 @@ public class UserServiceGoogle {
     private AccountReponsitory repo;
 
 
-    public void processOAuthPostLogin(String username) {
-        Account existUser = repo.findByUsername(username);
+    public void processOAuthPostLogin(String username, Authentication authentication) {
+        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
 
+        String providerId = oauthUser.getName();
+        System.out.println(providerId);
+        Account existUser = repo.findByUsername(username);
         if (existUser == null) {
             Account newUser = new Account();
             Blog blog = new Blog();
             blog.setBlogID(1);
             newUser.setBlog(blog);
             newUser.setUserName(username);
-            newUser.setProvider(Provider.GOOGLE);
+            if ("facebook".equals(providerId)) {
+                newUser.setProvider(Provider.FACEBOOK);
+            } else if ("google".equals(providerId)) {
+                newUser.setProvider(Provider.GOOGLE);
+            }
+
             newUser.setActive(true);
             Roles roles = new Roles();
             roles.setId("2");
