@@ -78,26 +78,16 @@ public class IPNController {
             paymentRepository.save(paymentEntity);
 
             //lưu vào order
-            String selectedProvince = request.getParameter("tinh");
-            String selectedDistrict = request.getParameter("huyen");
-            String selectedWard = request.getParameter("xa");
-            String selectedChitiet = request.getParameter("chitiet");
-            String selectedName = request.getParameter("ten");
-            String selectedPhone = request.getParameter("phone");
-            String selectedDiaChi = request.getParameter(selectedProvince + ", " + selectedDistrict + ", " + selectedWard+","+selectedChitiet);
             String username = request.getRemoteUser();
             Account account = accountRepo.findByUsername(username);
             Carts carts = cartRepo.findByCartUser(username);
             float subtotal = cartItemsRepo.getSum(carts.getCartID());
             Status status = new Status();
             status.setStatusID(1L);
-            account.setAddress(selectedDiaChi);
-            account.setFullname(selectedName);
-            account.setPhone(selectedPhone);
             Orders orders = new Orders();
             orders.setAccount(account);
             orders.setStatus(status);
-            orders.setDeliveryAddress(account.getAddress()+selectedChitiet);
+            orders.setDeliveryAddress(account.getAddress());
             orders.setPhone(account.getPhone());
             orders.setPaymentMethod("Thanh toán online");
             orders.setTotalAmount(subtotal+30000);
