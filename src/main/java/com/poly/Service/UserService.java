@@ -26,7 +26,7 @@ public class UserService implements UserDetailsService {
                 throw new UsernameNotFoundException(username + " is not active!");
 
             }
-            String storedPassword = account.getPassword();
+            String storedPassword = account.getPassword(); //
             return User.withUsername(username)
                     .password(storedPassword)
                     .roles(account.getAuthorities().stream()

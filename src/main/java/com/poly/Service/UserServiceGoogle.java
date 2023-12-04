@@ -16,7 +16,7 @@ public class UserServiceGoogle {
 
 
     public void processOAuthPostLogin(String username, Authentication authentication) {
-        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
+        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal(); //
 
         String providerId = oauthUser.getName();
         System.out.println(providerId);
