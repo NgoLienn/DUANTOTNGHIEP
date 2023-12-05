@@ -273,18 +273,19 @@
                 <hr class="py-2">
                 <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
 
-                  <button class="btn btn-primary btn-sm ms-4" type="submit" formaction="/admin/managerProducts/add"
+                  <button class="btn btn-primary btn-sm ms-4 text-white" type="submit"
+                    formaction="/admin/managerProducts/add"
                     th:disabled="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit')}">
                     Thêm
                   </button>
 
-                  <button class="btn btn-info btn-sm ms-4" type="submit"
+                  <button class="btn btn-info btn-sm ms-4 text-white" type="submit"
                     th:formaction="@{|/admin/managerProducts/update/${productIdd}|}"
                     th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit')}">
                     Sửa
                   </button>
 
-                  <button class="btn btn-danger btn-sm ms-4" type="button" data-bs-toggle="modal"
+                  <button class="btn btn-danger btn-sm ms-4 text-white" type="button" data-bs-toggle="modal"
                     data-bs-target="#confirmDeleteModal"
                     th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit')}">
                     Xóa

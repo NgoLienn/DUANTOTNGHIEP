@@ -36,7 +36,7 @@
 										th:data-bs-target="'#pizza-tab-pane' + ${category.categoryId}" type="button"
 										role="tab" th:aria-controls="'pizza-tab-pane' + ${category.categoryId}"
 										th:aria-selected="false"
-										th:src="@{'/assets/images/img_product/' + ${category.image_url}}">
+										th:src="${category.image_url}">
 									<span class="caption" th:text="${category.name}"></span>
 									</img>
 								</li>

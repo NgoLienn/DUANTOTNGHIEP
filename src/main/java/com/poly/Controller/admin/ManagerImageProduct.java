@@ -61,7 +61,7 @@ public class ManagerImageProduct {
     public String ViewCategory(Model model, @RequestParam(defaultValue = "1") int page,
             @RequestParam(value = "query", defaultValue = "") String query) {
 
-        List<Image_product> imageProduct;
+        List<Image_product> imageProduct = imageProductRepo.findAll();
 
         List<Products> products = productRepo.findAll();
 
@@ -100,7 +100,9 @@ public class ManagerImageProduct {
     }
 
     @GetMapping("/managerImageProducts/edit/{imageproductId}")
-    public String edit(Model model, @PathVariable("imageproductId") Long imageproductId) {
+    public String edit(Model model, @PathVariable("imageproductId") Long imageproductId,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(value = "query", defaultValue = "") String query) {
 
         model.addAttribute("imageproductIdd", imageproductId);
 
@@ -112,6 +114,36 @@ public class ManagerImageProduct {
 
         Image_product editImage = imageProductService.getImageProductById(imageproductId);
         model.addAttribute("newImageProduct", editImage);
+
+        // tìm kiếm sản phẩm
+        if (query.equals("")) {
+            imageProduct = imageProductRepo.findAll();
+        } else {
+            imageProduct = imageProductService.searchProducts(query);
+        }
+
+        model.addAttribute("query", query);
+        model.addAttribute("imageProduct", imageProduct);
+        model.addAttribute("products", products);
+
+        // phân trang sản phẩm
+        int totalProduct = imageProduct.size();
+        int totalPages = (int) Math.ceil(totalProduct / (double) pageSize);
+
+        // Lấy danh sách tài khoản trên trang hiện tại
+        int start = (page - 1) * pageSize;
+
+        int end = Math.min(start + pageSize, totalProduct);
+        List<Image_product> productsOnPage = imageProduct.subList(start, end);
+
+        // Đưa thông tin về dữ liệu và phân trang vào Model
+        Page productPage = new Page();
+        productPage.setProductsImageList(productsOnPage);
+        productPage.setTotalPages(totalPages);
+        productPage.setCurrentPage(page);
+        model.addAttribute("productPage", productPage);
+        // end
+
         return "admin/image_product";
     }
 

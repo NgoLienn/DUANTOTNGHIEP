@@ -32,7 +32,7 @@ public class Categories implements Serializable {
     @Column(name = "description", columnDefinition = "NVARCHAR(800)")
     private String Description;
 
-    @Column(name = "image_url", columnDefinition = "NVARCHAR(100)")
+    @Column(name = "image_url", columnDefinition = "NVARCHAR(MAX)")
     private String Image_url;
 
     public Long getCategoryId() {

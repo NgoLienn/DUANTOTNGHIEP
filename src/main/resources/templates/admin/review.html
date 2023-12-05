@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="~{zlayout/fragmentsAdmin :: html_headAdmin}"></head>
 <style>
-.fixed-size-image {
-	width: 150px; 
-	height: 150px; 
-	object-fit: cover;
-	border-radius: 50%;
-}
+	.fixed-size-image {
+		width: 150px;
+		height: 150px;
+		object-fit: cover;
+		border-radius: 50%;
+	}
 </style>
+
 <body class="g-sidenav-show bg-gray-100">
 	<!-- loader khi vào -->
 	<div id="loader-page"
@@ -21,67 +23,58 @@
 	<aside class="" th:replace="~{zlayout/navbarAdmin :: menu-admin}"></aside>
 	<main class="main-content position-relative border-radius-lg ">
 		<!-- Navbar -->
-		<nav
-			class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl "
-			id="navbarBlur" data-scroll="false">
+		<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+			data-scroll="false">
 			<div class="container-fluid py-1 px-3">
 				<nav aria-label="breadcrumb">
-					<ol
-						class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-						<li class="breadcrumb-item text-sm"><a
-							class="opacity-5 text-white" href="javascript:;">Trang</a></li>
-						<li class="breadcrumb-item text-sm text-white active"
-							aria-current="page">Quản Lý Đánh Giá</li>
+					<ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+						<li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
+								href="javascript:;">Trang</a></li>
+						<li class="breadcrumb-item text-sm text-white active" aria-current="page">Quản Lý Đánh Giá</li>
 					</ol>
 					<h6 class="font-weight-bolder text-white mb-0">Quản Lý Đánh
 						Giá</h6>
 				</nav>
-				<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
-					id="navbar">
+				<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
 					<div class="ms-md-auto pe-md-3 d-flex align-items-center">
 						<form>
 							<div class="input-group">
 								<span class="input-group-text text-body">
-									<button class="btn btn-primary input-group-text mb-0 py-1"
-										type="submit">
+									<button class="btn btn-primary input-group-text mb-0 py-1" type="submit">
 										<i class="fas fa-search cursor-pointer" aria-hidden="true"></i>
 									</button>
-								</span> <input type="text" class="form-control" name="query"
-									id="searchInput" th:value="${query}" placeholder="Tìm Kiếm...">
+								</span> <input type="text" class="form-control" name="query" id="searchInput"
+									th:value="${query}" placeholder="Tìm Kiếm...">
 							</div>
 						</form>
 					</div>
 					<ul class="navbar-nav justify-content-end">
-						<li class="nav-item d-flex align-items-center"><a
-							href="javascript:;"
-							class="nav-link text-white font-weight-bold px-0"> <i
-								class="fa fa-user me-sm-1"></i> <span
-								class="d-sm-inline d-none fixed-plugin-button-nav">Tài
+						<li class="nav-item d-flex align-items-center"><a href="javascript:;"
+								class="nav-link text-white font-weight-bold px-0"> <i class="fa fa-user me-sm-1"></i>
+								<span class="d-sm-inline d-none fixed-plugin-button-nav">Tài
 									Khoản</span>
-						</a></li>
+							</a></li>
 						<li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-							<a href="javascript:;" class="nav-link text-white p-0"
-							id="iconNavbarSidenav">
+							<a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
 								<div class="sidenav-toggler-inner">
 									<i class="sidenav-toggler-line bg-white"></i> <i
 										class="sidenav-toggler-line bg-white"></i> <i
 										class="sidenav-toggler-line bg-white"></i>
 								</div>
-						</a>
+							</a>
 						</li>
-						<li class="nav-item px-3 d-flex align-items-center"><a
-							href="javascript:;"
-							class="nav-link text-white p-0 font-weight-bold"> <!-- <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i> -->
-						</a></li>
+						<li class="nav-item px-3 d-flex align-items-center"><a href="javascript:;"
+								class="nav-link text-white p-0 font-weight-bold">
+								<!-- <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i> -->
+							</a></li>
 						<li class="nav-item dropdown pe-2 d-flex align-items-center">
-							<a href="javascript:;" class="nav-link text-white p-0"
-							id="dropdownMenuButton" data-bs-toggle="dropdown"
-							aria-expanded="false"> <i class="fa fa-bell cursor-pointer"></i>
-						</a>
+							<a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton"
+								data-bs-toggle="dropdown" aria-expanded="false"> <i
+									class="fa fa-bell cursor-pointer"></i>
+							</a>
 							<ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
 								aria-labelledby="dropdownMenuButton">
-								<li class="mb-2"><a class="dropdown-item border-radius-md"
-									href="javascript:;">
+								<li class="mb-2"><a class="dropdown-item border-radius-md" href="javascript:;">
 										<div class="d-flex py-1">
 											<div class="my-auto">
 												<img src="/assets/images/food-menu-1.png"
@@ -97,9 +90,8 @@
 												</p>
 											</div>
 										</div>
-								</a></li>
-								<li class="mb-2"><a class="dropdown-item border-radius-md"
-									href="javascript:;">
+									</a></li>
+								<li class="mb-2"><a class="dropdown-item border-radius-md" href="javascript:;">
 										<div class="d-flex py-1">
 											<div class="my-auto">
 												<img src="/assets/images/food-menu-2.png"
@@ -115,9 +107,8 @@
 												</p>
 											</div>
 										</div>
-								</a></li>
-								<li><a class="dropdown-item border-radius-md"
-									href="javascript:;">
+									</a></li>
+								<li><a class="dropdown-item border-radius-md" href="javascript:;">
 										<div class="d-flex py-1">
 											<div class="my-auto">
 												<img src="/assets/images/food-menu-4.png"
@@ -133,7 +124,7 @@
 												</p>
 											</div>
 										</div>
-								</a></li>
+									</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -175,8 +166,8 @@
 										<div class="form-group">
 											<label for="example-text-input" class="form-control-label">Nội
 												Dung Đánh Giá</label>
-											<textarea class="form-control" type="text" rows="5"
-												id="comment" name="comment" placeholder="Nội dung đánh giá"
+											<textarea class="form-control" type="text" rows="5" id="comment"
+												name="comment" placeholder="Nội dung đánh giá"
 												th:field="*{newReview.comment}" disabled></textarea>
 										</div>
 									</div>
@@ -198,26 +189,26 @@
 								</div>
 								<div>
 									<hr class="py-2">
-									<button class="btn btn-danger btn-sm ms-4" type="button"
-										data-bs-toggle="modal"
+									<button class="btn btn-danger btn-sm ms-4" type="button" data-bs-toggle="modal"
 										th:style="${reviewID == null} ? 'opacity: 0.5; pointer-events: none;' : ''"
 										data-bs-target="#confirmDeleteModal">Xóa</button>
 									<button class="btn btn-dark btn-sm ms-4" type="submit"
 										th:style="${reviewID == null} ? 'opacity: 0.5; pointer-events: none;' : ''"
 										th:formaction="@{/admin/managerReview/reset}">Mới</button>
 
-									<div style="margin-top: 300px" class="modal fade"
-										id="confirmDeleteModal" tabindex="-1" role="dialog"
-										aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+									<div style="margin-top: 300px" class="modal fade" id="confirmDeleteModal"
+										tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel"
+										aria-hidden="true">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
 												<div class="modal-header">
 													<h5 class="modal-title" id="confirmDeleteModalLabel">Xác
 														nhận xóa đánh giá</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Close"></button>
+													<button type="button" class="btn-close" data-bs-dismiss="modal"
+														aria-label="Close"></button>
 												</div>
-												<div class="modal-body">Bạn có chắc chắn muốn xóa đánh giá này không?</div>
+												<div class="modal-body">Bạn có chắc chắn muốn xóa đánh giá này không?
+												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-bs-dismiss="modal">Hủy</button>
@@ -249,18 +240,21 @@
 								<table class="table align-items-center mb-0" id="customers">
 									<thead>
 										<tr>
-
 											<th
-												class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tài
+												class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+												Tài
 												Khoản</th>
 											<th
-												class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sao
+												class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+												Sao
 												Đánh Giá</th>
 											<th
-												class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nội
+												class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+												Nội
 												Dung Đánh Giá</th>
 											<th
-												class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Thao
+												class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+												Thao
 												Tác</th>
 										</tr>
 									</thead>
@@ -268,47 +262,65 @@
 									<tbody>
 										<tr th:each="item : ${reviewPage.ListReview}">
 
-											<td class="align-middle px text-sm"><img
-												class="avatar avatar-lg me-3" alt="user1"
-												th:src="${item.account.avata}"></img> <span
-												class="badge badge-sm text-dark text-xs max-width-200 overflow-auto"
-												th:text="${item.account.fullname}"></span></td>
-											<td class="align-middle px text-sm"><span
-												class="badge badge-sm text-dark text-xs"
-												th:text="${item.rating}"></span></td>
-											<td class="align-middle px text-sm"><span
-												class="badge badge-sm text-dark text-xs max-width-200 overflow-auto"
-												th:text="${item.comment}"> </span></td>
+											<td class="align-middle px text-sm"><img class="avatar avatar-lg me-3"
+													alt="user1" th:src="${item.account.avata}"></img> <span
+													class="badge badge-sm text-dark text-xs max-width-200 overflow-auto"
+													th:text="${item.account.fullname}"></span>
+											</td>
+											<td class="align-middle px text-sm ps-4"><span
+													class="badge badge-sm text-dark text-xs"
+													th:text="${item.rating} + ' sao'"></span>
+											</td>
+											<div class="dropdown">
+												<td
+													class="align-middle text-sm">
+													<span
+														class="badge badge-sm text-dark text-xs dropdown-toggle cursor-pointer"
+														data-bs-toggle="dropdown" aria-expanded="false">Xem
+														đánh giá
+													</span>
+													<div class="dropdown-menu " style="max-width: 500px;">
+														<p class="p-3"
+															style="background: rgb(240, 240, 240); max-height: 200px; word-wrap: break-word; overflow-y: auto;"
+															th:text="${item.comment}">
+														</p>
+													</div>
+												</td>
+											</div>
 											<td class="align-middle text-center"><a
-												th:href="@{/admin/managerReview/edit/{reviewID}(reviewID=${item.reviewID})}"
-												class="text-secondary font-weight-bold text-xs "
-												data-toggle="tooltip" data-original-title="Edit user">
-													edit </a></td>
+													th:href="@{/admin/managerReview/edit/{reviewID}(reviewID=${item.reviewID})}"
+													class="text-secondary font-weight-bold text-xs "
+													data-toggle="tooltip" data-original-title="Edit user">
+													edit </a>
+											</td>
 										</tr>
-										 <nav aria-label="Page navigation example"
-                      class="navigation mt-3 mb-3 d-flex justify-content-center">
-                      <ul class="pagination">
-                        <li class="page-item cursor-pointer" th:if="${reviewPage.currentPage > 1}">
-                          <a class="page-link" href="#" aria-label="Previous"
-                            th:onclick="'javascript:loadPage(1, event)'">
-                            <span aria-hidden="true">&laquo;</span>
-                          </a>
-                        </li>
-                        <li th:each="page : ${#numbers.sequence(1, reviewPage.totalPages)}"
-                          class="page-item cursor-pointer">
-                          <a class="page-link text-black" th:classappend="${page == reviewPage.currentPage} ? active"
-                            th:onclick="'javascript:loadPage(' + ${page} + ', event)'" th:text="${page}"></a>
-                        </li>
-                        <li class="page-item cursor-pointer"
-                          th:if="${reviewPage.currentPage < reviewPage.totalPages}">
-                          <a class="page-link" href=""
-                            th:onclick="'javascript:loadPage(' + ${reviewPage.totalPages} + ', event)'"
-                            aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
+										<nav aria-label="Page navigation example"
+											class="navigation mt-3 mb-3 d-flex justify-content-center">
+											<ul class="pagination">
+												<li class="page-item cursor-pointer"
+													th:if="${reviewPage.currentPage > 1}">
+													<a class="page-link" href="#" aria-label="Previous"
+														th:onclick="'javascript:loadPage(1, event)'">
+														<span aria-hidden="true">&laquo;</span>
+													</a>
+												</li>
+												<li th:each="page : ${#numbers.sequence(1, reviewPage.totalPages)}"
+													class="page-item cursor-pointer">
+													<a class="page-link text-black"
+														th:classappend="${page == reviewPage.currentPage} ? active"
+														th:onclick="'javascript:loadPage(' + ${page} + ', event)'"
+														th:text="${page}"></a>
+												</li>
+												<li class="page-item cursor-pointer"
+													th:if="${reviewPage.currentPage < reviewPage.totalPages}">
+													<a class="page-link" href=""
+														th:onclick="'javascript:loadPage(' + ${reviewPage.totalPages} + ', event)'"
+														aria-label="Next">
+														<span aria-hidden="true">&raquo;</span>
+													</a>
+												</li>
+											</ul>
+										</nav>
 									</tbody>
 								</table>
 							</div>
@@ -321,8 +333,7 @@
 				<div class="container-fluid">
 					<div class="row align-items-center justify-content-lg-between">
 						<div class="col-lg-6 mb-lg-0 mb-4">
-							<div
-								class="copyright text-center text-sm text-muted text-lg-start">
+							<div class="copyright text-center text-sm text-muted text-lg-start">
 								©
 								<script>
 									document.write(new Date().getFullYear())
@@ -346,15 +357,15 @@
 	<script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
 	<script>
 		// loading khi refresh
-		var loader = function() {
-			setTimeout(function() {
+		var loader = function () {
+			setTimeout(function () {
 				$('#loader-page').css({
-					'opacity' : 0,
-					'visibility' : 'hidden'
+					'opacity': 0,
+					'visibility': 'hidden'
 				});
 			}, 1000);
 		};
-		$(function() {
+		$(function () {
 			loader();
 		});
 		// end
@@ -362,58 +373,57 @@
 		var win = navigator.platform.indexOf('Win') > -1;
 		if (win && document.querySelector('#sidenav-scrollbar')) {
 			var options = {
-				damping : '0.5'
+				damping: '0.5'
 			}
 			Scrollbar.init(document.querySelector('#sidenav-scrollbar'),
-					options);
+				options);
 		}
-		  $(document).ready(function () {
-		      $('.pagination .page-link').on('click', function (e) {
-		        e.preventDefault();
-		        var page = $(this).data('page');
-		        loadProducts(page);
-		      });
+		$(document).ready(function () {
+			$('.pagination .page-link').on('click', function (e) {
+				e.preventDefault();
+				var page = $(this).data('page');
+				loadProducts(page);
+			});
 
-		      function loadProducts(page) {
-		        $.get('/products', { pageNo: page }, function (data) {
-		          $('#productListContainer').html(data);
-		        });
-		      }
-		    });
-		
+			function loadProducts(page) {
+				$.get('/products', { pageNo: page }, function (data) {
+					$('#productListContainer').html(data);
+				});
+			}
+		});
+
 	</script>
-	 <script th:inline="javascript">
-    function loadPage(page, event) {
-      if (event) {
-        event.preventDefault();
-      }
-      $.ajax({
-        url: '/admin/managerReview',
-        data: {
-          page: page
-        },
-        success: function (response) {
-          // Cập nhật nội dung danh sách tài khoản
-          var table = $(response).find("#customers").html();
-          $("#customers").html(table);
-          var pagination = $(response).find(".pagination").html();
-          $(".pagination").html(pagination);
-        },
-        error: function (xhr, status, error) {
-          console.log("Error: " + error);
-        }
-      });
-    }
-    </script>
+	<script th:inline="javascript">
+		function loadPage(page, event) {
+			if (event) {
+				event.preventDefault();
+			}
+			$.ajax({
+				url: '/admin/managerReview',
+				data: {
+					page: page
+				},
+				success: function (response) {
+					// Cập nhật nội dung danh sách tài khoản
+					var table = $(response).find("#customers").html();
+					$("#customers").html(table);
+					var pagination = $(response).find(".pagination").html();
+					$(".pagination").html(pagination);
+				},
+				error: function (xhr, status, error) {
+					console.log("Error: " + error);
+				}
+			});
+		}
+	</script>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<!-- Github buttons -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 	<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 	<script src="/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 	<!-- flowbite tailwind -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/flowbite@1.0.0/dist/flowbite.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flowbite@1.0.0/dist/flowbite.min.js"></script>
 	<!-- end -->
 </body>
-</html>
 
+</html>

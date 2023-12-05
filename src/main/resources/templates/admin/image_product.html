@@ -190,15 +190,15 @@
                 </div>
                 <hr class="py-2">
                 <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
-                  <button class="btn btn-primary btn-sm ms-4" type="submit" formaction="/admin/managerImageProducts/add"
+                  <button class="btn btn-primary btn-sm ms-4 text-white" type="submit" formaction="/admin/managerImageProducts/add"
                     th:disabled="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}">Thêm</button>
-                  <button class="btn btn-info btn-sm ms-4"
+                  <button class="btn btn-info btn-sm ms-4 text-white"
                     th:formaction="@{|/admin/managerImageProducts/update/${imageproductIdd}|}"
                     th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}"
                     type="submit">Sửa
                   </button>
 
-                  <button class="btn btn-danger btn-sm ms-4" type="button" data-bs-toggle="modal"
+                  <button class="btn btn-danger btn-sm ms-4 text-white" type="button" data-bs-toggle="modal"
                     data-bs-target="#confirmDeleteModal"
                     th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}">
                     Xóa

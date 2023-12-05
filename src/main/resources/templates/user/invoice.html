@@ -11,42 +11,52 @@
         <h1 class="text-uppercase" style="text-align: center;">HÓA ĐƠN</h1>
         <div class="" style="font-size: 22px;">
             <h4>Đơn hàng</h4>
-            <div class="" style="padding-left: 45px;">
-                <p class="" style="color: rgb(157, 157, 157);">Số hóa đơn:
+            <div class="" style="padding-left: 45px; padding-right: 45px;">
+                <p class="" style="color: rgb(157, 157, 157); display: flex; justify-content: space-between;">Số hóa
+                    đơn:
                     <span th:text="${order.orderID}"></span>
                 </p>
 
-                <p class="" style="color: rgb(157, 157, 157);">Tên người đặt:
+                <p class="" style="color: rgb(157, 157, 157); display: flex; justify-content: space-between">Tên người
+                    đặt:
                     <span th:text="${order.Account.Fullname}"></span>
                 </p>
 
-                <p class="" style="color: rgb(157, 157, 157);">Địa chỉ giao hàng:
-                    <span th:text="${order.Account.Address}"></span>
-                </p>
-
-                <p class="" style="color: rgb(157, 157, 157);">Email:
+                <p class="" style="color: rgb(157, 157, 157); display: flex; justify-content: space-between">Email:
                     <span th:text="${order.Account.UserName}"></span>
                 </p>
 
-                <p class="" style="color: rgb(157, 157, 157);">Số điện thoại:
+                <p class="" style="color: rgb(157, 157, 157); display: flex; justify-content: space-between">Số điện
+                    thoại:
                     <span th:text="${order.Account.Phone}"></span>
                 </p>
 
-                <p class="" style="color: rgb(157, 157, 157);">Trạng thái đơn:
+                <p class="" style="color: rgb(157, 157, 157);display: flex; justify-content: space-between">Trạng thái
+                    đơn:
                     <span th:text="${order.Status.Name}"></span>
                 </p>
 
-                <p class="" style="color: rgb(157, 157, 157);">Số lượng sản phẩm trong đơn:
+                <p class="" style="color: rgb(157, 157, 157);display: flex; justify-content: space-between">Số lượng sản
+                    phẩm trong đơn:
                     <span th:text="'x' + ${order.orderitem.size()}"></span>
                 </p>
 
-                <p class="" style="color: rgb(157, 157, 157);">Tổng giá sản phẩm trong đơn:
+                <p class="" style="color: rgb(157, 157, 157);display: flex; justify-content: space-between">Tổng giá sản
+                    phẩm trong đơn:
                     <span th:text="${#numbers.formatDecimal(order.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
                 </p>
 
-                <p class="" style="color: rgb(157, 157, 157);">Phương thức thanh toán:
+                <p class="" style="color: rgb(157, 157, 157);display: flex; justify-content: space-between">Phương thức
+                    thanh toán:
                     <span th:text="${order.paymentMethod}"></span>
                 </p>
+
+                <p class="" style="color: rgb(157, 157, 157); line-height: 40px;">Địa chỉ giao
+                    hàng:
+                    <span th:text="${order.Account.Address}"></span>
+                </p>
+
+
             </div>
 
             <h4>Chi tiết đơn hàng</h4>
