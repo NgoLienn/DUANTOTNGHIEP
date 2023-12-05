@@ -136,7 +136,7 @@
 					<div class="swiper-wrapper card-wrapper">
 						<div th:each="item : ${ListProduct}"
 							class="swiper-slide card show active text-center slide-card">
-							<a th:href="@{|/user/productDetail/?productID=${item.productId}|}" class="text-black">
+							<a th:href="@{|/productDetail/?productID=${item.productId}|}" class="text-black">
 								<img th:src="${item.image}" class="card-img-top" alt="anhslide">
 							</a>
 							<form method="post" th:action="@{|/addToCart/${item.productId}|}">
@@ -145,7 +145,7 @@
 									<p class="card-text"
 										th:text="${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' VND'">
 									</p>
-									<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"
+									<a th:href="@{|/productDetail/?productID=${item.productId}|}"
 										class="btn btn-danger d-flex justify-content-center">Xem Sản Phẩm</a>
 								</div>
 							</form>
@@ -197,7 +197,8 @@
 								<div th:each="item : ${ListProduct}" th:if="${item.status_prod != false}">
 									<div class="card">
 										<div class="card-body">
-											<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"
+											<a th:href="@{|
+											/productDetail/?productID=${item.productId}|}"
 												class="text-black ">
 												<img class="card-img-top bg-cover max-width-300" th:src="${item.image}"
 													alt="food-menu" />
@@ -227,7 +228,7 @@
 											<!-- <div class="tym">
 												<i class="bi bi-heart-fill"></i>
 											</div> -->
-											<a th:href="@{|/user/productDetail/?productID=${item.productId}|}"> <span
+											<a th:href="@{|/productDetail/?productID=${item.productId}|}"> <span
 													class="cart-sp4"> <i class="bi bi-cart3"></i>
 												</span>
 											</a>
@@ -249,7 +250,7 @@
 												<div
 													class="modal-body d-flex justify-content-center align-items-center text-center">
 													<a class="sharefb text-dark" href="#1" id="shareButton"
-														th:data-product-id="@{|/user/productDetail/?productID=${item.productId}|}"
+														th:data-product-id="@{|/productDetail/?productID=${item.productId}|}"
 														style="font-size: 30px; text-decoration: none;">
 														<i class="bi bi-facebook" style="color: blue;"></i><br>
 														<span style=" font-size: 12px; text-align: center; ">Chia sẻ
@@ -258,7 +259,7 @@
 													</a>
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													<a class="sharepint text-dark" href="#1" id="shareButton"
-														th:data-product-id="@{|/user/productDetail/?productID=${item.productId}|}"
+														th:data-product-id="@{|/productDetail/?productID=${item.productId}|}"
 														style="font-size: 30px; text-decoration: none;">
 														<i class="bi bi-pinterest" style="color: red;"></i><br>
 														<span style=" font-size: 12px; text-align: center;">Chia sẻ
@@ -268,7 +269,7 @@
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													<a class="share text-dark text-decoration-none d-flex flex-column"
 														id="shareButton"
-														th:data-product-id="@{|/user/productDetail/?productID=${item.productId}|}">
+														th:data-product-id="@{|/productDetail/?productID=${item.productId}|}">
 														<i class="bi bi-clipboard2-check pb-3"></i>
 														<span style=" font-size: 12px; text-align: center;">coppy
 														</span>
@@ -298,7 +299,7 @@
 										th:if="${product.category.categoryId == category.categoryId && product.status_prod != false}">
 										<div class="card">
 											<div class=" card-body">
-												<a th:href="@{|/user/productDetail/?productID=${product.productId}|}"
+												<a th:href="@{|/productDetail/?productID=${product.productId}|}"
 													class="text-black">
 													<img class="card-img-top" th:src="${product.image}" alt="food-menu">
 													<div class="title" th:text="${product.name}"></div>
@@ -327,7 +328,7 @@
 												<!-- <div class="tym">
 													<i class="bi bi-heart-fill"></i>
 												</div> -->
-												<a th:href="@{|/user/productDetail/?productID=${product.productId}|}">
+												<a th:href="@{|/productDetail/?productID=${product.productId}|}">
 													<span class="cart-sp4"> <i class="bi bi-cart3"></i>
 													</span>
 												</a>
@@ -349,7 +350,7 @@
 													<div
 														class="modal-body d-flex justify-content-center align-items-center text-center">
 														<a class="sharefb text-dark" href="#1" id="shareButton"
-															th:data-product-id="@{|/user/productDetail/?productID=${product.productId}|}"
+															th:data-product-id="@{|/productDetail/?productID=${product.productId}|}"
 															style="font-size: 30px; text-decoration: none;">
 															<i class="bi bi-facebook" style="color: blue;"></i><br>
 															<span style=" font-size: 12px; text-align: center; ">Chia
@@ -359,7 +360,7 @@
 														</a>
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 														<a class="sharepint text-dark" href="#1" id="shareButton"
-															th:data-product-id="@{|/user/productDetail/?productID=${product.productId}|}"
+															th:data-product-id="@{|/productDetail/?productID=${product.productId}|}"
 															style="font-size: 30px; text-decoration: none;">
 															<i class="bi bi-pinterest" style="color: red;"></i><br>
 															<span style=" font-size: 12px; text-align: center;">Chia
@@ -370,7 +371,7 @@
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 														<a class="share text-dark d-flex flex-column text-decoration-none"
 															href="#1" id="shareButton"
-															th:data-product-id="@{|/user/productDetail/?productID=${product.productId}|}">
+															th:data-product-id="@{|/productDetail/?productID=${product.productId}|}">
 															<i class="bi bi-clipboard2-check pb-3"></i>
 															<span style=" font-size: 12px; text-align: center;">coppy
 															</span>

@@ -28,7 +28,7 @@ import com.poly.Service.ProductService;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("")
 public class ProductDetailController {
 
     @Autowired

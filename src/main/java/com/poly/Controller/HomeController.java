@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 import org.springframework.security.core.Authentication;
-
+import org.springframework.context.MessageSource;
 import com.poly.Entity.Cart_Items;
 import com.poly.Entity.Carts;
 import com.poly.Entity.Categories;
@@ -43,6 +43,10 @@ public class HomeController {
 
     @Autowired
     ReviewReponsitory reviewRepo;
+
+    @Autowired
+    private MessageSource messageSource;
+
 
     @GetMapping(value = { "/", "/user/index" })
     public String ViewProduct(Model model, HttpServletRequest httpServletRequest, Authentication authentication) {
@@ -83,29 +87,11 @@ public class HomeController {
         List<Categories> categoryList = categoryService.getAllCategories();
         model.addAttribute("categoryList", categoryList);
 
-        // String users = "";
-        // if (authentication instanceof OAuth2AuthenticationToken) {
-        //     OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
-        //     OAuth2User user = oauthToken.getPrincipal();
-        //     users = user.getAttribute("email");
-        // } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
-        //     users = authentication.getName();
-        // }
-        // Carts carts = cartRepo.findByCartUser(users);
-        // if (carts == null) {
-        //     return "redirect:/";
-        // } else {
-        //     Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-        //     model.addAttribute("subtotal", subtotal);
-        //     model.addAttribute("carts", carts);
-        // }
+        //ngon ngu
+
+//        String message = messageSource.getMessage("hello", null, "default message", httpServletRequest.getLocale());
+//        model.addAttribute("message", message);
         return "user/index";
     }
 
-    // @GetMapping("index/remove/{cartitemID}")
-    // public String remove(@PathVariable("cartitemID") Long Id) {
-    // Cart_Items cartItems = cartItemsRepo.findByCartitemID(Id);
-    // cartItemsRepo.delete(cartItems);
-    // return "redirect:/";
-    // }
 }
