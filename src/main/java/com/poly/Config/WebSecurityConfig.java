@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // phan quyen su dung
                 http.authorizeRequests()
-                        .antMatchers("/admin/**").hasRole("1") //
+                        .antMatchers("/admin/**").hasRole("1")
                         .antMatchers("/addToCart/*", "/cart","/user/**").authenticated()
 //                        .antMatchers("/api/authorities").hasRole("")
                         .anyRequest().permitAll(); // anonymous

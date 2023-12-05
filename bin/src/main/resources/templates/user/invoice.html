@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title class="text-end"></title>
+</head>
+
+<body>
+    <div class="khung"
+        style="border: 5px double gray; padding: 30px; padding-top: 5px; width: auto; height: auto; font-family: Arial, Helvetica, sans-serif;">
+        <h1 class="text-uppercase" style="text-align: center;">HÓA ĐƠN</h1>
+        <div class="" style="font-size: 22px;">
+            <h4>Đơn hàng</h4>
+            <div class="" style="padding-left: 45px;">
+                <p class="" style="color: rgb(157, 157, 157);">Số hóa đơn:
+                    <span th:text="${order.orderID}"></span>
+                </p>
+
+                <p class="" style="color: rgb(157, 157, 157);">Tên người đặt:
+                    <span th:text="${order.Account.Fullname}"></span>
+                </p>
+
+                <p class="" style="color: rgb(157, 157, 157);">Địa chỉ giao hàng:
+                    <span th:text="${order.Account.Address}"></span>
+                </p>
+
+                <p class="" style="color: rgb(157, 157, 157);">Email:
+                    <span th:text="${order.Account.UserName}"></span>
+                </p>
+
+                <p class="" style="color: rgb(157, 157, 157);">Số điện thoại:
+                    <span th:text="${order.Account.Phone}"></span>
+                </p>
+
+                <p class="" style="color: rgb(157, 157, 157);">Trạng thái đơn:
+                    <span th:text="${order.Status.Name}"></span>
+                </p>
+
+                <p class="" style="color: rgb(157, 157, 157);">Số lượng sản phẩm trong đơn:
+                    <span th:text="'x' + ${order.orderitem.size()}"></span>
+                </p>
+
+                <p class="" style="color: rgb(157, 157, 157);">Tổng giá sản phẩm trong đơn:
+                    <span th:text="${#numbers.formatDecimal(order.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                </p>
+
+                <p class="" style="color: rgb(157, 157, 157);">Phương thức thanh toán:
+                    <span th:text="${order.paymentMethod}"></span>
+                </p>
+            </div>
+
+            <h4>Chi tiết đơn hàng</h4>
+            <div th:each="orderitem : ${order.orderitem}" class="">
+
+                <div class="d-flex align-items-center ">
+                    <img th:src="${orderitem.product.image}" class="" style="max-width: 100px; max-height: 100px;">
+                    <div class="" style="text-align: center; position: relative; top: -65px;">
+                        <span th:text="${orderitem.Name}" class=""></span> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span th:text="${#numbers.formatDecimal(orderitem.Price , 0, 'COMMA', 0, 'POINT')} + 'đ'"
+                            class="">
+                        </span> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span th:text="'x' + ${orderitem.Quantity}" class=""></span> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span th:text="${orderitem.Size_Product}" class=""></span>
+                    </div>
+                </div>
+                <hr style="border: 1px solid rgb(234, 234, 234);">
+            </div>
+            <p class="" style="color: rgb(157, 157, 157); text-align: center; padding-top: 20px;">Thời gian đặt hàng:
+                <span th:text="${order.orderTime}"></span>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

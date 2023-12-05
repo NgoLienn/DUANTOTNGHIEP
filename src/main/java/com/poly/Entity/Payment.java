@@ -25,6 +25,8 @@ public class Payment {
     private String status;
     private long amount;
     private String txnref;
+
+    private String Address;
     //    private int course_id;
     @ManyToOne
     @JoinColumn(name ="cart_id")

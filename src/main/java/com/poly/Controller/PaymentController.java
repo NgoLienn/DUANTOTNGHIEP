@@ -67,6 +67,13 @@ public class PaymentController {
     @PostMapping("/payment")
     public String payment(Model model, Authentication authentication,HttpServletRequest req, @RequestParam("payment") String payment,
                           HttpServletResponse resp) throws IOException {
+        String selectedProvince = req.getParameter("tinh");
+        String selectedDistrict = req.getParameter("huyen");
+        String selectedWard = req.getParameter("xa");
+        String selectedChitiet = req.getParameter("chitiet");
+        String selectedName = req.getParameter("ten");
+        String selectedPhone = req.getParameter("phone");
+        String SelectedAddress = selectedChitiet + ", " +selectedWard  + ", " +selectedDistrict +", "+selectedProvince;
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
             OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
@@ -76,18 +83,12 @@ public class PaymentController {
             users = authentication.getName();
         }
         if (payment.equals("true")) {
-            String selectedProvince = req.getParameter("tinh");
-            String selectedDistrict = req.getParameter("huyen");
-            String selectedWard = req.getParameter("xa");
-            String selectedChitiet = req.getParameter("chitiet");
-            String selectedName = req.getParameter("ten");
-            String selectedPhone = req.getParameter("phone");
             Account account = accountRepo.findByUsername(users);
             Carts carts = cartRepo.findByCartUser(users);
             float subtotal = cartItemsRepo.getSum(carts.getCartID());
             Status status = new Status();
             status.setStatusID(1L);
-            account.setAddress(selectedProvince + ", " + selectedDistrict + ", " + selectedWard+","+selectedChitiet);
+            account.setAddress(SelectedAddress);
             account.setFullname(selectedName);
             account.setPhone(selectedPhone);
             Orders orders = new Orders();
@@ -161,6 +162,7 @@ public class PaymentController {
             paymentEntity.setCurrcode(vnp_CurrCode);
             paymentEntity.setUsername(users);
             paymentEntity.setCarts(carts);
+            paymentEntity.setAddress(SelectedAddress);
             paymentRepository.save(paymentEntity);
 
 

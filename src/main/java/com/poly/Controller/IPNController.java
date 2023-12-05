@@ -3,6 +3,10 @@ package com.poly.Controller;
 import com.poly.Entity.*;
 import com.poly.Reponsitory.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +52,7 @@ public class IPNController {
             @RequestParam String vnp_TxnRef,
             @RequestParam String vnp_SecureHash,
 
-            HttpServletResponse resp, Model m, HttpServletRequest request) {
+            HttpServletResponse resp, Model m, HttpServletRequest request, Authentication authentication) {
 
         Payment paymentEntity = paymentRepository.timma(vnp_TxnRef);
         String paymentTxnRef = paymentEntity.getTxnref();
@@ -78,21 +82,26 @@ public class IPNController {
             paymentRepository.save(paymentEntity);
 
             //lưu vào order
-            String username = request.getRemoteUser();
-            Account account = accountRepo.findByUsername(username);
-            Carts carts = cartRepo.findByCartUser(username);
+            String users = "";
+            if (authentication instanceof OAuth2AuthenticationToken) {
+                OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+                OAuth2User user = oauthToken.getPrincipal();
+                users = user.getAttribute("email");
+            } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+                users = authentication.getName();
+            }            Account account = accountRepo.findByUsername(users);
+            Carts carts = cartRepo.findByCartUser(users);
             float subtotal = cartItemsRepo.getSum(carts.getCartID());
             Status status = new Status();
             status.setStatusID(1L);
             Orders orders = new Orders();
             orders.setAccount(account);
             orders.setStatus(status);
-            orders.setDeliveryAddress(account.getAddress());
+            orders.setDeliveryAddress(paymentEntity.getAddress());
             orders.setPhone(account.getPhone());
             orders.setPaymentMethod("Thanh toán online");
             orders.setTotalAmount(subtotal+30000);
             ordersRepo.save(orders);
-            accountRepo.save(account);
             for (Cart_Items cartItems : carts.getCart_items()) {
                 Products product = new Products();
                 product.setProductId(cartItems.getProductId().getProductId());

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+<!-- rerister and login -->
+<link id="pagestyle" href="/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css_main/register.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- end -->
+
+<body>
+  <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+
+  <!-- Navbar -->
+  <nav th:replace="~{zlayout/navbar :: menu_res}"></nav>
+  <!-- End Navbar -->
+  <main class="main-content mt-0 mb-0">
+    <div class="page-header align-items-start min-vh-50 pt-5 pb-11">
+      <span class="mask position-fixed top-0 start-0 bottom-0 end-0 bg-gradient-dark opacity-6"></span>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto mt-3">
+            <h1 class="text-white mb-2 mt-5">Welcome Yummy!</h1>
+            <p class="text-lead text-white mb-5">nơi mang đến cho bạn những món ăn ngon và phục vụ tận tâm.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n10 mt-md-n12 mt-n10 justify-content-center">
+        <div class="khung col-xl-4 col-lg-5 col-md-7 mx-auto mb-5">
+          <div class="card z-index-0 khung1">
+            <div class="card"></div>
+            <div class="card card-plain text-center pt-4 mb-3">
+              <h5 class="text-white">Đăng Ký</h5>
+              <span class="text-white">Khám phá ngay thôi nào!</span>
+            </div>
+            <div class="card-body">
+              <form role="form" method="post" action="register" th:object="${account}" onsubmit="return validateForm()">
+                <div class="mb-3">
+                  <input id="emailInput" name="UserName" class="form-control" placeholder="Email" aria-label="Email">
+                </div>
+                <div class="mb-3">
+                  <input type="password" id="passwordInput" name="Password" class="form-control" placeholder="Mật Khẩu"
+                    aria-label="Password">
+                </div>
+                <div class="mb-3">
+                  <input type="password" id="confirmPasswordInput" class="form-control" placeholder="Nhập lại mật khẩu"
+                    aria-label="Password">
+                </div>
+                <div class="form-check form-check-info text-start">
+                  <input class="form-check-input" type="checkbox" value="" id="agreeCheckbox">
+                  <label class="form-check-label text-white" for="agreeCheckbox">
+                    Tôi đồng ý các <a href="javascript:;" class="text-white font-weight-bolder"> điều khoản và điều
+                      kiện</a>
+                  </label>
+                  <label class="form-check-label" for="flexCheckDefault" th:text="${message}">
+                  </label>
+                  <div class="text-center">
+                    <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2 d-flex justify-content-center"
+                      id="registerButton">Đăng Ký</button>
+                  </div>
+                  <p class="text-sm mt-3 mb-0 text-white">Bạn đã có tài khoản? <a th:href="@{/auth/signin}"
+                      class="text-dark font-weight-bolder text-white">Đăng Nhập</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!--   Core JS Files   -->
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <script>
+    // loading khi refresh
+    var loader = function () {
+      setTimeout(function () {
+        $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+      }, 1000);
+    };
+    $(function () {
+      loader();
+    });
+    // end
+
+    function validateForm() {
+      var emailInput = document.getElementById("emailInput");
+      var passwordInput = document.getElementById("passwordInput");
+      var confirmPasswordInput = document.getElementById("confirmPasswordInput");
+
+      var email = emailInput.value;
+      var password = passwordInput.value;
+      var confirmPassword = confirmPasswordInput.value;
+
+      // Thiết lập biến để kiểm tra lỗi
+      var hasError = false;
+
+      // Kiểm tra trường email không được để trống và phải có định dạng email hợp lệ
+      if (email === "") {
+        showError("Vui lòng nhập địa chỉ email.");
+        hasError = true;
+      } else if (!isValidEmail(email)) {
+        showError("Địa chỉ email không hợp lệ.");
+        hasError = true;
+      }
+
+      // Kiểm tra mật khẩu có ít nhất 6 ký tự
+      if (password.length < 6) {
+        if (!hasError) {
+          showError("Mật khẩu phải có ít nhất 6 ký tự.");
+        }
+
+        hasError = true;
+      }
+
+      // Kiểm tra xác nhận mật khẩu phải giống mật khẩu
+      if (password !== confirmPassword) {
+        if (!hasError) {
+          showError("Xác nhận mật khẩu không khớp.");
+        }
+        hasError = true;
+
+      }
+
+      // Trả về false nếu có lỗi, ngăn form submit
+      if (hasError) {
+        return false;
+      }
+      CussTrue("Đăng ký tài khoản thành công");
+
+    }
+
+    function isValidEmail(email) {
+      // Sử dụng biểu thức chính quy để kiểm tra định dạng email
+      var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      return emailPattern.test(email);
+    }
+
+    function showError(message) {
+      Swal.fire({
+        icon: "error",
+        title: "Lỗi",
+        text: message,
+      });
+    }
+    function CussTrue(message) {
+      Swal.fire({
+        icon: "success",
+        title: "Thành Công",
+        text: message,
+      });
+
+    }
+
+    // vô hiệu hóa nut button khi người dùng không chọn đồng ý với các điều khoản
+    document.addEventListener("DOMContentLoaded", function () {
+      var agreeCheckbox = document.getElementById("agreeCheckbox");
+      var registerButton = document.getElementById("registerButton");
+
+      // Khai báo hàm để kiểm tra trạng thái của checkbox
+      function checkAgreement() {
+        if (agreeCheckbox.checked) {
+          registerButton.removeAttribute("disabled"); // Kích hoạt nút đăng ký
+        } else {
+          registerButton.setAttribute("disabled", "disabled"); // Vô hiệu hóa nút đăng ký
+        }
+      }
+
+      // Gắn sự kiện change cho checkbox để kiểm tra khi người dùng thay đổi trạng thái
+      agreeCheckbox.addEventListener("change", checkAgreement);
+
+      // Kiểm tra trạng thái ban đầu của checkbox
+      checkAgreement();
+    });
+    // end
+
+
+  </script>
+</body>
+
+</html>

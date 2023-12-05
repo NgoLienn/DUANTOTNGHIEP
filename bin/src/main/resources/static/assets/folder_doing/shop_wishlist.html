@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Yummy</title>
+</head>
+
+<link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/aos.css">
+<link rel="stylesheet" href="assets/fontawesome-free-6.4.0-web/css/all.css">
+<link rel="shortcut icon" href="assets/images/banner_pizza.png" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<!----===== Boxicons CSS ===== -->
+<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="assets/css_main/shop_wishlist.css">
+
+<body>
+    <div id="loader">
+        <span>
+            <img src="/assets/images/loading.gif" alt="img/loading">
+        </span>
+    </div>
+    <div class="containerr ">
+        <div class="image_big">
+            <div class="image-one"></div>
+            <div class="image-three"></div>
+            <div class="image-two">
+                <img src="assets/images/leaves.png" alt="leaves.png" class="food2">
+                <nav class="navb navbar-expand-lg navbar-light bg-light">
+                    <a href="#"><img src="assets/images/yum-logo.png" alt="yum-logo.ong"
+                            class="yum-logo navbar-brand"></a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="bi bi-list icon-list"></span>
+                    </button>
+                    <div class="btn-groupp">
+                        <a href="../login.html">
+                            <div class="btn-sign">Sign In</div>
+                        </a>
+                        <a href="/cart.html">
+                            <div class="btn-cart"><i class="bi bi-bag"></i>
+                                <span
+                                    class="tb-cart position-absolute start-80 translate-middle bg-danger rounded-circle"
+                                    style="width: 8px; height: 8px; margin-top: 8px;">
+                                    <span class="visually-hidden"></span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="../index.html" class="nav-link active home" aria-current="page">Trang Chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Câu Hỏi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Liên Hệ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Blog</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <header class="banner-big">
+                    <div class="img-blur ">
+                        <!-- <img src="assets/images/food5.png" class="anh1" alt=""> -->
+                    </div>
+                    <div class="wraper">
+                        <aside class="">
+                            <div class="container-fluid py-4 mt-3">
+                                <span class="tttk text-uppercase px-2">Thanh Toán</span>
+                                <div class="address-section mt-4 px-2">
+                                    <h4 class="mb-3 text-danger"><i class="bi bi-geo-alt-fill"></i> Địa chỉ giao hàng
+                                    </h4>
+                                    <div class="address-card">
+                                        <div class="name px-2">
+                                            <label for="address1">Lê Chí Bằng </label>
+                                        </div>
+                                        <div class="phone">
+                                            <label for="address2"> (+84)<span> 943925652</span></label>
+                                        </div>
+
+                                        <div class="location px-5">
+                                            <label for="address3">Ấp Rạch Muỗi Xã Phú Hưng Huyện Cái Nước Tỉnh Cà
+                                                Mau</label>
+                                        </div>
+                                        <a href="#" id="openModal"
+                                            class=" add-new-address px-3 text-location d-flex justify-content-end">
+                                            Thay Đổi
+                                        </a>
+
+                                        <!-- Màng hình hiển thị -->
+                                        <div id="myModal" class="modal">
+                                            <div class="modal-content">
+                                                <h4>Địa Chỉ Mới</h4>
+                                                <form action="/payment_method.html">
+                                                    <div class="row py-2">
+                                                        <div class="col-md-6 py-2">
+                                                            <div class="form-group">
+                                                                <input class="form-control" type="text" value=""
+                                                                    placeholder="Họ Và Tên">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 py-2">
+                                                            <div class="form-group">
+                                                                <input class="form-control" type="text" value=""
+                                                                    placeholder="Số Điện Thoại">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 py-2">
+                                                            <div class="form-group">
+                                                                <input class="form-control" type="text" value=""
+                                                                    placeholder="Tỉnh/Thành Phố, Quận/Huyện...">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 py-2">
+                                                            <div class="form-group">
+                                                                <textarea class="form-control" type="text" value=""
+                                                                    placeholder="Địa Chỉ Cụ Thể" rows="3"
+                                                                    style="vertical-align: top;">
+                                                                </textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Các trường thông tin khác -->
+                                                    <button class="close px-4">Trở Lại</button>
+                                                    <button type="submit" class="hoanthanh px-4">Hoàn Thành</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-fluid py-4 mt-3">
+                                <div class="product-container">
+                                    <div class="product-row header">
+                                        <div class="product-cell">Sản phẩm</div>
+                                        <div class="product-cell">Size</div>
+                                        <div class="product-cell">Đơn giá</div>
+                                        <div class="product-cell">Số lượng</div>
+                                        <div class="product-cell">Thành tiền</div>
+                                    </div>
+
+                                    <div class="product-row">
+                                        <img src="/assets/images/bglogin.jpg" class="img-cell" alt="prod_pm">
+                                        <div class="product-cell-name">Tên sản phẩm</div>
+                                        <div class="product-cell px-2">:M</div>
+                                        <div class="product-cell">100.000₫</div>
+                                        <div class="product-cell px-5">2</div>
+                                        <div class="product-cell">200.000₫</div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="product-container">
+                                    <div class="product-row header">
+                                        <div class="product-cell">Sản phẩm</div>
+                                        <div class="product-cell">Size</div>
+                                        <div class="product-cell">Đơn giá</div>
+                                        <div class="product-cell">Số lượng</div>
+                                        <div class="product-cell">Thành tiền</div>
+                                    </div>
+
+                                    <div class="product-row">
+                                        <img src="/assets/images/bglogin.jpg" class="img-cell" alt="prod_pm">
+                                        <div class="product-cell-name">Tên sản phẩm</div>
+                                        <div class="product-cell px-2">:M</div>
+                                        <div class="product-cell">100.000₫</div>
+                                        <div class="product-cell px-5">2</div>
+                                        <div class="product-cell">200.000₫</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container-fluid py-4 mt-3">
+                                <ul class="nav nav-tabs tab-pane-payment" id="myTab" role="tablist">
+                                    <span class="h5">Phương Thức Thanh Toán</span>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="tab"
+                                            data-bs-target="#pills-home" type="button" role="tab"
+                                            aria-controls="pills-home" aria-selected="true">Thanh Toán Khi Nhận Hàng
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                            data-bs-target="#pills-profile" type="button" role="tab"
+                                            aria-controls="pills-profile" aria-selected="false">Thanh Toán Online
+                                        </button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content mb-4" id="myTabContent">
+                                    <div class="tab-pane fade show active p-4" id="pills-home" role="tabpanel"
+                                        aria-labelledby="pills-home-tab" tabindex="0">Thanh Toán Khi Nhận Hàng:
+                                        &nbsp;&nbsp;&nbsp;
+                                        Phí thu hộ: ₫0 VNĐ. Ưu đãi về phí vận chuyển (nếu có) áp dụng cả với phí thu hộ.
+                                    </div>
+                                    <div class="tab-pane fade p-4" id="pills-profile" role="tabpanel"
+                                        aria-labelledby="pills-profile-tab" tabindex="0"><a href="#"
+                                            class="text-decoration-none text-dark">Thanh Toán
+                                            Online</a>
+                                    </div>
+                                </div>
+                                <div class="container-fluid-payment">
+                                    <span class="text-payment">Tổng Tiền Hàng: </span><span class="price-payment">
+                                        200.000₫</span><br>
+                                    <span class="text-payment1">Phí Vận Chuyển: </span><span class="price-payment">
+                                        30.000₫</span><br>
+                                    <span class="text-payment">Tổng Thanh Toán: </span><span class="price-payment-sum">
+                                        230.000₫</span><br>
+                                    <a href="/wait_confirmation.html">
+                                        <button class="btn btn-danger tbtn-thanhtoan mt-5" type="submit">Thanh
+                                            Toán</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </header>
+            </div>
+            <!-- <img class="myimage" src="assets/images/food4.png" alt="food4"> -->
+            <!-- <img class="myimagefood5" src="assets/images/food5.png" alt="food5"> -->
+            <div class="footer">
+                <!-- Footer -->
+                <footer class="text-center text-black d-flex justify-content-center">
+                    <!-- Grid container -->
+                    <div class="container p-4">
+                        <!-- Section: Social media -->
+                        <section class="">
+                            <!-- Facebook -->
+                            <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i
+                                    class="fab fa-facebook-f"></i></a>
+
+                            <!-- Google -->
+                            <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i
+                                    class="fab fa-google"></i></a>
+
+                            <!-- Instagram -->
+                            <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i
+                                    class="fab fa-instagram"></i></a>
+
+                            <!-- Github -->
+                            <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i
+                                    class="fab fa-github"></i></a>
+                        </section>
+                        <!-- Section: Social media -->
+
+                        <!-- Section: Form -->
+                        <section class="">
+                            <form action="">
+                                <!--Grid row-->
+                                <div class="row d-flex justify-content-center p-4">
+                                    <!--Grid column-->
+                                    <div class="col-auto">
+                                        <p class="pt-2">
+                                            <strong>Đăng ký để nhận thông tin mới nhất
+                                                <br> của chúng tôi!
+                                            </strong>
+                                        </p>
+                                    </div>
+                                    <!--Grid column-->
+
+                                    <!--Grid column-->
+                                    <div class="col-md-5 col-12">
+                                        <!-- Email input -->
+                                        <div class="form-outline form-white mb-4">
+                                            <input style="caret-color: red;" type="email" placeholder="Email address"
+                                                id="form5Example21" class="form-control" />
+                                            <label class="form-label" for="form5Example21"></label>
+                                        </div>
+                                    </div>
+                                    <!--Grid column-->
+
+                                    <!--Grid column-->
+                                    <div class="col-auto">
+                                        <!-- Submit button -->
+                                        <button type="submit" class="btn btn-outline-dark mb-4">
+                                            Xác Nhận
+                                        </button>
+                                    </div>
+                                    <!--Grid column-->
+                                </div>
+                                <!--Grid row-->
+                            </form>
+                        </section>
+                        <!-- Section: Form -->
+
+                        <!-- Section: Links -->
+                        <section class="ft">
+                            <!--Grid row-->
+                            <div class="row  d-flex justify-content-center">
+                                <!--Grid column-->
+                                <div class="col-lg-5 col-md-12 mb-4 mb-md-0 px-5">
+                                    <h5 class="text-center">
+                                        <span class="d-flex"><b>Yummy</b></span>
+                                    </h5>
+
+                                    <ul class="list-unstyled mb-0 col-md-24">
+                                        <li>
+                                            <a href="#" class="text-black">Bán Thức Ăn Online Yummy</a>
+                                        </li>
+                                        <li>
+                                            <a href="#!" class="text-black"><b>Trụ Sở Chính:</b> Đường số 22, phường
+                                                Thường Thạnh, quận Cái Răng, TP Cần Thơ
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-lg-5 col-md-12 mb-4 mb-md-0 px-5">
+                                    <h5 class="text-center">
+                                        <span class="d-flex"><b>Liên Hệ</b></span>
+                                    </h5>
+
+                                    <ul class="list-unstyled ">
+                                        <li>
+                                            <a href="#" class="text-black">Yummy: banglcpc04088@fpt.edu.vn</a>
+                                        </li>
+                                        <li>
+                                            <a href="#!" class="text-black">Liên Hệ: 0943925652</a>
+                                        </li>
+                                        <li>
+                                            <a href="#!" class="text-black">Chính Sách Bảo Mật</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--Grid column-->
+                            </div>
+                            <!--Grid row-->
+                        </section>
+                        <!-- Section: Links -->
+                    </div>
+                    <!-- Grid container -->
+                </footer>
+                <!-- Footer -->
+            </div>
+        </div>
+
+        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <!-- <script src="assets/js/bootstrap.min.js"></script> -->
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // loading khi refresh
+        var loader = function () {
+            setTimeout(function () {
+                $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+            }, 2000);
+        };
+        $(function () {
+            loader();
+        });
+        // end
+
+        $(function () {
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 1024) {
+                    $(".navb").addClass("scrolled");
+                } else {
+                    $(".navb").removeClass("scrolled");
+                }
+            });
+        });
+
+        $(function () {
+            $(".navbar-toggler").click(function () {
+                $(".navbar-collapse").toggleClass("show");
+            });
+        });
+
+        // Ẩn hiện iframe thay đổi địa chỉ nhận hàng
+
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("openModal");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        // end
+        // Lấy giá trị được nhập từ form thay đổi địa chỉ
+        document.querySelector('.hoanthanh').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var fullName = document.querySelector('input[placeholder="Họ Và Tên"]').value;
+            var phoneNumber = document.querySelector('input[placeholder="Số Điện Thoại"]').value;
+            var address = document.querySelector('input[placeholder="Tỉnh/Thành Phố, Quận/Huyện..."]').value;
+
+            document.querySelector('label[for="address1"]').textContent = fullName;
+            document.querySelector('label[for="address2"]').textContent = "(+84) " + phoneNumber;
+            document.querySelector('label[for="address3"]').textContent = address;
+
+            // Đóng modal
+            var modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        });
+
+        // end
+    </script>
+</body>
+
+</html>

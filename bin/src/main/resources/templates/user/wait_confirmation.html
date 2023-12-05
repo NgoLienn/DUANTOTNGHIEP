@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+<link rel="stylesheet" href="/assets/css_main/wait_confirmation.css">
+
+<body>
+    <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+
+    <!-- <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div> -->
+
+    <div class="containerr ">
+        <div class="image_big">
+            <div class="image-one"></div>
+            <div class="image-three"></div>
+            <div class="image-two">
+                <img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
+                <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
+
+                <header class="banner-big">
+                    <div class="img-blur ">
+                        <!-- <img src="assets/images/food5.png" class="anh1" alt=""> -->
+                    </div>
+                    <div class="wraper">
+                        <aside class="">
+                            <div class="container-fluid py-4 mt-2">
+                                <span class="tttk text-uppercase d-flex justify-content-center mt-3">Đang Chờ Xác
+                                    Nhận!
+                                </span>
+                                <span class="thank d-flex justify-content-center h5 mt-3 px-4 text-center">Cảm ơn bạn đã
+                                    đặt
+                                    hàng của Yummy,
+                                    chúc bạn 1 ngày tốt lành ^.^
+                                </span>
+                                <div class="confirmation">
+                                    <img src="/assets/images/background_confirmatione.png" alt="confm"
+                                        class="img_confm">
+                                </div>
+                                <div class="button_confm d-flex justify-content-center align-item-center">
+                                    <a th:href="@{/}">
+                                        <button class="button_confm btn btn-danger p-2 px-4" type="button">Về Trang
+                                            Chủ
+                                        </button>
+                                    </a>
+                                    <a th:href="@{user/order}">
+                                        <button class="button_confm btn btn-secondary p-2 px-4" type="button">Xem Đơn
+                                            Hàng
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </header>
+            </div>
+
+            <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
+        </div>
+
+        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+    </div>
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        // loading khi refresh
+        var loader = function () {
+            setTimeout(function () {
+                $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+            }, 2000);
+        };
+        $(function () {
+            loader();
+        });
+        // end
+
+        $(function () {
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 1024) {
+                    $(".navb").addClass("scrolled");
+                } else {
+                    $(".navb").removeClass("scrolled");
+                }
+            });
+        });
+
+        $(function () {
+            $(".navbar-toggler").click(function () {
+                $(".navbar-collapse").toggleClass("show");
+            });
+        });
+    </script>
+</body>
+
+</html>

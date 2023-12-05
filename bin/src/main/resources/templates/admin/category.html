@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{zlayout/fragmentsAdmin :: html_headAdmin}"></head>
+
+<body class="g-sidenav-show bg-gray-100">
+
+  <!-- loader khi vào -->
+  <div id="loader-page" style=" 
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 99999;
+   width: 100%;
+   height: 100%;
+   background-color: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;">
+    <span>
+      <img src="/assets/images/loading.gif" alt="img/loading">
+    </span>
+  </div>
+  <!-- end -->
+
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+
+  <aside class="" th:replace="~{zlayout/navbarAdmin :: menu-admin}"></aside>
+
+  <main class="main-content position-relative border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+      data-scroll="false">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Trang</a></li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Quản Lý Danh Mục</li>
+          </ol>
+          <h6 class="font-weight-bolder text-white mb-0">Quản Lý Danh Mục</h6>
+        </nav>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group">
+              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" placeholder="Tìm Kiếm...">
+            </div>
+          </div>
+          <ul class="navbar-nav  justify-content-end">
+            <li class="nav-item d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none fixed-plugin-button-nav">Tài Khoản</span>
+              </a>
+            </li>
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0 font-weight-bold">
+                <!-- <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i> -->
+              </a>
+            </li>
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa fa-bell cursor-pointer"></i>
+              </a>
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="/assets/images/food-menu-1.png" class="avatar avatar-sm  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          13 phút trước
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="/assets/images/food-menu-2.png" class="avatar avatar-sm me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          1 ngày trước
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="/assets/images/food-menu-4.png" class="avatar avatar-sm me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          3 ngày trước
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="row">
+      <div class="col-12">
+        <div class="container-fluid py-4">
+          <div class="card">
+            <div class="card-header pb-0">
+              <div class="d-flex align-items-center">
+                <p class="mb-0">Chỉnh Sửa Danh Mục</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="text-uppercase text-sm">Thông Tin Danh Mục</p>
+              <div class="row mt-2">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Tên Danh Mục</label>
+                    <input class="form-control" type="text" value="" placeholder="Name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Chọn Hình Ảnh</label>
+                    <input class="form-control" type="file" value="">
+                  </div>
+                </div>
+              </div>
+              <hr class="py-2">
+              <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm ms-4">Thêm</button>
+                <button class="btn btn-info btn-sm ms-4">Sửa</button>
+                <button class="btn btn-danger btn-sm ms-4">Xóa</button>
+                <button class="btn btn-dark btn-sm ms-4">Làm Mới</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end -->
+    <div class="row">
+      <div class="col-12">
+        <div class="container-fluid py-4">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h6>Danh Sách Danh Mục</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hình Ảnh</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên Danh mục
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Thao
+                        Tác</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-4 py-1">
+                          <div>
+                            <img src="/assets/images/avatar-1.jpg" class="avatar avatar-sm me-3" alt="user1">
+                          </div>
+                        </div>
+                      </td>
+                      <td class="align-middle px text-sm">
+                        <span class="badge badge-sm text-dark text-xs">Lê Chí Bằng</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                          data-original-title="Edit user">
+                          Edit
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end -->
+      <footer class="footer p-4">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                Được Thiết Kế Bởi FastFoodTeam
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+  <div class="" th:replace="~{zlayout/navbarAdmin :: menu-admin-right}"></div>
+
+  <!--   Core JS Files   -->
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/bootstrap-icons/bootstrap-icons.json"></script>
+  <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script>
+
+    // loading khi refresh
+    var loader = function () {
+      setTimeout(function () {
+        $('#loader-page').css({ 'opacity': 0, 'visibility': 'hidden' });
+      }, 1000);
+    };
+    $(function () {
+      loader();
+    });
+    // end
+
+    // mặc dịnh tích sẵn radio
+    document.getElementById("user").checked = true;
+    // end
+
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <!-- flowbite tailwind -->
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@1.0.0/dist/flowbite.min.js"></script>
+  <!-- end -->
+</body>
+
+</html>

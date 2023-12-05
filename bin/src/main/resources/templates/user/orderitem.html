@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+
+<link rel="stylesheet" href="/assets/css_main/orderitem.css">
+
+<body>
+    <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+
+    <!-- <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div> -->
+
+    <div class="containerr ">
+        <div class="image_big">
+            <div class="image-one"></div>
+            <div class="image-three"></div>
+            <div class="image-two">
+                <img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
+                <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
+
+                <header class="banner-big">
+                    <div class="img-blur ">
+                        <!-- <img src="assets/images/food5.png" class="anh1" alt=""> -->
+                    </div>
+                    <div class="wraper">
+                        <aside class="">
+                            <div class="container-fluid py-4 mt-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="tttk text-uppercase"><b> Thông Tin Chi Tiết Đơn Hàng</b></span>
+                                    <span>
+                                        <a th:href="@{/user/order}" class="text-decoration-none text-dark"
+                                            style="font-size: 16px;">
+                                            <i class="bi bi-arrow-left"></i> TRỞ LẠI
+                                        </a>
+                                    </span>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-auto">
+                                        <div class="tab-pane tab-content" id="nav-tabContent">
+                                            <section class=" tab-profile" id="nav-profile">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="h5 px-2">Đơn Mua
+                                                    </span>
+                                                    <div class="p-4 text-end" th:each="item : ${orderItems.get(0)}">
+                                                        <span class="order-code"
+                                                            th:text="'MÃ ĐƠN: ' + ${item.Orders.orderID}"></span> &nbsp;
+                                                        | &nbsp;
+                                                        <span class=""
+                                                            style="color: rgb(31, 154, 31); font-weight: bold;">
+                                                            <span th:text="${item.Orders.Status.name}"
+                                                                class="text-uppercase" style="font-size: 17px;">
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="container-fluid py-4 mt-3">
+
+                                                    <div class="tracking-container" id="trackingContainer"
+                                                        th:each="item : ${orderItems.get(0)}"
+                                                        th:if="${item.Orders.Status.statusID <= 5}">
+                                                        <label for="step1" class="step-item" data-step="1"
+                                                            th:classappend="${item.Orders.Status.statusID >= 1} ? 'active' : ''">
+                                                            <span class="step-number"><i class="bi bi-journal"
+                                                                    style="font-size: 20px;"></i></span>
+                                                            <span class="step-label">Đã đặt hàng</span>
+                                                            <div class="step-bar step-bar-dh"></div>
+                                                        </label>
+                                                        <label for="step2" class="step-item " data-step="2"
+                                                            th:classappend="${item.Orders.Status.statusID >= 2} ? 'active' : ''">
+                                                            <span class="step-number"><i class="bi bi-journal-check"
+                                                                    style="font-size: 20px;"></i></span>
+                                                            <span class="step-label">Đã xác nhận</span>
+                                                            <div class="step-bar step-bar-xn"></div>
+                                                        </label>
+                                                        <label for="step3" class="step-item" data-step="3"
+                                                            th:classappend="${item.Orders.Status.statusID >= 3} ? 'active' : ''">
+                                                            <span class="step-number"><i class="bi bi-box-seam"
+                                                                    style="font-size: 20px;"></i></span>
+                                                            <span class="step-label">Đang giao hàng</span>
+                                                            <div class="step-bar step-bar-gh"></div>
+                                                        </label>
+                                                        <label for="step4" class="step-item" data-step="4"
+                                                            th:classappend="${item.Orders.Status.statusID >= 4} ? 'active' : ''">
+                                                            <span class="step-number"><i class="bi bi-star"
+                                                                    style="font-size: 20px;"></i></span>
+                                                            <span class="step-label">Đã giao hàng</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="product-container table">
+                                                        <div class="product-row header">
+                                                            <div class="product-cell">Sản phẩm</div>
+                                                            <div class="product-cell"></div>
+                                                            <div class="product-cell don-gia-cell">Đơn giá</div>
+                                                            <div class="product-cell cell-quantity">Số lượng</div>
+                                                            <div class="product-cell">Thành tiền</div>
+                                                        </div>
+
+                                                        <th:block th:each="item : ${orderItems}">
+                                                            <div class="product-row">
+                                                                <img th:each="image : ${item.product}"
+                                                                    th:src="@{|${image.image}|}" class="img-cell"
+                                                                    alt="prod_pm">
+                                                                <div class="product-cell px-2 cell-name"
+                                                                    th:text="${item.name}">
+                                                                </div>
+                                                                <div class="product-cell"
+                                                                    th:text="${item.Size_Product}"></div>
+                                                                <div class="product-cell"
+                                                                    th:text="${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+                                                                </div>
+                                                                <div class="product-cell" th:text="${item.quantity}">
+                                                                </div>
+                                                                <div class="product-cell cell-subtotal"
+                                                                    th:text="${#numbers.formatDecimal(item.subtotal , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex gap-3 button-dg">
+                                                                <button class="btn btn-primary mt-4 button-star"
+                                                                    th:data-bs-toggle="modal"
+                                                                    th:data-bs-target="'#staticBackdrop' + ${item.orderitemID}"
+                                                                    th:attr="data-orderitemID=${item.orderitemID}"
+                                                                    th:if="${item.evaluate != true && item.Orders.Status.statusID <= 5 && item.Orders.Status.statusID >= 4}">Đánh
+                                                                    Giá
+                                                                </button>
+
+                                                                <!-- <button class="btn btn-profile border border-dark mt-4 p-2" type="button">Liên
+                                                                    hệ</button> -->
+                                                            </div>
+                                                            <br>
+                                                            <br>
+                                                        </th:block>
+
+                                                        <div class="text-right d-flex justify-content-end"
+                                                            th:each="item : ${orderItems.get(0)}">
+                                                            Tổng
+                                                            Tiền: &nbsp;
+                                                            <span style="font-weight: bold;"
+                                                                th:text="${#numbers.formatDecimal(item.Orders.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"
+                                                                class="text-danger h5">
+                                                            </span>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                    <div class="dcnhanhang">
+                                                        <div class="d-flex justify-content-between flex-wrap">
+                                                            <div class="diachinh h5"> Địa Chỉ Nhận Hàng</div>
+                                                            <a th:href="@{/}">
+                                                                <button class="btn btn-outline-danger">Xem
+                                                                    shop</button>
+                                                            </a>
+                                                        </div>
+                                                        <br>
+                                                        <div class="text-start" style="font-size: 16px;"
+                                                            th:each="item : ${orderItems.get(0)}">
+                                                            <div class="name-order" style="font-size: 18px;"
+                                                                th:text="${item.Orders.Account.Fullname}"></div>
+                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                                th:text="'SĐT: (84+) ' + ${item.Orders.Phone}">
+                                                            </div>
+                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                                th:text="'Địa chỉ nhận hàng: ' + ${item.Orders.deliveryAddress}">
+                                                            </div>
+                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                                th:text="'Thời gian đặt hàng: ' + ${item.Orders.orderTime}">
+                                                            </div>
+                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                                th:text="'Phương thức thanh toán: ' + ${item.Orders.paymentMethod}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- đánh giá -->
+                                                <!-- Modal -->
+                                                <div class="modal fade" th:each="item : ${orderItems}"
+                                                    th:id="'staticBackdrop' + ${item.orderitemID}"
+                                                    th:data-bs-backdrop="static" th:data-bs-keyboard="true" tabindex="1"
+                                                    th:aria-labelledby="'staticBackdropLabel' + ${item.orderitemID}"
+                                                    aria-hidden="true" th:attr="data-orderitemID=${item.orderitemID}">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                                                    Đánh Giá</h1>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                                </button>
+                                                            </div>
+                                                            <form action="/user/order#modal-body" method="post"
+                                                                th:id="'modal-an' + ${item.orderitemID}">
+                                                                <div class="modal-body" id="modal-body">
+                                                                    <div
+                                                                        class="rating-container d-flex align-items-center justify-content-center">
+                                                                        <div class="star"
+                                                                            th:attr="data-orderitemID=${item.orderitemID}"
+                                                                            data-rating="1">★</div>
+                                                                        <div class="star"
+                                                                            th:attr="data-orderitemID=${item.orderitemID}"
+                                                                            data-rating="2">★</div>
+                                                                        <div class="star"
+                                                                            th:attr="data-orderitemID=${item.orderitemID}"
+                                                                            data-rating="3">★</div>
+                                                                        <div class="star"
+                                                                            th:attr="data-orderitemID=${item.orderitemID}"
+                                                                            data-rating="4">★</div>
+                                                                        <div class="star"
+                                                                            th:attr="data-orderitemID=${item.orderitemID}"
+                                                                            data-rating="5">★</div>
+                                                                        &nbsp;&nbsp;&nbsp;
+                                                                        <div class="rating-count">0</div>
+                                                                    </div>
+                                                                    <div class="evaluate text-center"
+                                                                        style="margin-top: 3px;">
+                                                                        <div id="percentage-display"
+                                                                            style="color: rgb(255, 111, 0);">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12 mt-4">
+                                                                        <div class="form-group">
+                                                                            <textarea class="form-control text-start"
+                                                                                name="description" id="description"
+                                                                                cols="30" rows="5"
+                                                                                placeholder="Hãy chia sẻ những điều bạn thích về sản phẩm này với người khác nhé!"></textarea>
+
+                                                                            <input type="hidden" name="saoo"
+                                                                                th:id="'saoo' + ${item.orderitemID}"
+                                                                                th:attr="data-orderitemID=${item.orderitemID}"
+                                                                                class="saoo-input">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn px-3"
+                                                                        data-bs-dismiss="modal">Trở Lại
+                                                                    </button>
+                                                                    &nbsp; &nbsp;
+                                                                    <button type="submit"
+                                                                        th:formaction="@{|/user/rating/${item.orderitemID}|}"
+                                                                        th:id="'submit'+${item.orderitemID}"
+                                                                        class="btn btn-danger px-3 submit-rating"
+                                                                        th:attr="data-orderitemID=${item.orderitemID}">Đánh
+                                                                        Giá
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                            <div th:id="'thank-you-message' + ${item.orderitemID}"
+                                                                th:attr="data-orderitemID=${item.orderitemID}"
+                                                                style="display: none; color: black; padding: 30px; font-size: 21px;"
+                                                                class="text-center">
+                                                                Cảm ơn bạn đã đánh giá sản phẩm!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end -->
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </header>
+            </div>
+
+            <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
+
+        </div>
+
+        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+    </div>
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        // loading khi refresh
+        var loader = function () {
+            setTimeout(function () {
+                $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+            }, 1000);
+        };
+        $(function () {
+            loader();
+        });
+        // end
+
+        $(function () {
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 1024) {
+                    $(".navb").addClass("scrolled");
+                } else {
+                    $(".navb").removeClass("scrolled");
+                }
+            });
+        });
+
+        $(function () {
+            $(".navbar-toggler").click(function () {
+                $(".navbar-collapse").toggleClass("show");
+            });
+        });
+        //
+
+
+        // Đánh giá sao theo phần trăm
+        document.addEventListener('DOMContentLoaded', function () {
+            const stars = document.querySelectorAll('.modal.fade .star');
+            const starLabels = {
+                1: 'Tệ',
+                2: 'Không hài lòng',
+                3: 'Bình thường',
+                4: 'Hài lòng',
+                5: 'Tuyệt Vời'
+            };
+
+            const starsContainers = document.querySelectorAll('.modal-content');
+
+            starsContainers.forEach(container => {
+                const ratingCount = container.querySelector('.rating-count');
+                const percentageDisplay = container.querySelector('#percentage-display');
+
+                // Hiển thị 5 sao mặc định
+                const starsForItemm = container.querySelectorAll('.star');
+                setRating(5, starsForItemm);
+
+                stars.forEach(star => {
+                    star.addEventListener('click', () => {
+                        const rating = parseInt(star.getAttribute('data-rating'));
+                        const orderItemID = star.getAttribute('data-orderitemID');
+
+                        const starsForItem = container.querySelectorAll(`[data-orderitemID="${orderItemID}"]`);
+                        resetStars(starsForItem);
+                        setRating(rating, starsForItem);
+                        calculateAndDisplayPercentage(rating, container, starsForItem);
+                    });
+                });
+            });
+
+            function resetStars(stars) {
+                stars.forEach(star => star.classList.remove('selected'));
+            }
+
+            // Đoạn mã JavaScript
+
+            function setRating(rating, stars) {
+                if (stars.length > 0) {
+                    stars.forEach((star, index) => {
+                        if (index < rating) {
+                            star.classList.add('selected');
+                        } else {
+                            star.classList.remove('selected');
+                        }
+                    });
+                    // Hiển thị số sao được chọn
+
+                    // Kiểm tra nếu có phần tử đầu tiên, sau đó truy cập parentElement
+                    const firstStar = stars[0];
+
+                    if (firstStar && firstStar.parentElement) {
+                        const ratingCount = firstStar.parentElement.querySelector('.rating-count');
+
+                        if (ratingCount) {
+                            // Lấy số sao hiển thị ra bên ngoài
+                            ratingCount.textContent = `${rating} sao`;
+
+                            const orderItemID = firstStar.getAttribute('data-orderitemID');
+                            const inputElement = document.getElementById(`saoo${orderItemID}`);
+                            console.log(orderItemID);
+                            if (inputElement) {
+                                inputElement.value = rating; // Gán giá trị số sao vào thẻ input tương ứng
+                            }
+                        }
+                    }
+                }
+            }
+
+            //hiển thị trạng thái, nhãn đánh giá
+            function calculateAndDisplayPercentage(rating, container, starsForItem) {
+                const selectedStars = container.querySelectorAll('.star.selected').length;
+                const totalStars = starsForItem.length;
+                const percentage = (selectedStars / totalStars) * 100;
+
+                const percentageDisplay = container.querySelector('#percentage-display');
+
+                if (percentage > 0) {
+                    const label = starLabels[rating.toString()];
+                    percentageDisplay.textContent = `Bạn đã đánh giá ${label}`;
+
+                } else {
+                    percentageDisplay.textContent = `Bạn đã đánh giá `;
+                }
+            }
+
+            const submitButtons = document.querySelectorAll('.modal.fade .submit-rating');
+            submitButtons.forEach((button) => {
+                button.addEventListener('click', function (event) {
+                    // event.preventDefault();
+
+                    const orderItemID = button.getAttribute('data-orderitemID');
+                    const selectedStars = document.querySelectorAll(`.modal.fade [data-orderitemID='${orderItemID}'] .star[data-rating].selected`).length;
+
+                    if (selectedStars.length < 0) {
+                        // hiển thị thông báo vui lòng chọn sao đánh giá
+                        alert('Vui lòng chọn số sao để đánh giá sản phẩm!');
+                    } else {
+
+                        const reviewSection = document.getElementById(`modal-an${orderItemID}`);
+                        const thankYouMessage = document.getElementById(`thank-you-message${orderItemID}`);
+
+                        if (reviewSection && thankYouMessage) {
+                            reviewSection.style.display = 'none';
+                            thankYouMessage.style.display = 'block';
+                        } else {
+                            console.error('Không tìm thấy phần tử đánh giá hoặc cảm ơn tương ứng.');
+                        }
+                    }
+                });
+            });
+        });
+
+        // end
+
+        // trạng thái đơn hàng
+        const steps = document.querySelectorAll('.step-item');
+
+        function updateActiveStep(step) {
+            steps.forEach((s) => {
+                const stepNumber = parseInt(s.getAttribute('data-step'));
+                if (stepNumber <= step) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        }
+
+        // const activeStep = 2;
+        // updateActiveStep(activeStep);
+        // end
+
+        // random mã đơn
+        // function generateRandomCode() {
+        //     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        //     const length = 8; // Độ dài của phần mã đơn sau ký tự "yummy"
+        //     let randomCode = 'YUM';
+
+        //     for (let i = 0; i < length; i++) {
+        //         const randomIndex = Math.floor(Math.random() * characters.length);
+        //         randomCode += characters.charAt(randomIndex);
+        //     }
+
+        //     return randomCode;
+        // }
+
+        // // Gán mã đơn ngẫu nhiên vào phần HTML tương ứng
+        // const orderCodeElement = document.querySelector('.order-code');
+        // if (orderCodeElement) {
+        //     const generatedCode = generateRandomCode();
+        //     orderCodeElement.textContent = `MÃ ĐƠN: ${generatedCode}`;
+        // }
+        //end
+
+    </script>
+
+
+</body>
+
+</html>
