@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="zlayout/fragments :: html_head"></head>
 
 <body>
-
     <!-- nav chung -->
     <nav class="navb navbar-expand-lg navbar-light bg-light" th:fragment="menu">
         <a th:href="@{/}"><img src="/assets/images/yum-logo.png" alt="yum-logo.ong" class="yum-logo navbar-brand"></a>
@@ -13,13 +13,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a th:href="@{/}" class="nav-link active home" aria-current="page" th:utext="#{label.home}"></a>
+                <li class="nav-item"><a th:href="@{/}" class="nav-link active home" aria-current="page">Trang Chủ</a>
                 </li>
-                <li class="nav-item"><a th:href="@{/user/introductFQAController}" class="nav-link" th:utext="#{label.introduce}" ></a>
-                </li>
-                <li class="nav-item"><a th:href="@{/user/contact}" class="nav-link" th:utext="#{label.contact}"></a>
-                </li>
-                <li class="nav-item"><a th:href="@{/menu}" class="nav-link" th:utext="#{label.menu}"></a></li>
+                <li class="nav-item"><a th:href="@{/user/introductFQAController}" class="nav-link">Giới
+                        Thiệu</a></li>
+                <li class="nav-item"><a th:href="@{/user/contact}" class="nav-link">Liên
+                        Hệ</a></li>
+                <li class="nav-item"><a th:href="@{/menu}" class="nav-link">Menu</a></li>
             </ul>
         </div>
         <div class="btn-groupp">
