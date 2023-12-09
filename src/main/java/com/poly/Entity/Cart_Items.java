@@ -42,7 +42,6 @@ public class Cart_Items implements Serializable {
     @Column(name = "subtotal")
     private Float Subtotal;
 
-
     @Column(name = "size_id")
     private String sizeName;
 }

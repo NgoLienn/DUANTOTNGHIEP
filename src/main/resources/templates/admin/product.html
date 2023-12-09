@@ -174,30 +174,21 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Giá Cũ</label>
-                      <input class="form-control" type="text" id="newProduct_prices" value="" placeholder="Old Price"
-                        th:field="*{prices}" th:value="${newProduct.prices}">
-                      <small class="text-danger" id="prices-error"></small>
-                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Giá Mới</label>
-                      <input class="form-control" type="text" id="newProduct_price" value="" placeholder="New Price"
-                        th:field="*{price}" th:value="${newProduct.price}">
-                      <small class="text-danger" id="price-error"></small>
-                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Số Lượng</label>
                       <input class="form-control" id="newProduct_quantity" type="text" value="" placeholder="Quantity"
                         th:field="*{quantity}" th:value="${newProduct.quantity}">
                     </div>
                     <small class="text-danger" id="quantity-error"></small>
                     <div id="form-error" class="text-danger mt-2 border-danger"></div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label">Giá Cũ</label>
+                      <input class="form-control" type="text" id="newProduct_prices" value="" placeholder="Old Price"
+                        th:field="*{prices}" th:value="${newProduct.prices}">
+                      <small class="text-danger" id="prices-error"></small>
+                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
+                    </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
@@ -239,12 +230,12 @@
                       <label for="example-text-input" class="form-control-label">Trang Thái</label>
                       <div class="d-flex justify-content-start align-items-center gap-3 mt-2">
                         <label for="trueStatus" class="cursor-pointer" style="font-size: 13px;">
-                          <input class="" id="trueStatus" name="option" type="radio" value="True" checked placeholder=""
-                            th:field="*{status_prod}" th:value="${newProduct.status_prod}">&nbsp;
+                          <input class="" id="trueStatus" name="status_prod" type="radio" value="True" checked
+                            placeholder="" th:field="*{status_prod}" th:value="${newProduct.status_prod}">&nbsp;
                           True
                         </label>
                         <label for="falseStatus" class="cursor-pointer" style="font-size: 13px;">
-                          <input class="" id="falseStatus" name="option" type="radio" value="false" placeholder=""
+                          <input class="" id="falseStatus" name="status_prod" type="radio" value="false" placeholder=""
                             th:field="*{status_prod}" th:value="${newProduct.status_prod}">&nbsp; False
                         </label>
                       </div>
@@ -267,6 +258,14 @@
                       <div id="form-error" class="text-danger mt-2 border-danger"></div>
                       <!-- end -->
                     </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input class="form-control" type="hidden" id="newProduct_price" value="" placeholder="New Price"
+                      th:field="*{price}" th:value="${newProduct.price}">
+                    <small class="text-danger" id="price-error"></small>
+                    <div id="form-error" class="text-danger mt-2 border-danger"></div>
                   </div>
                 </div>
                 <hr class="horizontal dark">
@@ -584,7 +583,7 @@
 
       if (!isValidNumberr(quantity.value)) {
         quantity.style.borderColor = '#ff0000';
-        document.getElementById('quantity-error').innerText = 'Số lượng phải nhập số và ít nhất 2 chữ số';
+        document.getElementById('quantity-error').innerText = 'Số lượng phải nhập số';
         return false;
       } else {
         document.getElementById('quantity-error').innerText = '';
@@ -631,7 +630,7 @@
     }
 
     function isValidNumberr(value) {
-      return /^[0-9]+$/.test(value) && value.length >= 2;
+      return /^[0-9]+$/.test(value) && value.length >= 1;
     }
 
     function isValidNumber(value) {

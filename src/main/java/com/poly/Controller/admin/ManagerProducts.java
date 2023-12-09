@@ -269,7 +269,7 @@ public class ManagerProducts {
             existingProduct.setCreate_at(product.getCreate_at());
             existingProduct.setDescription_an(product.getDescription_an());
             existingProduct.setDescription(product.getDescription());
-            existingProduct.setStatus_prod(true);
+            existingProduct.setStatus_prod(product.getStatus_prod());
             // Kiểm tra trạng thái mới của sản phẩm để ẩn hoặc hiển thị
             if (existingProduct.getStatus_prod() != null) {
                 if (existingProduct.getStatus_prod()) {

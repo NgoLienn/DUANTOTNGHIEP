@@ -17,4 +17,7 @@ public interface OrdersReposiotry extends JpaRepository<Orders, Long> {
     List<Orders> finByUsernam(String username);
 
     List<Orders> findByOrderTimeBetween(Date startDate, Date endDate);
+
+    @Query("select u from Orders u where u.Account.UserName = ?1")
+    Orders finByUsername(String username);
 }
