@@ -146,30 +146,83 @@
                 <p class="mb-0">Chỉnh Sửa Danh Mục</p>
               </div>
             </div>
-            <div class="card-body">
-              <p class="text-uppercase text-sm">Thông Tin Danh Mục</p>
-              <div class="row mt-2">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Tên Danh Mục</label>
-                    <input class="form-control" type="text" value="" placeholder="Name">
+            <form method="post" th:object="${newCategories}" enctype="multipart/form-data" id="productForm"
+              onsubmit="return validateForm()">
+              <div class="card-body">
+                <p class="text-uppercase text-sm">Thông Tin Danh Mục</p>
+                <div class="row mt-2">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label">Tên Danh Mục</label>
+                      <input class="form-control" type="text" placeholder="Name" id="newProduct_name" name="nameCate"
+                        th:fleld="*{Name}" th:value="${newCategories.Name}">
+                      <small class="text-danger" id="name-error"></small>
+                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="uploadimage" class="form-control-label">Chọn Hình Ảnh</label>
+                      <input type="hidden" name="filess" th:value="${newCategories.Image_url}">
+                      <input class="form-control" id="uploadimage" onchange="previewImage(event)" multiple type="file"
+                        name="uploadimage" th:value="${newCategories.Image_url}" th:fleld="*{Image_url}">
+                    </div>
+                  </div>
+                  <div id="imagePreviews" class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+                    <img id="preview-image" class="" th:src="*{Image_url}" alt=""
+                      style="padding-left: 15px; max-width: 300px; max-height: 300px;">
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Chọn Hình Ảnh</label>
-                    <input class="form-control" type="file" value="">
+                <hr class="py-2">
+                <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
+                  <button class="btn btn-primary btn-sm ms-4 text-white" type="submit"
+                    formaction="/admin/managerCategory/add"
+                    th:disabled="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
+                    Thêm</button>
+                  <button class="btn btn-info btn-sm ms-4 text-white"
+                    th:formaction="@{|/admin/managerCategory/update/${categoryIdd}|}" type="submit"
+                    th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
+                    Sửa
+                  </button>
+                  <button class="btn btn-danger btn-sm ms-4 text-white" type="button" data-bs-toggle="modal"
+                    data-bs-target="#confirmDeleteModal"
+                    th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
+                    Xóa
+                  </button>
+                  <a th:href="@{/admin/managerCategory}"
+                    th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory')}"
+                    th:unless="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
+                    <button class="btn btn-dark btn-sm ms-4" type="button">Làm Mới</button>
+                  </a>
+                  <a th:href="@{|/admin/managerCategory/edit/${categoryIdd}|}"
+                    th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
+                    <button class="btn btn-dark btn-sm ms-4" type="button">Làm Mới</button>
+                  </a>
+                </div>
+                <!-- Modal hỏi xóa sản phẩm-->
+                <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
+                  aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xóa thể loại</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Bạn có chắc chắn muốn xóa thế loại này không?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-danger"
+                          th:formaction="@{|/admin/managerCategory/delete/${categoryIdd}|}"
+                          id="confirmDeleteButton">Xóa</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <!-- end -->
               </div>
-              <hr class="py-2">
-              <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
-                <button class="btn btn-primary btn-sm ms-4">Thêm</button>
-                <button class="btn btn-info btn-sm ms-4">Sửa</button>
-                <button class="btn btn-danger btn-sm ms-4">Xóa</button>
-                <button class="btn btn-dark btn-sm ms-4">Làm Mới</button>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -187,6 +240,7 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STT</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hình Ảnh</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên Danh mục
                       </th>
@@ -195,19 +249,22 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr class="" th:each="category : ${categories}">
+                      <td class="align-middle text-sm">
+                        <span class=" text-dark text-xs ps-3" th:text="${category.categoryId}"></span>
+                      </td>
                       <td>
-                        <div class="d-flex px-4 py-1">
-                          <div>
-                            <img src="/assets/images/avatar-1.jpg" class="avatar avatar-sm me-3" alt="user1">
-                          </div>
+                        <div class="d-flex px-2">
+                          <img th:src="${category.Image_url}" style="max-width: 65px; max-height: 65px;" class="me-3"
+                            alt="category">
                         </div>
                       </td>
-                      <td class="align-middle px text-sm">
-                        <span class="badge badge-sm text-dark text-xs">Lê Chí Bằng</span>
+                      <td class="align-middle text-sm">
+                        <span class="badge badge-sm text-dark text-xs" th:text="${category.Name}"></span>
                       </td>
                       <td class="align-middle text-center">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                        <a th:href="@{/admin/managerCategory/edit/{categoryId}(categoryId=${category.categoryId})}"
+                          class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                           data-original-title="Edit user">
                           Edit
                         </a>
@@ -272,6 +329,48 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+
+    // chọn ảnh đại diện sản phẩm
+    function previewImage(event) {
+      var input = event.target;
+      var imagePreviews = document.getElementById('imagePreviews');
+
+      // Xóa hình ảnh trước khi hiển thị mới
+      imagePreviews.innerHTML = '';
+
+      for (var i = 0; i < input.files.length; i++) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var dataURL = e.target.result;
+          var imgElement = document.createElement('img');
+          imgElement.src = dataURL;
+          imgElement.className = 'max-height-200 max-width-200';
+          imgElement.style.width = '100%';
+          imagePreviews.appendChild(imgElement);
+        };
+        reader.readAsDataURL(input.files[i]);
+      }
+    }
+    // end
+
+    function validateForm() {
+      var form = document.getElementById('productForm');
+      var name = document.getElementById('newProduct_name');
+      var formError = document.getElementById('form-error');
+
+      if (!name.value) {
+        name.style.borderColor = '#ff0000';
+        document.getElementById('name-error').innerText = 'Không được để trống tên danh mục';
+
+        return false;
+      } else {
+        document.getElementById('name-error').innerText = '';
+        name.style.borderColor = '';
+      }
+
+      return true;
+    }
+    // end
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
