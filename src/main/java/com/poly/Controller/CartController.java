@@ -85,7 +85,7 @@ public class CartController {
         Products product = productRepo.findByProduct(productId);
         Size size1 = sizeRepo.findByProductAndSizeName(productId, size);
         Size_Product sizeProduct = sizeProductRepo.findBySizeProductId(size1.getSizeID());
-        if (cart == null || cart.getCart_items().isEmpty()) {
+        if (cart == null ) {
             Carts newCart = new Carts();
             newCart.setAccount(account);
             cartRepon.save(newCart);
@@ -134,15 +134,18 @@ public class CartController {
 
     @GetMapping("cart/updateCartItems")
     public String updateQuantity(@RequestParam(value = "cartitemID", defaultValue = "") long cartitemID,
-            HttpServletRequest httpServletRequest, Model model) {
+            HttpServletRequest httpServletRequest, Model model,Authentication authentication) {
 
         Cart_Items cartItem = cartItemsRepo.findByCartitemID(cartitemID);
-        String username = httpServletRequest.getRemoteUser();
-        Carts carts = cartRepo.findByCartUser(username);
+        String users = "";
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }        Carts carts = cartRepo.findByCartUser(users);
         model.addAttribute("carts", carts);
-
-        Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-        model.addAttribute("subtotal", subtotal);
 
         int soluong = cartItem.getQuantity() - 1;
         if (soluong < 1) {
@@ -153,28 +156,46 @@ public class CartController {
         }
 
         cartItemsRepo.save(cartItem);
+        List<Cart_Items> cartItems=cartItemsRepo.findByCartItem(users);
+        float sum = 0;
+        for(Cart_Items carts1 : cartItems ){
+            sum+= carts1.getSubtotal();
+        }
+        Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+        model.addAttribute("subtotal", sum);
         return "user/cart";
     }
 
     @GetMapping("cart/updateCartItemss")
     public String updateQuantityAdd(@RequestParam(value = "cartitemID", defaultValue = "") long cartitemID,
-            HttpServletRequest httpServletRequest, Model model) {
+            HttpServletRequest httpServletRequest, Model model,Authentication authentication) {
         Cart_Items cartItem = cartItemsRepo.findByCartitemID(cartitemID);
-        String username = httpServletRequest.getRemoteUser();
-        Carts carts = cartRepo.findByCartUser(username);
+        String users = "";
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }
+        Carts carts = cartRepo.findByCartUser(users);
         model.addAttribute("carts", carts);
 
-        Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-        model.addAttribute("subtotal", subtotal);
-
         int soluong = cartItem.getQuantity() + 1;
-        if(soluong>=1){
+
             cartItem.setQuantity(soluong);
             cartItem.setSubtotal(cartItem.getPrice() * soluong);
-        }
+
 
 
         cartItemsRepo.save(cartItem);
+        List<Cart_Items> cartItems=cartItemsRepo.findByCartItem(users);
+        float sum = 0;
+        for(Cart_Items carts1 : cartItems ){
+            sum+= carts1.getSubtotal();
+        }
+        Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+        model.addAttribute("subtotal", sum);
         return "user/cart";
     }
 
