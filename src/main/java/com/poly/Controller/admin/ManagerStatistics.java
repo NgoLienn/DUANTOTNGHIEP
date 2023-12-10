@@ -48,7 +48,7 @@ public class ManagerStatistics {
         model.addAttribute("a", categoryService.totalCategory());
 
         // Số người dùng
-        model.addAttribute("totalAccount", accountService.totalAccount());
+//        model.addAttribute("totalAccount", accountService.totalAccount());
 
     
 

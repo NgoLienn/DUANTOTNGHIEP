@@ -17,6 +17,6 @@ public interface AccountReponsitory extends JpaRepository<Account, Integer> {
     @Query("Select u from Account u where u.UserName =?1")
     Optional<Account> findByEmail(String email);
 
-    @Query("select count(u.accountID) from Account u")
-    public int countAccount();
+    @Query("select u from Account u where u.token=?1")
+    Account findbytoken(String token);
 }
