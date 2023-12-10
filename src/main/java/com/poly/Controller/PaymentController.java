@@ -81,9 +81,6 @@ public class PaymentController {
 
         int pricevou = 0;
 
-        // Tạo một đối tượng BCryptPasswordEncoder
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
         if (voucherCode.equals("")) {
 
         } else {
@@ -92,16 +89,21 @@ public class PaymentController {
             if (voucher == null) {
 
             } else {
-                // So sánh mật khẩu từ người dùng với mật khẩu đã được mã hóa
-                // boolean passwordsMatch = encoder.matches(voucherCode, voucher.getCode());
-
-                System.out.println(" 1");
 
                 if (voucher != null && !voucher.isUsed() && voucher.getQuantity() > 0) {
 
-                    pricevou = voucher.getDiscount();
+                    // pricevou = voucher.getDiscount();
 
-                    model.addAttribute("isvoucher", voucherCode);
+                    // model.addAttribute("isvoucher", voucherCode);
+
+                    if (voucher.isExpired()) {
+                        voucher.setUsed(true);
+                        voucherRepo.save(voucher);
+                    } else if (!voucher.isUsed() && voucher.getQuantity() > 0) {
+                        // Xử lý áp dụng voucher nếu chưa hết hạn và chưa được sử dụng
+                        pricevou = voucher.getDiscount();
+                        model.addAttribute("isvoucher", voucherCode);
+                    }
                 }
             }
 
@@ -111,107 +113,6 @@ public class PaymentController {
 
         return "user/payment_method";
     }
-
-    // @PostMapping("/applyVoucher")
-    // public ResponseEntity<?> applyVoucher(@RequestParam("voucherCode") String
-    // voucherCode, Model model,
-    // Authentication authentication) {
-    // String users = "";
-    // if (authentication instanceof OAuth2AuthenticationToken) {
-    // OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken)
-    // authentication;
-    // OAuth2User user = oauthToken.getPrincipal();
-    // users = user.getAttribute("email");
-    // } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
-    // users = authentication.getName();
-    // }
-    // Account account = accountRepo.findByUsername(users);
-    // model.addAttribute("account", account);
-
-    // // Lấy thông tin giỏ hàng của người dùng
-    // Carts carts = cartRepo.findByCartUser(users);
-    // model.addAttribute("cart", carts);
-
-    // // Xác nhận thanh toán thành công
-    // boolean paymentSuccessful = true; // Giả định thanh toán thành công
-
-    // if (paymentSuccessful) {
-    // // Lấy thông tin và kiểm tra voucher
-    // Voucher voucher = voucherService.getVoucherByCode(voucherCode);
-    // if (voucher != null && !voucher.isUsed() && voucher.getQuantity() > 0) {
-    // // Tính tổng giá trị đơn hàng
-    // float subtotal = cartItemsRepo.getSum(carts.getCartID());
-
-    // // Reset giá trị của cart items nếu đã áp dụng voucher trước đó
-    // resetCartItems(carts.getCart_items());
-
-    // // Áp dụng giảm giá từ voucher vào tổng giá trị đơn hàng
-    // float discountAmount = voucher.getDiscount();
-    // float newSubtotal = subtotal - discountAmount;
-    // if (newSubtotal < 0) {
-    // newSubtotal = 0; // Đảm bảo giá trị không âm
-    // }
-    // model.addAttribute("newSubtotal", newSubtotal); // Truyền giá trị sau khi áp
-    // dụng voucher vào view
-
-    // Map<String, Object> response = new HashMap<>();
-    // response.put("newSubtotal", newSubtotal);
-
-    // // Lấy danh sách các cart item
-    // List<Cart_Items> cartItems = carts.getCart_items();
-
-    // // Tính tổng giá trị hiện tại của giỏ hàng
-    // float currentTotal = 0;
-    // for (Cart_Items cartItem : cartItems) {
-    // currentTotal += cartItem.getSubtotal();
-    // }
-
-    // // Tính tổng giá trị mới sau khi áp dụng voucher
-    // float newTotal = currentTotal - discountAmount;
-
-    // if (newTotal < 0) {
-    // newTotal = 0; // Đảm bảo giá trị không âm
-    // }
-    // // Tính tỷ lệ giảm giá cho mỗi cart item
-    // float discountPerCartItem = discountAmount / cartItems.size();
-
-    // // Cập nhật tổng giá trị mới vào từng cart item trong giỏ hàng
-    // for (Cart_Items cartItem : cartItems) {
-    // cartItem.setSubtotal(cartItem.getSubtotal() - discountPerCartItem);
-    // cartItemsRepo.save(cartItem); // Lưu thay đổi vào CSDL
-    // }
-
-    // // Update account status for voucher usage
-    // account.setUsed_voucher(true);
-    // accountRepo.save(account);
-
-    // model.addAttribute("voucherCode", voucherCode);
-
-    // return ResponseEntity.ok(newSubtotal);
-    // } else {
-    // return ResponseEntity.badRequest()
-    // .body("Không thể thanh toán. Voucher không hợp lệ hoặc đã được sử dụng.");
-    // }
-    // } else {
-    // Map<String, Object> response = new HashMap<>();
-    // response.put("error", "Voucher không hợp lệ hoặc đã được sử dụng.");
-    // // Giữ nguyên tổng giá trị đơn hàng nếu không áp dụng voucher
-    // float subtotal = cartItemsRepo.getSum(carts.getCartID());
-    // model.addAttribute("newSubtotal", subtotal);
-
-    // return ResponseEntity.badRequest().body("Voucher không hợp lệ hoặc đã được sử
-    // dụng.");
-    // }
-    // }
-
-    // // Hàm reset giá trị của các cart items
-    // private void resetCartItems(List<Cart_Items> cartItems) {
-    // for (Cart_Items cartItem : cartItems) {
-    // cartItem.setSubtotal(cartItem.getProductId().getPrice() *
-    // cartItem.getQuantity());
-    // cartItemsRepo.save(cartItem); // Lưu thay đổi vào CSDL
-    // }
-    // }
 
     @PostMapping("/payment")
     public String payment(Model model, Authentication authentication, HttpServletRequest req,
