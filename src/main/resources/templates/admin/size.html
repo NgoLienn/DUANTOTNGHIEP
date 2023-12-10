@@ -4,340 +4,752 @@
 <head th:replace="~{zlayout/fragmentsAdmin :: html_headAdmin}"></head>
 
 <body class="g-sidenav-show bg-gray-100">
-
-  <!-- loader khi vào -->
-  <div id="loader-page" style=" 
-   position: fixed;
-   top: 0;
-   left: 0;
-   z-index: 99999;
-   width: 100%;
-   height: 100%;
-   background-color: #fff;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   background-size: cover;
-   background-repeat: no-repeat;
-   background-position: center;">
-    <span>
-      <img src="/assets/images/loading.gif" alt="img/loading">
-    </span>
-  </div>
-  <!-- end -->
-
-  <div class="min-height-300 bg-primary position-absolute w-100"></div>
-
-  <aside class="" th:replace="~{zlayout/navbarAdmin :: menu-admin}"></aside>
-
-  <main class="main-content position-relative border-radius-lg ">
-    <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-      data-scroll="false">
-      <div class="container-fluid py-1 px-3">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Trang</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Quản Lý Size</li>
-          </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Quản Lý Size</h6>
-        </nav>
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group">
-              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Tìm Kiếm...">
-            </div>
-          </div>
-          <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none fixed-plugin-button-nav">Tài Khoản</span>
-              </a>
-            </li>
-            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-                <div class="sidenav-toggler-inner">
-                  <i class="sidenav-toggler-line bg-white"></i>
-                  <i class="sidenav-toggler-line bg-white"></i>
-                  <i class="sidenav-toggler-line bg-white"></i>
-                </div>
-              </a>
-            </li>
-            <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0 font-weight-bold">
-                <!-- <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i> -->
-              </a>
-            </li>
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="/assets/images/food-menu-1.png" class="avatar avatar-sm  me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          13 phút trước
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="/assets/images/food-menu-2.png" class="avatar avatar-sm me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          1 ngày trước
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="/assets/images/food-menu-4.png" class="avatar avatar-sm me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          3 ngày trước
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- End Navbar -->
-    <div class="row">
-      <div class="col-12">
-        <div class="container-fluid py-4">
-          <div class="card">
-            <div class="card-header pb-0">
-              <div class="d-flex align-items-center">
-                <p class="mb-0">Chỉnh Sửa Size</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="text-uppercase text-sm">Thông Tin Bảng Size</p>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Size 1</label>
-                    <div class="d-flex align-items-center gap-3">
-                      <input class="form-control" type="text" value="S" placeholder="" disabled>
-                      <input type="checkbox" name="" id="" class="form-check-input " style="border: 1px solid gray;">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Giá Size S</label>
-                    <input class="form-control" type="email" value="" placeholder="Giá Size 1">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Size 2</label>
-                    <div class="d-flex align-items-center gap-3">
-                      <input class="form-control" type="text" value="M" placeholder="" disabled>
-                      <input type="checkbox" name="" id="" class="form-check-input " style="border: 1px solid gray;">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Giá Size M</label>
-                    <input class="form-control" type="text" value="" placeholder="Giá Size 2">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Size 3</label>
-                    <div class="d-flex align-items-center gap-3">
-                      <input class="form-control" type="text" value="L" placeholder="" disabled>
-                      <input type="checkbox" name="" id="" class="form-check-input " style="border: 1px solid gray;">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Giá Size L</label>
-                    <input class="form-control" type="text" value="" placeholder="Giá Size 3">
-                  </div>
-                </div>
-              </div>
-              <hr class="horizontal dark">
-              <hr class="py-2">
-              <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
-                <button class="btn btn-primary btn-sm ms-4">Thêm</button>
-                <button class="btn btn-info btn-sm ms-4">Sửa</button>
-                <button class="btn btn-danger btn-sm ms-4">Xóa</button>
-                <button class="btn btn-dark btn-sm ms-4">Làm Mới</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- loader khi vào -->
+    <div id="loader-page" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      ">
+        <span>
+        <img src="/assets/images/loading.gif" alt="img/loading" />
+      </span>
     </div>
     <!-- end -->
-    <div class="row">
-      <div class="col-12">
-        <div class="container-fluid py-4">
-          <div class="card mb-4">
-            <div class="card-header pb-0">
-              <h6>Danh Sách Size Sản Phẩm</h6>
-            </div>
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sản Phẩm</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Thể Loại
-                      </th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Giá
-                        Size S
-                      </th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Giá
-                        Size M
-                      </th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Giá
-                        Size L
-                      </th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Thao
-                        Tác</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="/assets/images/avatar-1.jpg" class="avatar avatar-sm me-3" alt="user1">
-                          </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">lebang</h6>
-                            <p class="text-xs text-secondary mb-0">Admin</p>
-                          </div>
+
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+
+    <aside class="" th:replace="~{zlayout/navbarAdmin :: menu-admin}"></aside>
+
+    <main class="main-content position-relative border-radius-lg">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false">
+            <div class="container-fluid py-1 px-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                        <li class="breadcrumb-item text-sm">
+                            <a class="opacity-5 text-white" href="javascript:;">Trang</a>
+                        </li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">
+                            Quản Lý Size
+                        </li>
+                    </ol>
+                    <h6 class="font-weight-bolder text-white mb-0">Quản Lý Size</h6>
+                </nav>
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                        <div class="input-group">
+                            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i
+                ></span>
+                            <input type="text" class="form-control" placeholder="Tìm Kiếm..." />
                         </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">12345</p>
-                        <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm text-dark text-xs">Lê Chí Bằng</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">banglcpc04088@fpt.edu.vn</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">Admin</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                          data-original-title="Edit user">
-                          Edit
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                    </div>
+                    <ul class="navbar-nav justify-content-end">
+                        <li class="nav-item d-flex align-items-center">
+                            <a href="/page/admin/profile.html" class="nav-link text-white font-weight-bold px-0">
+                                <i class="fa fa-user me-sm-1"></i>
+                                <span class="d-sm-inline d-none">Tài Khoản</span>
+                            </a>
+                        </li>
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                    <i class="sidenav-toggler-line bg-white"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item px-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-white p-0">
+                                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-bell cursor-pointer"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
+                                            <div class="my-auto">
+                                                <img src="/assets/images/food-menu-1.png" class="avatar avatar-sm me-3" />
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
+                                                </h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    <i class="fa fa-clock me-1"></i> 13 phút trước
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
+                                            <div class="my-auto">
+                                                <img src="/assets/images/food-menu-2.png" class="avatar avatar-sm me-3" />
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
+                                                </h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    <i class="fa fa-clock me-1"></i> 1 ngày trước
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">
+                                        <div class="d-flex py-1">
+                                            <div class="my-auto">
+                                                <img src="/assets/images/food-menu-4.png" class="avatar avatar-sm me-3" />
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
+                                                </h6>
+                                                <p class="text-xs text-secondary mb-0">
+                                                    <i class="fa fa-clock me-1"></i> 3 ngày trước
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="row">
+            <div class="col-12">
+                <div class="container-fluid py-4">
+                    <div class="card">
+                        <div class="card-header pb-0">
+                            <div class="d-flex align-items-center">
+                                <p class="mb-0">Chỉnh Sửa Size</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-uppercase text-sm">Thông Tin Bảng Size</p>
+                            <div class="row">
+                                <div class="col-md-6" id="showAddSize">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Sản Phẩm</label
+                      >
+                      <select id="productSelect"
+                        class="form-control mb-2"
+                       
+                        name="productlist"
+                       >
+                      
+                        <span th:each="productlist : ${products}"
+                         >
+                          <option
+                            th:value="${productlist.name}"
+                            th:text="${productlist.name}"
+                           
+                          ></option>
+                        </span>
+                      </select>
+                      <small class="text-danger ms-2" id="errorName"></small>
+                      <!-- <div class="d-flex align-items-center gap-3">
+                      <input class="form-control" type="text" id="nameProduct" placeholder="" >
+                    </div> -->
+                    </div>
+                  </div>
+
+                  <div class="col-md-6" id="showEditSize">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label"
+                        >Sản phẩm</label
+                      >
+                      <div class="d-flex align-items-center gap-3">
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="nameProduct"
+                          placeholder=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label"
+                        >Size</label
+                      >
+                      <div class="d-flex align-items-center gap-3">
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="nameSize"
+                          placeholder=""
+                        />
+                      </div>
+                      <small class="text-danger ms-2" id="errorSize"></small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label"
+                        >Giá</label
+                      >
+                      <div class="d-flex align-items-center gap-3">
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="price"
+                          placeholder=""
+                        />
+                      </div>
+                      <small class="text-danger ms-2" id="errorPrice"></small>
+                    </div>
+                  </div>
+                </div>
+                <hr class="horizontal dark" />
+                <hr class="py-2" />
+                <div
+                  class="d-flex align-items-center justify-content-center"
+                  style="display: flex; flex-wrap: wrap"
+                >
+                  <button
+                    id="btnAdd"
+                    class="btn btn-primary btn-sm ms-4"
+                    th:onclick="addSize()"
+                  >
+                    Thêm
+                  </button>
+                  <button
+                    id="btnUpdate"
+                    class="btn btn-info btn-sm ms-4"
+                    th:onclick="updateSize()"
+                    disabled
+                  >
+                    Sửa
+                  </button>
+                  <button
+                    id="btnDelete"
+                    class="btn btn-danger btn-sm ms-4"
+                    th:onclick="deleteSize()"
+                    disabled
+                  >
+                    Xóa
+                  </button>
+                  <button
+                    id="btnRefresh"
+                    class="btn btn-dark btn-sm ms-4"
+                    th:onclick="refresh()"
+                  >
+                    Làm Mới
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <!-- end -->
-      <footer class="footer p-4">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                ©
-                <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                Được Thiết Kế Bởi FastFoodTeam
+      <div class="row">
+        <div class="col-12">
+          <div class="container-fluid py-4">
+            <div class="card mb-4">
+              <div class="card-header pb-0 d-flex justify-content-between">
+                <h6>Danh Sách Size Sản Phẩm</h6>
+                <div class="col-3">
+                  <div class="input-group">
+                    <span class="input-group-text text-body"
+                      ><i class="fas fa-search" aria-hidden="true"></i
+                    ></span>
+                    <input
+                      id="searchInput"
+                      onkeyup="searchSize()"
+                      type="text"
+                      class="form-control"
+                      placeholder="Tìm Kiếm..."
+                    />
+                  </div>
+                </div>
+              </div>
+              <nav
+                aria-label="Page navigation example"
+                class="navigation mt-3 mb-3 d-flex justify-content-center"
+              >
+                <ul class="pagination">
+                  <li
+                    class="page-item cursor-pointer"
+                    th:if="${sizePage.currentPage > 1}"
+                  >
+                    <a
+                      class="page-link"
+                      href="#"
+                      aria-label="Previous"
+                      th:onclick="'javascript:loadPage(1, event)'"
+                    >
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li
+                    th:each="page : ${#numbers.sequence(1, sizePage.totalPages)}"
+                    class="page-item cursor-pointer"
+                  >
+                    <a
+                      class="page-link text-black"
+                      th:classappend="${page == sizePage.currentPage} ? active"
+                      th:onclick="'javascript:loadPage(' + ${page} + ', event)'"
+                      th:text="${page}"
+                    ></a>
+                  </li>
+                  <li
+                    class="page-item cursor-pointer"
+                    th:if="${sizePage.currentPage < sizePage.totalPages}"
+                  >
+                    <a
+                      class="page-link"
+                      href=""
+                      th:onclick="'javascript:loadPage(' + ${sizePage.totalPages} + ', event)'"
+                      aria-label="Next"
+                    >
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0" id="customers">
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Sản Phẩm
+                        </th>
+                        <th
+                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                        >
+                          Số lượng
+                        </th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        >
+                          Size
+                        </th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                        ></th>
+                        <th
+                          class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
+                        >
+                          Thao Tác
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="item : ${sizePage.ListSize}">
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div>
+                              <img
+                                th:src="${item.size.products.image}"
+                                class="avatar avatar-sm me-3"
+                                alt="user1"
+                              />
+                            </div>
+                            <div
+                              class="d-flex flex-column justify-content-center"
+                            >
+                              <h6
+                                class="mb-0 text-sm"
+                                th:text="${item.size.products.name}"
+                              ></h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p
+                            class="text-xs font-weight-bold mb-0"
+                            th:text="${item.size.products.quantity}"
+                          ></p>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <span
+                            class="badge badge-sm text-dark text-xs"
+                            th:text="${item.size.tableSize.sizeName}"
+                          ></span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <span
+                            class="text-secondary text-xs font-weight-bold"
+                            th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')} + ' VND'"
+                          ></span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <a
+                            href="javascript:;"
+                            th:onclick="'editSize(\'' + ${item.size.sizeID} + '\')'"
+                            class="text-secondary font-weight-bold text-xs"
+                            data-toggle="tooltip"
+                            data-original-title="Edit user"
+                          >
+                            Edit
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </footer>
+        <!-- end -->
+        <footer class="footer p-4">
+          <div class="container-fluid">
+            <div class="row align-items-center justify-content-lg-between">
+              <div class="col-lg-6 mb-lg-0 mb-4">
+                <div
+                  class="copyright text-center text-sm text-muted text-lg-start"
+                >
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  , Được Thiết Kế Bởi FastFoodTeam
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </main>
+    <div class="fixed-plugin">
+      <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+        <i class="fa fa-cog py-2"> </i>
+      </a>
+      <div class="card shadow-lg">
+        <div class="card-header pb-0 pt-3">
+          <div class="float-start">
+            <h5 class="mt-3 mb-0">Cài Đặt</h5>
+            <p>Người Dùng Admin</p>
+          </div>
+          <div class="float-end mt-4">
+            <button
+              class="btn btn-link text-dark p-0 fixed-plugin-close-button"
+            >
+              <i class="fa fa-close"></i>
+            </button>
+          </div>
+          <!-- End Toggle Button -->
+        </div>
+        <hr class="horizontal dark my-1" />
+        <div class="card-body pt-sm-3 pt-0 overflow-auto">
+          <!-- Sidebar Backgrounds -->
+          <div>
+            <h6 class="mb-0">hé lô</h6>
+          </div>
+          <!-- Sidenav Type -->
+          <div class="mt-3">
+            <h6 class="mb-0">Điền các cài đặt vô đây</h6>
+            <p class="text-sm">ít thôi, hong xử lý chtme</p>
+          </div>
+          <p class="text-sm d-xl-none d-block mt-2">
+            You can change the sidenav type just on desktop view.
+          </p>
+          <!-- Navbar Fixed -->
+        </div>
+      </div>
     </div>
-  </main>
-
-  <div class="" th:replace="~{zlayout/navbarAdmin :: menu-admin-right}"></div>
-
-  <!--   Core JS Files   -->
-  <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/js/popper.min.js"></script>
-  <script src="/assets/js/bootstrap.min.js"></script>
-  <script src="/assets/bootstrap-icons/bootstrap-icons.json"></script>
-  <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script>
-
-    // loading khi refresh
-    var loader = function () {
-      setTimeout(function () {
-        $('#loader-page').css({ 'opacity': 0, 'visibility': 'hidden' });
-      }, 1000);
-    };
-    $(function () {
-      loader();
-    });
-    // end
-
-    // mặc dịnh tích sẵn radio
-    document.getElementById("user").checked = true;
-    // end
-
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
+    <!--   Core JS Files   -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/bootstrap-icons/bootstrap-icons.json"></script>
+    <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script th:inline="javascript">
+      function searchSize() {
+        var valueInput = document.getElementById("searchInput").value.trim();
+        if (valueInput == "") {
+          $.ajax({
+            url: "/admin/managerSize/" + 'list',
+            data: {
+              page: 1,
+            },
+            success: function (response) {
+              // Cập nhật nội dung danh sách tài khoản
+              var table = $(response).find("#customers").html();
+              $("#customers").html(table);
+              var pagination = $(response).find(".pagination").html();
+              $(".pagination").html(pagination);
+            },
+            error: function (xhr, status, error) {
+              console.log("Error: " + error);
+            },
+          });
+        } else {
+          $.ajax({
+            url: "/admin/managerSize/" + valueInput,
+            data: {
+              page: 1,
+            },
+            success: function (response) {
+              // Cập nhật nội dung danh sách tài khoản
+              var table = $(response).find("#customers").html();
+              $("#customers").html(table);
+              var pagination = $(response).find(".pagination").html();
+              $(".pagination").html(pagination);
+            },
+            error: function (xhr, status, error) {
+              console.log("Error: " + error);
+            },
+          });
+        }
       }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
-  <!-- flowbite tailwind -->
-  <script src="https://cdn.jsdelivr.net/npm/flowbite@1.0.0/dist/flowbite.min.js"></script>
-  <!-- end -->
-</body>
 
+      function deleteSize() {
+        var nameProduct = document.getElementById("nameProduct").value.trim();
+        var nameSize = document.getElementById("nameSize").value.trim();
+
+        var result = window.confirm("Bạn có chắc chắn muốn sửa không?");
+        if (result) {
+          $.ajax({
+            url: "/admin/deleteSize/" + nameProduct + "/" + nameSize,
+            success: function (response) {
+              Swal.fire({
+                            position: "top",
+                            icon: "success",
+                            text: "Xóa thành công!",
+                            showConfirmButton: false,
+                            timer: 1000,
+                        });
+              if (response == "Xóa thành công") {
+                setTimeout(function() {
+                            window.location.reload();
+                            }, 1200);
+              }
+            },
+            error: function (xhr, status, error) {
+              console.log("Error: " + error);
+            },
+          });
+        }
+      }
+
+      function updateSize() {
+        var nameProduct = document.getElementById("nameProduct").value.trim();
+        var nameSize = document.getElementById("nameSize").value.trim();
+        var price = document.getElementById("price").value.trim();
+
+        if(nameProduct == ''){
+          document.getElementById('errorName').innerText = 'Không bỏ trống tên sản phẩm.';
+        }else if(price ==''){
+          document.getElementById('errorPrice').innerText = 'Không bỏ trống giá.';
+        }else if(nameSize==''){
+          document.getElementById('errorSize').innerText = 'Không bỏ trống size.';
+        }else {
+          var result = window.confirm("Bạn có chắc chắn muốn sửa không?");
+          if (result) {
+            $.ajax({
+              url:
+                "/admin/updateSize/" +
+                nameProduct +
+                "/" +
+                nameSize +
+                "/" +
+                price,
+              success: function (response) {
+                Swal.fire({
+                            position: "top",
+                            icon: "success",
+                            text: "Sửa thành công!",
+                            showConfirmButton: false,
+                            timer: 1000,
+                        });
+                if (response == "Sửa thành công") {
+                  setTimeout(function() {
+                            window.location.reload();
+                            }, 1200);
+                }
+              },
+              error: function (xhr, status, error) {
+                console.log("Error: " + error);
+              },
+            });
+          }
+        } 
+      }
+
+      function addSize() {
+        var nameSize = document.getElementById("nameSize").value.trim();
+        var price = document.getElementById("price").value.trim();
+        var nameProduct = document.getElementById('productSelect').value;
+
+        if(nameProduct == ''){
+          document.getElementById('errorName').innerText = 'Không bỏ trống tên sản phẩm.';
+        }else if(price ==''){
+          document.getElementById('errorPrice').innerText = 'Không bỏ trống giá.';
+        }else if(nameSize==''){
+          document.getElementById('errorSize').innerText = 'Không bỏ trống size.';
+        }else {
+          var result = window.confirm("Bạn có chắc chắn muốn thêm không?");
+          if (result) {
+            $.ajax({
+              url: "/admin/addSize/" + nameProduct + "/" + nameSize + "/" + price,
+              success: function (response) {
+                Swal.fire({
+                            position: "top",
+                            icon: "success",
+                            text: "Thêm thành công!",
+                            showConfirmButton: false,
+                            timer: 1000,
+                        });
+                        
+                if (response == "Thêm thành công") {
+                  setTimeout(function() {
+                            window.location.reload();
+                            }, 1200);
+                }
+              },
+              error: function (xhr, status, error) {
+                console.log("Error: " + error);
+              },
+            });
+          }
+        }
+      }
+
+      document.getElementById("showEditSize").style.display = 'none';
+
+      function editSize(id) {
+        $.ajax({
+          url: "/admin/findSizeId/" + id,
+          success: function (response) {
+            document.getElementById("nameProduct").value = response[0];
+            document.getElementById("nameSize").value = response[2];
+            document.getElementById("price").value = response[1];
+
+            //khóa nút thêm và input
+            document.getElementById("btnAdd").disabled = true;
+            document.getElementById("showAddSize").style.display = 'none';
+            document.getElementById("showEditSize").style.display = 'block';
+            //Mở nút xóa và sửa
+            document.getElementById("btnDelete").disabled = false;
+            document.getElementById("btnUpdate").disabled = false;
+          },
+          error: function (xhr, status, error) {
+            console.log("Error: " + error);
+          },
+        });
+      }
+
+      function clear() {
+            document.getElementById('errorPrice').innerText = '';
+            document.getElementById('errorSize').innerText = '';
+            document.getElementById('errorName').innerText = '';
+      }
+
+        var price = document.getElementById('price');
+        var nameSize = document.getElementById('nameSize');
+        var nameProduct = document.getElementById('nameProduct');
+        price.addEventListener('click', function() {
+            clear();
+        });
+        nameSize.addEventListener('click', function() {
+            clear();
+
+        });
+        nameProduct.addEventListener('click', function() {
+            clear();
+
+        });
+
+      function refresh() {
+        //làm mới input và nút
+        document.getElementById("nameProduct").value = "";
+        document.getElementById("nameSize").value = "";
+        document.getElementById("price").value = "";
+
+        //mở nút thêm và input
+        document.getElementById("btnAdd").disabled = false;
+        document.getElementById("nameProduct").disabled = false;
+        document.getElementById("nameSize").disabled = false;
+        document.getElementById("showEditSize").style.display = 'none';
+        document.getElementById("showAddSize").style.display = 'block';
+
+        //Khóa nút xóa và sửa
+        document.getElementById("btnDelete").disabled = true;
+        document.getElementById("btnUpdate").disabled = true;
+      }
+
+      function loadPage(page, event) {
+        if (event) {
+          event.preventDefault();
+        }
+        $.ajax({
+          url: "/admin/managerSize/" + 'list',
+          data: {
+            page: page,
+          },
+          success: function (response) {
+            // Cập nhật nội dung danh sách tài khoản
+            var table = $(response).find("#customers").html();
+            $("#customers").html(table);
+            var pagination = $(response).find(".pagination").html();
+            $(".pagination").html(pagination);
+          },
+          error: function (xhr, status, error) {
+            console.log("Error: " + error);
+          },
+        });
+      }
+    </script>
+    <script>
+      // loading khi refresh
+      var loader = function () {
+        setTimeout(function () {
+          $("#loader-page").css({
+            opacity: 0,
+            visibility: "hidden",
+          });
+        }, 1000);
+      };
+      $(function () {
+        loader();
+      });
+      // end
+
+      var win = navigator.platform.indexOf("Win") > -1;
+      if (win && document.querySelector("#sidenav-scrollbar")) {
+        var options = {
+          damping: "0.5",
+        };
+        Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
+      }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <!-- flowbite tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@1.0.0/dist/flowbite.min.js"></script>
+    <!-- end -->
+  </body>
 </html>

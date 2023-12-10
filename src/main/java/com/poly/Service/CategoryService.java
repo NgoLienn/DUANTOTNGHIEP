@@ -17,15 +17,14 @@ public class CategoryService {
         return categoryRepo.findAll();
     }
 
-    // load thể loại theo id
-    public Categories getCategoryId(Long categoryId) {
-        return categoryRepo.findById(categoryId).get();
+    public int totalCategory() {
+        return categoryRepo.totalCategory();
     }
-    // end
 
-    // delete category
-    public void delete(Long categoryId) {
-        categoryRepo.deleteById(categoryId);
+    public Categories getCategoryId(Long categoryId) {
+        return null;
     }
-    // end
+
+    public void delete(Long categoryId) {
+    }
 }

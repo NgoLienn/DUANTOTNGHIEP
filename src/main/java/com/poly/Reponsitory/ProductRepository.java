@@ -17,6 +17,12 @@ public interface ProductRepository extends JpaRepository<Products, Integer> {
     @Query("Select u from Products u where u.Name like %?1%")
     List<Products> findByNameContainingIgnoreCase(String query);
 
-    void save(int productId);
+    @Query("SELECT u.categoryId.Name, COUNT(u.categoryId) AS SoLuong FROM Products u GROUP BY u.categoryId.Name")
+    List<Object> countCategoryName();
 
+    @Query("Select count(u.productId) from Products u")
+    public int countProduct();
+
+    @Query("Select p from Products p where p.Name like %?1%")
+    public Products findByProductName(String name);
 }

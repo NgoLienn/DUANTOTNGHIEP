@@ -78,4 +78,16 @@ public class ProductService {
     }
     // // end
 
+    public int totalProducts() {
+        return productrepo.countProduct();
+    }
+
+    public List<Object> countCategoryName() {
+        return productrepo.countCategoryName();
+    }
+
+    public Products findByNameProduct(String name) {
+        return productrepo.findByProductName(name);
+    }
+
 }
