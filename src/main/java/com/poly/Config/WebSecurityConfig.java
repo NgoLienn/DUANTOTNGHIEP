@@ -92,7 +92,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                         Authority authority = authorityResponsitory.findByUserName(users);
                                         String Roles = authority.getRole().getName();
                                         if(Roles.equals("admin")){
-                                                response.sendRedirect( "/admin/managerAccount");
+                                                response.sendRedirect( "/admin/managerOrder");
                                         }else{
                                                 response.sendRedirect( "/");
                                         }

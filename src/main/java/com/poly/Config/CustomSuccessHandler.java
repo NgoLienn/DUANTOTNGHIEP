@@ -38,7 +38,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         Authority authority = authorityResponsitory.findByUserName(users);
         String Roles = authority.getRole().getName();
         if(Roles.equals("admin")){
-            redirectStrategy.sendRedirect(request, response, "/admin/managerAccount");
+            redirectStrategy.sendRedirect(request, response, "/admin/managerOrder");
         }else{
             redirectStrategy.sendRedirect(request, response, "/");
         }
