@@ -38,9 +38,9 @@ public class Orders implements Serializable {
     @Column(name = "order_time")
     private Date orderTime = new Date();
 
-    @ManyToOne
-    @JoinColumn(name = "voucher_id")
-    private Voucher voucher;
+    // @ManyToOne
+    // @JoinColumn(name = "voucher_id")
+    // private Voucher voucher;
 
     // Getter và Setter
 

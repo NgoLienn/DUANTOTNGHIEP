@@ -19,13 +19,13 @@
                         Thiệu</a></li>
                 <li class="nav-item"><a th:href="@{/user/contact}" class="nav-link">Liên
                         Hệ</a></li>
-                <li class="nav-item"><a th:href="@{/menu}" class="nav-link">Menu</a></li>
+                <li class="nav-item"><a th:href="@{/menu}" class="nav-link">Thực Đơn</a></li>
             </ul>
         </div>
         <div class="btn-groupp">
             <th:block th:unless="${#request.remoteUser}">
                 <a th:href="@{/auth/signin}">
-                    <div class="btn-sign">Sign In</div>
+                    <div class="btn-sign">Đăng nhập</div>
                 </a>
             </th:block>
             <th:block th:if="${#request.remoteUser}">
@@ -101,7 +101,7 @@
                     <li class="nav-item">
                         <a class="nav-link me-2" th:href="@{/menu}">
                             <i class="fas fa-key opacity-6 text-dark me-1"></i>
-                            Menu
+                            Thực Đơn
                         </a>
                     </li>
                 </ul>
@@ -165,7 +165,7 @@
                     <li class="nav-item">
                         <a class="nav-link me-2 text-white" th:href="@{/menu}">
                             <i class="fas fa-key opacity-6 text-white me-1 "></i>
-                            Menu
+                            Thực Đơn
                         </a>
                     </li>
                 </ul>

@@ -3,13 +3,10 @@ package com.poly.Controller;
 import com.poly.Config.Config;
 import com.poly.Entity.*;
 import com.poly.Reponsitory.*;
-import com.poly.Service.VoucherService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -50,16 +47,11 @@ public class PaymentController {
     PaymentRepository paymentRepository;
 
     @Autowired
-    VoucherService voucherService;
-
-    @Autowired
-    VoucherRepository voucherRepo;
-
-    @Autowired
     PasswordEncoder passwordEncoder;
 
+    // @RequestParam(value = "voucherCode", defaultValue = "") String voucherCode,
     @GetMapping("/payment")
-    public String ViewProfile(@RequestParam(value = "voucherCode", defaultValue = "") String voucherCode, Model model,
+    public String ViewProfile(Model model,
             Authentication authentication) {
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
@@ -76,40 +68,40 @@ public class PaymentController {
         Long subtotal = cartItemsRepo.getSum(carts.getCartID());
         model.addAttribute("subtotal", subtotal);
 
-        List<Voucher> voucherr = voucherRepo.findAll();
-        model.addAttribute("voucher", voucherr);
+        // List<Voucher> voucherr = voucherRepo.findAll();
+        // model.addAttribute("voucher", voucherr);
 
-        int pricevou = 0;
+        // int pricevou = 0;
 
-        if (voucherCode.equals("")) {
+        // if (voucherCode.equals("")) {
 
-        } else {
-            Voucher voucher = voucherRepo.finByCodee(voucherCode);
+        // } else {
+        // Voucher voucher = voucherRepo.finByCodee(voucherCode);
 
-            if (voucher == null) {
+        // if (voucher == null) {
 
-            } else {
+        // } else {
 
-                if (voucher != null && !voucher.isUsed() && voucher.getQuantity() > 0) {
+        // if (voucher != null && !voucher.isUsed() && voucher.getQuantity() > 0) {
 
-                    // pricevou = voucher.getDiscount();
+        // // pricevou = voucher.getDiscount();
 
-                    // model.addAttribute("isvoucher", voucherCode);
+        // // model.addAttribute("isvoucher", voucherCode);
 
-                    if (voucher.isExpired()) {
-                        voucher.setUsed(true);
-                        voucherRepo.save(voucher);
-                    } else if (!voucher.isUsed() && voucher.getQuantity() > 0) {
-                        // Xử lý áp dụng voucher nếu chưa hết hạn và chưa được sử dụng
-                        pricevou = voucher.getDiscount();
-                        model.addAttribute("isvoucher", voucherCode);
-                    }
-                }
-            }
+        // if (voucher.isExpired()) {
+        // voucher.setUsed(true);
+        // voucherRepo.save(voucher);
+        // } else if (!voucher.isUsed() && voucher.getQuantity() > 0) {
+        // // Xử lý áp dụng voucher nếu chưa hết hạn và chưa được sử dụng
+        // pricevou = voucher.getDiscount();
+        // model.addAttribute("isvoucher", voucherCode);
+        // }
+        // }
+        // }
 
-        }
+        // }
 
-        model.addAttribute("pricevoucher", pricevou);
+        // model.addAttribute("pricevoucher", pricevou);
 
         return "user/payment_method";
     }
@@ -174,17 +166,17 @@ public class PaymentController {
                     System.out.println(cartItems.getQuantity());
                 }
 
-                // Update voucher status and quantity
-                String voucherCode = req.getParameter("voucherCode");
-                Voucher voucher = voucherService.getVoucherByCode(voucherCode);
-                if (voucher != null && !voucher.isUsed() && voucher.getQuantity() > 0) {
-                    // voucher.setUsed(true);
-                    voucher.setQuantity(voucher.getQuantity() - 1);
-                    voucherService.updateVoucher(voucher);
+                // // Update voucher status and quantity
+                // String voucherCode = req.getParameter("voucherCode");
+                // Voucher voucher = voucherService.getVoucherByCode(voucherCode);
+                // if (voucher != null && !voucher.isUsed() && voucher.getQuantity() > 0) {
+                // // voucher.setUsed(true);
+                // voucher.setQuantity(voucher.getQuantity() - 1);
+                // voucherService.updateVoucher(voucher);
 
-                    account.setUsed_voucher(true);
-                    accountRepo.save(account);
-                }
+                // account.setUsed_voucher(true);
+                // accountRepo.save(account);
+                // }
 
                 cartItemsRepo.deleteAll(carts.getCart_items());
                 cartRepo.delete(carts);

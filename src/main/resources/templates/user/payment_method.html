@@ -137,7 +137,7 @@
                                     </div>
                                 </div>
 
-                                <form method="get" id="voucherForm"
+                                <!-- <form method="get" id="voucherForm"
                                     class="row g-1 d-flex justify-content-end align-items-center">
                                     <div class="dropdown col-auto">
                                         <div class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -165,9 +165,6 @@
                                                             <p class="card-text text-danger" style="font-weight: bold;"
                                                                 th:text="${voucher.description}"></p>
                                                             <p class="card-text">
-                                                                <!-- <small class="text-body-secondary"
-                                                                    th:text="${voucher.post_date}">
-                                                                </small> -->
                                                                 <small class="text-body-secondary"
                                                                     th:text="'Hết hạn vào ngày ' + ${#dates.format(voucher.expiry_date, 'dd/MM/yyyy')}">
                                                                 </small>
@@ -187,7 +184,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- nhập mã giảm giá  -->
+
                                     <div class="col-auto">
                                         <input type="text" id="voucherCode" name="voucherCode"
                                             placeholder="Nhập mã voucher" class="form-control">
@@ -202,7 +199,7 @@
                                             </button>
                                         </a>
                                     </div>
-                                    <!-- end -->
+
                                 </form>
                                 <style>
                                     .voucher-list {
@@ -224,12 +221,12 @@
                                     .voucher-item h5 {
                                         margin-top: 10px;
                                     }
-                                </style>
+                                </style> -->
 
                                 <input type="hidden" th:value="${subtotal}" name="vnp_Amount">
                                 <input type="hidden" th:value="${cart.cartID}" name="oder">
 
-                                <input type="hidden" name="isvoucher" th:value="${isvoucher}"></input>
+                                <!-- <input type="hidden" name="isvoucher" th:value="${isvoucher}"></input> -->
 
                                 <div class="container-fluid py-4 mt-3">
                                     <ul class="nav nav-tabs tab-pane-payment" id="myTab" role="tablist">
@@ -295,7 +292,7 @@
                                             30,000 đ</span><br>
                                         <span class="text-payment">Tổng Thanh Toán: </span><span id="subtotalValue"
                                             class="price-payment-sum"
-                                            th:text="${#numbers.formatDecimal(subtotal - pricevoucher + 30000 , 0, 'COMMA', 0, 'POINT')} + ' đ'"
+                                            th:text="${#numbers.formatDecimal(subtotal + 30000 , 0, 'COMMA', 0, 'POINT')} + ' đ'"
                                             }>
                                         </span><br>
                                         <a th:href="@{user/confirmation}" id="thanhToanLink">

@@ -54,9 +54,6 @@ public class Account implements Serializable {
     @Column(name = "resettoken")
     private String resetToken;
 
-    @Column(name = "used_voucher")
-    private Boolean used_voucher;
-
     @JsonIgnore
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     List<Authority> authorities;
