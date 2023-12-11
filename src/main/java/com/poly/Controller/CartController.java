@@ -124,6 +124,61 @@ public class CartController {
         }
 
     }
+    @PostMapping("/payment/{productId}")
+    public String payment(@PathVariable int productId, Model model, Authentication authentication,
+                            @RequestParam("size") String size, @RequestParam("soluong") int soluong) {
+        String users = "";
+        if (authentication instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+            OAuth2User user = oauthToken.getPrincipal();
+            users = user.getAttribute("email");
+        } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
+            users = authentication.getName();
+        }
+        Account account = accountRepo.findByUsername(users);
+        Carts cart = cartRepo.findByCartsUsername(account.getAccountID());
+        Products product = productRepo.findByProduct(productId);
+        Size size1 = sizeRepo.findByProductAndSizeName(productId, size);
+        Size_Product sizeProduct = sizeProductRepo.findBySizeProductId(size1.getSizeID());
+        if (cart == null ) {
+            Carts newCart = new Carts();
+            newCart.setAccount(account);
+            cartRepon.save(newCart);
+            // Lấy sản phẩm từ cơ sở dữ liệu bằng productId
+            Cart_Items cartItems = new Cart_Items();
+            cartItems.setProductId(product);
+            cartItems.setCarts(newCart);
+            cartItems.setQuantity(soluong);
+            cartItems.setPrice(sizeProduct.getPrice());
+            cartItems.setSubtotal(soluong * sizeProduct.getPrice());
+            cartItems.setSizeName(size);
+            cartItemsRepo.save(cartItems);
+            return "redirect:/cart";
+        } else {
+            Cart_Items cart_Items = cartItemsRepo.findByProductAndSize(productId, size);
+            if (cart_Items != null) {
+                Integer product1 = cart_Items.getProductId().getProductId();
+                String size2 = cart_Items.getSizeName();
+
+                cart_Items.setQuantity(cart_Items.getQuantity() + soluong);
+                float quantity = cart_Items.getQuantity();
+                cart_Items.setSubtotal((float) (quantity * cart_Items.getPrice()));
+                cartItemsRepo.save(cart_Items);
+
+            } else {
+                Cart_Items cartItems = new Cart_Items();
+                cartItems.setProductId(product);
+                cartItems.setCarts(cart);
+                cartItems.setQuantity(soluong);
+                cartItems.setPrice(sizeProduct.getPrice());
+                cartItems.setSubtotal(soluong * sizeProduct.getPrice());
+                cartItems.setSizeName(size);
+                cartItemsRepo.save(cartItems);
+            }
+            return "redirect:/user/payment";
+        }
+
+    }
 
     @GetMapping("cart/remove/{cartitemID}")
     public String remove(@PathVariable("cartitemID") Long Id) {
