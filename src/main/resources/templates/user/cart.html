@@ -6,265 +6,265 @@
 
 <body>
 
-    <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+<div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
 
-    <!-- <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div> -->
-    <div class="containerr ">
-        <div class="image_big">
-            <div class="image-one"></div>
-            <div class="image-three"></div>
-            <div class="image-two">
-                <img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
-                <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
+<!-- <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div> -->
+<div class="containerr ">
+    <div class="image_big">
+        <div class="image-one"></div>
+        <div class="image-three"></div>
+        <div class="image-two">
+            <img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
+            <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
 
-                <header class="banner-big">
-                    <div class="img-blur ">
-                        <!-- <img src="assets/images/food5.png" class="anh1" alt=""> -->
-                    </div>
-                    <div class="wraper">
-                        <aside class="">
-                            <div class="container-fluid text-cart py-4 mt-3 ">
-                                <span class="tttk text-uppercase px-3">Giỏ Hàng</span>
-                                <br>
-                                <span class="px-3 mt-3 position-absolute text-giohang">Bạn có <span
-                                        th:text="${carts.cart_items.size()}"></span> sản phẩm trong giỏ
+            <header class="banner-big">
+                <div class="img-blur ">
+                    <!-- <img src="assets/images/food5.png" class="anh1" alt=""> -->
+                </div>
+                <div class="wraper">
+                    <aside class="">
+                        <div class="container-fluid text-cart py-4 mt-3 ">
+                            <span class="tttk text-uppercase px-3">Giỏ Hàng</span>
+                            <br>
+                            <span class="px-3 mt-3 position-absolute text-giohang">Bạn có <span
+                                    th:text="${carts.cart_items.size()}"></span> sản phẩm trong giỏ
                                     hàng
                                 </span>
-                            </div>
-                            <div th:if="${#lists.size(carts.cart_items) > 0}">
-                                <div class="container-fluid py-4 mt-3">
-                                    <div class="product-container ">
-                                        <div class="product-row cell-header header mb-4">
-                                            <div class="product-cell1">Sản phẩm</div>
-                                            <div class="product-cell">Đơn giá</div>
-                                            <div class="product-cell">Số lượng</div>
-                                            <div class="product-cell">Số tiền</div>
-                                            <div class="product-cell">Thao Tác</div>
+                        </div>
+                        <div th:if="${#lists.size(carts.cart_items) > 0}">
+                            <div class="container-fluid py-4 mt-3">
+                                <div class="product-container ">
+                                    <div class="product-row cell-header header mb-4">
+                                        <div class="product-cell1">Sản phẩm</div>
+                                        <div class="product-cell">Đơn giá</div>
+                                        <div class="product-cell">Số lượng</div>
+                                        <div class="product-cell">Số tiền</div>
+                                        <div class="product-cell">Thao Tác</div>
+                                    </div>
+                                    <div class="product-row cell-row" th:each="item : ${carts.cart_items}">
+                                        <a>
+                                            <img th:src="${item.productId.image}" class="img-cell" alt="prod_pm">
+                                        </a>
+                                        <div class="product-cell-name" th:text="${item.productId.name}"></div>
+                                        <div class="product-cell px-2" th:text="${item.sizeName}"></div>
+                                        <div class="product-cell cell-price"
+                                             th:text="${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + 'đ'">
                                         </div>
-                                        <div class="product-row cell-row" th:each="item : ${carts.cart_items}">
-                                            <a>
-                                                <img th:src="${item.productId.image}" class="img-cell" alt="prod_pm">
-                                            </a>
-                                            <div class="product-cell-name" th:text="${item.productId.name}"></div>
-                                            <div class="product-cell px-2" th:text="${item.sizeName}"></div>
-                                            <div class="product-cell cell-price"
-                                                th:text="${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + 'đ'">
-                                            </div>
-                                            <div class="product-quantity px-5 cell-quantity">
-                                                <a href="#" class="decrement-button"
-                                                    th:data-cartitem-id="${item.cartitemID}">-</a>
-                                                <input th:id="'quantity' + ${item.cartitemID}" type="text"
-                                                    th:value="${item.quantity}" th:data-quantity="${item.quantity}"
-                                                    readonly>
-                                                <a href="#" class="increment-button disabled"
-                                                    th:data-cartitem-id="${item.cartitemID}">+</a>
-                                            </div>
-                                            <span class=" price total-price product-cell px2 cell-total">
+                                        <div class="product-quantity px-5 cell-quantity">
+                                            <a href="#" class="decrement-button"
+                                               th:data-cartitem-id="${item.cartitemID}">-</a>
+                                            <input th:id="'quantity' + ${item.cartitemID}" type="text"
+                                                   th:value="${item.quantity}" th:data-quantity="${item.quantity}"
+                                                   readonly>
+                                            <a href="#" class="increment-button disabled"
+                                               th:data-cartitem-id="${item.cartitemID}">+</a>
+                                        </div>
+                                        <span class=" price total-price product-cell px2 cell-total">
                                                 <span th:id="'current-price'  + ${item.cartitemID}"
-                                                    th:text="${#numbers.formatDecimal(item.subtotal , 0, 'COMMA', 0, 'POINT')} + 'đ'">
+                                                      th:text="${#numbers.formatDecimal(item.subtotal , 0, 'COMMA', 0, 'POINT')} + 'đ'">
                                                 </span>
                                                 &nbsp; &nbsp;
                                             </span>
-                                            <a>
-                                                <div class="button-xoa">
-                                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                        <a>
+                                            <div class="button-xoa">
+                                                <button type="button" class="btn" data-bs-toggle="modal"
                                                         th:data-bs-target="'#deletemodal' + ${item.cartitemID}">Xóa
-                                                    </button>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-
-                            <div class="shopping-cart-container mt-3 py-3 px-3">
-                                <div class="payment-container">
-                                    <span class="text-payment">Tổng Thanh Toán: </span>
-                                    <span class="px-3 price-payment-sum" id="price-payment-sum"
-                                        th:text="${#numbers.formatDecimal(subtotal , 0, 'COMMA', 0, 'POINT')} + ' đ'">
-                                    </span><br>
-                                    <a th:href="@{/user/payment}">
-                                        <button class="btn btn-danger btn-thanhtoan mt-3" type="submit">Thanh
-                                            Toán</button>
-                                    </a>
-
-                                </div>
-                            </div>
-                            <!-- Modal hỏi trước khi xóa -->
-                            <div class="modal fade" th:each="item : ${carts.cart_items}"
-                                th:id="'deletemodal' + ${item.cartitemID}" tabindex="-2"
-                                th:aria-labelledby="'deleteModalLabel' + ${item.cartitemID}" aria-hidden="false">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Xác nhận xóa sản phẩm</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close">
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Bạn có chắc chắn muốn xóa sản phẩm này không?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                                                aria-label="Close">Hủy
-                                            </button>
-                                            <a th:href="@{|/cart/remove/${item.cartitemID}|}">
-                                                <button type="button" class="btn btn-danger" id="confirmDeleteButton">
-                                                    Xóa
                                                 </button>
-                                            </a>
-                                        </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <style>
-                                .modal-backdrop.show {
-                                    z-index: -1;
-                                }
-                            </style>
-                            <!-- end -->
-                        </aside>
-                    </div>
-                </header>
-            </div>
+                            <hr>
+                        </div>
 
-            <div class="footer " th:replace="~{zlayout/footer :: footer}"></div>
+                        <div class="shopping-cart-container mt-3 py-3 px-3">
+                            <div class="payment-container">
+                                <span class="text-payment">Tổng Thanh Toán: </span>
+                                <span class="px-3 price-payment-sum" id="price-payment-sum"
+                                      th:text="${#numbers.formatDecimal(subtotal , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+                                    </span><br>
+                                <a th:href="@{/user/payment}">
+                                    <button class="btn btn-danger btn-thanhtoan mt-3" type="submit">Thanh
+                                        Toán</button>
+                                </a>
+
+                            </div>
+                        </div>
+                        <!-- Modal hỏi trước khi xóa -->
+                        <div class="modal fade" th:each="item : ${carts.cart_items}"
+                             th:id="'deletemodal' + ${item.cartitemID}" tabindex="-2"
+                             th:aria-labelledby="'deleteModalLabel' + ${item.cartitemID}" aria-hidden="false">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Xác nhận xóa sản phẩm</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn có chắc chắn muốn xóa sản phẩm này không?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                aria-label="Close">Hủy
+                                        </button>
+                                        <a th:href="@{|/cart/remove/${item.cartitemID}|}">
+                                            <button type="button" class="btn btn-danger" id="confirmDeleteButton">
+                                                Xóa
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <style>
+                            .modal-backdrop.show {
+                                z-index: -1;
+                            }
+                        </style>
+                        <!-- end -->
+                    </aside>
+                </div>
+            </header>
         </div>
 
-        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+        <div class="footer " th:replace="~{zlayout/footer :: footer}"></div>
     </div>
 
+    <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+</div>
 
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        // loading khi refresh
-        var loader = function () {
-            setTimeout(function () {
-                $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
-            }, 1000);
-        };
-        $(function () {
-            loader();
+<script src="/assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // loading khi refresh
+    var loader = function () {
+        setTimeout(function () {
+            $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+        }, 1000);
+    };
+    $(function () {
+        loader();
+    });
+    // end
+
+    $(function () {
+        $(window).scroll(function () {
+            var scroll = $(window).scrollTop();
+            if (scroll >= 1024) {
+                $(".navb").addClass("scrolled");
+            } else {
+                $(".navb").removeClass("scrolled");
+            }
         });
-        // end
+    });
 
-        $(function () {
-            $(window).scroll(function () {
-                var scroll = $(window).scrollTop();
-                if (scroll >= 1024) {
-                    $(".navb").addClass("scrolled");
-                } else {
-                    $(".navb").removeClass("scrolled");
-                }
-            });
+    $(function () {
+        $(".navbar-toggler").click(function () {
+            $(".navbar-collapse").toggleClass("show");
         });
+    });
 
-        $(function () {
-            $(".navbar-toggler").click(function () {
-                $(".navbar-collapse").toggleClass("show");
-            });
-        });
+    $(document).ready(function () {
+        $(".increment-button").click(function (e) {
+            e.preventDefault();
+            var cartitemId = $(this).data("cartitem-id");
+            var id = '#quantity' + cartitemId;
+            var subtotal = '#current-price' + cartitemId;
 
-        $(document).ready(function () {
-            $(".increment-button").click(function (e) {
-                e.preventDefault();
-                var cartitemId = $(this).data("cartitem-id");
-                var id = '#quantity' + cartitemId;
-                var subtotal = '#current-price' + cartitemId;
-
-                $.ajax({
-                    type: "GET",
-                    url: "/cart/updateCartItemss",
-                    data: { cartitemID: cartitemId },
-                    success: function (response) {
-                        // Update the quantity on the page without refreshing
-                        // You can do this dynamically based on your page structure
-                        var updatedQuantity = $(response).find(id).data('quantity');
-                        // Update the quantity on the page
-                        $(id).val(updatedQuantity);// For simplicity, you can also reload the entire page
-                        var currentPrice = $(response).find(subtotal).text();
-                        $(subtotal).text(currentPrice);
-
-                        var priceSum = $(response).find('#price-payment-sum').text();
-                        $('#price-payment-sum').text(priceSum)
-                    },
-                    error: function (error) {
-                        console.log("Error:", error);
-                    }
-                });
-            });
-
-            $(".decrement-button").click(function (e) {
-                e.preventDefault();
-                var cartitemId = $(this).data("cartitem-id");
-                // console.log(cartitemId);
-                var id = '#quantity' + cartitemId;
-                var subtotal = '#current-price' + cartitemId;
-
-                $.ajax({
-                    type: "GET",
-                    url: "/cart/updateCartItems",
-                    data: { cartitemID: cartitemId },
-                    success: function (response) {
-                        // Update the quantity on the page without refreshing
-                        // You can do this dynamically based on your page structure
-                        var updatedQuantity = $(response).find(id).data('quantity');
-                        // Update the quantity on the page
-                        $(id).val(updatedQuantity); // For simplicity, you can also reload the entire page
-                        var currentPrice = $(response).find(subtotal).text();
-                        $(subtotal).text(currentPrice);
-
-                        var priceSum = $(response).find('#price-payment-sum').text();
-                        $('#price-payment-sum').text(priceSum);
-                    },
-                    error: function (error) {
-                        console.log("Error:", error);
-                    }
-                });
-            });
-        });
-
-        // end
-
-        // modal hỏi trước khi xóa
-        // Lắng nghe sự kiện khi người dùng nhấn nút xóa
-        $('.button-xoa button').on('click', function () {
-            // Lấy ID của sản phẩm cần xóa
-            var cartItemId = $(this).closest('.product-row').find('[th:data-cartitem-id]').attr('th:data-cartitem-id');
-
-            // Gán ID của sản phẩm vào nút xác nhận trong modal
-            $('#confirmDeleteButton').attr('th:data-cartitem-id', cartItemId);
-
-            // Hiển thị modal
-            $('#confirmDeleteModal').modal('show');
-        });
-
-        // Lắng nghe sự kiện khi người dùng xác nhận xóa sản phẩm trong modal
-        $('#confirmDeleteButton').on('click', function () {
-            var cartItemId = $(this).attr('th:data-cartitem-id');
-
-            // Gọi Ajax để xóa sản phẩm
             $.ajax({
-                url: '/cart/remove/' + cartItemId,
-                type: 'GET',
+                type: "GET",
+                url: "/cart/updateCartItemss",
+                data: { cartitemID: cartitemId },
                 success: function (response) {
-                    // Nếu xóa thành công, reload trang giỏ hàng
-                    window.location.href = '/cart';
+                    // Update the quantity on the page without refreshing
+                    // You can do this dynamically based on your page structure
+                    var updatedQuantity = $(response).find(id).data('quantity');
+                    // Update the quantity on the page
+                    $(id).val(updatedQuantity);// For simplicity, you can also reload the entire page
+                    var currentPrice = $(response).find(subtotal).text();
+                    $(subtotal).text(currentPrice);
+
+                    var priceSum = $(response).find('#price-payment-sum').text();
+                    $('#price-payment-sum').text(priceSum)
                 },
-                error: function (xhr, status, error) {
-                    console.error(error);
+                error: function (error) {
+                    console.log("Error:", error);
                 }
             });
         });
 
-        // end
+        $(".decrement-button").click(function (e) {
+            e.preventDefault();
+            var cartitemId = $(this).data("cartitem-id");
+            // console.log(cartitemId);
+            var id = '#quantity' + cartitemId;
+            var subtotal = '#current-price' + cartitemId;
 
-    </script>
+            $.ajax({
+                type: "GET",
+                url: "/cart/updateCartItems",
+                data: { cartitemID: cartitemId },
+                success: function (response) {
+                    // Update the quantity on the page without refreshing
+                    // You can do this dynamically based on your page structure
+                    var updatedQuantity = $(response).find(id).data('quantity');
+                    // Update the quantity on the page
+                    $(id).val(updatedQuantity); // For simplicity, you can also reload the entire page
+                    var currentPrice = $(response).find(subtotal).text();
+                    $(subtotal).text(currentPrice);
+
+                    var priceSum = $(response).find('#price-payment-sum').text();
+                    $('#price-payment-sum').text(priceSum);
+                },
+                error: function (error) {
+                    console.log("Error:", error);
+                }
+            });
+        });
+    });
+
+    // end
+
+    // modal hỏi trước khi xóa
+    // Lắng nghe sự kiện khi người dùng nhấn nút xóa
+    $('.button-xoa button').on('click', function () {
+        // Lấy ID của sản phẩm cần xóa
+        var cartItemId = $(this).closest('.product-row').find('[th:data-cartitem-id]').attr('th:data-cartitem-id');
+
+        // Gán ID của sản phẩm vào nút xác nhận trong modal
+        $('#confirmDeleteButton').attr('th:data-cartitem-id', cartItemId);
+
+        // Hiển thị modal
+        $('#confirmDeleteModal').modal('show');
+    });
+
+    // Lắng nghe sự kiện khi người dùng xác nhận xóa sản phẩm trong modal
+    $('#confirmDeleteButton').on('click', function () {
+        var cartItemId = $(this).attr('th:data-cartitem-id');
+
+        // Gọi Ajax để xóa sản phẩm
+        $.ajax({
+            url: '/cart/remove/' + cartItemId,
+            type: 'GET',
+            success: function (response) {
+                // Nếu xóa thành công, reload trang giỏ hàng
+                window.location.href = '/cart';
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+
+    // end
+
+</script>
 </body>
 
 </html>

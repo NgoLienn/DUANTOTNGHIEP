@@ -71,7 +71,7 @@ public class CartController {
 
     @PostMapping("/addToCart/{productId}")
     public String addToCart(@PathVariable int productId, Model model, Authentication authentication,
-            @RequestParam("size") String size, @RequestParam("soluong") int soluong) {
+                            @RequestParam("size") String size, @RequestParam("soluong") int soluong) {
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
             OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
@@ -134,7 +134,7 @@ public class CartController {
 
     @GetMapping("cart/updateCartItems")
     public String updateQuantity(@RequestParam(value = "cartitemID", defaultValue = "") long cartitemID,
-            HttpServletRequest httpServletRequest, Model model,Authentication authentication) {
+                                 HttpServletRequest httpServletRequest, Model model,Authentication authentication) {
 
         Cart_Items cartItem = cartItemsRepo.findByCartitemID(cartitemID);
         String users = "";
@@ -168,7 +168,7 @@ public class CartController {
 
     @GetMapping("cart/updateCartItemss")
     public String updateQuantityAdd(@RequestParam(value = "cartitemID", defaultValue = "") long cartitemID,
-            HttpServletRequest httpServletRequest, Model model,Authentication authentication) {
+                                    HttpServletRequest httpServletRequest, Model model,Authentication authentication) {
         Cart_Items cartItem = cartItemsRepo.findByCartitemID(cartitemID);
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
@@ -183,8 +183,8 @@ public class CartController {
 
         int soluong = cartItem.getQuantity() + 1;
 
-            cartItem.setQuantity(soluong);
-            cartItem.setSubtotal(cartItem.getPrice() * soluong);
+        cartItem.setQuantity(soluong);
+        cartItem.setSubtotal(cartItem.getPrice() * soluong);
 
 
 

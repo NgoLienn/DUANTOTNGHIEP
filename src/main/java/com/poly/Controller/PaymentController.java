@@ -68,41 +68,6 @@ public class PaymentController {
         Long subtotal = cartItemsRepo.getSum(carts.getCartID());
         model.addAttribute("subtotal", subtotal);
 
-        // List<Voucher> voucherr = voucherRepo.findAll();
-        // model.addAttribute("voucher", voucherr);
-
-        // int pricevou = 0;
-
-        // if (voucherCode.equals("")) {
-
-        // } else {
-        // Voucher voucher = voucherRepo.finByCodee(voucherCode);
-
-        // if (voucher == null) {
-
-        // } else {
-
-        // if (voucher != null && !voucher.isUsed() && voucher.getQuantity() > 0) {
-
-        // // pricevou = voucher.getDiscount();
-
-        // // model.addAttribute("isvoucher", voucherCode);
-
-        // if (voucher.isExpired()) {
-        // voucher.setUsed(true);
-        // voucherRepo.save(voucher);
-        // } else if (!voucher.isUsed() && voucher.getQuantity() > 0) {
-        // // Xử lý áp dụng voucher nếu chưa hết hạn và chưa được sử dụng
-        // pricevou = voucher.getDiscount();
-        // model.addAttribute("isvoucher", voucherCode);
-        // }
-        // }
-        // }
-
-        // }
-
-        // model.addAttribute("pricevoucher", pricevou);
-
         return "user/payment_method";
     }
 
@@ -126,22 +91,16 @@ public class PaymentController {
         } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
             users = authentication.getName();
         }
+        Account account = accountRepo.findByUsername(users);
+        account.setAddress(SelectedAddress);
+        account.setFullname(selectedName);
+        account.setPhone(selectedPhone);
         if (payment.equals("true")) {
             // Xác nhận thanh toán thành công
-            boolean paymentSuccessful = true; // Giả định thanh toán thành công
-
-            if (paymentSuccessful) {
-                Account account = accountRepo.findByUsername(users);
                 Carts carts = cartRepo.findByCartUser(users);
                 float subtotal = cartItemsRepo.getSum(carts.getCartID());
-
                 Status status = new Status();
                 status.setStatusID(1L);
-
-                account.setAddress(SelectedAddress);
-                account.setFullname(selectedName);
-                account.setPhone(selectedPhone);
-
                 Orders orders = new Orders();
                 orders.setAccount(account);
                 orders.setStatus(status);
@@ -150,7 +109,7 @@ public class PaymentController {
                 orders.setPaymentMethod("Thanh toán khi nhận hàng");
                 orders.setTotalAmount(subtotal + 30000);
                 ordersRepo.save(orders);
-
+                accountRepo.save(account);
                 for (Cart_Items cartItems : carts.getCart_items()) {
                     Products product = new Products();
                     product.setProductId(cartItems.getProductId().getProductId());
@@ -165,23 +124,8 @@ public class PaymentController {
                     orderItemRepo.save(orderItems);
                     System.out.println(cartItems.getQuantity());
                 }
-
-                // // Update voucher status and quantity
-                // String voucherCode = req.getParameter("voucherCode");
-                // Voucher voucher = voucherService.getVoucherByCode(voucherCode);
-                // if (voucher != null && !voucher.isUsed() && voucher.getQuantity() > 0) {
-                // // voucher.setUsed(true);
-                // voucher.setQuantity(voucher.getQuantity() - 1);
-                // voucherService.updateVoucher(voucher);
-
-                // account.setUsed_voucher(true);
-                // accountRepo.save(account);
-                // }
-
                 cartItemsRepo.deleteAll(carts.getCart_items());
                 cartRepo.delete(carts);
-            }
-
             return "redirect:/user/confirmation";
         } else {
             String vnp_Version = "2.1.0";
@@ -202,7 +146,7 @@ public class PaymentController {
             vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
             vnp_Params.put("vnp_OrderInfo", vnp_OrderInfo);
             vnp_Params.put("vnp_OrderType", orderType);
-            String bank_code = req.getParameter("bankcode");
+            String bank_code = "NCB";
             if (bank_code != null && !bank_code.isEmpty())
                 vnp_Params.put("vnp_BankCode", bank_code);
             vnp_Params.put("vnp_ReturnUrl", Config.vnp_Returnurl);
