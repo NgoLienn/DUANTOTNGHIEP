@@ -71,23 +71,7 @@ public class ProfileController {
         model.addAttribute("account", new Account());
         model.addAttribute("profile", account);
 
-        // cart small
-        // if (authentication instanceof OAuth2AuthenticationToken) {
-        //     OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
-        //     OAuth2User user = oauthToken.getPrincipal();
-        //     users = user.getAttribute("email");
-        // } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
-        //     users = authentication.getName();
-        // }
-        // Carts carts = cartRepo.findByCartUser(users);
-        // if (carts == null) {
-        //     return "redirect:/user/profile";
-        // } else {
-        //     Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-        //     model.addAttribute("subtotal", subtotal);
-        //     model.addAttribute("carts", carts);
-        // }
-        // end
+
 
         return "user/profile";
     }

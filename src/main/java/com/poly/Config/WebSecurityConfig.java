@@ -105,7 +105,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // dang xuat
                 http.logout()
                         .logoutUrl("/auth/logoff") // [/logout]
-                        .logoutSuccessUrl("/auth/signin"); // chuyen trang
+                        .logoutSuccessUrl("/auth/signin").and().sessionManagement().maximumSessions(1).expiredUrl("/auth/signin"); // nguoi dung k the login 2 trinh duyet
         }
         @Override
         public void configure(WebSecurity web) throws Exception {
