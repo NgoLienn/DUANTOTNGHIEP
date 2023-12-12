@@ -209,7 +209,7 @@
                       <!-- xuát file excel cho tất cả đơn hàng-->
                       <a href="javascript:;" onclick="exportToExcel()" class="btn"><i class="bi bi-filetype-exe"></i>
                         &nbsp;
-                        Xuất All Excel</a>
+                        Xuất Tất Cả Hóa Đơn</a>
                       <div class="col-8 d-flex pb-3 gap-4">
                         <div class="col-4">
                           <label for="startDate">Ngày bắt đầu</label>
@@ -224,30 +224,29 @@
                     <!-- end -->
                     <div id="ordersContainer">
                       <div th:each="item : ${orders}">
-                        <ul class="list-group">
-                          <div class="d-flex justify-content-between align-items-center py-3">
-
-                            <!-- xuất excel theo id cho từng đơn hàng -->
-                            <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
-                              onclick="exportToExcell()">
-                              <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
-                            </a>
-                            <!-- end -->
-
-                            <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
-                            <a th:id="'invoiceLink' + ${item.orderID}"
-                              th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
-                              <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
-                            </a>
-                            <iframe id="invoiceFrame" style="display:none;"></iframe>
-                          </div>
-                          <!-- end -->
+                        <ul class="list-group" style="margin-bottom: 30px; margin-top: 30px;">
 
                           <div class="d-flex justify-content-between align-items-center card-header"
                             style="background: rgb(248, 248, 248);">
                             <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
                                 th:text="${item.orderID}"></span>
                             </span>
+
+                            <!-- xuất excel theo id cho từng đơn hàng -->
+                            <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                              onclick="exportToExcell()" class=" pb-3">
+                              <i class="bi bi-file-text"></i> Xuất Hóa Đơn
+                            </a>
+                            <!-- end -->
+
+                            <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                            <a th:id="'invoiceLink' + ${item.orderID}" class=" pb-3"
+                              th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                              <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn
+                            </a>
+                            <iframe id="invoiceFrame" style="display:none;"></iframe>
+                            <!-- end -->
+
                             <span class="text-xs pb-3">Phương Thức Thanh Toán:
                               <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
                             </span>
@@ -396,28 +395,28 @@
                   <!-- tab chờ xác nhận -->
                   <div class="tab-pane fade" id="nav-home-cho" role="tabpanel" aria-labelledby="nav-home-tab-cho">
                     <div th:each="item : ${orders}" th:if="${item.Status.statusID == 1}">
-                      <ul class="list-group">
-                        <div class="d-flex justify-content-between align-items-center py-3">
-                          <!-- xuất excel theo id cho từng đơn hàng -->
-                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
-                            onclick="exportToExcell()">
-                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
-                          </a>
-                          <!-- end -->
-                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
-                          <a th:id="'invoiceLink' + ${item.orderID}"
-                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
-                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
-                          </a>
-                          <iframe id="invoiceFrame" style="display:none;"></iframe>
-                        </div>
-                        <!-- end -->
+                      <ul class="list-group" style="margin-bottom: 30px; margin-top: 30px;">
 
                         <div class="d-flex justify-content-between align-items-center card-header"
                           style="background: rgb(248, 248, 248);">
                           <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
                               th:text="${item.orderID}"></span>
                           </span>
+
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()">
+                            <i class="bi bi-file-text"></i> Xuất Hóa Đơn
+                          </a>
+                          <!-- end -->
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
+                          <!-- end -->
+
                           <span class="text-xs pb-3">Phương Thức Thanh Toán:
                             <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
                           </span>
@@ -566,28 +565,29 @@
                   <!-- tab đã xác nhận -->
                   <div class="tab-pane fade" id="nav-home-da" role="tabpanel" aria-labelledby="nav-home-tab-da">
                     <div th:each="item : ${orders}" th:if="${item.Status.statusID == 2}">
-                      <ul class="list-group">
-                        <div class="d-flex justify-content-between align-items-center py-3">
-                          <!-- xuất excel theo id cho từng đơn hàng -->
-                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
-                            onclick="exportToExcell()">
-                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
-                          </a>
-                          <!-- end -->
-                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
-                          <a th:id="'invoiceLink' + ${item.orderID}"
-                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
-                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
-                          </a>
-                          <iframe id="invoiceFrame" style="display:none;"></iframe>
-                        </div>
-                        <!-- end -->
+                      <ul class="list-group" style="margin-bottom: 30px; margin-top: 30px;">
 
                         <div class="d-flex justify-content-between align-items-center card-header"
                           style="background: rgb(248, 248, 248);">
                           <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
                               th:text="${item.orderID}"></span>
                           </span>
+
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()" class=" pb-3">
+                            <i class="bi bi-file-text"></i> Xuất Hóa Đơn
+                          </a>
+                          <!-- end -->
+
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}" class=" pb-3"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
+                          <!-- end -->
+
                           <span class="text-xs pb-3">Phương Thức Thanh Toán:
                             <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
                           </span>
@@ -737,28 +737,28 @@
                   <div class="tab-pane fade" id="nav-home-dang-giao" role="tabpanel"
                     aria-labelledby="nav-home-tab-dang-giao">
                     <div th:each="item : ${orders}" th:if="${item.Status.statusID == 3}">
-                      <ul class="list-group">
-                        <div class="d-flex justify-content-between align-items-center py-3">
-                          <!-- xuất excel theo id cho từng đơn hàng -->
-                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
-                            onclick="exportToExcell()">
-                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
-                          </a>
-                          <!-- end -->
-                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
-                          <a th:id="'invoiceLink' + ${item.orderID}"
-                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
-                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
-                          </a>
-                          <iframe id="invoiceFrame" style="display:none;"></iframe>
-                        </div>
-                        <!-- end -->
-
+                      <ul class="list-group" style="margin-bottom: 30px; margin-top: 30px;">
                         <div class="d-flex justify-content-between align-items-center card-header"
                           style="background: rgb(248, 248, 248);">
                           <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
                               th:text="${item.orderID}"></span>
                           </span>
+
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()" class=" pb-3">
+                            <i class="bi bi-file-text"></i> Xuất Hóa Đơn
+                          </a>
+                          <!-- end -->
+
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}" class=" pb-3"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
+                          <!-- end -->
+
                           <span class="text-xs pb-3">Phương Thức Thanh Toán:
                             <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
                           </span>
@@ -908,28 +908,29 @@
                   <div class="tab-pane fade" id="nav-home-da-giao" role="tabpanel"
                     aria-labelledby="nav-home-tab-da-giao">
                     <div th:each="item : ${orders}" th:if="${item.Status.statusID == 4}">
-                      <ul class="list-group">
-                        <div class="d-flex justify-content-between align-items-center py-3">
-                          <!-- xuất excel theo id cho từng đơn hàng -->
-                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
-                            onclick="exportToExcell()">
-                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
-                          </a>
-                          <!-- end -->
-                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
-                          <a th:id="'invoiceLink' + ${item.orderID}"
-                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
-                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
-                          </a>
-                          <iframe id="invoiceFrame" style="display:none;"></iframe>
-                        </div>
-                        <!-- end -->
+                      <ul class="list-group" style="margin-bottom: 30px; margin-top: 30px;">
 
                         <div class="d-flex justify-content-between align-items-center card-header"
                           style="background: rgb(248, 248, 248);">
                           <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
                               th:text="${item.orderID}"></span>
                           </span>
+
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()" class=" pb-3">
+                            <i class="bi bi-file-text"></i> Xuất Hóa Đơn
+                          </a>
+                          <!-- end -->
+
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}" class=" pb-3"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
+                          <!-- end -->
+
                           <span class="text-xs pb-3">Phương Thức Thanh Toán:
                             <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
                           </span>
@@ -1079,28 +1080,29 @@
                   <div class="tab-pane fade" id="nav-home-da-nhan" role="tabpanel"
                     aria-labelledby="nav-home-tab-da-nhan">
                     <div th:each="item : ${orders}" th:if="${item.Status.statusID == 5}">
-                      <ul class="list-group">
-                        <div class="d-flex justify-content-between align-items-center py-3">
-                          <!-- xuất excel theo id cho từng đơn hàng -->
-                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
-                            onclick="exportToExcell()">
-                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
-                          </a>
-                          <!-- end -->
-                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
-                          <a th:id="'invoiceLink' + ${item.orderID}"
-                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
-                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
-                          </a>
-                          <iframe id="invoiceFrame" style="display:none;"></iframe>
-                        </div>
-                        <!-- end -->
+                      <ul class="list-group" style="margin-bottom: 30px; margin-top: 30px;">
 
                         <div class="d-flex justify-content-between align-items-center card-header"
                           style="background: rgb(248, 248, 248);">
                           <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
                               th:text="${item.orderID}"></span>
                           </span>
+
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()" class=" pb-3">
+                            <i class="bi bi-file-text"></i> Xuất Hóa Đơn
+                          </a>
+                          <!-- end -->
+
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}" class=" pb-3"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
+                          <!-- end -->
+
                           <span class="text-xs pb-3">Phương Thức Thanh Toán:
                             <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
                           </span>
@@ -1249,28 +1251,29 @@
                   <!-- tab đã hủy đơn -->
                   <div class="tab-pane fade" id="nav-home-da-huy" role="tabpanel" aria-labelledby="nav-home-tab-da-huy">
                     <div th:each="item : ${orders}" th:if="${item.Status.statusID == 6}">
-                      <ul class="list-group">
-                        <div class="d-flex justify-content-between align-items-center py-3">
-                          <!-- xuất excel theo id cho từng đơn hàng -->
-                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
-                            onclick="exportToExcell()">
-                            <i class="bi bi-file-text"></i> Xuất Excel <span th:text="${item.orderID}"></span>
-                          </a>
-                          <!-- end -->
-                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
-                          <a th:id="'invoiceLink' + ${item.orderID}"
-                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
-                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn <span th:text="${item.orderID}"></span>
-                          </a>
-                          <iframe id="invoiceFrame" style="display:none;"></iframe>
-                        </div>
-                        <!-- end -->
+                      <ul class="list-group" style="margin-bottom: 30px; margin-top: 30px;">
 
                         <div class="d-flex justify-content-between align-items-center card-header"
                           style="background: rgb(248, 248, 248);">
                           <span class="mb-2 text-sm">Mã Đơn: <span class="text-dark font-weight-bold ms-sm-2"
                               th:text="${item.orderID}"></span>
                           </span>
+
+                          <!-- xuất excel theo id cho từng đơn hàng -->
+                          <a th:href="@{/admin/exportOrderToExcel/{orderId}(orderId=${item.orderID})}"
+                            onclick="exportToExcell()" class=" pb-3">
+                            <i class="bi bi-file-text"></i> Xuất Hóa Đơn
+                          </a>
+                          <!-- end -->
+
+                          <!-- Tạo liên kết để xem hóa đơn của từng đơn hàng -->
+                          <a th:id="'invoiceLink' + ${item.orderID}" class=" pb-3"
+                            th:href="@{/invoice/{orderId}(orderId=${item.orderID})}" onclick="printInvoice(event)">
+                            <i class="bi bi-printer"></i> &nbsp; In Hóa Đơn
+                          </a>
+                          <iframe id="invoiceFrame" style="display:none;"></iframe>
+                          <!-- end -->
+
                           <span class="text-xs pb-3">Phương Thức Thanh Toán:
                             <span class="text-dark ms-sm-2 font-weight-bold" th:text="${item.paymentMethod}"> </span>
                           </span>

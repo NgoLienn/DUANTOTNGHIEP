@@ -67,6 +67,7 @@ public class ManagerReview {
 
 		return "/admin/review";
 	}
+	
 	@PostMapping("/managerReview/reset")
 	public String resetForm(@ModelAttribute("newReview") Reviews newReview, Model model) {
 		// Tạo một đối tượng mới để làm trắng form
@@ -77,6 +78,7 @@ public class ManagerReview {
 	
 		return "redirect:/admin/managerReview";
 	}
+
 	@GetMapping("/managerReview/edit/{reviewID}")
 	public String edit(Model model, @PathVariable("reviewID") Integer reviewID,
 			@RequestParam(defaultValue = "1") int page,

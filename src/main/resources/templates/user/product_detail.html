@@ -22,7 +22,7 @@
                     <div class="wraper">
                         <aside class="">
                             <section id="ttsanpham" class="full-height px-lg-5" style=" border: none;">
-                                <form  method="post">
+                                <form method="post">
                                     <div class="container col-md-12">
                                         <input name="size" id="size" th:value="${sizeNames}" th:data-size="${sizeNames}"
                                             type="hidden">
@@ -86,19 +86,18 @@
                                             </div>
                                             <div class="cart-buy-item">
                                                 <button type="submit" class="button-cart"
-                                                        th:if="${productCategory.categoryId != 4}"
-                                                        th:disabled="${productCategory.categoryId == 4}"
-                                                        th:formaction="@{|/addToCart/${product.productId}|}">
+                                                    th:if="${productCategory.categoryId != 4}"
+                                                    th:disabled="${productCategory.categoryId == 4}"
+                                                    th:formaction="@{|/addToCart/${product.productId}|}">
 
                                                     <i class="bi bi-cart-plus"></i> Thêm Giỏ Hàng
                                                 </button>
 
-                                                    <button class="button-buy"
-                                                        th:if="${productCategory.categoryId != 4}"
-                                                        th:disabled="${productCategory.categoryId == 4}"
-                                                            th:formaction="@{|/payment/${product.productId}|}">
-                                                        Mua Ngay
-                                                    </button>
+                                                <button class="button-buy" th:if="${productCategory.categoryId != 4}"
+                                                    th:disabled="${productCategory.categoryId == 4}"
+                                                    th:formaction="@{|/payment/${product.productId}|}">
+                                                    Mua Ngay
+                                                </button>
 
                                                 <div th:if="${productCategory.categoryId == 4}" class=""
                                                     style="font-size: 18px;">Sản phẩm chỉ mua tại cửa hàng!</div>
@@ -116,7 +115,8 @@
                                 </div>
                             </div>
                             <div id="image-container" class="hidden if-image">
-                                <img id="product-image" th:src="${product.image}" class="img-food">
+                                <img id="product-image" th:src="${product.image}" class="img-food"
+                                    style="max-width: 300px; max-height: 300px;">
                             </div>
                         </article>
                     </div>

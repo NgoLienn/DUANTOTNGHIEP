@@ -195,21 +195,21 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Mô Tả Chi Tiết</label>
-                      <textarea class="form-control" name="descriptionAn" id="descriptionAn" cols="30" rows="1"
-                        placeholder="Nhập vào mô tả sản phẩm" text="" th:field="*{description_an}">
-                      </textarea>
-                      <small class="text-danger" id="descriptionAn-error"></small>
-                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Mô Tả</label>
                       <textarea class="form-control" name="description" id="description" cols="30" rows="1"
                         placeholder="Nhập vào mô tả sản phẩm" text="" th:field="*{description}">
                       </textarea>
                       <small class="text-danger" id="description-error"></small>
+                      <div id="form-error" class="text-danger mt-2 border-danger"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label">Mô Tả Chi Tiết</label>
+                      <textarea class="form-control" name="descriptionAn" id="descriptionAn" cols="30" rows="1"
+                        placeholder="Nhập vào mô tả sản phẩm" text="" th:field="*{description_an}">
+                      </textarea>
+                      <small class="text-danger" id="descriptionAn-error"></small>
                       <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
                   </div>
@@ -289,11 +289,11 @@
                     Sửa
                   </button>
 
-                  <button class="btn btn-danger btn-sm ms-4 text-white" type="button" data-bs-toggle="modal"
+                  <!-- <button class="btn btn-danger btn-sm ms-4 text-white" type="button" data-bs-toggle="modal"
                     data-bs-target="#confirmDeleteModal"
                     th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit')}">
                     Xóa
-                  </button>
+                  </button> -->
 
                   <a th:href="@{/admin/managerProducts}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts')}"
@@ -384,7 +384,8 @@
                         <span class="text-xs font-weight-bold mb-0 category" th:text="${item.category.name}"></span>
                       </td>
                       <td>
-                        <span class="text-xs font-weight-bold mb-0 price" th:text="${item.price}"></span>
+                        <span class="text-xs font-weight-bold mb-0 price"
+                          th:text="${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
                         <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
                       </td>
                       <td class="align-middle text-center text-sm">
@@ -595,15 +596,6 @@
         quantity.style.borderColor = '';
       }
 
-      if (!descriptionAn.value) {
-        descriptionAn.style.borderColor = '#ff0000';
-        document.getElementById('descriptionAn-error').innerText = 'Không được để trống mô tả';
-        return false;
-      } else {
-        document.getElementById('descriptionAn-error').innerText = '';
-        descriptionAn.style.borderColor = '';
-      }
-
       if (!description.value) {
         description.style.borderColor = '#ff0000';
         document.getElementById('description-error').innerText = 'Không được để trống mô tả';
@@ -611,6 +603,15 @@
       } else {
         document.getElementById('description-error').innerText = '';
         description.style.borderColor = '';
+      }
+
+      if (!descriptionAn.value) {
+        descriptionAn.style.borderColor = '#ff0000';
+        document.getElementById('descriptionAn-error').innerText = 'Không được để trống mô tả chi tiết';
+        return false;
+      } else {
+        document.getElementById('descriptionAn-error').innerText = '';
+        descriptionAn.style.borderColor = '';
       }
 
       if (category.value === '') {
