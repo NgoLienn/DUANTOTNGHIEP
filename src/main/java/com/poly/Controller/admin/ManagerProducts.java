@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -185,61 +188,71 @@ public class ManagerProducts {
                 "resource_type", "image");
 
         try {
-            // Your existing code to save the original file
-            String baseDir = System.getProperty("user.dir");
-            String folderPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator
-                    + "resources"
-                    + File.separator + "static" + File.separator + "assets" + File.separator + "images" + File.separator
-                    + "img_product";
-            File directory = new File(folderPath);
 
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
+            Products existingProduct = productRepo.findByProductNamee(product.getName());
+            if (existingProduct != null) {
+                // Tên sản phẩm đã tồn tại trong cơ sở dữ liệu
+                bindingResult.rejectValue("name", "error.product", "Tên sản phẩm đã tồn tại");
+                model.addAttribute("nameError", "Tên sản phẩm đã tồn tại");
 
-            String fileName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
-            File savedFile = new File(directory, fileName);
+            } else {
+                // Your existing code to save the original file
+                String baseDir = System.getProperty("user.dir");
+                String folderPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator
+                        + "resources"
+                        + File.separator + "static" + File.separator + "assets" + File.separator + "images"
+                        + File.separator
+                        + "img_product";
+                File directory = new File(folderPath);
 
-            file.transferTo(savedFile);
-
-            // API to remove background
-            Response response = Request.Post("https://api.remove.bg/v1.0/removebg")
-                    .addHeader("X-Api-Key", "GN2ULwMosewpuewn4vJe4GPg")
-                    .body(
-                            MultipartEntityBuilder.create()
-                                    .addBinaryBody("image_file", savedFile)
-                                    .addTextBody("size", "auto")
-                                    .build())
-                    .execute();
-
-            // Save the modified image
-            String modifiedFileName = System.currentTimeMillis() + "-no-bg-" + file.getOriginalFilename();
-            File modifiedImageFile = new File(directory, modifiedFileName);
-            response.saveContent(modifiedImageFile);
-
-            // Cloudinary upload using the modified image
-            Map<String, Object> uploadResult = cloudinary.uploader().upload(modifiedImageFile, params);
-            String url = uploadResult.get("url").toString();
-
-            // Save to the database or perform further actions
-            Categories categories = new Categories();
-            categories.setCategoryId(category);
-            product.setCategoryId(categories);
-            product.setImage(url);
-            product.setStatus_prod(true);
-            if (product.getStatus_prod() != null) {
-                if (product.getStatus_prod()) {
-                    // Nếu trạng thái là true, hiển thị sản phẩm
-                    product.setStatus_prod(false);
-                } else {
-                    // Nếu trạng thái là false, ẩn sản phẩm
-                    product.setStatus_prod(true);
+                if (!directory.exists()) {
+                    directory.mkdirs();
                 }
-            }
-            productRepo.save(product);
 
-            // Delete the original image
-            savedFile.delete();
+                String fileName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
+                File savedFile = new File(directory, fileName);
+
+                file.transferTo(savedFile);
+
+                // API to remove background
+                Response response = Request.Post("https://api.remove.bg/v1.0/removebg")
+                        .addHeader("X-Api-Key", "GN2ULwMosewpuewn4vJe4GPg")
+                        .body(
+                                MultipartEntityBuilder.create()
+                                        .addBinaryBody("image_file", savedFile)
+                                        .addTextBody("size", "auto")
+                                        .build())
+                        .execute();
+
+                // Save the modified image
+                String modifiedFileName = System.currentTimeMillis() + "-no-bg-" + file.getOriginalFilename();
+                File modifiedImageFile = new File(directory, modifiedFileName);
+                response.saveContent(modifiedImageFile);
+
+                // Cloudinary upload using the modified image
+                Map<String, Object> uploadResult = cloudinary.uploader().upload(modifiedImageFile, params);
+                String url = uploadResult.get("url").toString();
+                // Save to the database or perform further actions
+
+                Categories categories = new Categories();
+                categories.setCategoryId(category);
+                product.setCategoryId(categories);
+                product.setImage(url);
+                if (product.getStatus_prod() != null) {
+                    if (product.getStatus_prod()) {
+                        // Nếu trạng thái là true, hiển thị sản phẩm
+                        product.setStatus_prod(true);
+                    } else {
+                        // Nếu trạng thái là false, ẩn sản phẩm
+                        product.setStatus_prod(false);
+                    }
+                }
+                productRepo.save(product);
+                // Delete the original image
+                savedFile.delete();
+
+                return "redirect:/admin/managerProducts";
+            }
 
         } catch (Exception e) {
             // Handle exceptions
@@ -269,17 +282,11 @@ public class ManagerProducts {
             existingProduct.setCreate_at(product.getCreate_at());
             existingProduct.setDescription_an(product.getDescription_an());
             existingProduct.setDescription(product.getDescription());
-            existingProduct.setStatus_prod(product.getStatus_prod());
-            // Kiểm tra trạng thái mới của sản phẩm để ẩn hoặc hiển thị
-            if (existingProduct.getStatus_prod() != null) {
-                if (existingProduct.getStatus_prod()) {
-                    // Nếu trạng thái là true, hiển thị sản phẩm
-                    existingProduct.setStatus_prod(false);
-                } else {
-                    // Nếu trạng thái là false, ẩn sản phẩm
-                    existingProduct.setStatus_prod(true);
-                }
+            Boolean newStatus = product.getStatus_prod();
+            if (newStatus != null && !newStatus.equals(existingProduct.getStatus_prod())) {
+                existingProduct.setStatus_prod(newStatus); // Cập nhật trạng thái mới cho sản phẩm
             }
+
             existingProduct.setCategory(product.getCategory());
             // Thêm các trường còn lại tương ứng
 

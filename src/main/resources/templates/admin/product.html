@@ -163,6 +163,9 @@
                 <p class="text-uppercase text-sm">Thông Tin Sản Phẩm</p>
                 <div class="row">
                   <input type="hidden" th:field="*{productId}" />
+                  <div th:if="${#fields.hasErrors('name')}" class="error-message">
+                    <p th:text="${nameError}"></p>
+                  </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Tên Sản phẩm</label>
@@ -192,7 +195,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Mô Tả Ẩn</label>
+                      <label for="example-text-input" class="form-control-label">Mô Tả Chi Tiết</label>
                       <textarea class="form-control" name="descriptionAn" id="descriptionAn" cols="30" rows="1"
                         placeholder="Nhập vào mô tả sản phẩm" text="" th:field="*{description_an}">
                       </textarea>
@@ -230,13 +233,15 @@
                       <label for="example-text-input" class="form-control-label">Trang Thái</label>
                       <div class="d-flex justify-content-start align-items-center gap-3 mt-2">
                         <label for="trueStatus" class="cursor-pointer" style="font-size: 13px;">
-                          <input class="" id="trueStatus" name="status_prod" type="radio" value="True" checked
-                            placeholder="" th:field="*{status_prod}" th:value="${newProduct.status_prod}">&nbsp;
-                          True
+                          <input class="" id="trueStatus" name="status_prod" type="radio" value="True" placeholder=""
+                            th:field="*{status_prod}" th:value="${true}"
+                            th:checked="${newProduct.status_prod == true}">&nbsp;
+                          Hiển thị sản phẩm
                         </label>
                         <label for="falseStatus" class="cursor-pointer" style="font-size: 13px;">
-                          <input class="" id="falseStatus" name="status_prod" type="radio" value="false" placeholder=""
-                            th:field="*{status_prod}" th:value="${newProduct.status_prod}">&nbsp; False
+                          <input class="" id="falseStatus" name="status_prod" type="radio" value="False" placeholder=""
+                            th:field="*{status_prod}" th:value="${false}"
+                            th:checked="${newProduct.status_prod == false}">&nbsp; Ẩn sản phẩm
                         </label>
                       </div>
                     </div>
@@ -636,6 +641,10 @@
     function isValidNumber(value) {
       return /^[0-9]+$/.test(value) && value.length >= 4;
     }
+    // end
+
+    // xử lý sản phẩm không được trùng tên
+
     // end
   </script>
 

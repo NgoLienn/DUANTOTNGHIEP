@@ -98,6 +98,16 @@ public class Products implements Serializable {
         this.productId = productId;
     }
 
+    // Getter method for productName
+    public String getProductName() {
+        return Name;
+    }
+
+    // Setter method for productName
+    public void setProductName(String Name) {
+        this.Name = Name;
+    }
+
     @OneToMany(mappedBy = "productId")
     List<Image_product> iamgeproduct;
 }
