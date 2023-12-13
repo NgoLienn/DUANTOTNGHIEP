@@ -70,14 +70,6 @@ public class ManagerProducts {
 
         model.addAttribute("true", true);
 
-        // for (Products product : listProduct) {
-        // int productId = product.getId();
-        // Products listProductt = productRepo.getById(productId);
-        // listProductt.setStatus_prod(true);
-        // productRepo.save(productId);
-
-        // }
-
         // tìm kiếm sản phẩm
         if (query.equals("")) {
             listProduct = productRepo.findAll();

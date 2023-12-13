@@ -49,6 +49,9 @@ public class PaymentController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    ProductRepository productRepo;
+
     // @RequestParam(value = "voucherCode", defaultValue = "") String voucherCode,
     @GetMapping("/payment")
     public String ViewProfile(Model model,
@@ -97,35 +100,51 @@ public class PaymentController {
         account.setPhone(selectedPhone);
         if (payment.equals("true")) {
             // Xác nhận thanh toán thành công
-                Carts carts = cartRepo.findByCartUser(users);
-                float subtotal = cartItemsRepo.getSum(carts.getCartID());
-                Status status = new Status();
-                status.setStatusID(1L);
-                Orders orders = new Orders();
-                orders.setAccount(account);
-                orders.setStatus(status);
-                orders.setDeliveryAddress(account.getAddress());
-                orders.setPhone(account.getPhone());
-                orders.setPaymentMethod("Thanh toán khi nhận hàng");
-                orders.setTotalAmount(subtotal + 30000);
-                ordersRepo.save(orders);
-                accountRepo.save(account);
-                for (Cart_Items cartItems : carts.getCart_items()) {
-                    Products product = new Products();
-                    product.setProductId(cartItems.getProductId().getProductId());
-                    Order_Items orderItems = new Order_Items();
-                    orderItems.setOrders(orders);
-                    orderItems.setSize_Product(cartItems.getSizeName());
-                    orderItems.setQuantity(cartItems.getQuantity());
-                    orderItems.setPrice(cartItems.getPrice());
-                    orderItems.setName(cartItems.getProductId().getName());
-                    orderItems.setSubtotal(cartItems.getSubtotal());
-                    orderItems.setProduct(product);
-                    orderItemRepo.save(orderItems);
-                    System.out.println(cartItems.getQuantity());
+            Carts carts = cartRepo.findByCartUser(users);
+            float subtotal = cartItemsRepo.getSum(carts.getCartID());
+            Status status = new Status();
+            status.setStatusID(1L);
+            Orders orders = new Orders();
+            orders.setAccount(account);
+            orders.setStatus(status);
+            orders.setDeliveryAddress(account.getAddress());
+            orders.setPhone(account.getPhone());
+            orders.setPaymentMethod("Thanh toán khi nhận hàng");
+            orders.setTotalAmount(subtotal + 30000);
+            ordersRepo.save(orders);
+            accountRepo.save(account);
+            for (Cart_Items cartItems : carts.getCart_items()) {
+                Products product = new Products();
+                product.setProductId(cartItems.getProductId().getProductId());
+                Order_Items orderItems = new Order_Items();
+                orderItems.setOrders(orders);
+                orderItems.setSize_Product(cartItems.getSizeName());
+                orderItems.setQuantity(cartItems.getQuantity());
+                orderItems.setPrice(cartItems.getPrice());
+                orderItems.setName(cartItems.getProductId().getName());
+                orderItems.setSubtotal(cartItems.getSubtotal());
+                orderItems.setProduct(product);
+                orderItemRepo.save(orderItems);
+                System.out.println(cartItems.getQuantity());
+
+                Products productt = cartItems.getProductId(); // Lấy sản phẩm từ cartItems
+                if (productt != null && productt.getQuantity() >= cartItems.getQuantity()) {
+                    int purchasedQuantity = cartItems.getQuantity();
+                    int updatedQuantity = productt.getQuantity() - purchasedQuantity;
+
+                    // Kiểm tra nếu số lượng sau khi mua là hợp lệ (không âm)
+                    if (updatedQuantity >= 0) {
+                        productt.setQuantity(updatedQuantity);
+                        productRepo.save(productt); // Cập nhật số lượng sản phẩm
+                    } else {
+                        // Xử lý trường hợp số lượng sản phẩm sau khi mua âm (có thể thông báo lỗi hoặc
+                        // xử lý khác)
+                        System.out.println("Số lượng sản phẩm không đủ");
+                    }
                 }
-                cartItemsRepo.deleteAll(carts.getCart_items());
-                cartRepo.delete(carts);
+            }
+            cartItemsRepo.deleteAll(carts.getCart_items());
+            cartRepo.delete(carts);
             return "redirect:/user/confirmation";
         } else {
             String vnp_Version = "2.1.0";
@@ -166,6 +185,7 @@ public class PaymentController {
             String vnp_ExpireDate = formatter.format(cld.getTime());
             Carts carts = new Carts();
             carts.setCartID(Long.valueOf(vnp_OrderInfo));
+
             Payment paymentEntity = new Payment();
             paymentEntity.setAmount(amount / 100);
             paymentEntity.setStatus("NO");
@@ -209,6 +229,7 @@ public class PaymentController {
             String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
             resp.setStatus(HttpServletResponse.SC_FOUND);
             resp.setHeader("Location", paymentUrl);
+
             return "redirect:" + paymentUrl;
         }
     }

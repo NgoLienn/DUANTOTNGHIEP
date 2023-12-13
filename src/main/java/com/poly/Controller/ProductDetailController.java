@@ -6,6 +6,7 @@ import com.poly.Entity.Size;
 import com.poly.Entity.Size_Product;
 import com.poly.Reponsitory.CartItemsRepository;
 import com.poly.Reponsitory.CartRepository;
+import com.poly.Reponsitory.ProductRepository;
 import com.poly.Reponsitory.ReviewReponsitory;
 import com.poly.Reponsitory.SizeProductRepository;
 import com.poly.Reponsitory.SizeRepository;
@@ -17,6 +18,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poly.Entity.Carts;
@@ -26,6 +28,7 @@ import com.poly.Entity.Reviews;
 import com.poly.Service.ImageProductService;
 import com.poly.Service.ProductService;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("")
@@ -52,13 +55,42 @@ public class ProductDetailController {
     @Autowired
     private CartItemsRepository cartItemsRepo;
 
+    @Autowired
+    ProductRepository productRepo;
+
     @GetMapping("/productDetail")
     public String getProducts(Model model,
             @RequestParam(value = "sizeID", defaultValue = "") Long sizeId,
-            @RequestParam(value = "productID", defaultValue = "") int productId, Authentication authentication) {
+            @RequestParam(value = "productID", defaultValue = "") int productId,
+            @RequestParam(value = "quantity", required = false) Integer quantity,
+            Authentication authentication) {
 
+        if (quantity == null || quantity <= 0) {
+            quantity = 1; // Nếu 'quantity' là null hoặc không hợp lệ, sử dụng giá trị mặc định là 1
+        }
         // lấy id sản phẩm
         Products produc = productService.getProductById(productId);
+
+        if (produc != null && produc.getQuantity() >= quantity && quantity > 0) {
+
+            int availableQuantity = produc.getQuantity(); // Số lượng có sẵn từ CSDL
+            model.addAttribute("availableQuantity", availableQuantity);
+
+            int updatedQuantity = produc.getQuantity() - quantity;
+            if (updatedQuantity >= 0) {
+                // produc.setQuantity(updatedQuantity);
+                // // productRepo.save(produc);
+                // System.out.println("Selected quantity: " + quantity);
+            } else {
+                model.addAttribute("outOfStockMessage", "Sản phẩm không đủ số lượng. Vui lòng chọn sản phẩm khác!");
+                model.addAttribute("disableBuyButton", true);
+            }
+
+        } else {
+            model.addAttribute("outOfStockMessage", "Sản phẩm không đủ số lượng. Vui lòng chọn sản phẩm khác!");
+            model.addAttribute("disableBuyButton", true);
+        }
+
         model.addAttribute("product", produc);
         // lấy idcategory
         model.addAttribute("productCategory", produc.getCategoryId());
@@ -136,19 +168,20 @@ public class ProductDetailController {
         // cart small
         // String users = "";
         // if (authentication instanceof OAuth2AuthenticationToken) {
-        //     OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
-        //     OAuth2User user = oauthToken.getPrincipal();
-        //     users = user.getAttribute("email");
+        // OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken)
+        // authentication;
+        // OAuth2User user = oauthToken.getPrincipal();
+        // users = user.getAttribute("email");
         // } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
-        //     users = authentication.getName();
+        // users = authentication.getName();
         // }
         // Carts carts = cartRepo.findByCartUser(users);
         // if (carts == null) {
-        //     return "redirect:/user/productDetail";
+        // return "redirect:/user/productDetail";
         // } else {
-        //     Long subtotal = cartItemsRepo.getSum(carts.getCartID());
-        //     model.addAttribute("subtotal", subtotal);
-        //     model.addAttribute("carts", carts);
+        // Long subtotal = cartItemsRepo.getSum(carts.getCartID());
+        // model.addAttribute("subtotal", subtotal);
+        // model.addAttribute("carts", carts);
         // }
         // end
 

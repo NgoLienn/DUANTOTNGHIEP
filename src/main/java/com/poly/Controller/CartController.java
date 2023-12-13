@@ -66,12 +66,26 @@ public class CartController {
             model.addAttribute("subtotal", subtotal);
             model.addAttribute("carts", carts);
         }
+
+        Cart_Items cartItem = cartItemsRepo.findByCartId(carts.getCartID()); // Thay thế findByCartId bằng phương thức
+                                                                             // phù hợp của bạn
+        if (cartItem != null) {
+            Products product = cartItem.getProductId(); // Lấy sản phẩm từ cartItem
+            if (product != null) {
+                int availableQuantity = product.getQuantity(); // Lấy số lượng từ sản phẩm
+                model.addAttribute("availableQuantity", availableQuantity);
+            }
+        } else {
+            // Xử lý khi không tìm thấy cartItem hoặc sản phẩm
+            // Ví dụ: Hiển thị thông báo hoặc xử lý tương ứng
+        }
+
         return "user/cart";
     }
 
     @PostMapping("/addToCart/{productId}")
     public String addToCart(@PathVariable int productId, Model model, Authentication authentication,
-                            @RequestParam("size") String size, @RequestParam("soluong") int soluong) {
+            @RequestParam("size") String size, @RequestParam(value = "soluong", required = false) Integer soluong) {
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
             OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
@@ -85,7 +99,7 @@ public class CartController {
         Products product = productRepo.findByProduct(productId);
         Size size1 = sizeRepo.findByProductAndSizeName(productId, size);
         Size_Product sizeProduct = sizeProductRepo.findBySizeProductId(size1.getSizeID());
-        if (cart == null ) {
+        if (cart == null) {
             Carts newCart = new Carts();
             newCart.setAccount(account);
             cartRepon.save(newCart);
@@ -119,14 +133,43 @@ public class CartController {
                 cartItems.setSubtotal(soluong * sizeProduct.getPrice());
                 cartItems.setSizeName(size);
                 cartItemsRepo.save(cartItems);
+
+                if (soluong == null || soluong <= 0) {
+                    soluong = 1; // Nếu 'quantity' là null hoặc không hợp lệ, sử dụng giá trị mặc định là 1
+                }
+                // lấy id sản phẩm
+                Products produc = cartItems.getProductId();
+
+                if (produc != null && produc.getQuantity() >= soluong && soluong > 0) {
+
+                    int availableQuantity = produc.getQuantity(); // Số lượng có sẵn từ CSDL
+                    model.addAttribute("availableQuantity", availableQuantity);
+
+                    int updatedQuantity = produc.getQuantity() - soluong;
+                    if (updatedQuantity >= 0) {
+                        // produc.setQuantity(updatedQuantity);
+                        // // productRepo.save(produc);
+                        // System.out.println("Selected quantity: " + quantity);
+                    } else {
+                        model.addAttribute("outOfStockMessage",
+                                "Sản phẩm không đủ số lượng. Vui lòng chọn số lượng ít hơn!");
+                        model.addAttribute("disableBuyButton", true);
+                    }
+
+                } else {
+                    model.addAttribute("outOfStockMessage",
+                            "Sản phẩm không đủ số lượng. Vui lòng chọn số lượng ít hơn!");
+                    model.addAttribute("disableBuyButton", true);
+                }
             }
             return "redirect:/cart";
         }
 
     }
+
     @PostMapping("/payment/{productId}")
     public String payment(@PathVariable int productId, Model model, Authentication authentication,
-                            @RequestParam("size") String size, @RequestParam("soluong") int soluong) {
+            @RequestParam("size") String size, @RequestParam("soluong") int soluong) {
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
             OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
@@ -140,7 +183,7 @@ public class CartController {
         Products product = productRepo.findByProduct(productId);
         Size size1 = sizeRepo.findByProductAndSizeName(productId, size);
         Size_Product sizeProduct = sizeProductRepo.findBySizeProductId(size1.getSizeID());
-        if (cart == null ) {
+        if (cart == null) {
             Carts newCart = new Carts();
             newCart.setAccount(account);
             cartRepon.save(newCart);
@@ -153,7 +196,7 @@ public class CartController {
             cartItems.setSubtotal(soluong * sizeProduct.getPrice());
             cartItems.setSizeName(size);
             cartItemsRepo.save(cartItems);
-            return "redirect:/cart";
+            return "redirect:/user/payment";
         } else {
             Cart_Items cart_Items = cartItemsRepo.findByProductAndSize(productId, size);
             if (cart_Items != null) {
@@ -189,7 +232,7 @@ public class CartController {
 
     @GetMapping("cart/updateCartItems")
     public String updateQuantity(@RequestParam(value = "cartitemID", defaultValue = "") long cartitemID,
-                                 HttpServletRequest httpServletRequest, Model model,Authentication authentication) {
+            HttpServletRequest httpServletRequest, Model model, Authentication authentication) {
 
         Cart_Items cartItem = cartItemsRepo.findByCartitemID(cartitemID);
         String users = "";
@@ -199,7 +242,8 @@ public class CartController {
             users = user.getAttribute("email");
         } else if (authentication instanceof UsernamePasswordAuthenticationToken) {
             users = authentication.getName();
-        }        Carts carts = cartRepo.findByCartUser(users);
+        }
+        Carts carts = cartRepo.findByCartUser(users);
         model.addAttribute("carts", carts);
 
         int soluong = cartItem.getQuantity() - 1;
@@ -211,10 +255,10 @@ public class CartController {
         }
 
         cartItemsRepo.save(cartItem);
-        List<Cart_Items> cartItems=cartItemsRepo.findByCartItem(users);
+        List<Cart_Items> cartItems = cartItemsRepo.findByCartItem(users);
         float sum = 0;
-        for(Cart_Items carts1 : cartItems ){
-            sum+= carts1.getSubtotal();
+        for (Cart_Items carts1 : cartItems) {
+            sum += carts1.getSubtotal();
         }
         Long subtotal = cartItemsRepo.getSum(carts.getCartID());
         model.addAttribute("subtotal", sum);
@@ -223,7 +267,7 @@ public class CartController {
 
     @GetMapping("cart/updateCartItemss")
     public String updateQuantityAdd(@RequestParam(value = "cartitemID", defaultValue = "") long cartitemID,
-                                    HttpServletRequest httpServletRequest, Model model,Authentication authentication) {
+            HttpServletRequest httpServletRequest, Model model, Authentication authentication) {
         Cart_Items cartItem = cartItemsRepo.findByCartitemID(cartitemID);
         String users = "";
         if (authentication instanceof OAuth2AuthenticationToken) {
@@ -241,19 +285,15 @@ public class CartController {
         cartItem.setQuantity(soluong);
         cartItem.setSubtotal(cartItem.getPrice() * soluong);
 
-
-
         cartItemsRepo.save(cartItem);
-        List<Cart_Items> cartItems=cartItemsRepo.findByCartItem(users);
+        List<Cart_Items> cartItems = cartItemsRepo.findByCartItem(users);
         float sum = 0;
-        for(Cart_Items carts1 : cartItems ){
-            sum+= carts1.getSubtotal();
+        for (Cart_Items carts1 : cartItems) {
+            sum += carts1.getSubtotal();
         }
         Long subtotal = cartItemsRepo.getSum(carts.getCartID());
         model.addAttribute("subtotal", sum);
         return "user/cart";
     }
-
-
 
 }

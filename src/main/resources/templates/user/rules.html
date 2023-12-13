@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{zlayout/fragments :: html_head}"></head>
+<link rel="stylesheet" href="/assets/css_main/rules.css">
+
+<body>
+    <div th:replace="~{zlayout/loadAndCartSmall :: loader}"></div>
+
+    <!-- <div th:replace="~{zlayout/loadAndCartSmall :: cartSmall}"></div> -->
+
+    <div class="containerr ">
+        <div class="image_big">
+            <div class="image-one"></div>
+            <div class="image-three"></div>
+            <div class="image-two">
+                <img src="/assets/images/leaves.png" alt="leaves.png" class="food2">
+                <nav class="navb navbar-expand-lg navbar-light bg-light" th:replace="zlayout/navbar :: menu"></nav>
+
+                <header class="banner-big" style="padding: 0;">
+                    <div class="wraper">
+                        <aside class="">
+                            <div class="container-fluid col-10">
+                                <span class="tttk text-uppercase d-flex justify-content-center mt-3">Chính sách và quy
+                                    định chung
+                                </span>
+                                <h3 style="font-weight: bold; padding-top: 30px;">1. Đồng ý chính sách và quy định chung
+                                    khi sử dụng
+                                    website</h3>
+                                <p class="" style="font-size: 18px; line-height: 30px;">
+                                    Các chính sách và quy định chung này liên quan đến việc Khách hàng sử dụng website
+                                    của Yummy Cần Thơ và các tổ chức khác có liên quan đến website của Yummy Cần Thơ.
+
+                                    Khi khách hàng truy cập hoặc đăng nhập vào website này tức là khách hàng đã chấp
+                                    nhận và đồng ý với các chính sách và quy định chung này và những chính sách, quy
+                                    định của chính sách bảo mật thông tin từ Yummy Cần Thơ.
+
+                                    Nếu khách hàng không đồng ý với bất kỳ điều khoản nào dưới đây, vui lòng không truy
+                                    cập vào website của Yummy Cần Thơ. Chính sách và quy định chung này được xem là
+                                    hợp đồng giữa Khách hàng và Yummy Cần Thơ và được áp dụng khi Khách hàng sử dụng
+                                    website của Yummy Cần Thơ. Những chính sách và quy định chung này ảnh hưởng đến
+                                    quyền lợi của Khách hàng, vui lòng đọc kỹ trước khi sử dụng.
+                                </p>
+
+                                <h3 style="font-weight: bold; padding-top: 30px;">2. Những thay đổi liên quan đến các
+                                    chính sách và quy định chung này</h3>
+                                <p class="" style="font-size: 18px; line-height: 30px;">
+                                    Yummy Cần Thơ có quyền thay đổi các chính sách và quy định chung này bất cứ thời
+                                    điểm nào mà không cần thông báo trước với khách hàng. Khách hàng có thể xem phiên
+                                    bản cập nhật mới nhất của chính sách và quy định chung này bằng cách nhấp chuột vào
+                                    <b> "Chính Sách và Quy Định Chung" </b>tại trang chủ của Yummy . Phiên bản cập
+                                    nhật này sẽ thay thế tất cả các phiên bản cũ. Nếu khách hàng truy cập vào website
+                                    của Yummy Cần Thơ sau khi xuất hiện những thay đổi đối với chính sách và quy
+                                    định chung đồng nghĩa là khách hàng đã đồng ý với những thay đổi này.
+                                </p>
+
+
+                                <h3 style="font-weight: bold; padding-top: 30px;">3. Tài khoản sử dụng của Khách hàng
+                                </h3>
+                                <p class="" style="font-size: 18px; line-height: 30px;">
+                                    Nếu khách hàng sử dụng website của Yummy Cần Thơ, khách hàng tự chịu trách nhiệm
+                                    đảm bảo tính bảo mật của tài khoản do khách hàng sử dụng, bảo quản mật mã và hạn chế
+                                    cho người khác truy cập vào máy tính của khách hàng, khách hàng đồng ý chịu trách
+                                    nhiệm cho mọi hoạt động diễn ra trong tài khoản hoặc mật mã của khách hàng.
+                                </p>
+
+                                <h3 style="font-weight: bold; padding-top: 30px;">4. Website của Yummy Cần Thơ</h3>
+                                <p class="" style="font-size: 18px; line-height: 30px;">
+                                    Những chính sách và quy định chung này được áp dụng cho tất cả Khách hàng sử dụng
+                                    website của Yummy Cần Thơ. Website này có thể chứa những liên kết đến website
+                                    của bên thứ ba không thuộc quyền sở hữu của Yummy Cần Thơ. Theo đó, Yummny
+                                    Việt Nam không có quyền kiểm soát nội dung, chính sách bảo mật thông tin hoặc những
+                                    nội dung khác trong các website của bên thứ ba. Hơn nữa, Yummy Cần Thơ sẽ không
+                                    thể kiểm duyệt nội dung trên các website của bên thứ ba. Vì vậy, Yummy Cần Thơ
+                                    khuyến khích khách hàng nên đọc kỹ các chính sách bảo mật thông tin của các website
+                                    của bên thứ ba mà khách hàng truy cập.
+                                </p>
+                            </div>
+                        </aside>
+                    </div>
+                </header>
+            </div>
+
+            <div class="footer" th:replace="~{zlayout/footer :: footer}"></div>
+        </div>
+
+        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+    </div>
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        // loading khi refresh
+        var loader = function () {
+            setTimeout(function () {
+                $('#loader').css({ 'opacity': 0, 'visibility': 'hidden' });
+            }, 2000);
+        };
+        $(function () {
+            loader();
+        });
+        // end
+
+        $(function () {
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                if (scroll >= 1024) {
+                    $(".navb").addClass("scrolled");
+                } else {
+                    $(".navb").removeClass("scrolled");
+                }
+            });
+        });
+
+        $(function () {
+            $(".navbar-toggler").click(function () {
+                $(".navbar-collapse").toggleClass("show");
+            });
+        });
+    </script>
+</body>
+
+</html>

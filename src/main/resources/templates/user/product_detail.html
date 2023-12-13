@@ -42,8 +42,8 @@
                                                     </span>
                                                 </div>
                                             </div>
-
                                             <div th:each="product : ${product}">
+
                                                 <div class="size mb-3 mt-4">
                                                     <span>Size</span>&nbsp;&nbsp;&nbsp;
                                                     <div th:each="size : ${product.size}">
@@ -79,28 +79,40 @@
                                                     <input type="button" class="tru" value="-"
                                                         onclick="decrementQuantity()">
                                                     <input class="EquXA8 Wrmraq quantity" type="text" role="spinbutton"
-                                                        aria-valuenow="1" name="soluong" value="1" id="quantityInput">
+                                                        aria-valuenow="1" name="soluong" value="1" id="quantityInput"
+                                                        min="1" onchange="checkQuantity()">
                                                     <input type="button" class="cong" value="+"
-                                                        onclick="incrementQuantity()">
+                                                        onclick="incrementQuantity()" id="increaseButton">
                                                 </span>
+                                                <span id="outOfStockMessage"
+                                                    style="display: none; color: red; padding-top: 20px;">Sản phẩm không
+                                                    đủ số lượng</span>
+                                                <input id="availableQuantity" th:value="${availableQuantity}"
+                                                    type="hidden">
+
                                             </div>
+
                                             <div class="cart-buy-item">
                                                 <button type="submit" class="button-cart"
                                                     th:if="${productCategory.categoryId != 4}"
-                                                    th:disabled="${productCategory.categoryId == 4}"
+                                                    th:disabled="${productCategory.categoryId == 4 || outOfStockMessage != null}"
                                                     th:formaction="@{|/addToCart/${product.productId}|}">
 
                                                     <i class="bi bi-cart-plus"></i> Thêm Giỏ Hàng
                                                 </button>
 
                                                 <button class="button-buy" th:if="${productCategory.categoryId != 4}"
-                                                    th:disabled="${productCategory.categoryId == 4}"
+                                                    th:disabled="${productCategory.categoryId == 4 || outOfStockMessage != null}"
                                                     th:formaction="@{|/payment/${product.productId}|}">
                                                     Mua Ngay
                                                 </button>
 
                                                 <div th:if="${productCategory.categoryId == 4}" class=""
                                                     style="font-size: 18px;">Sản phẩm chỉ mua tại cửa hàng!</div>
+                                            </div>
+                                            <br>
+                                            <div th:if="${outOfStockMessage != null}">
+                                                <p th:text="${outOfStockMessage}" class="out-of-stock-message"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -664,20 +676,34 @@
         // end
 
         // tang giam so luong
+        function checkQuantity() {
+            var quantity = parseInt(document.getElementById('quantityInput').value);
+            var availableQuantity = parseInt(document.getElementById('availableQuantity').value);
+
+            if (quantity >= availableQuantity) {
+                document.getElementById('outOfStockMessage').style.display = 'block';
+                document.getElementById('increaseButton').disabled = true; // Vô hiệu hóa nút tăng số lượng
+            } else {
+                document.getElementById('outOfStockMessage').style.display = 'none';
+                document.getElementById('increaseButton').disabled = false; // Kích hoạt lại nút tăng số lượng
+            }
+        }
+
+        // Các hàm tăng và giảm số lượng
         function incrementQuantity() {
             var quantityInput = document.getElementById('quantityInput');
-            var currentQuantity = parseInt(quantityInput.value, 10);
+            var currentQuantity = parseInt(quantityInput.value);
             quantityInput.value = currentQuantity + 1;
+            checkQuantity(); // Kiểm tra số lượng sau khi tăng
         }
 
         function decrementQuantity() {
             var quantityInput = document.getElementById('quantityInput');
-            var currentQuantity = parseInt(quantityInput.value, 10);
-
-            // Đảm bảo số lượng không nhỏ hơn 1
+            var currentQuantity = parseInt(quantityInput.value);
             if (currentQuantity > 1) {
                 quantityInput.value = currentQuantity - 1;
             }
+            checkQuantity(); // Kiểm tra số lượng sau khi giảm
         }
 
     </script>

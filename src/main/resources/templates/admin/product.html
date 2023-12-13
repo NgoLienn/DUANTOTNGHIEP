@@ -169,8 +169,8 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Tên Sản phẩm</label>
-                      <input class="form-control" type="text" id="newProduct_name" placeholder="Name" th:field="*{name}"
-                        th:value="${newProduct.name}">
+                      <input class="form-control" type="text" id="newProduct_name" placeholder="VD: HamBurGer..."
+                        th:field="*{name}" th:value="${newProduct.name}">
                       <small class="text-danger" id="name-error"></small>
                       <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
@@ -178,17 +178,17 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Số Lượng</label>
-                      <input class="form-control" id="newProduct_quantity" type="text" value="" placeholder="Quantity"
-                        th:field="*{quantity}" th:value="${newProduct.quantity}">
+                      <input class="form-control" id="newProduct_quantity" type="text" value=""
+                        placeholder="Nhập số lượng sản phẩm" th:field="*{quantity}" th:value="${newProduct.quantity}">
                     </div>
                     <small class="text-danger" id="quantity-error"></small>
                     <div id="form-error" class="text-danger mt-2 border-danger"></div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Giá Cũ</label>
-                      <input class="form-control" type="text" id="newProduct_prices" value="" placeholder="Old Price"
-                        th:field="*{prices}" th:value="${newProduct.prices}">
+                      <label for="example-text-input" class="form-control-label">Giá Gốc</label>
+                      <input class="form-control" type="text" id="newProduct_prices" value=""
+                        placeholder="Nhập giá gốc cho sản phẩm" th:field="*{prices}" th:value="${newProduct.prices}">
                       <small class="text-danger" id="prices-error"></small>
                       <div id="form-error" class="text-danger mt-2 border-danger"></div>
                     </div>
@@ -207,7 +207,7 @@
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Mô Tả Chi Tiết</label>
                       <textarea class="form-control" name="descriptionAn" id="descriptionAn" cols="30" rows="1"
-                        placeholder="Nhập vào mô tả sản phẩm" text="" th:field="*{description_an}">
+                        placeholder="Nhập vào mô tả chi tiết sản phẩm" text="" th:field="*{description_an}">
                       </textarea>
                       <small class="text-danger" id="descriptionAn-error"></small>
                       <div id="form-error" class="text-danger mt-2 border-danger"></div>
@@ -241,7 +241,7 @@
                         <label for="falseStatus" class="cursor-pointer" style="font-size: 13px;">
                           <input class="" id="falseStatus" name="status_prod" type="radio" value="False" placeholder=""
                             th:field="*{status_prod}" th:value="${false}"
-                            th:checked="${newProduct.status_prod == false}">&nbsp; Ẩn sản phẩm
+                            th:checked="${newProduct.status_prod == false}">&nbsp; Không hiển thị sản phẩm
                         </label>
                       </div>
                     </div>
@@ -396,8 +396,13 @@
                           th:text="${item.quantity}"></span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold quantity"
-                          th:text="${item.status_prod}"></span>
+                        <span class="text-secondary text-xs font-weight-bold quantity">
+                          <span th:if="${item.status_prod != null}">
+                            <span th:if="${item.status_prod}">hiển thị</span>
+                            <span th:unless="${item.status_prod}">không hiển thị</span>
+                          </span>
+                          <span th:if="${item.status_prod == null}">hiển Thị</span>
+                        </span>
                       </td>
                       <td class="align-middle text-center">
                         <a th:href="@{/admin/managerProducts/edit/{productId}(productId=${item.productId})}"

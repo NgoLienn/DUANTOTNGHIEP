@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.poly.Entity.Image_product;
 import com.poly.Entity.Orders;
 import com.poly.Reponsitory.OrdersReposiotry;
 
@@ -33,5 +34,11 @@ public class OrderService {
     public List<Object> reportRevenue(int year) {
         return ordersRepo.reportRevenue(year);
     }
+
+    // // tìm kiếm
+    public List<Orders> searchOrders(String query) {
+        return ordersRepo.findByNameContainingIgnoreCase(query);
+    }
+    // // end
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.Entity.Account;
 import com.poly.Entity.Order_Items;
@@ -22,6 +23,7 @@ import com.poly.Reponsitory.AccountReponsitory;
 import com.poly.Reponsitory.OrderItemRepository;
 import com.poly.Reponsitory.OrdersReposiotry;
 import com.poly.Reponsitory.StatusRepository;
+import com.poly.Service.OrderService;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,6 +31,9 @@ public class ManagerOrder {
 
     @Autowired
     OrdersReposiotry ordersRepo;
+
+    @Autowired
+    OrderService orderService;
 
     @Autowired
     OrderItemRepository orderItemRepo;
@@ -40,24 +45,34 @@ public class ManagerOrder {
     StatusRepository statusRepo;
 
     @GetMapping("/managerOrder")
-    public String ViewOrder(Model model) {
+    public String ViewOrder(Model model, @RequestParam(value = "query", defaultValue = "") String query) {
 
-        List<Orders> orderss = ordersRepo.findAll();
+        List<Orders> orderss;
+
+        List<Status> status = statusRepo.findAll();
+        model.addAttribute("status", status);
+
+        // tìm kiếm sản phẩm
+        if (query.equals("")) {
+            orderss = ordersRepo.findAll();
+        } else {
+            orderss = orderService.searchOrders(query);
+        }
+
+        model.addAttribute("query", query);
 
         // Sắp xếp danh sách đơn hàng theo thời gian đặt hàng từ mới nhất đến cũ nhất
         orderss.sort((order1, order2) -> order2.getOrderTime().compareTo(order1.getOrderTime()));
 
         model.addAttribute("orders", orderss);
 
-        List<Status> status = statusRepo.findAll();
-        model.addAttribute("status", status);
-
         return "admin/billing";
     }
 
     // đã xác nhận
     @PostMapping("/managerOrderSuccess/{orderId}")
-    public String SuccessOrder(@PathVariable Long orderId, Model model) {
+    public String SuccessOrder(@PathVariable Long orderId, Model model,
+            @RequestParam(value = "query", defaultValue = "") String query) {
         // Tìm đơn hàng dựa trên orderId từ cơ sở dữ liệu
         Orders order = ordersRepo.findById(orderId).orElse(null);
         if (order != null) {
@@ -71,6 +86,7 @@ public class ManagerOrder {
                 ordersRepo.save(order);
             }
         }
+
         return "redirect:/admin/managerOrder";
     }
 
