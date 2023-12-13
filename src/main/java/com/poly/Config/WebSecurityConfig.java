@@ -62,11 +62,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 http.authorizeRequests()
                         .antMatchers("/admin/**").hasRole("1")
                         .antMatchers("/addToCart/*", "/cart","/user/**").authenticated()
-//                        .antMatchers("/api/authorities").hasRole("")
+                        .antMatchers("/api/authorities").hasRole("")
                         .anyRequest().permitAll(); // anonymous
 
                 // dieu khien loi truy cap khong dung vai tro
-                http.exceptionHandling().accessDeniedPage("/login/unauthorized"); // [/error]
+                  http.exceptionHandling().accessDeniedPage("/login/unauthorized"); // [/error]
 
                 // giao dien dang nhap
                 http.formLogin()

@@ -46,7 +46,7 @@ public class ManagerStatistics {
         model.addAttribute("accountt", accountRepon.findAll());
 
         // Số thể loại
-        model.addAttribute("a", categoryService.totalCategory());
+ //       model.addAttribute("a", categoryService.totalCategory());
 
         // Số người dùng
         model.addAttribute("totalAccount", accountService.totalAccount());
