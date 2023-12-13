@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id")
+    @Column(name = "account_id") //
     private int accountID;
 
     @ManyToOne

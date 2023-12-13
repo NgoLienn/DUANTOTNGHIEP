@@ -40,7 +40,7 @@ public class RegisterController {
                 m.addAttribute("message","Vui Lòng Kiểm Tra Mail Để kích hoạt tài khoản");
                 return "user/register";
             }
-        }
+        } //
         accountService.saveAccount(acc);
         String activationUrl = "http://localhost:8080/register/activate?token=" + acc.getToken();
         mailerService.send(acc.getUserName(),"Kích Hoạt Tài Khoản","Xin Chào  Chúng tôi đã nhận được yêu cầu đăng nhập vào CrouseOnline bằng địa chỉ email này. Nếu bạn muốn đăng nhập bằng tài khoản "+acc.getUserName()+" của mình, hãy nhấp vào liên kết:"+"<a href='" + activationUrl + "'>tại đây</a>");

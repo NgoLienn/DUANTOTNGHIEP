@@ -51,7 +51,7 @@ public class ForgotController {
     @RequestMapping("quenmk")
     public String quenmkac(Model m, @RequestParam("token") String token){
 
-        m.addAttribute("token", token);
+        m.addAttribute("token", token); //
         return "user/confirm_password";
     }
 

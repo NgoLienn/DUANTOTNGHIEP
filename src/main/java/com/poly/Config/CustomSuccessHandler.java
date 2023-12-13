@@ -28,7 +28,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     public void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException {
         String users = "";
-        if (authentication instanceof OAuth2AuthenticationToken) {
+        if (authentication instanceof OAuth2AuthenticationToken) { //
             OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
             OAuth2User user = oauthToken.getPrincipal();
             users = user.getAttribute("email");

@@ -91,7 +91,7 @@ public class ProfileController {
         }
 
         Account acc = accountService.findByUsername(users);
-
+//
         Map<String, Object> params = ObjectUtils.asMap(
                 "folder", "Images_FastFoodStore",
                 "resource_type", "image");

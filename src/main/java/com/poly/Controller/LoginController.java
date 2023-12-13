@@ -19,7 +19,7 @@ public class LoginController {
 
     @RequestMapping("/login/error")
     public String loginer(Model m){
-        m.addAttribute("message","Sai thông tin Đăng Nhập");
+        m.addAttribute("message","Sai thông tin Đăng Nhập"); //
         return "user/login";
     }
     @RequestMapping("/login/unauthorized")

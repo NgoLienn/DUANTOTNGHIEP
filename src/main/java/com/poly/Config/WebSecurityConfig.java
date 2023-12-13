@@ -71,7 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // giao dien dang nhap
                 http.formLogin()
                         .loginPage("/auth/signin")
-                        .loginProcessingUrl("/auth/signin") // [/login]
+                        .loginProcessingUrl("/auth/signin") // [/login] //
                         .successHandler(myAuthenticationSuccessHandler()) // succeshadler la truy cap đúng mk thì sẽ trả về trag url
                         .failureUrl("/login/error") //đăng nhập sai tra ve trang error
                         .usernameParameter("username") // [username]
