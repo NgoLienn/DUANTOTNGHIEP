@@ -43,10 +43,10 @@
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group">
+                        <!-- <div class="input-group">
                             <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Tìm Kiếm...">
-                        </div>
+                        </div> -->
                     </div>
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
@@ -190,7 +190,7 @@
                                         <input class="form-control" id="pictureAvatar" type="file" onchange="previewImage(event)">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-control-label py-2">Phân Quyền</label><br>
 
@@ -207,120 +207,120 @@
                                     </div>
 
                                 </div>
-                            </div>
-                            <hr class="py-2">
-                            <h5 class="text-center"> </h5>
-                            <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
-                                <button id="btnAdd" class="btn btn-primary btn-sm ms-4" th:onclick="addAccount()">Thêm</button>
-                                <button id="btnUpdate" class="btn btn-info btn-sm ms-4" disabled th:onclick="updateAccount()">Sửa</button>
-                                <button id="btnDelete" class="btn btn-danger btn-sm ms-4" disabled th:onclick="deleteAccount()">Xóa</button>
-                                <button class="btn btn-dark btn-sm ms-4" th:onclick="'fech()'">Làm Mới</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end -->
-        <div class="row">
-            <div class="col-12">
-                <div class="container-fluid py-4">
-                    <div class="card mb-4">
-                        <div class="card-header d-flex justify-content-between pb-0">
-                            <h6>Danh Sách Tài Khoản</h6>
-                            <div class="col-3">
-                                <div class="input-group">
-                                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                                    <input id="searchInput" onkeyup="searchAccount()" type="text" class="form-control" placeholder="Tìm Kiếm...">
+                            </div> -->
+                                <hr class="py-2">
+                                <h5 class="text-center"> </h5>
+                                <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
+                                    <button id="btnAdd" class="btn btn-primary btn-sm ms-4" th:onclick="addAccount()">Thêm</button>
+                                    <button id="btnUpdate" class="btn btn-info btn-sm ms-4" disabled th:onclick="updateAccount()">Sửa</button>
+                                    <!-- <button id="btnDelete" class="btn btn-danger btn-sm ms-4" disabled th:onclick="deleteAccount()">Xóa</button> -->
+                                    <button class="btn btn-dark btn-sm ms-4" th:onclick="'fech()'">Làm Mới</button>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- phân trang đầu-->
-                        <nav aria-label="Page navigation example" class="navigation mt-3 mb-3 d-flex justify-content-center">
-                            <ul class="pagination">
-                                <li class="page-item cursor-pointer" th:if="${authorityPage.currentPage > 1}">
-                                    <a class="page-link" href="#" aria-label="Previous" th:onclick="'javascript:loadPage(1, event)'">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li th:each="page : ${#numbers.sequence(1, authorityPage.totalPages)}" class="page-item cursor-pointer">
-                                    <a class="page-link text-black" th:classappend="${page == authorityPage.currentPage} ? active" th:onclick="'javascript:loadPage(' + ${page} + ', event)'" th:text="${page}"></a>
-                                </li>
-                                <li class="page-item cursor-pointer" th:if="${authorityPage.currentPage < authorityPage.totalPages}">
-                                    <a class="page-link" href="" th:onclick="'javascript:loadPage(' + ${authorityPage.totalPages} + ', event)'" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <!-- end -->
-                        <div class="card-body px-0 pt-0 pb-2">
-                            <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0" id="customers">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tài Khoản</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Địa chỉ
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quyền
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Thao Tác
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="dataTable">
-                                        <tr th:each="item : ${authorityPage.ListAuthority}">
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img th:src="${item.account.Avata}" class="avatar avatar-sm me-3" alt="user1" style="object-fit: cover;">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm" th:text="${item.account.Fullname}" style="max-width: 120px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></h6>
-                                                        <p class="text-xs text-secondary mb-0" th:text="${item.account.Phone}"></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm text-dark text-xs" th:text="${item.account.Address}"></span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold" th:text="${item.account.UserName}"></span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold" th:text="${item.role.name}"></span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <a style="cursor: pointer;" th:attr="data-username=${item.account.UserName}" onclick="editAccount(this)" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
-                        </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end -->
-            <footer class="footer p-4">
-                <div class="container-fluid">
-                    <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-6 mb-lg-0 mb-4">
-                            <div class="copyright text-center text-sm text-muted text-lg-start">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script>, Được Thiết Kế Bởi FastFoodTeam
+            <div class="row">
+                <div class="col-12">
+                    <div class="container-fluid py-4">
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between pb-0">
+                                <h6>Danh Sách Tài Khoản</h6>
+                                <div class="col-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                        <input id="searchInput" onkeyup="searchAccount()" type="text" class="form-control" placeholder="Tìm Kiếm...">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- phân trang đầu-->
+                            <nav aria-label="Page navigation example" class="navigation mt-3 mb-3 d-flex justify-content-center">
+                                <ul class="pagination">
+                                    <li class="page-item cursor-pointer" th:if="${authorityPage.currentPage > 1}">
+                                        <a class="page-link" href="#" aria-label="Previous" th:onclick="'javascript:loadPage(1, event)'">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li th:each="page : ${#numbers.sequence(1, authorityPage.totalPages)}" class="page-item cursor-pointer">
+                                        <a class="page-link text-black" th:classappend="${page == authorityPage.currentPage} ? active" th:onclick="'javascript:loadPage(' + ${page} + ', event)'" th:text="${page}"></a>
+                                    </li>
+                                    <li class="page-item cursor-pointer" th:if="${authorityPage.currentPage < authorityPage.totalPages}">
+                                        <a class="page-link" href="" th:onclick="'javascript:loadPage(' + ${authorityPage.totalPages} + ', event)'" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- end -->
+                            <div class="card-body px-0 pt-0 pb-2">
+                                <div class="table-responsive p-0">
+                                    <table class="table align-items-center mb-0" id="customers">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tài Khoản</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Địa chỉ
+                                                </th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email
+                                                </th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quyền
+                                                </th>
+                                                <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Thao Tác
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="dataTable">
+                                            <tr th:each="item : ${authorityPage.ListAuthority}">
+                                                <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div>
+                                                            <img th:src="${item.account.Avata}" class="avatar avatar-sm me-3" alt="user1" style="object-fit: cover;">
+                                                        </div>
+                                                        <div class="d-flex flex-column justify-content-center">
+                                                            <h6 class="mb-0 text-sm" th:text="${item.account.Fullname}" style="max-width: 120px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></h6>
+                                                            <p class="text-xs text-secondary mb-0" th:text="${item.account.Phone}"></p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <span class="badge badge-sm text-dark text-xs" th:text="${item.account.Address}"></span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-secondary text-xs font-weight-bold" th:text="${item.account.UserName}"></span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-secondary text-xs font-weight-bold" th:text="${item.role.name}"></span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <a style="cursor: pointer;" th:attr="data-username=${item.account.UserName}" onclick="editAccount(this)" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          Edit
+                        </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </footer>
-        </div>
+                <!-- end -->
+                <footer class="footer p-4">
+                    <div class="container-fluid">
+                        <div class="row align-items-center justify-content-lg-between">
+                            <div class="col-lg-6 mb-lg-0 mb-4">
+                                <div class="copyright text-center text-sm text-muted text-lg-start">
+                                    ©
+                                    <script>
+                                        document.write(new Date().getFullYear())
+                                    </script>, Được Thiết Kế Bởi FastFoodTeam
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
     </main>
     <div class="fixed-plugin">
         <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
@@ -402,9 +402,12 @@
             document.getElementById('email').value = '';
             document.getElementById('password').value = '';
             document.getElementById('phone').value = '';
-            document.getElementById('pictureAvatar').value = '';
+            document.getElementById('pictureAvatar').src = '';
+            document.getElementById('address').value = '';
+            document.getElementById('preview-image').src = '';
             document.getElementById('admin').checked = false;
             document.getElementById('user').checked = false;
+
             //mở nút thêm 
             document.getElementById('btnAdd').disabled = false;
             document.getElementById('showPass').style.display = 'block';
@@ -678,12 +681,15 @@
             document.getElementById('errorPass').innerText = ''
             document.getElementById('errorEmail').innerText = ''
             document.getElementById('errorPhone').innerText = ''
+            document.getElementById('preview-image').innerText = ''
+            document.getElementById('address').innerText = ''
         }
 
         var fullname = document.getElementById('fullname');
         var email = document.getElementById('email');
         var password = document.getElementById('password');
         var phone = document.getElementById('phone');
+        var anh = document.getElementById('preview-image');
         var diachi = document.getElementById('address');
         fullname.addEventListener('click', function() {
             clear();
@@ -697,6 +703,10 @@
 
         });
         phone.addEventListener('click', function() {
+            clear();
+
+        });
+        anh.addEventListener('click', function() {
             clear();
 
         });

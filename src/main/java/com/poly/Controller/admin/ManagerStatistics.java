@@ -1,6 +1,7 @@
 package com.poly.Controller.admin;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,16 +42,14 @@ public class ManagerStatistics {
 
     @GetMapping("/managerStatistics")
     public String ViewStatistics(Model model) {
-        
-       model.addAttribute("accountt", accountRepon.findAll());
+
+        model.addAttribute("accountt", accountRepon.findAll());
 
         // Số thể loại
         model.addAttribute("a", categoryService.totalCategory());
 
         // Số người dùng
-//        model.addAttribute("totalAccount", accountService.totalAccount());
-
-    
+        model.addAttribute("totalAccount", accountService.totalAccount());
 
         // Số sản phẩm
         model.addAttribute("totalProducts", productService.totalProducts());
@@ -64,9 +63,12 @@ public class ManagerStatistics {
         // Thể loại sản phẩm
         model.addAttribute("categoryList", productService.countCategoryName());
 
-        // Top sản phẩm được bán nhiều nhất
-        model.addAttribute("topProducts", orderItemService.reportTopProducts());
+        List<Object> list = orderItemService.reportTopProducts();
+       
+                // Top sản phẩm được bán nhiều nhất
+        model.addAttribute("topProducts", list);
 
         return "admin/dashboard";
+
     }
 }

@@ -47,11 +47,11 @@
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group">
+                        <!-- <div class="input-group">
                             <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i
                 ></span>
                             <input type="text" class="form-control" placeholder="Tìm Kiếm..." />
-                        </div>
+                        </div> -->
                     </div>
                     <ul class="navbar-nav justify-content-end">
                         <li class="nav-item d-flex align-items-center">
@@ -200,7 +200,7 @@
                           class="form-control"
                           type="text"
                           id="nameSize"
-                          placeholder=""
+                          placeholder="Mời Bạn Chọn Size"
                         />
                       </div>
                       <small class="text-danger ms-2" id="errorSize"></small>
@@ -216,7 +216,7 @@
                           class="form-control"
                           type="text"
                           id="price"
-                          placeholder=""
+                          placeholder="Mời Bạn Chọn Giá Tiền"
                         />
                       </div>
                       <small class="text-danger ms-2" id="errorPrice"></small>
@@ -609,7 +609,7 @@
         }else if(nameSize==''){
           document.getElementById('errorSize').innerText = 'Không bỏ trống size.';
         }else {
-          var result = window.confirm("Bạn có chắc chắn muốn thêm không?");
+           var result = window.confirm("Bạn có chắc chắn muốn thêm không?");
           if (result) {
             $.ajax({
               url: "/admin/addSize/" + nameProduct + "/" + nameSize + "/" + price,
