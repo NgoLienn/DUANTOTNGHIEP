@@ -29,7 +29,7 @@ public interface ReviewReponsitory extends JpaRepository<Reviews, Integer> {
     @Query("SELECT u FROM Reviews u WHERE u.Products.productId=?1")
     List<Reviews> finByProductRating(int productId);
     
-    @Query("SELECT r FROM Reviews r WHERE r.Comment = ?1")
+    @Query("SELECT r FROM Reviews r WHERE r.Comment like %?1%")
 	List<Reviews> searchReview(String query);
 
 }

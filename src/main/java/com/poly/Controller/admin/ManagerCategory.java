@@ -30,163 +30,162 @@ import com.poly.Entity.Categories;
 import com.poly.Entity.Image_product;
 import com.poly.Entity.Products;
 import com.poly.Reponsitory.CategoryRepository;
+import com.poly.Reponsitory.ProductRepository;
 import com.poly.Service.CategoryService;
 
 @Controller
 @RequestMapping("/admin")
 public class ManagerCategory {
 
-    @Autowired
-    CategoryRepository categoryRepo;
+	@Autowired
+	CategoryRepository categoryRepo;
 
-    @Autowired
-    CategoryService categoryService;
+	@Autowired
+	ProductRepository productRepository;
 
-    @Autowired
-    Cloudinary cloudinary;
+	@Autowired
+	CategoryService categoryService;
 
-    @GetMapping("/managerCategory")
-    public String ViewCategory(Model model) {
+	@Autowired
+	Cloudinary cloudinary;
 
-        List<Categories> categories = categoryRepo.findAll();
+	@GetMapping("/managerCategory")
+	public String ViewCategory(Model model) {
 
-        model.addAttribute("newCategories", new Categories());
-        model.addAttribute("categories", categories);
+		List<Categories> categories = categoryRepo.findAll();
 
-        return "admin/category";
-    }
+		model.addAttribute("newCategories", new Categories());
+		model.addAttribute("categories", categories);
 
-    @GetMapping("/managerCategory/edit/{categoryId}")
-    public String edit(Model model, @PathVariable("categoryId") Long categoryId) {
+		return "admin/category";
+	}
 
-        model.addAttribute("categoryIdd", categoryId);
+	@GetMapping("/managerCategory/edit/{categoryId}")
+	public String edit(Model model, @PathVariable("categoryId") Long categoryId) {
 
-        List<Categories> categories = categoryRepo.findAll();
-        model.addAttribute("categories", categories);
+		model.addAttribute("categoryIdd", categoryId);
 
-        Categories editCategories = categoryService.getCategoryId(categoryId);
-        model.addAttribute("newCategories", editCategories);
+		List<Categories> categories = categoryRepo.findAll();
+		model.addAttribute("categories", categories);
 
-        return "admin/category";
-    }
+		Categories editCategories = categoryService.getCategoryId(categoryId);
+		model.addAttribute("newCategories", editCategories);
 
-    @PostMapping("/managerCategory/update/{id}")
-    public String updateCategory(Model model, @ModelAttribute @Valid Categories updateCategories,
-            HttpServletRequest req,
-            BindingResult bindingResult,
-            @PathVariable("id") Long id,
-            @RequestParam("filess") String filess,
-            @RequestParam("uploadimage") MultipartFile file) {
+		return "admin/category";
+	}
 
-        if (bindingResult.hasErrors()) {
-            return "admin/category";
-        }
+	@PostMapping("/managerCategory/update/{id}")
+	public String updateCategory(Model model, @ModelAttribute @Valid Categories category,
+			HttpServletRequest req, BindingResult bindingResult, @PathVariable("id") Long id,
+			@RequestParam("filess") String filess, @RequestParam("uploadimage") MultipartFile file) {
 
-        // tìm category ID
-        Optional<Categories> optionalCategory = categoryRepo.findById(id);
-        Categories categories = optionalCategory.get();
+		Categories existingCaterory = categoryRepo.findById(category.getCategoryId()).orElse(null);
 
-        if (optionalCategory.isPresent()) {
+        Map params = ObjectUtils.asMap(
+                "folder", "Images_FastFoodStore",
+                "resource_type", "image");
 
-            String nameCates = req.getParameter("nameCate");
-            categories.setName(nameCates);
-
-            // Tiến hành upload file và cập nhật URL nếu có file được chọn,
-            // dưa ảnh lên cloudinary và lấy về trang
+        if (existingCaterory != null) {
+        	existingCaterory.setName(category.getName());            
+            Boolean newStatus = category.getStatus();
+            if (newStatus != null && !newStatus.equals(existingCaterory.getStatus())) {
+            	existingCaterory.setStatus(newStatus); // Cập nhật trạng thái mới cho sản phẩm
+            }                    
+            System.out.println(filess);
             String temp = null;
             if (file != null && !file.isEmpty()) {
                 try {
-                    Map<String, Object> params = ObjectUtils.asMap(
-                            "folder", "Images_FastFoodStore",
-                            "resource_type", "image");
                     Map uploadResult = cloudinary.uploader().upload(file.getBytes(), params);
                     String url = uploadResult.get("url").toString();
+
                     temp = url;
                 } catch (Exception e) {
-                    e.printStackTrace();
                 }
             } else {
                 temp = filess;
             }
-            // end
-            categories.setImage_url(temp);
-
-            // Lưu thông tin cập nhật vào cơ sở dữ liệu
-            categoryRepo.save(categories);
-        } else {
-            // Xử lý trường hợp không tìm thấy ID tương ứng
-            // Hoặc thực hiện các hành động khác nếu cần
+            existingCaterory.setImage_url(temp);
+            categoryRepo.save(existingCaterory);
         }
+	
+		return "redirect:/admin/managerCategory";
+	}
 
-        return "redirect:/admin/managerCategory";
-    }
+	@PostMapping("/managerCategory/add")
+	public String addProduct(@ModelAttribute("newCategories") Categories categories, BindingResult bindingResult,
+			@RequestParam("uploadimage") MultipartFile file, HttpServletRequest req, Model model) {
 
-    @PostMapping("/managerCategory/add")
-    public String addProduct(@ModelAttribute("newCategories") Categories categories,
-            BindingResult bindingResult,
-            @RequestParam("uploadimage") MultipartFile file, HttpServletRequest req, Model model) {
+		 Map<String, Object> params = ObjectUtils.asMap(
+	                "folder", "Images_FastFoodStore",
+	                "resource_type", "image");
 
-        Map<String, Object> params = ObjectUtils.asMap(
-                "folder", "Images_FastFoodStore",
-                "resource_type", "image");
+	        try {
+	            Categories existingCategory = categoryRepo.findByCategoryName(categories.getName());
+	            if (existingCategory != null) {
+	                // Tên danh mục đã tồn tại trong cơ sở dữ liệu
+	                bindingResult.rejectValue("name", "error.product", "Tên danh mục đã tồn tại");
+	                model.addAttribute("nameError", "Tên danh mục đã tồn tại");
 
-        try {
-            // Your existing code to save the original file
-            String baseDir = System.getProperty("user.dir");
-            String folderPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator
-                    + "resources"
-                    + File.separator + "static" + File.separator + "assets" + File.separator + "images" + File.separator
-                    + "img_product";
-            File directory = new File(folderPath);
+	            } else {
+	                // Your existing code to save the original file
+	                String baseDir = System.getProperty("user.dir");
+	                String folderPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator
+	                        + "resources"
+	                        + File.separator + "static" + File.separator + "assets" + File.separator + "images"
+	                        + File.separator
+	                        + "img_product";
+	                File directory = new File(folderPath);
 
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
+	                if (!directory.exists()) {
+	                    directory.mkdirs();
+	                }
 
-            String fileName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
-            File savedFile = new File(directory, fileName);
+	                String fileName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
+	                File savedFile = new File(directory, fileName);
 
-            file.transferTo(savedFile);
+	                file.transferTo(savedFile);
 
-            // API to remove background
-            Response response = Request.Post("https://api.remove.bg/v1.0/removebg")
-                    .addHeader("X-Api-Key", "GN2ULwMosewpuewn4vJe4GPg")
-                    .body(
-                            MultipartEntityBuilder.create()
-                                    .addBinaryBody("image_file", savedFile)
-                                    .addTextBody("size", "auto")
-                                    .build())
-                    .execute();
+	                // API to remove background
+	                Response response = Request.Post("https://api.remove.bg/v1.0/removebg")
+	                        .addHeader("X-Api-Key", "GN2ULwMosewpuewn4vJe4GPg")
+	                        .body(
+	                                MultipartEntityBuilder.create()
+	                                        .addBinaryBody("image_file", savedFile)
+	                                        .addTextBody("size", "auto")
+	                                        .build())
+	                        .execute();
 
-            // Save the modified image
-            String modifiedFileName = System.currentTimeMillis() + "-no-bg-" + file.getOriginalFilename();
-            File modifiedImageFile = new File(directory, modifiedFileName);
-            response.saveContent(modifiedImageFile);
+	                // Save the modified image
+	                String modifiedFileName = System.currentTimeMillis() + "-no-bg-" + file.getOriginalFilename();
+	                File modifiedImageFile = new File(directory, modifiedFileName);
+	                response.saveContent(modifiedImageFile);
 
-            // Cloudinary upload using the modified image
-            Map<String, Object> uploadResult = cloudinary.uploader().upload(modifiedImageFile, params);
-            String url = uploadResult.get("url").toString();
+	                // Cloudinary upload using the modified image
+	                Map<String, Object> uploadResult = cloudinary.uploader().upload(modifiedImageFile, params);
+	                String url = uploadResult.get("url").toString();
+	                // Save to the database or perform further actions    
+	               
+	                categories.setImage_url(url);
+	                if (categories.getStatus() != null) {
+	                    if (categories.getStatus()) {
+	                        // Nếu trạng thái là true, hiển thị sản phẩm
+	                    	categories.setStatus(true);
+	                    } else {
+	                        // Nếu trạng thái là false, ẩn sản phẩm
+	                    	categories.setStatus(false);
+	                    }
+	                }
+	                categoryRepo.save(categories);
+	                // Delete the original image
+	                savedFile.delete();
 
-            // Save to the database or perform further actions
-            String nameCates = req.getParameter("nameCate");
-            categories.setName(nameCates);
-            categories.setImage_url(url);
-            categoryRepo.save(categories);
+	                return "redirect:/admin/managerCategory";
+	            }
 
-            // Delete the original image
-            savedFile.delete();
-
-        } catch (Exception e) {
-            // Handle exceptions
-            e.printStackTrace();
-        }
-
-        return "redirect:/admin/managerCategory";
-    }
-
-    @PostMapping("/managerCategory/delete/{categoryId}")
-    public String deleteProduct(@PathVariable("categoryId") Long categoryId) {
-        categoryService.delete(categoryId);
-        return "redirect:/admin/managerCategory";
-    }
+	        } catch (Exception e) {
+	            // Handle exceptions
+	            e.printStackTrace();
+	        }
+		return "redirect:/admin/managerCategory";
+	}
 }

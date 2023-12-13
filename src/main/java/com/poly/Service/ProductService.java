@@ -89,5 +89,9 @@ public class ProductService {
     public Products findByNameProduct(String name) {
         return productrepo.findByProductName(name);
     }
-
+    public boolean existsByCategoryId(Long categoryId) {
+        
+        return productrepo.existsByCategoryId(categoryId);
+    }
+    
 }

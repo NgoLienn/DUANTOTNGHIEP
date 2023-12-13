@@ -5,11 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.poly.Entity.Categories;
+import com.poly.Entity.Products;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Categories, Long> {
-    // @Query("SELECT c FROM Categories c WHERE c.id = :categoryId")
-    // Optional<Categories> getCategoryById(Categories categoryId);
     @Query(value = "select count(category_id) from Categories", nativeQuery = true)
     public int totalCategory();
+    
+    @Query("Select u from Categories u where u.Name = ?1")
+    Categories findByCategoryName(String name);
 }

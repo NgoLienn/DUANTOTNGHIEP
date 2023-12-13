@@ -28,4 +28,7 @@ public interface ProductRepository extends JpaRepository<Products, Integer> {
 
     @Query("Select u from Products u where u.Name = ?1")
     Products findByProductNamee(String name);
+    
+    boolean existsByCategoryId(Long categoryId);
+   
 }
