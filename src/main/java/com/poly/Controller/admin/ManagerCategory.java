@@ -1,6 +1,10 @@
 package com.poly.Controller.admin;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -51,8 +55,10 @@ public class ManagerCategory {
 
 	@GetMapping("/managerCategory")
 	public String ViewCategory(Model model) {
-
-		List<Categories> categories = categoryRepo.findAll();
+		
+		
+		List<Categories> categories = categoryRepo.findAll(); 
+		
 
 		model.addAttribute("newCategories", new Categories());
 		model.addAttribute("categories", categories);
@@ -60,6 +66,59 @@ public class ManagerCategory {
 		return "admin/category";
 	}
 
+	
+	@PostMapping("/managerCategory/add")
+	public String addProduct(@ModelAttribute("newCategories") Categories category,
+	                         BindingResult bindingResult,
+	                         @RequestParam("uploadimage") MultipartFile file, Model model) {
+
+
+
+	    try {   	    	
+	    	String baseDir = System.getProperty("user.dir");
+	    	String folderPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator
+	                 + "resources"
+	                 + File.separator + "static" + File.separator + "assets" + File.separator + "images"
+	                 + File.separator
+	                 + "img_product";
+	        String imageUrl = saveImage(file, folderPath);
+
+	        // Cloudinary upload using the modified image
+	        Map<String, Object> params = ObjectUtils.asMap(
+	                "folder", "Images_FastFoodStore",
+	                "resource_type", "image");
+	        Map<String, Object> uploadResult = cloudinary.uploader().upload(imageUrl, params);
+	        String url = uploadResult.get("url").toString();
+
+	        // Save to the database or perform further actions
+	        category.setImage_url(url);
+	        
+	        categoryRepo.save(category);
+
+	        return "redirect:/admin/managerCategory";
+        
+	    } catch (Exception e) {
+	        // Xử lý ngoại lệ nếu có
+	        model.addAttribute("error", "Lỗi khi thêm danh mục: " + e.getMessage());
+	        return "errorPage";
+	    }
+	}
+	 public static String saveImage(MultipartFile file, String folderPath) throws IOException {       
+         File directory = new File(folderPath);
+
+         if (!directory.exists()) {
+             directory.mkdirs();
+         }
+
+	        String fileName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
+	        File savedFile = new File(folderPath, fileName);
+	        file.transferTo(savedFile);
+
+	        // Trả về đường dẫn hoặc URL của hình ảnh
+	        return folderPath + "/" + fileName;
+	    }
+		
+	
 	@GetMapping("/managerCategory/edit/{categoryId}")
 	public String edit(Model model, @PathVariable("categoryId") Long categoryId) {
 
@@ -74,6 +133,9 @@ public class ManagerCategory {
 		return "admin/category";
 	}
 
+	
+	
+	
 	@PostMapping("/managerCategory/update/{id}")
 	public String updateCategory(Model model, @ModelAttribute @Valid Categories category,
 			HttpServletRequest req, BindingResult bindingResult, @PathVariable("id") Long id,
@@ -111,81 +173,4 @@ public class ManagerCategory {
 		return "redirect:/admin/managerCategory";
 	}
 
-	@PostMapping("/managerCategory/add")
-	public String addProduct(@ModelAttribute("newCategories") Categories categories, BindingResult bindingResult,
-			@RequestParam("uploadimage") MultipartFile file, HttpServletRequest req, Model model) {
-
-		 Map<String, Object> params = ObjectUtils.asMap(
-	                "folder", "Images_FastFoodStore",
-	                "resource_type", "image");
-
-	        try {
-	            Categories existingCategory = categoryRepo.findByCategoryName(categories.getName());
-	            if (existingCategory != null) {
-	                // Tên danh mục đã tồn tại trong cơ sở dữ liệu
-	                bindingResult.rejectValue("name", "error.product", "Tên danh mục đã tồn tại");
-	                model.addAttribute("nameError", "Tên danh mục đã tồn tại");
-
-	            } else {
-	                // Your existing code to save the original file
-	                String baseDir = System.getProperty("user.dir");
-	                String folderPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator
-	                        + "resources"
-	                        + File.separator + "static" + File.separator + "assets" + File.separator + "images"
-	                        + File.separator
-	                        + "img_product";
-	                File directory = new File(folderPath);
-
-	                if (!directory.exists()) {
-	                    directory.mkdirs();
-	                }
-
-	                String fileName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
-	                File savedFile = new File(directory, fileName);
-
-	                file.transferTo(savedFile);
-
-	                // API to remove background
-	                Response response = Request.Post("https://api.remove.bg/v1.0/removebg")
-	                        .addHeader("X-Api-Key", "GN2ULwMosewpuewn4vJe4GPg")
-	                        .body(
-	                                MultipartEntityBuilder.create()
-	                                        .addBinaryBody("image_file", savedFile)
-	                                        .addTextBody("size", "auto")
-	                                        .build())
-	                        .execute();
-
-	                // Save the modified image
-	                String modifiedFileName = System.currentTimeMillis() + "-no-bg-" + file.getOriginalFilename();
-	                File modifiedImageFile = new File(directory, modifiedFileName);
-	                response.saveContent(modifiedImageFile);
-
-	                // Cloudinary upload using the modified image
-	                Map<String, Object> uploadResult = cloudinary.uploader().upload(modifiedImageFile, params);
-	                String url = uploadResult.get("url").toString();
-	                // Save to the database or perform further actions    
-	               
-	                categories.setImage_url(url);
-	                if (categories.getStatus() != null) {
-	                    if (categories.getStatus()) {
-	                        // Nếu trạng thái là true, hiển thị sản phẩm
-	                    	categories.setStatus(true);
-	                    } else {
-	                        // Nếu trạng thái là false, ẩn sản phẩm
-	                    	categories.setStatus(false);
-	                    }
-	                }
-	                categoryRepo.save(categories);
-	                // Delete the original image
-	                savedFile.delete();
-
-	                return "redirect:/admin/managerCategory";
-	            }
-
-	        } catch (Exception e) {
-	            // Handle exceptions
-	            e.printStackTrace();
-	        }
-		return "redirect:/admin/managerCategory";
-	}
 }

@@ -1,5 +1,7 @@
 package com.poly.Reponsitory;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,4 +16,11 @@ public interface CategoryRepository extends JpaRepository<Categories, Long> {
     
     @Query("Select u from Categories u where u.Name = ?1")
     Categories findByCategoryName(String name);
+    
+ 
+   
+
+	
+
+	
 }

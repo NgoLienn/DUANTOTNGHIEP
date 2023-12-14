@@ -19,8 +19,8 @@ public class CategoryService {
 	 
 	    public List<Categories> getAllCategories() {
 	        return categoryRepo.findAll();
-	    }
-
+	    }	   	   
+	    
 	    // load thể loại theo id
 	    public Categories getCategoryId(Long categoryId) {
 	        return categoryRepo.findById(categoryId).get();
@@ -40,5 +40,6 @@ public class CategoryService {
 	        // Kiểm tra xem có sản phẩm nào sử dụng danh mục không
 	        return productService.existsByCategoryId(categoryId);
 	    }
+	    
 		
 }

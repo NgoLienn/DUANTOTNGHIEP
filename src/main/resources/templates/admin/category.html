@@ -142,9 +142,11 @@
 							<div class="card-body">
 								<input type="hidden" th:field="*{categoryId}" />
 								<p class="text-uppercase text-sm">Thông Tin Danh Mục</p>
+
 								<div th:if="${#fields.hasErrors('name')}" class="error-message">
 									<p th:text="${nameError}"></p>
 								</div>
+
 								<div class="row mt-2">
 									<div class="col-md-6">
 										<div class="form-group">
@@ -201,14 +203,66 @@
 								<div class="d-flex align-items-center justify-content-center"
 									style="display: flex; flex-wrap: wrap;">
 									<button class="btn btn-primary btn-sm ms-4 text-white"
-										type="submit" formaction="/admin/managerCategory/add"
+										type="button" data-bs-toggle="modal"
+										data-bs-target="#confirmAddModal"
 										th:disabled="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
 										Thêm</button>
+
+									<!-- Modal Xác nhận Thêm -->
+									<div class="modal fade" id="confirmAddModal" tabindex="-1"
+										style="margin-top: 250px"
+										aria-labelledby="confirmAddModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="confirmAddModalLabel">Xác
+														nhận thêm mới</h5>
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">Bạn có chắc chắn muốn thêm
+													danh mục không?</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-bs-dismiss="modal">Hủy</button>
+													<button type="submit" class="btn btn-primary"
+														formaction="/admin/managerCategory/add">Thêm danh
+														mục</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Nút Cập Nhật -->
 									<button class="btn btn-info btn-sm ms-4 text-white"
-										th:formaction="@{|/admin/managerCategory/update/${categoryIdd}|}"
-										type="submit"
+										type="button" data-bs-toggle="modal"
+										data-bs-target="#confirmUpdateModal"
 										th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
-										Sửa</button>
+										Cập Nhật</button>
+
+									<!-- Modal Xác nhận Cập Nhật -->
+									<div class="modal fade" id="confirmUpdateModal" tabindex="-1" style="margin-top: 250px"
+										aria-labelledby="confirmUpdateModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="confirmUpdateModalLabel">Xác
+														nhận cập nhật</h5>
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">Bạn có chắc chắn muốn cập nhật danh mục
+													không?</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-bs-dismiss="modal">Hủy</button>
+													<button type="submit" class="btn btn-info"
+														th:formaction="@{|/admin/managerCategory/update/${categoryIdd}|}"
+														th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
+														Cập nhật</button>
+												</div>
+											</div>
+										</div>
+									</div>
 
 									<a th:href="@{/admin/managerCategory}"
 										th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory')}"
@@ -275,7 +329,8 @@
 
 											<td class="align-middle text-sm"><span
 												class="badge badge-sm text-dark text-xs"
-												th:text="${category.Status}"></span></td>
+												th:if="${category.Status}"> Hiển Thị </span> <span
+												th:unless="${category.Status}"> Danh mục ẩn </span></td>
 
 											<td class="align-middle text-center"><a
 												th:href="@{/admin/managerCategory/edit/{categoryId}(categoryId=${category.categoryId})}"
