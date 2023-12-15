@@ -79,7 +79,8 @@ public class ManagerCategory {
 		        return "admin/category";
 		    }
 
-	    try {   
+	    try {  
+	    	// Bắt thêm ảnh
 	    	if (file == null || file.isEmpty()) {
 	    	    model.addAttribute("error_image", "Vui lòng chọn ảnh.");
 	    	    model.addAttribute("categories", categoryService.getAllCategories());
@@ -112,6 +113,7 @@ public class ManagerCategory {
 	    	 return "admin/category";
 	    }
 	}
+	// Lưu ảnh
 	 public static String saveImage(MultipartFile file, String folderPath) throws IOException {       
          File directory = new File(folderPath);
 
