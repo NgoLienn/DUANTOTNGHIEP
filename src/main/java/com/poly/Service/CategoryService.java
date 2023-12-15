@@ -19,7 +19,10 @@ public class CategoryService {
 	 
 	    public List<Categories> getAllCategories() {
 	        return categoryRepo.findAll();
-	    }	   	   
+	    }	  
+		public int totalCategory() {
+			return categoryRepo.totalCategory();
+		} 	   
 	    
 	    // load thể loại theo id
 	    public Categories getCategoryId(Long categoryId) {

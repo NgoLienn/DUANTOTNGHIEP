@@ -200,7 +200,7 @@
                           class="form-control"
                           type="text"
                           id="nameSize"
-                          placeholder="Mời Bạn Chọn Size"
+                          placeholder="Vui Lòng Chọn Size"
                         />
                       </div>
                       <small class="text-danger ms-2" id="errorSize"></small>
@@ -216,7 +216,7 @@
                           class="form-control"
                           type="text"
                           id="price"
-                          placeholder="Mời Bạn Chọn Giá Tiền"
+                          placeholder="Vui Lòng Chọn Giá Tiền"
                         />
                       </div>
                       <small class="text-danger ms-2" id="errorPrice"></small>
@@ -353,7 +353,9 @@
                         </th>
                         <th
                           class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                        ></th>
+                        >
+                          Giá Tiền
+                      </th>
                         <th
                           class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7"
                         >
@@ -397,7 +399,7 @@
                         <td class="align-middle text-center">
                           <span
                             class="text-secondary text-xs font-weight-bold"
-                            th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')} + ' VND'"
+                            th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')} + ' đ'"
                           ></span>
                         </td>
                         <td class="align-middle text-center">
@@ -408,7 +410,7 @@
                             data-toggle="tooltip"
                             data-original-title="Edit user"
                           >
-                            Edit
+                            Chỉnh Sửa
                           </a>
                         </td>
                       </tr>

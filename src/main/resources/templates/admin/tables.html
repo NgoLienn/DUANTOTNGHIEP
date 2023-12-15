@@ -147,35 +147,35 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Họ Và Tên</label>
-                                        <input id="fullname" class="form-control" type="text" placeholder="Name">
+                                        <input id="fullname" class="form-control" type="text" placeholder="Vui Lòng Nhập Họ Và Tên">
                                         <small class="text-danger ms-2" id="errorFullname"></small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Email</label>
-                                        <input id="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email" placeholder="Email Address">
+                                        <input id="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email" placeholder="Vui Lòng Nhập Email">
                                         <small class="text-danger ms-2" id="errorEmail"></small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Số điện thoại</label>
-                                        <input id="phone" class="form-control" type="text" pattern="[0-9]{10}" title="Vui lòng nhập đúng định dạng số điện thoại" placeholder="Phone">
+                                        <input id="phone" class="form-control" type="text" pattern="[0-9]{10}" title="Vui lòng nhập đúng định dạng số điện thoại" placeholder="Vui Lòng Nhập Số Điện Thoại">
                                         <small class="text-danger ms-2" id="errorPhone"></small>
                                     </div>
                                 </div>
                                 <div class="col-md-6" id="showPass">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Mật Khẩu</label>
-                                        <input id="password" class="form-control" type="password" placeholder="Password">
+                                        <input id="password" class="form-control" type="password" placeholder="Vui Lòng Nhập Mật Khẩu">
                                         <small class="text-danger ms-2" id="errorPass"></small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Địa chỉ</label>
-                                        <input id="address" class="form-control" type="text" placeholder="Địa chỉ">
+                                        <input id="address" class="form-control" type="text" placeholder="Vui Lòng Nhập Địa Chỉ">
                                         <small class="text-danger ms-2" id="errorAddress"></small>
                                     </div>
                                 </div>
@@ -214,7 +214,7 @@
                                     <button id="btnAdd" class="btn btn-primary btn-sm ms-4" th:onclick="addAccount()">Thêm</button>
                                     <button id="btnUpdate" class="btn btn-info btn-sm ms-4" disabled th:onclick="updateAccount()">Sửa</button>
                                     <!-- <button id="btnDelete" class="btn btn-danger btn-sm ms-4" disabled th:onclick="deleteAccount()">Xóa</button> -->
-                                    <button class="btn btn-dark btn-sm ms-4" th:onclick="'fech()'">Làm Mới</button>
+                                    <button class="btn btn-dark btn-sm ms-4" th:onclick="'fech()'">Hủy Thao Tác</button>
                                 </div>
                             </div>
                         </div>
@@ -294,7 +294,7 @@
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <a style="cursor: pointer;" th:attr="data-username=${item.account.UserName}" onclick="editAccount(this)" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
+                          Chỉnh Sửa
                         </a>
                                                 </td>
                                             </tr>
