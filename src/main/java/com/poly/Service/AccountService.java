@@ -107,9 +107,9 @@ public class AccountService {
         return account;
     }
 
-//    public int totalAccount() {
-////        return accountRepository.countAccount();
-//    }
+   public int totalAccount() {
+        return accountRepository.countAccount();
+   }
 
     public void deleteAccount(String username) {
         Account account = accountRepository.findByUsername(username);
