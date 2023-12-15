@@ -36,7 +36,7 @@ public class ManagerAccount {
     @Autowired
     Cloudinary cloudinary;
 
-    private final int pageSize = 5;
+    private final int pageSize = 6;
 
     @GetMapping("/managerAccount/{key}")
     public String ViewAccount(Model model, @RequestParam(defaultValue = "1") int page, @PathVariable String key) {

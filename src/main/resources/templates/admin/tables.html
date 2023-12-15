@@ -4,25 +4,25 @@
 <head th:replace="~{zlayout/fragmentsAdmin :: html_headAdmin}"></head>
 
 <body class="g-sidenav-show bg-gray-100">
-
     <!-- loader khi vào -->
-    <div id="loader-page" style=" 
-   position: fixed;
-   top: 0;
-   left: 0;
-   z-index: 99999;
-   width: 100%;
-   height: 100%;
-   background-color: #fff;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   background-size: cover;
-   background-repeat: no-repeat;
-   background-position: center;">
+    <div id="loader-page" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      ">
         <span>
-      <img src="/assets/images/loading.gif" alt="img/loading">
-    </span>
+        <img src="/assets/images/loading.gif" alt="img/loading" />
+      </span>
     </div>
     <!-- end -->
 
@@ -30,25 +30,32 @@
 
     <aside class="" th:replace="~{zlayout/navbarAdmin :: menu-admin}"></aside>
 
-    <main class="main-content position-relative border-radius-lg ">
+    <main class="main-content position-relative border-radius-lg">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Trang</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Quản Lý Tài Khoản</li>
+                        <li class="breadcrumb-item text-sm">
+                            <a class="opacity-5 text-white" href="javascript:;">Trang</a>
+                        </li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">
+                            Quản Lý Tài Khoản
+                        </li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Quản Lý Tài khoản</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">
+                        Quản Lý Tài khoản
+                    </h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <!-- <div class="input-group">
-                            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" placeholder="Tìm Kiếm...">
-                        </div> -->
+                        <div class="input-group">
+                            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i
+                ></span>
+                            <input type="text" class="form-control" placeholder="Tìm Kiếm..." />
+                        </div>
                     </div>
-                    <ul class="navbar-nav  justify-content-end">
+                    <ul class="navbar-nav justify-content-end">
                         <li class="nav-item d-flex align-items-center">
                             <a href="/page/admin/profile.html" class="nav-link text-white font-weight-bold px-0">
                                 <i class="fa fa-user me-sm-1"></i>
@@ -73,12 +80,12 @@
                             <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-bell cursor-pointer"></i>
                             </a>
-                            <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                            <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                                 <li class="mb-2">
                                     <a class="dropdown-item border-radius-md" href="javascript:;">
                                         <div class="d-flex py-1">
                                             <div class="my-auto">
-                                                <img src="/assets/images/food-menu-1.png" class="avatar avatar-sm  me-3 ">
+                                                <img src="/assets/images/food-menu-1.png" class="avatar avatar-sm me-3" />
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="text-sm font-weight-normal mb-1">
@@ -95,7 +102,7 @@
                                     <a class="dropdown-item border-radius-md" href="javascript:;">
                                         <div class="d-flex py-1">
                                             <div class="my-auto">
-                                                <img src="/assets/images/food-menu-2.png" class="avatar avatar-sm me-3 ">
+                                                <img src="/assets/images/food-menu-2.png" class="avatar avatar-sm me-3" />
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="text-sm font-weight-normal mb-1">
@@ -112,7 +119,7 @@
                                     <a class="dropdown-item border-radius-md" href="javascript:;">
                                         <div class="d-flex py-1">
                                             <div class="my-auto">
-                                                <img src="/assets/images/food-menu-4.png" class="avatar avatar-sm me-3 ">
+                                                <img src="/assets/images/food-menu-4.png" class="avatar avatar-sm me-3" />
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="text-sm font-weight-normal mb-1">
@@ -146,200 +153,290 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Họ Và Tên</label>
-                                        <input id="fullname" class="form-control" type="text" placeholder="Vui Lòng Nhập Họ Và Tên">
-                                        <small class="text-danger ms-2" id="errorFullname"></small>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Email</label>
-                                        <input id="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email" placeholder="Vui Lòng Nhập Email">
-                                        <small class="text-danger ms-2" id="errorEmail"></small>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Số điện thoại</label>
-                                        <input id="phone" class="form-control" type="text" pattern="[0-9]{10}" title="Vui lòng nhập đúng định dạng số điện thoại" placeholder="Vui Lòng Nhập Số Điện Thoại">
-                                        <small class="text-danger ms-2" id="errorPhone"></small>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" id="showPass">
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Mật Khẩu</label>
-                                        <input id="password" class="form-control" type="password" placeholder="Vui Lòng Nhập Mật Khẩu">
-                                        <small class="text-danger ms-2" id="errorPass"></small>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Địa chỉ</label>
-                                        <input id="address" class="form-control" type="text" placeholder="Vui Lòng Nhập Địa Chỉ">
-                                        <small class="text-danger ms-2" id="errorAddress"></small>
+                                        <label for="example-text-input" class="form-control-label">Họ Và Tên</label
+                      >
+                      <input
+                        id="fullname"
+                        class="form-control"
+                        type="text"
+                        placeholder="Vui Lòng Nhập Họ Và Tên"
+                      />
+                      <small
+                        class="text-danger ms-2"
+                        id="errorFullname"
+                      ></small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label"
+                        >Email</label
+                      >
+                      <input
+                        id="email"
+                        class="form-control"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        type="email"
+                        placeholder="Vui Lòng Nhập Email"
+                      />
+                      <small class="text-danger ms-2" id="errorEmail"></small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label"
+                        >Số điện thoại</label
+                      >
+                      <input
+                        id="phone"
+                        class="form-control"
+                        type="text"
+                        pattern="[0-9]{10}"
+                        title="Vui lòng nhập đúng định dạng số điện thoại"
+                        placeholder="Vui Lòng Nhập Số Điện Thoại"
+                      />
+                      <small class="text-danger ms-2" id="errorPhone"></small>
+                    </div>
+                  </div>
+                  <div class="col-md-6" id="showPass">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label"
+                        >Mật Khẩu</label
+                      >
+                      <input
+                        id="password"
+                        class="form-control"
+                        type="password"
+                        placeholder="Vui Lòng Nhập Mật Khẩu"
+                      />
+                      <small class="text-danger ms-2" id="errorPass"></small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label"
+                        >Địa chỉ</label
+                      >
+                      <input
+                        id="address"
+                        class="form-control"
+                        type="text"
+                        placeholder="Vui Lòng Nhập Địa Chỉ"
+                      />
+                      <small class="text-danger ms-2" id="errorAddress"></small>
+                    </div>
+                  </div>
+                </div>
+                <hr class="horizontal dark" />
+                <p class="text-uppercase text-sm">Hình Ảnh</p>
+                <div class="row">
+                  <div class="col-md-6 d-flex">
+                    <img
+                      src=""
+                      id="preview-image"
+                      class="me-3"
+                      style="
+                        max-width: 100px;
+                        object-fit: cover;
+                        max-height: 100px;
+                      "
+                    />
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label"
+                        >Chọn Hình Ảnh</label
+                      >
+                      <input
+                        class="form-control"
+                        id="pictureAvatar"
+                        type="file"
+                        onchange="previewImage(event)"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group d-none">
+                      <label class="form-control-label py-2 "
+                        >Phân Quyền</label
+                      ><br />
+
+                      <label style="margin-right: 20px; font-size: 13px">
+                        <input
+                          class="form-control-label"
+                          style="width: 25px; height: 15px"
+                          name="option"
+                          type="radio"
+                          value="Admin"
+                          id="admin"
+                        />
+                        Admin
+                      </label>
+
+                                        <label style="margin-right: 20px; font-size: 13px">
+                        <input
+                          class="form-control-label"
+                          style="width: 25px; height: 15px"
+                          name="option"
+                          type="radio"
+                          value="User"
+                          id="user"
+                        />
+                        User
+                      </label>
+                                        <small class="text-danger ms-2" id="errorRole"></small>
                                     </div>
                                 </div>
                             </div>
-                            <hr class="horizontal dark">
-                            <p class="text-uppercase text-sm">Hình Ảnh</p>
-                            <div class="row">
-                                <div class="col-md-6 d-flex">
-                                    <img src="" id="preview-image" class="me-3" style=" max-width: 100px ;object-fit: cover;max-height: 100px;">
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Chọn Hình Ảnh</label>
-                                        <input class="form-control" id="pictureAvatar" type="file" onchange="previewImage(event)">
-                                    </div>
+                            <hr class="py-2" />
+                            <h5 class="text-center"></h5>
+                            <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap">
+                                <button id="btnAdd" class="btn btn-primary btn-sm ms-4" th:onclick="addAccount()">
+                    Thêm
+                  </button>
+                                <button id="btnUpdate" class="btn btn-info btn-sm ms-4" th:onclick="updateAccount()">
+                    Sửa
+                  </button>
+                                <!-- <button id="btnDelete" class="btn btn-danger btn-sm ms-4" disabled th:onclick="deleteAccount()">Xóa</button> -->
+                                <button class="btn btn-dark btn-sm ms-4" th:onclick="'fech()'">
+                    Hủy Thao Tác
+                  </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end -->
+        <div class="row">
+            <div class="col-12">
+                <div class="container-fluid py-4">
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between pb-0">
+                            <h6>Danh Sách Tài Khoản</h6>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i
+                    ></span>
+                                    <input id="searchInput" onkeyup="searchAccount()" type="text" class="form-control" placeholder="Tìm Kiếm..." />
                                 </div>
-                                <!-- <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label py-2">Phân Quyền</label><br>
-
-                                        <label style="margin-right: 20px; font-size: 13px;">
-                        <input class="form-control-label" style="width: 25px; height: 15px;"  name="option" type="radio" value="Admin" id="admin">
-                        Admin
-                    </label>
-
-                                        <label style="margin-right: 20px; font-size: 13px;">
-                        <input class="form-control-label" style="width: 25px; height: 15px" name="option" type="radio" value="User"  id="user">
-                        User
-                    </label>
-                                        <small class="text-danger ms-2" id="errorRole"></small>
-                                    </div>
-
-                                </div>
-                            </div> -->
-                                <hr class="py-2">
-                                <h5 class="text-center"> </h5>
-                                <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
-                                    <button id="btnAdd" class="btn btn-primary btn-sm ms-4" th:onclick="addAccount()">Thêm</button>
-                                    <button id="btnUpdate" class="btn btn-info btn-sm ms-4" disabled th:onclick="updateAccount()">Sửa</button>
-                                    <!-- <button id="btnDelete" class="btn btn-danger btn-sm ms-4" disabled th:onclick="deleteAccount()">Xóa</button> -->
-                                    <button class="btn btn-dark btn-sm ms-4" th:onclick="'fech()'">Hủy Thao Tác</button>
-                                </div>
+                            </div>
+                        </div>
+                        <!-- phân trang đầu-->
+                        <nav aria-label="Page navigation example" class="navigation mt-3 mb-3 d-flex justify-content-center">
+                            <ul class="pagination">
+                                <li class="page-item cursor-pointer" th:if="${authorityPage.currentPage > 1}">
+                                    <a class="page-link" href="#" aria-label="Previous" th:onclick="'javascript:loadPage(1, event)'">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li th:each="page : ${#numbers.sequence(1, authorityPage.totalPages)}" class="page-item cursor-pointer">
+                                    <a class="page-link text-black" th:classappend="${page == authorityPage.currentPage} ? active" th:onclick="'javascript:loadPage(' + ${page} + ', event)'" th:text="${page}"></a>
+                                </li>
+                                <li class="page-item cursor-pointer" th:if="${authorityPage.currentPage < authorityPage.totalPages}">
+                                    <a class="page-link" href="" th:onclick="'javascript:loadPage(' + ${authorityPage.totalPages} + ', event)'" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- end -->
+                        <div class="card-body px-0 pt-0 pb-2">
+                            <div class="table-responsive p-0">
+                                <table class="table align-items-center mb-0" id="customers">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Tài Khoản
+                                            </th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Địa chỉ
+                                            </th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Email
+                                            </th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Quyền
+                                            </th>
+                                            <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Thao Tác
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dataTable">
+                                        <tr th:each="item : ${authorityPage.ListAuthority}">
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div>
+                                                        <img th:src="${item.account.Avata}" class="avatar avatar-sm me-3" alt="user1" style="object-fit: cover" />
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm" th:text="${item.account.Fullname}" style="
+                                  max-width: 120px;
+                                  white-space: nowrap;
+                                  text-overflow: ellipsis;
+                                  overflow: hidden;
+                                "></h6>
+                                                        <p class="text-xs text-secondary mb-0" th:text="${item.account.Phone}"></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="badge badge-sm text-dark text-xs" th:text="${item.account.Address}"></span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold" th:text="${item.account.UserName}"></span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold" th:text="${item.role.name}"></span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <a style="cursor: pointer" th:attr="data-username=${item.account.UserName}" onclick="editAccount(this)" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                            Chỉnh Sửa
+                          </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="container-fluid py-4">
-                        <div class="card mb-4">
-                            <div class="card-header d-flex justify-content-between pb-0">
-                                <h6>Danh Sách Tài Khoản</h6>
-                                <div class="col-3">
-                                    <div class="input-group">
-                                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                                        <input id="searchInput" onkeyup="searchAccount()" type="text" class="form-control" placeholder="Tìm Kiếm...">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- phân trang đầu-->
-                            <nav aria-label="Page navigation example" class="navigation mt-3 mb-3 d-flex justify-content-center">
-                                <ul class="pagination">
-                                    <li class="page-item cursor-pointer" th:if="${authorityPage.currentPage > 1}">
-                                        <a class="page-link" href="#" aria-label="Previous" th:onclick="'javascript:loadPage(1, event)'">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li th:each="page : ${#numbers.sequence(1, authorityPage.totalPages)}" class="page-item cursor-pointer">
-                                        <a class="page-link text-black" th:classappend="${page == authorityPage.currentPage} ? active" th:onclick="'javascript:loadPage(' + ${page} + ', event)'" th:text="${page}"></a>
-                                    </li>
-                                    <li class="page-item cursor-pointer" th:if="${authorityPage.currentPage < authorityPage.totalPages}">
-                                        <a class="page-link" href="" th:onclick="'javascript:loadPage(' + ${authorityPage.totalPages} + ', event)'" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                            <!-- end -->
-                            <div class="card-body px-0 pt-0 pb-2">
-                                <div class="table-responsive p-0">
-                                    <table class="table align-items-center mb-0" id="customers">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tài Khoản</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Địa chỉ
-                                                </th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email
-                                                </th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quyền
-                                                </th>
-                                                <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Thao Tác
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="dataTable">
-                                            <tr th:each="item : ${authorityPage.ListAuthority}">
-                                                <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div>
-                                                            <img th:src="${item.account.Avata}" class="avatar avatar-sm me-3" alt="user1" style="object-fit: cover;">
-                                                        </div>
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm" th:text="${item.account.Fullname}" style="max-width: 120px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></h6>
-                                                            <p class="text-xs text-secondary mb-0" th:text="${item.account.Phone}"></p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <span class="badge badge-sm text-dark text-xs" th:text="${item.account.Address}"></span>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <span class="text-secondary text-xs font-weight-bold" th:text="${item.account.UserName}"></span>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <span class="text-secondary text-xs font-weight-bold" th:text="${item.role.name}"></span>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <a style="cursor: pointer;" th:attr="data-username=${item.account.UserName}" onclick="editAccount(this)" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Chỉnh Sửa
-                        </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+            <footer class="footer p-4">
+                <div class="container-fluid">
+                    <div class="row align-items-center justify-content-lg-between">
+                        <div class="col-lg-6 mb-lg-0 mb-4">
+                            <div class="copyright text-center text-sm text-muted text-lg-start">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
+                                , Được Thiết Kế Bởi FastFoodTeam
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- end -->
-                <footer class="footer p-4">
-                    <div class="container-fluid">
-                        <div class="row align-items-center justify-content-lg-between">
-                            <div class="col-lg-6 mb-lg-0 mb-4">
-                                <div class="copyright text-center text-sm text-muted text-lg-start">
-                                    ©
-                                    <script>
-                                        document.write(new Date().getFullYear())
-                                    </script>, Được Thiết Kế Bởi FastFoodTeam
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
+            </footer>
+        </div>
     </main>
     <div class="fixed-plugin">
         <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
             <i class="fa fa-cog py-2"> </i>
         </a>
         <div class="card shadow-lg">
-            <div class="card-header pb-0 pt-3 ">
+            <div class="card-header pb-0 pt-3">
                 <div class="float-start">
                     <h5 class="mt-3 mb-0">Cài Đặt</h5>
                     <p>Người Dùng Admin</p>
                 </div>
                 <div class="float-end mt-4">
                     <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
-            <i class="fa fa-close"></i>
-          </button>
+              <i class="fa fa-close"></i>
+            </button>
                 </div>
                 <!-- End Toggle Button -->
             </div>
-            <hr class="horizontal dark my-1">
+            <hr class="horizontal dark my-1" />
             <div class="card-body pt-sm-3 pt-0 overflow-auto">
                 <!-- Sidebar Backgrounds -->
                 <div>
@@ -350,7 +447,9 @@
                     <h6 class="mb-0">Điền các cài đặt vô đây</h6>
                     <p class="text-sm">ít thôi, hong xử lý chtme</p>
                 </div>
-                <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
+                <p class="text-sm d-xl-none d-block mt-2">
+                    You can change the sidenav type just on desktop view.
+                </p>
                 <!-- Navbar Fixed -->
             </div>
         </div>
@@ -358,11 +457,11 @@
     <script th:inline="javascript">
         function searchAccount() {
             var inputValue = document.getElementById("searchInput").value.trim();
-            if (inputValue == '') {
+            if (inputValue == "") {
                 $.ajax({
-                    url: '/admin/managerAccount/' + 'list',
+                    url: "/admin/managerAccount/" + "list",
                     data: {
-                        page: 1
+                        page: 1,
                     },
                     success: function(response) {
                         // Cập nhật nội dung danh sách tài khoản
@@ -373,14 +472,13 @@
                     },
                     error: function(xhr, status, error) {
                         console.log("Error: " + error);
-                    }
+                    },
                 });
-
             } else {
                 $.ajax({
-                    url: '/admin/managerAccount/' + inputValue,
+                    url: "/admin/managerAccount/" + inputValue,
                     data: {
-                        page: 1
+                        page: 1,
                     },
                     success: function(response) {
                         // Cập nhật nội dung danh sách tài khoản
@@ -391,73 +489,72 @@
                     },
                     error: function(xhr, status, error) {
                         console.log("Error: " + error);
-                    }
+                    },
                 });
             }
         }
 
-        //Làm mới 
+        //Làm mới
         function fech() {
-            document.getElementById('fullname').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('password').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('pictureAvatar').src = '';
-            document.getElementById('address').value = '';
-            document.getElementById('preview-image').src = '';
-            document.getElementById('admin').checked = false;
-            document.getElementById('user').checked = false;
-
-            //mở nút thêm 
-            document.getElementById('btnAdd').disabled = false;
-            document.getElementById('showPass').style.display = 'block';
+            document.getElementById("fullname").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("pictureAvatar").value = "";
+            document.getElementById("admin").checked = false;
+            document.getElementById("user").checked = false;
+            //mở nút thêm
+            document.getElementById("btnAdd").disabled = false;
+            document.getElementById("showPass").style.display = "block";
             //Khóa nút xóa và sửa
-            document.getElementById('btnDelete').disabled = true;
-            document.getElementById('btnUpdate').disabled = true;
+            document.getElementById("btnDelete").disabled = true;
+            document.getElementById("btnUpdate").disabled = true;
             clear();
         }
 
         function editAccount(element) {
-            var username = element.getAttribute('data-username');
+            var username = element.getAttribute("data-username");
             $.ajax({
-                url: '/admin/edit-account/' + username,
+                url: "/admin/edit-account/" + username,
                 success: function(response) {
                     //đổ dữ liệu vào input
-                    document.getElementById('fullname').value = response.account.fullname;
-                    document.getElementById('email').value = response.account.userName;
-                    document.getElementById('password').value = response.account.password;
-                    document.getElementById('phone').value = response.account.phone;
-                    document.getElementById('address').value = response.account.address;
-                    document.getElementById('preview-image').src = response.account.avata;
+                    document.getElementById("fullname").value =
+                        response.account.fullname;
+                    document.getElementById("email").value = response.account.userName;
+                    document.getElementById("password").value =
+                        response.account.password;
+                    document.getElementById("phone").value = response.account.phone;
+                    document.getElementById("address").value = response.account.address;
+                    document.getElementById("preview-image").src =
+                        response.account.avata;
                     if (response.role.id == 1) {
-                        document.getElementById('admin').checked = true;
+                        document.getElementById("admin").checked = true;
                     } else {
-                        document.getElementById('user').checked = true;
+                        document.getElementById("user").checked = true;
                     }
-
                 },
                 error: function(xhr, status, error) {
                     console.log("Error: " + error);
-                }
+                },
             });
 
             //khóa nút thêm và input
-            document.getElementById('btnAdd').disabled = true;
-            document.getElementById('showPass').style.display = 'none';
+            document.getElementById("btnAdd").disabled = true;
+            document.getElementById("showPass").style.display = "none";
             //Mở nút xóa và sửa
-            document.getElementById('btnDelete').disabled = false;
-            document.getElementById('btnUpdate').disabled = false;
+            document.getElementById("btnDelete").disabled = false;
+            document.getElementById("btnUpdate").disabled = false;
         }
 
         function deleteAccount() {
-            var account = document.getElementById('email').value.trim();
-            if (account === '') {
+            var account = document.getElementById("email").value.trim();
+            if (account === "") {
                 return;
             } else {
                 var result = window.confirm("Bạn có chắc chắn muốn xóa không?");
                 if (result) {
                     $.ajax({
-                        url: '/admin/delete/' + account,
+                        url: "/admin/delete/" + account,
                         success: function(response) {
                             Swal.fire({
                                 position: "top",
@@ -466,7 +563,7 @@
                                 showConfirmButton: false,
                                 timer: 1000,
                             });
-                            if (response === 'Xóa thành công tài khoản') {
+                            if (response === "Xóa thành công tài khoản") {
                                 setTimeout(function() {
                                     window.location.reload();
                                 }, 1200);
@@ -474,65 +571,70 @@
                         },
                         error: function(xhr, status, error) {
                             console.log("Error: " + error);
-                        }
+                        },
                     });
                 }
             }
-
-
         }
 
         function updateAccount() {
-            var fullname = document.getElementById('fullname').value.trim();
-            var email = document.getElementById('email').value.trim();
-            var password = document.getElementById('password').value.trim();
-            var phone = document.getElementById('phone').value.trim();
-            var address = document.getElementById('address').value.trim();
-            var radio1 = document.getElementById('admin');
-            var radio2 = document.getElementById('user');
+            var fullname = document.getElementById("fullname").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var password = document.getElementById("password").value.trim();
+            var phone = document.getElementById("phone").value.trim();
+            var address = document.getElementById("address").value.trim();
+            var radio1 = document.getElementById("admin");
+            var radio2 = document.getElementById("user");
             var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             var phoneRegex = /^\d{10}$/;
-            var fileInput = document.getElementById('pictureAvatar');
+            var fileInput = document.getElementById("pictureAvatar");
 
-            if (fullname === '') {
-                document.getElementById('errorFullname').innerText = 'Vui lòng nhập họ tên.'
-            } else if (email === '') {
-                document.getElementById('errorEmail').innerText = 'Vui lòng nhập địa chỉ email.';
-            } else if (password === '') {
-                document.getElementById('errorPass').innerText = 'Vui lòng nhập mật khẩu.';
-            } else if (phone === '') {
-                document.getElementById('errorPhone').innerText = 'Vui lòng nhập số điện thoại.';
+            if (fullname === "") {
+                document.getElementById("errorFullname").innerText =
+                    "Vui lòng nhập họ tên.";
+            } else if (email === "") {
+                document.getElementById("errorEmail").innerText =
+                    "Vui lòng nhập địa chỉ email.";
+            } else if (password === "") {
+                document.getElementById("errorPass").innerText =
+                    "Vui lòng nhập mật khẩu.";
+            } else if (phone === "") {
+                document.getElementById("errorPhone").innerText =
+                    "Vui lòng nhập số điện thoại.";
             } else if (!radio1.checked && !radio2.checked) {
-                document.getElementById('errorRole').innerText = 'Vui lòng chọn vai trò.';
+                document.getElementById("errorRole").innerText =
+                    "Vui lòng chọn vai trò.";
             } else if (password.length < 6) {
-                document.getElementById('errorPass').innerText = 'Vui lòng nhập mật khẩu trên 6 ký tự.'
+                document.getElementById("errorPass").innerText =
+                    "Vui lòng nhập mật khẩu trên 6 ký tự.";
             } else if (!emailRegex.test(email)) {
-                document.getElementById('errorEmail').innerText = 'Email không hợp lệ.'
+                document.getElementById("errorEmail").innerText =
+                    "Email không hợp lệ.";
             } else if (!phoneRegex.test(phone)) {
-                document.getElementById('errorPhone').innerText = 'Không đúng định dạng số điện thoại.'
+                document.getElementById("errorPhone").innerText =
+                    "Không đúng định dạng số điện thoại.";
             } else {
                 var formData = new FormData();
 
-                formData.append('fullname', fullname);
-                formData.append('email', email);
-                formData.append('address', address);
-                formData.append('password', password);
-                formData.append('phone', phone);
-                formData.append('role', radio1.checked ? '1' : '2');
+                formData.append("fullname", fullname);
+                formData.append("email", email);
+                formData.append("address", address);
+                formData.append("password", password);
+                formData.append("phone", phone);
+                formData.append("role", radio1.checked ? "1" : "2");
                 var pictureFile = fileInput.files[0];
                 if (pictureFile) {
-                    formData.append('picture', pictureFile);
+                    formData.append("picture", pictureFile);
                 }
 
-
                 $.ajax({
-                    url: '/admin/update',
-                    method: 'POST',
+                    url: "/admin/update",
+                    method: "POST",
                     processData: false,
                     contentType: false,
                     data: formData,
                     headers: {
-                        'enctype': 'multipart/form-data'
+                        enctype: "multipart/form-data",
                     },
                     success: function(response) {
                         // Xử lý phản hồi từ server nếu cần
@@ -548,65 +650,68 @@
                         }, 1200);
                     },
                     error: function(xhr, status, error) {
-                        console.log('Error: ' + error);
-                    }
+                        console.log("Error: " + error);
+                    },
                 });
-
-
             }
         }
 
-        var radio2 = document.getElementById('user');
-        radio2.checked = true
+        var radio2 = document.getElementById("user");
+        radio2.checked = true;
 
         function addAccount() {
-            var fullname = document.getElementById('fullname').value.trim();
-            var email = document.getElementById('email').value.trim();
-            var password = document.getElementById('password').value.trim();
-            var phone = document.getElementById('phone').value.trim();
-            var diachi = document.getElementById('address').value.trim();
-            var fileInput = document.getElementById('pictureAvatar');
+            var fullname = document.getElementById("fullname").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var password = document.getElementById("password").value.trim();
+            var phone = document.getElementById("phone").value.trim();
+            var diachi = document.getElementById("address").value.trim();
+            var fileInput = document.getElementById("pictureAvatar");
             var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             var phoneRegex = /^\d{10}$/;
 
-
-            if (fullname === '') {
-                document.getElementById('errorFullname').innerText = 'Vui lòng nhập họ tên.'
-            } else if (email === '') {
-                document.getElementById('errorEmail').innerText = 'Vui lòng nhập địa chỉ email.';
-            } else if (password === '') {
-                document.getElementById('errorPass').innerText = 'Vui lòng nhập mật khẩu.';
-            } else if (phone === '') {
-                document.getElementById('errorPhone').innerText = 'Vui lòng nhập số điện thoại.';
+            if (fullname === "") {
+                document.getElementById("errorFullname").innerText =
+                    "Vui lòng nhập họ tên.";
+            } else if (email === "") {
+                document.getElementById("errorEmail").innerText =
+                    "Vui lòng nhập địa chỉ email.";
+            } else if (password === "") {
+                document.getElementById("errorPass").innerText =
+                    "Vui lòng nhập mật khẩu.";
+            } else if (phone === "") {
+                document.getElementById("errorPhone").innerText =
+                    "Vui lòng nhập số điện thoại.";
             } else if (password.length < 6) {
-                document.getElementById('errorPass').innerText = 'Vui lòng nhập mật khẩu trên 6 ký tự.'
+                document.getElementById("errorPass").innerText =
+                    "Vui lòng nhập mật khẩu trên 6 ký tự.";
             } else if (!emailRegex.test(email)) {
-                document.getElementById('errorEmail').innerText = 'Email không hợp lệ.'
+                document.getElementById("errorEmail").innerText =
+                    "Email không hợp lệ.";
             } else if (!phoneRegex.test(phone)) {
-                document.getElementById('errorPhone').innerText = 'Không đúng định dạng số điện thoại.'
+                document.getElementById("errorPhone").innerText =
+                    "Không đúng định dạng số điện thoại.";
             } else {
                 var formData = new FormData();
 
-                formData.append('address', diachi);
-                formData.append('fullname', fullname);
-                formData.append('email', email);
-                formData.append('password', password);
-                formData.append('phone', phone);
-                formData.append('role', '2');
+                formData.append("address", diachi);
+                formData.append("fullname", fullname);
+                formData.append("email", email);
+                formData.append("password", password);
+                formData.append("phone", phone);
+                formData.append("role", "2");
                 var pictureFile = fileInput.files[0];
                 if (pictureFile) {
-                    formData.append('picture', pictureFile);
+                    formData.append("picture", pictureFile);
                 }
 
-
                 $.ajax({
-                    url: '/admin/addAccount',
-                    method: 'POST',
+                    url: "/admin/addAccount",
+                    method: "POST",
                     processData: false,
                     contentType: false,
                     data: formData,
                     headers: {
-                        'enctype': 'multipart/form-data'
+                        enctype: "multipart/form-data",
                     },
                     success: function(response) {
                         // Xử lý phản hồi từ server nếu cần
@@ -618,24 +723,17 @@
                             timer: 1000,
                         });
 
-                        if (response == 'Thêm thành công') {
+                        if (response == "Thêm thành công") {
                             setTimeout(function() {
                                 window.location.reload();
                             }, 1200);
                         }
-
                     },
                     error: function(xhr, status, error) {
-                        console.log('Error: ' + error);
-                    }
-
+                        console.log("Error: " + error);
+                    },
                 });
-
-
-
             }
-
-
         }
         //chinh sua anh
         function previewImage(event) {
@@ -643,7 +741,7 @@
             var reader = new FileReader();
             reader.onload = function() {
                 var dataURL = reader.result;
-                var imgElement = document.getElementById('preview-image');
+                var imgElement = document.getElementById("preview-image");
                 imgElement.src = dataURL;
             };
             reader.readAsDataURL(input.files[0]);
@@ -654,9 +752,9 @@
                 event.preventDefault();
             }
             $.ajax({
-                url: '/admin/managerAccount/' + 'list',
+                url: "/admin/managerAccount/" + "list",
                 data: {
-                    page: page
+                    page: page,
                 },
                 success: function(response) {
                     // Cập nhật nội dung danh sách tài khoản
@@ -667,52 +765,41 @@
                 },
                 error: function(xhr, status, error) {
                     console.log("Error: " + error);
-                }
+                },
             });
         }
 
         function clear() {
-            document.getElementById('errorFullname').innerText = ''
+            document.getElementById("errorFullname").innerText = "";
 
-            document.getElementById('errorEmail').innerText = ''
+            document.getElementById("errorEmail").innerText = "";
 
-            document.getElementById('errorPass').innerText = ''
-            document.getElementById('errorPhone').innerText = ''
-            document.getElementById('errorPass').innerText = ''
-            document.getElementById('errorEmail').innerText = ''
-            document.getElementById('errorPhone').innerText = ''
-            document.getElementById('preview-image').innerText = ''
-            document.getElementById('address').innerText = ''
+            document.getElementById("errorPass").innerText = "";
+            document.getElementById("errorPhone").innerText = "";
+            document.getElementById("errorPass").innerText = "";
+            document.getElementById("errorEmail").innerText = "";
+            document.getElementById("errorPhone").innerText = "";
         }
 
-        var fullname = document.getElementById('fullname');
-        var email = document.getElementById('email');
-        var password = document.getElementById('password');
-        var phone = document.getElementById('phone');
-        var anh = document.getElementById('preview-image');
-        var diachi = document.getElementById('address');
-        fullname.addEventListener('click', function() {
+        var fullname = document.getElementById("fullname");
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        var phone = document.getElementById("phone");
+        var diachi = document.getElementById("address");
+        fullname.addEventListener("click", function() {
             clear();
         });
-        email.addEventListener('click', function() {
+        email.addEventListener("click", function() {
             clear();
-
         });
-        password.addEventListener('click', function() {
+        password.addEventListener("click", function() {
             clear();
-
         });
-        phone.addEventListener('click', function() {
+        phone.addEventListener("click", function() {
             clear();
-
         });
-        anh.addEventListener('click', function() {
+        diachi.addEventListener("click", function() {
             clear();
-
-        });
-        diachi.addEventListener('click', function() {
-            clear();
-
         });
     </script>
     <!--   Core JS Files   -->
@@ -727,9 +814,9 @@
         // loading khi refresh
         var loader = function() {
             setTimeout(function() {
-                $('#loader-page').css({
-                    'opacity': 0,
-                    'visibility': 'hidden'
+                $("#loader-page").css({
+                    opacity: 0,
+                    visibility: "hidden",
                 });
             }, 1000);
         };
@@ -738,14 +825,12 @@
         });
         // end
 
-
-
-        var win = navigator.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
+        var win = navigator.platform.indexOf("Win") > -1;
+        if (win && document.querySelector("#sidenav-scrollbar")) {
             var options = {
-                damping: '0.5'
-            }
-            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+                damping: "0.5",
+            };
+            Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
         }
     </script>
     <!-- Github buttons -->
