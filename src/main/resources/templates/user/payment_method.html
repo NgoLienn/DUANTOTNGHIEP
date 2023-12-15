@@ -56,6 +56,10 @@
                                                                 <div class="form-group">
                                                                     <input class="form-control" type="text" value=""
                                                                         name="ten" placeholder="Họ Và Tên">
+                                                                    <label id="tenError"
+                                                                        class="error-label text-danger d-none"
+                                                                        style="padding-top: 5px;">Vui lòng nhập họ
+                                                                        tên!</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 py-2">
@@ -63,6 +67,11 @@
                                                                     <input class="form-control" type="text" value=""
                                                                         name="phone" placeholder="Số Điện Thoại">
                                                                 </div>
+                                                                <label id="phoneError"
+                                                                    class="error-label text-danger d-none"
+                                                                    style="padding-top: 5px;">Vui lòng nhập số điện
+                                                                    thoại hợp lệ!</label>
+
                                                             </div>
                                                             <div class="col-md-12 py-2">
                                                                 <div class="form-group">
@@ -72,6 +81,7 @@
                                                                             thành</option>
                                                                         <!-- Add options for provinces here -->
                                                                     </select>
+                                                                    <label id="tinhError" class="error-label text-danger d-none">Vui lòng chọn tỉnh thành!</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12 py-2">
@@ -82,6 +92,7 @@
                                                                             quận/huyện</option>
                                                                         <!-- Add options for districts here -->
                                                                     </select>
+                                                                    <label id="huyenError" class="error-label text-danger d-none">Vui lòng chọn quận/huyện!</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12 py-2">
@@ -91,6 +102,7 @@
                                                                             phường/xã</option>
                                                                         <!-- Add options for towns here -->
                                                                     </select>
+                                                                    <label id="xaError" class="error-label text-danger d-none">Vui lòng chọn xã!</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12 py-2">
@@ -100,12 +112,14 @@
                                                                         style="vertical-align: top;"
                                                                         name="chitiet"></textarea>
                                                                 </div>
+                                                                <label id="chitietError" class="error-label text-danger d-none">Vui lòng nhập địa chỉ chi tiết!</label>
                                                             </div>
                                                         </div>
                                                         <!-- Các trường thông tin khác -->
                                                         <button class="close px-4" type="button">Trở Lại</button>
                                                         <button type="button" class="hoanthanh">xác nhận</button>
                                                     </form>
+
 
                                                 </div>
                                             </div>
@@ -458,13 +472,68 @@
                 var xa = document.querySelector('select[name="xa"]').value;
                 var chitiet = document.querySelector('textarea[name="chitiet"]').value;
 
+                // Reset error messages
+                document.getElementById('tenError').classList.add('d-none');
+                document.getElementById('phoneError').classList.add('d-none');
+                document.getElementById('tinhError').classList.add('d-none');
+                document.getElementById('huyenError').classList.add('d-none');
+                document.getElementById('xaError').classList.add('d-none');
+                document.getElementById('chitietError').classList.add('d-none');
+
                 // Kiểm tra xem tất cả các trường đã được điền đầy đủ chưa
-                if (ten === '' || phone === '' || tinh === '-1' || huyen === '-1' || xa === '-1' || chitiet === '') {
+                if (ten === '') {
+                    document.getElementById('tenError').classList.remove('d-none');
+                    setTimeout(function () {
+                        document.getElementById('tenError').classList.add('d-none');
+                    }, 3000);
                     return false;
                 }
+                if (phone === '' || !isValidPhoneNumber(phone)) {
+                    document.getElementById('phoneError').classList.remove('d-none');
+                    setTimeout(function () {
+                        document.getElementById('phoneError').classList.add('d-none');
+                    }, 3000);
+                    return false;
 
+                }
+                else if (tinh === '-1') {
+                    document.getElementById('tinhError').classList.remove('d-none');
+                    setTimeout(function () {
+                        document.getElementById('tinhError').classList.add('d-none');
+                    }, 3000);
+                    return false;
+                }
+                else if (huyen === '-1') {
+                    document.getElementById('huyenError').classList.remove('d-none');
+                    setTimeout(function () {
+                        document.getElementById('huyenError').classList.add('d-none');
+                    }, 3000);
+                    return false;
+                }
+                else if (xa === '-1') {
+                    document.getElementById('xaError').classList.remove('d-none');
+                    setTimeout(function () {
+                        document.getElementById('xaError').classList.add('d-none');
+                    }, 3000);
+                    return false;
+                }
+                else if (chitiet === '') {
+                    document.getElementById('chitietError').classList.remove('d-none');
+                    setTimeout(function () {
+                        document.getElementById('chitietError').classList.add('d-none');
+                    }, 3000);
+                    return false;
+                }
+                // Repeat similar checks for other fields and display corresponding error messages
                 return true;
+
             }
+            function isValidPhoneNumber(phone) {
+                // Use a regular expression to check the phone number format
+                var phoneRegex = /^\d{10,11}$/; // Assuming a valid phone number is 10 or 11 digits
+                return phoneRegex.test(phone);
+            }
+
 
             // Hàm hiển thị form địa chỉ khi có lỗi
             function hienThiFormDiaChi() {

@@ -67,18 +67,18 @@ public class CartController {
             model.addAttribute("carts", carts);
         }
 
-        Cart_Items cartItem = cartItemsRepo.findByCartId(carts.getCartID()); // Thay thế findByCartId bằng phương thức
+//        Cart_Items cartItem = cartItemsRepo.findByCartId(carts.getCartID()); // Thay thế findByCartId bằng phương thức
                                                                              // phù hợp của bạn
-        if (cartItem != null) {
-            Products product = cartItem.getProductId(); // Lấy sản phẩm từ cartItem
-            if (product != null) {
-                int availableQuantity = product.getQuantity(); // Lấy số lượng từ sản phẩm
-                model.addAttribute("availableQuantity", availableQuantity);
-            }
-        } else {
-            // Xử lý khi không tìm thấy cartItem hoặc sản phẩm
-            // Ví dụ: Hiển thị thông báo hoặc xử lý tương ứng
-        }
+//        if (cartItem != null) {
+//            Products product = cartItem.getProductId(); // Lấy sản phẩm từ cartItem
+//            if (product != null) {
+//                int availableQuantity = product.getQuantity(); // Lấy số lượng từ sản phẩm
+//                model.addAttribute("availableQuantity", availableQuantity);
+//            }
+//        } else {
+//            // Xử lý khi không tìm thấy cartItem hoặc sản phẩm
+//            // Ví dụ: Hiển thị thông báo hoặc xử lý tương ứng
+//        }
 
         return "user/cart";
     }
@@ -134,33 +134,33 @@ public class CartController {
                 cartItems.setSizeName(size);
                 cartItemsRepo.save(cartItems);
 
-                if (soluong == null || soluong <= 0) {
-                    soluong = 1; // Nếu 'quantity' là null hoặc không hợp lệ, sử dụng giá trị mặc định là 1
-                }
-                // lấy id sản phẩm
-                Products produc = cartItems.getProductId();
-
-                if (produc != null && produc.getQuantity() >= soluong && soluong > 0) {
-
-                    int availableQuantity = produc.getQuantity(); // Số lượng có sẵn từ CSDL
-                    model.addAttribute("availableQuantity", availableQuantity);
-
-                    int updatedQuantity = produc.getQuantity() - soluong;
-                    if (updatedQuantity >= 0) {
-                        // produc.setQuantity(updatedQuantity);
-                        // // productRepo.save(produc);
-                        // System.out.println("Selected quantity: " + quantity);
-                    } else {
-                        model.addAttribute("outOfStockMessage",
-                                "Sản phẩm không đủ số lượng. Vui lòng chọn số lượng ít hơn!");
-                        model.addAttribute("disableBuyButton", true);
-                    }
-
-                } else {
-                    model.addAttribute("outOfStockMessage",
-                            "Sản phẩm không đủ số lượng. Vui lòng chọn số lượng ít hơn!");
-                    model.addAttribute("disableBuyButton", true);
-                }
+//                if (soluong == null || soluong <= 0) {
+//                    soluong = 1; // Nếu 'quantity' là null hoặc không hợp lệ, sử dụng giá trị mặc định là 1
+//                }
+//                // lấy id sản phẩm
+//                Products produc = cartItems.getProductId();
+//
+//                if (produc != null && produc.getQuantity() >= soluong && soluong > 0) {
+//
+//                    int availableQuantity = produc.getQuantity(); // Số lượng có sẵn từ CSDL
+//                    model.addAttribute("availableQuantity", availableQuantity);
+//
+//                    int updatedQuantity = produc.getQuantity() - soluong;
+//                    if (updatedQuantity >= 0) {
+//                        // produc.setQuantity(updatedQuantity);
+//                        // // productRepo.save(produc);
+//                        // System.out.println("Selected quantity: " + quantity);
+//                    } else {
+//                        model.addAttribute("outOfStockMessage",
+//                                "Sản phẩm không đủ số lượng. Vui lòng chọn số lượng ít hơn!");
+//                        model.addAttribute("disableBuyButton", true);
+//                    }
+//
+//                } else {
+//                    model.addAttribute("outOfStockMessage",
+//                            "Sản phẩm không đủ số lượng. Vui lòng chọn số lượng ít hơn!");
+//                    model.addAttribute("disableBuyButton", true);
+//                }
             }
             return "redirect:/cart";
         }
@@ -245,7 +245,6 @@ public class CartController {
         }
         Carts carts = cartRepo.findByCartUser(users);
         model.addAttribute("carts", carts);
-
         int soluong = cartItem.getQuantity() - 1;
         if (soluong < 1) {
 

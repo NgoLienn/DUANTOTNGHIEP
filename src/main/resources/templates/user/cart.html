@@ -182,33 +182,28 @@
                 var cartitemId = $(this).data("cartitem-id");
                 var id = '#quantity' + cartitemId;
                 var subtotal = '#current-price' + cartitemId;
-                var maxQuantity = parseInt($('#availableQuantity').val()); // Số lượng tối đa có sẵn trong CSDL
-                var currentValue = parseInt($(id).val());
 
-                if (currentValue < maxQuantity) {
-                    $.ajax({
-                        type: "GET",
-                        url: "/cart/updateCartItemss",
-                        data: { cartitemID: cartitemId },
-                        success: function (response) {
-                            // Update the quantity on the page without refreshing
-                            // You can do this dynamically based on your page structure
-                            var updatedQuantity = $(response).find(id).data('quantity');
-                            // Update the quantity on the page
-                            $(id).val(updatedQuantity);// For simplicity, you can also reload the entire page
-                            var currentPrice = $(response).find(subtotal).text();
-                            $(subtotal).text(currentPrice);
+                $.ajax({
+                    type: "GET",
+                    url: "/cart/updateCartItemss",
+                    data: { cartitemID: cartitemId },
+                    success: function (response) {
+                        // Update the quantity on the page without refreshing
+                        // You can do this dynamically based on your page structure
+                        var updatedQuantity = $(response).find(id).data('quantity');
+                        // Update the quantity on the page
+                        $(id).val(updatedQuantity);// For simplicity, you can also reload the entire page
+                        var currentPrice = $(response).find(subtotal).text();
+                        $(subtotal).text(currentPrice);
 
-                            var priceSum = $(response).find('#price-payment-sum').text();
-                            $('#price-payment-sum').text(priceSum)
-                            checkQuantity();
-                        },
-                        error: function (error) {
-                            console.log("Error:", error);
-                        }
-                    });
-                    checkQuantity();
-                }
+                        var priceSum = $(response).find('#price-payment-sum').text();
+                        $('#price-payment-sum').text(priceSum)
+                        checkQuantity();
+                    },
+                    error: function (error) {
+                        console.log("Error:", error);
+                    }
+                });
 
             });
 
