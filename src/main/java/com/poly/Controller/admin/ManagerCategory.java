@@ -72,9 +72,19 @@ public class ManagerCategory {
 	                         BindingResult bindingResult,
 	                         @RequestParam("uploadimage") MultipartFile file, Model model) {
 
+		  if (categoryService.isCategoryExists(category.getName())) {
+		        bindingResult.rejectValue("name", "error.newCategories", "DANH MỤC ĐÃ TỒN TẠI");
+		        model.addAttribute("error", "DANH MỤC ĐÃ TỒN TẠI");
+		        model.addAttribute("categories", categoryService.getAllCategories());
+		        return "admin/category";
+		    }
 
-
-	    try {   	    	
+	    try {   
+	    	if (file == null || file.isEmpty()) {
+	    	    model.addAttribute("error_image", "Vui lòng chọn ảnh.");
+	    	    model.addAttribute("categories", categoryService.getAllCategories());
+	    	    return "admin/category";
+	    	}
 	    	String baseDir = System.getProperty("user.dir");
 	    	String folderPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator
 	                 + "resources"
@@ -94,7 +104,7 @@ public class ManagerCategory {
 	        category.setImage_url(url);
 	        
 	        categoryRepo.save(category);
-
+	        model.addAttribute("successMessage", "Danh mục đã được thêm thành công!");
 	        return "redirect:/admin/managerCategory";
         
 	    } catch (Exception e) {

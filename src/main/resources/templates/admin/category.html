@@ -131,11 +131,6 @@
 			<div class="col-12">
 				<div class="container-fluid py-4">
 					<div class="card">
-						<div class="card-header pb-0">
-							<div class="d-flex align-items-center">
-								<p class="mb-0">Chỉnh Sửa Danh Mục</p>
-							</div>
-						</div>
 						<form method="post" th:object="${newCategories}"
 							enctype="multipart/form-data" id="productForm"
 							onsubmit="return validateForm()">
@@ -143,8 +138,8 @@
 								<input type="hidden" th:field="*{categoryId}" />
 								<p class="text-uppercase text-sm">Thông Tin Danh Mục</p>
 
-								<div th:if="${#fields.hasErrors('name')}" class="error-message">
-									<p th:text="${nameError}"></p>
+								<div th:if="${error}" class="error-message">
+									<p style="color: red" th:text="${error}"></p>
 								</div>
 
 								<div class="row mt-2">
@@ -167,6 +162,9 @@
 												class="form-control" id="uploadimage"
 												onchange="previewImage(event)" type="file"
 												name="uploadimage">
+										</div>
+										<div th:if="${error_image}" class="error-message">
+											<p style="color: red ; font-size: 14px;" th:text="${error_image}"></p>
 										</div>
 									</div>
 
@@ -240,7 +238,8 @@
 										Cập Nhật</button>
 
 									<!-- Modal Xác nhận Cập Nhật -->
-									<div class="modal fade" id="confirmUpdateModal" tabindex="-1" style="margin-top: 250px"
+									<div class="modal fade" id="confirmUpdateModal" tabindex="-1"
+										style="margin-top: 250px"
 										aria-labelledby="confirmUpdateModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
@@ -250,8 +249,8 @@
 													<button type="button" class="btn-close"
 														data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
-												<div class="modal-body">Bạn có chắc chắn muốn cập nhật danh mục
-													không?</div>
+												<div class="modal-body">Bạn có chắc chắn muốn cập nhật
+													danh mục không?</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-bs-dismiss="modal">Hủy</button>
@@ -428,6 +427,7 @@
 		function validateForm() {
 			var form = document.getElementById('productForm');
 			var name = document.getElementById('newProduct_name');
+
 			var formError = document.getElementById('form-error');
 
 			if (!name.value) {

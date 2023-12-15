@@ -40,6 +40,9 @@ public class CategoryService {
 	        // Kiểm tra xem có sản phẩm nào sử dụng danh mục không
 	        return productService.existsByCategoryId(categoryId);
 	    }
-	    
+	    public boolean isCategoryExists(String Name) {	    
+	        Optional<Categories> existingCategory = categoryRepo.findByNameIgnoreCase(Name);
+	        return existingCategory.isPresent();
+	    }
 		
 }
