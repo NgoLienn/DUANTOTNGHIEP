@@ -108,9 +108,8 @@ public class ManagerCategory {
 	        return "redirect:/admin/managerCategory";
         
 	    } catch (Exception e) {
-	        // Xử lý ngoại lệ nếu có
-	        model.addAttribute("error", "Lỗi khi thêm danh mục: " + e.getMessage());
-	        return "errorPage";
+	    	
+	    	 return "admin/category";
 	    }
 	}
 	 public static String saveImage(MultipartFile file, String folderPath) throws IOException {       

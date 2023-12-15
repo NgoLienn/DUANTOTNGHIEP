@@ -147,9 +147,9 @@
 										<div class="form-group">
 											<label for="example-text-input" class="form-control-label">Tên
 												Danh Mục</label> <input class="form-control" type="text"
-												th:field="*{name}" placeholder="Tên danh mục" id="newProduct_name"
-												th:value="${newCategories.name}"> <small
-												class="text-danger" id="name-error"></small>
+												th:field="*{name}" placeholder="Tên danh mục"
+												id="newProduct_name" th:value="${newCategories.name}">
+											<small class="text-danger" id="name-error"></small>
 											<div id="form-error" class="text-danger mt-2 border-danger"></div>
 										</div>
 									</div>
@@ -164,7 +164,8 @@
 												name="uploadimage">
 										</div>
 										<div th:if="${error_image}" class="error-message">
-											<p style="color: red ; font-size: 14px;" th:text="${error_image}"></p>
+											<p style="color: red; font-size: 14px;"
+												th:text="${error_image}"></p>
 										</div>
 									</div>
 
@@ -200,68 +201,19 @@
 								<hr class="py-2">
 								<div class="d-flex align-items-center justify-content-center"
 									style="display: flex; flex-wrap: wrap;">
-									<button class="btn btn-primary btn-sm ms-4 text-white"
-										type="button" data-bs-toggle="modal"
-										data-bs-target="#confirmAddModal"
-										th:disabled="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
-										Thêm</button>
 
-									<!-- Modal Xác nhận Thêm -->
-									<div class="modal fade" id="confirmAddModal" tabindex="-1"
-										style="margin-top: 250px"
-										aria-labelledby="confirmAddModalLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="confirmAddModalLabel">Xác
-														nhận thêm mới</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">Bạn có chắc chắn muốn thêm
-													danh mục không?</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-														data-bs-dismiss="modal">Hủy</button>
-													<button type="submit" class="btn btn-primary"
-														formaction="/admin/managerCategory/add">Thêm danh
-														mục</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- Nút Cập Nhật -->
-									<button class="btn btn-info btn-sm ms-4 text-white"
-										type="button" data-bs-toggle="modal"
-										data-bs-target="#confirmUpdateModal"
+
+
+									<button type="submit"
+										class="btn btn-primary btn-sm ms-4 text-white"
+										th:disabled="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}"
+										formaction="/admin/managerCategory/add">Thêm</button>
+									
+							
+									<button type="submit" class="btn btn-info btn-sm ms-4"
+										th:formaction="@{|/admin/managerCategory/update/${categoryIdd}|}"
 										th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
-										Cập Nhật</button>
-
-									<!-- Modal Xác nhận Cập Nhật -->
-									<div class="modal fade" id="confirmUpdateModal" tabindex="-1"
-										style="margin-top: 250px"
-										aria-labelledby="confirmUpdateModalLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="confirmUpdateModalLabel">Xác
-														nhận cập nhật</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">Bạn có chắc chắn muốn cập nhật
-													danh mục không?</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-														data-bs-dismiss="modal">Hủy</button>
-													<button type="submit" class="btn btn-info"
-														th:formaction="@{|/admin/managerCategory/update/${categoryIdd}|}"
-														th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
-														Cập nhật</button>
-												</div>
-											</div>
-										</div>
-									</div>
+										Cập nhật</button>									
 
 									<a th:href="@{/admin/managerCategory}"
 										th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory')}"
