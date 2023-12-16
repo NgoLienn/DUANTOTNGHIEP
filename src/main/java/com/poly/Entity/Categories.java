@@ -38,7 +38,7 @@ public class Categories implements Serializable {
     
     @Column(name = "status")
     private Boolean Status;
-    
+       
     public Long getCategoryId() {
         return categoryId;
     }

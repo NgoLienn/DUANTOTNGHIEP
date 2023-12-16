@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.poly.Entity.Categories;
 import com.poly.Entity.Page;
 import com.poly.Entity.Products;
 import com.poly.Entity.Reviews;
@@ -39,18 +40,19 @@ public class ManagerReview {
 			@RequestParam(value = "query", defaultValue = "") String query) {
 		List<Reviews> listReview;
 		List<Reviews> reviewList = reviewService.getAllReview();
+					
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("newReview", new Reviews());
 		model.addAttribute("true", true);
 				
 		  if (query.equals("")) {
-			  listReview = reviewRepo.findAll();
+			  listReview = reviewRepo.findAllByOrderByReviewIDDesc();
 	        } else {
 	        	listReview = reviewService.searchReviews(query);
 
 	        }
 		  model.addAttribute("query", query);
-		     model.addAttribute("ListReview", listReview);
+		  model.addAttribute("ListReview", listReview);
 		//Phân trang
 		
 		int totalReview = listReview.size();
@@ -97,7 +99,7 @@ public class ManagerReview {
 		List<Reviews> reviewList = reviewService.getAllReview();
 		model.addAttribute("reviewList", reviewList);
 		 if (query.equals("")) {
-			  listReview = reviewRepo.findAll();
+			  listReview = reviewRepo.findAllByOrderByReviewIDDesc();
 	        } else {
 	        	listReview = reviewService.searchReviews(query);
 

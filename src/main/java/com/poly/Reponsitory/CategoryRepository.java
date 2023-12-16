@@ -1,6 +1,7 @@
 package com.poly.Reponsitory;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,8 +23,10 @@ public interface CategoryRepository extends JpaRepository<Categories, Long> {
     @Query("SELECT c FROM Categories c WHERE LOWER(c.Name) = LOWER(:name)")
     Optional<Categories> findByNameIgnoreCase(@Param("name") String name);
  
-   
+    
+    List<Categories> findAllByOrderByCategoryIdDesc();
 
+	
 	
 
 	

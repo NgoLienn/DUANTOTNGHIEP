@@ -167,6 +167,7 @@
 											<p style="color: red; font-size: 14px;"
 												th:text="${error_image}"></p>
 										</div>
+										
 									</div>
 
 									<div class="col-md-6">
@@ -208,12 +209,12 @@
 										class="btn btn-primary btn-sm ms-4 text-white"
 										th:disabled="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}"
 										formaction="/admin/managerCategory/add">Thêm</button>
-									
-							
+
+
 									<button type="submit" class="btn btn-info btn-sm ms-4"
 										th:formaction="@{|/admin/managerCategory/update/${categoryIdd}|}"
 										th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
-										Cập nhật</button>									
+										Cập nhật</button>
 
 									<a th:href="@{/admin/managerCategory}"
 										th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory')}"
@@ -244,9 +245,7 @@
 							<div class="table-responsive p-0">
 								<table class="table align-items-center mb-0">
 									<thead>
-										<tr>
-											<th
-												class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">STT</th>
+										<tr>											
 											<th
 												class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hình
 												Ảnh</th>
@@ -264,9 +263,7 @@
 									</thead>
 									<tbody>
 										<tr th:each="category : ${categories}">
-											<td class="align-middle text-sm"><span
-												class=" text-dark text-xs ps-3"
-												th:text="${category.categoryId}"></span></td>
+											
 											<td>
 												<div class="d-flex px-2">
 													<img th:src="${category.image_url}"

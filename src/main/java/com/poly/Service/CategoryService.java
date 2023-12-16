@@ -47,5 +47,6 @@ public class CategoryService {
 	        Optional<Categories> existingCategory = categoryRepo.findByNameIgnoreCase(Name);
 	        return existingCategory.isPresent();
 	    }
+	    
 		
 }

@@ -31,5 +31,7 @@ public interface ReviewReponsitory extends JpaRepository<Reviews, Integer> {
     
     @Query("SELECT r FROM Reviews r WHERE r.Comment like %?1%")
 	List<Reviews> searchReview(String query);
+    
+    List<Reviews> findAllByOrderByReviewIDDesc();
 
 }
