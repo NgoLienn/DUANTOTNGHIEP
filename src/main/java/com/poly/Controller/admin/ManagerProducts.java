@@ -208,7 +208,7 @@ public class ManagerProducts {
 
                 // API to remove background
                 Response response = Request.Post("https://api.remove.bg/v1.0/removebg")
-                        .addHeader("X-Api-Key", "GN2ULwMosewpuewn4vJe4GPg")
+                        .addHeader("X-Api-Key", "HXSXxqK7s8DL38Gr5UtiEGXH")
                         .body(
                                 MultipartEntityBuilder.create()
                                         .addBinaryBody("image_file", savedFile)

@@ -31,13 +31,13 @@
                                         <div class="tab-pane tab-content" id="nav-tabContent">
                                             <section class=" tab-profile" id="nav-profile">
                                                 <div class="d-flex justify-content-between">
-                                                    <span class="h5 px-2">Đơn Mua</span>
+                                                    <span class="h4 px-2">Đơn Mua</span>
                                                 </div>
                                                 <div class="container-fluid py-4 mt-3">
                                                     <div class="product-container table">
                                                         <th:block th:each="item : ${orders}">
                                                             <div class="d-flex justify-content-between">
-                                                                <span th:text="'Thời Gian Đặt: ' + ${item.orderTime}">
+                                                                <span style="font-size: 17px;" th:text="'Thời Gian Đặt: ' + ${item.orderTime}">
                                                                 </span>
                                                                 <span
                                                                     class="h5 text-danger d-flex justify-content-end text-center" style="font-weight: bold;"
@@ -50,7 +50,7 @@
                                                                 <a th:href="@{|/user/orderitem/${order.orders.orderID}|}">
                                                                     <img th:each="image : ${order.product}"
                                                                         th:src="@{|${image.image}|}" class="img-cell"
-                                                                        alt="prod_pm">
+                                                                        alt="prod_pm" style="max-width: 100px; max-height: 100px;">
                                                                 </a>
                                                                 <div class="product-cell cell-name"
                                                                     th:text="${order.name}">
@@ -68,7 +68,7 @@
                                                             </div>
                                                             <!-- collap sổ sản phâm trong đơn hàng -->
                                                             <div class="text-center">
-                                                                <p class="d-inline-flex justify-content-center gap-1"
+                                                                <p class="d-inline-flex justify-content-center align-items-center gap-1"
                                                                     th:if="${#lists.size(item.orderitem) > 1}">
                                                                     <button class="btn"
                                                                         style="border: none; outline: none;"
@@ -76,8 +76,9 @@
                                                                         th:data-bs-target="'#collapseExample' + ${item.orderID}"
                                                                         aria-expanded="false"
                                                                         aria-controls="collapseExample">
+                                                                        xem sản phẩm có trong đơn hàng 
                                                                         <i class="bi bi-caret-down-fill"
-                                                                            style="font-size: 18px; "></i>
+                                                                            style="font-size: 18px;"></i>
                                                                     </button>
                                                                 </p>
                                                                 <div class="collapse"
@@ -93,11 +94,11 @@
                                                                                     <img th:each="image : ${order.product}"
                                                                                         th:src="@{|${image.image}|}"
                                                                                         class="img-cell" alt="prod_pm"
-                                                                                        style="width: 50px; height: 50px;">
+                                                                                        style="width: 80px; height: 80px; max-width: 80px; max-height: 80px;">
                                                                                 </a>        
                                                                                 <div class="product-cell cell-name"
                                                                                     th:text="${order.name}"
-                                                                                    style="font-size: 14px;">
+                                                                                    style="font-size: 18px;">
                                                                                 </div>
                                                                                 <div class="product-cell"
                                                                                     th:text="${order.Size_Product}">
@@ -153,14 +154,14 @@
                                                                     style="padding-top: 20px;">
                                                                     <div class="text-right">
                                                                         Số
-                                                                        lượng đơn hàng:
-                                                                        <span th:text="'x' + ${item.orderitem.size()}">
+                                                                        lượng sản phẩm:
+                                                                        <span th:text="' ' + ${item.orderitem.size()}">
                                                                         </span>
                                                                     </div>
 
                                                                     <div class="text-right">
                                                                         Thành
-                                                                        Tiền:
+                                                                        tiền:
                                                                         <span style="font-weight: bold;"
                                                                             th:text="${#numbers.formatDecimal(item.totalAmount , 0, 'COMMA', 0, 'POINT')} + ' đ'"
                                                                             class="text-danger h5">

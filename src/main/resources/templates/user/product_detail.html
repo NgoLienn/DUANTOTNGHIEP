@@ -112,7 +112,8 @@
                                             </div>
                                             <br>
                                             <div th:if="${outOfStockMessage != null}">
-                                                <p th:text="${outOfStockMessage}" class="out-of-stock-message"></p>
+                                                <p th:text="${outOfStockMessage}" class="out-of-stock-message"
+                                                    style="color: rgb(215, 27, 27);"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -149,76 +150,14 @@
                 <div class="tab-product-big tab-content" id="nav-tabContent">
                     <div class="wraper1 tab-pane fade show active" id="nav-home" role="tabpanel"
                         aria-labelledby="nav-home-tab" tabindex="0">
-                        <div class="container mt-3 col-md-9">
+                        <div class="container mt-3 col-md-9" th:each="product : ${product}">
                             <h4>Mô Tả Sản Phẩm</h4>
-                            <p class="mt-3">Khi làm burger, thông thường, bánh burger sẽ được chín
-                                nhẹ trên bề mặt nóng,
-                                sau
-                                đó
-                                được xếp lên
-                                thịt bò, rau sống, sốt và các phụ kiện khác. Sau đó, bánh burger
-                                trên cùng sẽ được đặt
-                                lên
-                                để
-                                hoàn thành sản phẩm.
-
-                                Một số biến thể của Burger Classic có thể bao gồm thêm phô mai chảo,
-                                gia vị đặc biệt,
-                                hoặc
-                                thêm
-                                các loại gia vị khác nhau...
+                            <p class="mt-3" th:text="${product.Description}" style="text-align: justify;">
                             </p>
                             <div id="demo" class="collapse">
-                                <span> Burger Classic là một loại burger truyền thống với những
-                                    thành phần cơ bản như
-                                    sau:</span> <br>
-
-                                <span> 1. Bánh Burger: Thường là bánh mì trắng mềm, hình tròn hoặc
-                                    hình xăm.
-                                </span> <br>
-
-                                <span>2. Thịt Bò: Thường là thịt bò xay tươi, được chế biến thành
-                                    miếng bánh thịt hình
-                                    tròn có đường
-                                    kính
-                                    phù hợp với bánh burger.
-                                </span> <br>
-
-                                <span> 3. Rau sống: Bao gồm rau xanh như sốt salad, rau cải xanh, cà
-                                    chua, hành tây, và
-                                    nhiều loại rau
-                                    khác tùy theo sở thích cá nhân.
-                                </span> <br>
-
-                                <span>4. Sốt: Sốt thường được sử dụng trong Burger Classic gồm có
-                                    sốt mayonnaise, sốt
-                                    hành phi, sốt cà
-                                    chua, và nhiều loại sốt khác như sốt BBQ, sốt hành, sốt cà chua,
-                                    sốt cay, và nhiều
-                                    loại
-                                    sốt
-                                    khác
-                                    tùy theo khẩu vị.
-                                </span> <br>
-
-                                <span>5. Phụ kiện: Có thể bổ sung phụ kiện như phô mai, trứng,
-                                    bacon, hay các loại gia
-                                    vị
-                                    như muối,
-                                    tiêu,
-                                    bột đường, paprika, ớt bột,...
-                                </span><br>
-
-                                <span>- Classic Burger không chỉ đơn thuần là một bữa ăn ngon lành
-                                    mà còn là một trải
-                                    nghiệm
-                                    thú vị. Hãy tận hưởng cảm giác thịt bò thơm ngon, hòa quyện với
-                                    hương vị của rau
-                                    sống
-                                    tươi mát và các loại sốt đậm đà.
-                                </span><br>
-                                <span>Một Số Hình Ảnh: </span>
-                                <br><br><br> <br>
+                                <p th:text="${product.Description_an}" style="line-height: 30px; text-align: justify;">
+                                </p>
+                                <br>
                             </div>
                             <div class="xemthem" data-bs-toggle="collapse" data-bs-target="#demo">
                                 <span>more</span>
@@ -280,7 +219,7 @@
                                         role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                                         <div class="info-all" th:each="item : ${reviews}">
                                             <!-- delete comment -->
-                                            <div class="dropdown-center d-flex justify-content-end align-items-center">
+                                            <!-- <div class="dropdown-center d-flex justify-content-end align-items-center">
                                                 <button class="position-absolute" type="button"
                                                     data-bs-toggle="dropdown" aria-expanded="false"
                                                     style="background: none; border: none; font-size: 1.5rem; font-weight: bold;">
@@ -289,7 +228,7 @@
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item" href="#1">Xóa Comment</a></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                             <!-- end -->
                                             <div class="user-info">
                                                 <div class="d-flex">

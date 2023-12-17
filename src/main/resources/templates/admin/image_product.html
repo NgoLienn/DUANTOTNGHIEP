@@ -152,7 +152,7 @@
           <div class="card">
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
-                <p class="mb-0">Chỉnh Sửa Ảnh Sản Phẩm</p>
+                <!-- <p class="mb-0">Chỉnh Sửa Ảnh Sản Phẩm</p> -->
               </div>
             </div>
             <form method="post" th:object="${newImageProduct}" enctype="multipart/form-data">
@@ -172,7 +172,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Tên alt Ảnh (không bắt buộc)</label>
-                      <input class="form-control" type="text" placeholder="Name Image" th:field="*{Alt_Text}"
+                      <input class="form-control" type="text" placeholder="VD: tên ảnh là image" th:field="*{Alt_Text}"
                         th:value="${newImageProduct.Alt_Text}">
                     </div>
                   </div>
@@ -190,28 +190,31 @@
                 </div>
                 <hr class="py-2">
                 <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
-                  <button class="btn btn-primary btn-sm ms-4 text-white" type="submit" formaction="/admin/managerImageProducts/add"
-                    th:disabled="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}">Thêm</button>
-                  <button class="btn btn-info btn-sm ms-4 text-white"
+                  <button class="btn btn-primary btn-sm ms-4 text-white" type="submit"
+                    formaction="/admin/managerImageProducts/add"
+                    th:style="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit') ? 'display: none' : ''}">
+                    Thêm
+                  </button>
+                  <button class="btn btn-primary btn-sm ms-4 text-white"
                     th:formaction="@{|/admin/managerImageProducts/update/${imageproductIdd}|}"
-                    th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}"
-                    type="submit">Sửa
+                    th:style="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit') ? 'display: none' : ''}"
+                    type="submit">Lưu
                   </button>
 
-                  <button class="btn btn-danger btn-sm ms-4 text-white" type="button" data-bs-toggle="modal"
+                  <button class="btn btn-primary btn-sm ms-4 text-white" type="button" data-bs-toggle="modal"
                     data-bs-target="#confirmDeleteModal"
-                    th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}">
+                    th:style="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit') ? 'display: none' : ''}">
                     Xóa
                   </button>
 
                   <a th:href="@{/admin/managerImageProduct}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProduct')}"
                     th:unless="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}">
-                    <button class="btn btn-dark btn-sm ms-4" type="button">Làm Mới</button>
+                    <button class="btn btn-primary btn-sm ms-4" type="button">Làm Mới</button>
                   </a>
                   <a th:href="@{|/admin/managerImageProducts/edit/${imageproductIdd}|}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}">
-                    <button class="btn btn-dark btn-sm ms-4" type="button">Làm Mới</button>
+                    <button class="btn btn-primary btn-sm ms-4" type="button">Làm Mới</button>
                   </a>
                 </div>
                 <!-- Modal hỏi xóa sản phẩm-->
@@ -286,7 +289,7 @@
                         <a th:href="@{/admin/managerImageProducts/edit/{imageproductId}(imageproductId=${item.imageproductId})}"
                           class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                           data-original-title="Edit user">
-                          Edit
+                          sửa
                         </a>
                       </td>
                     </tr>

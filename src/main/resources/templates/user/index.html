@@ -20,7 +20,7 @@
 
 				<header class="banner-big">
 					<aside>
-						<img src="/assets/images/banner_pizza.png" alt="about-banner">
+						<img src="/assets/images/img_product/ramyeon.png" alt="about-banner">
 					</aside>
 
 					<article>
@@ -48,7 +48,7 @@
 						</div>
 						<div class="button-sp">
 							<a href="#menu-food">
-								<button>
+								<button class="">
 									Xem Thực Đơn&nbsp;&nbsp;&nbsp; <i class="bi bi-arrow-right"></i>
 								</button>
 							</a>
@@ -64,14 +64,14 @@
 							<div class="title text-black">Pizza Pepperoni</div>
 						</a>
 						<div class="quantity">
-							Lượt xem: <small style="font-weight: initial;">1</small>
+							Lượt xem: <small style="font-weight: initial;"></small>
 						</div>
-						<div class="evaluate">
+						<div class="evaluate text-danger">
 							<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i
 								class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i
 								class="bi bi-star-half"></i>
 						</div>
-						<div class="price">60000đ</div>
+						<div class="price">60.000đ</div>
 						<!-- <div class="share">
 							<i class="bi bi-share"></i>
 						</div>
@@ -97,13 +97,13 @@
 					<span class="wrap-food-sp2">
 						<div class="title">Hamburger Classic</div>
 						<div class="quantity">
-							Lượt xem: <small style="font-weight: initial;">1</small>
+							Lượt xem: <small style="font-weight: initial;"></small>
 						</div>
-						<div class="evaluate">
+						<div class="evaluate text-danger">
 							<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i
 								class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star"></i>
 						</div>
-						<div class="price">35000đ</div>
+						<div class="price">35.000đ</div>
 					</span> <img src="../assets/images/img_product/main_img.png" alt="food-menu">
 				</div>
 
@@ -123,12 +123,15 @@
 				<!-- slider -->
 
 				<div class="swiper-container card-slider ">
-					<span class="text-slide">Thực Đơn</span>
+					<div class="menu-title">
+						<span class="text-slide">Thực Đơn</span>
+					</div>
 					<div class="swiper-wrapper card-wrapper">
-						<div th:each="item : ${ListProduct}"
+						<div th:each="item : ${ListProduct}" th:if="${item.status_prod != false}"
 							class="swiper-slide card show active text-center slide-card">
 							<a th:href="@{|/productDetail/?productID=${item.productId}|}" class="text-black">
-								<img th:src="${item.image}" class="card-img-top" alt="anhslide">
+								<img th:src="${item.image}" class="card-img-top" alt="anhslide"
+									style="max-width: 300px; max-height: 300px;">
 							</a>
 							<form method="post" th:action="@{|/addToCart/${item.productId}|}">
 								<div class="card-body">
@@ -159,20 +162,22 @@
 			<img class="myimage" src="/assets/images/food4.png" alt="food4">
 			<section id="menu-food">
 				<div class="image-five">
-					<h2>Danh sách Món Ăn</h2>
-					<ul class="nav nav-tabs tabpanel border-bottom-0 mt-4 justify-content-center flex-wrap" id="myTab"
+					<h2 class="text-center">
+						<span class="styled-text">Danh Sách Món Ăn</span>
+					</h2>
+					<ul class="nav nav-tabs tabpanel border-bottom-0 justify-content-center flex-wrap" id="myTab"
 						role="tablist">
 						<li class="nav-item" role="presentation">
-							<button class="nav-link text-white active custom-tab-link" id="home-tab"
-								data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab"
-								aria-controls="home-tab-pane" aria-selected="true">Tất
+							<button class="nav-link active custom-tab-link" id="home-tab" data-bs-toggle="tab"
+								data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+								aria-selected="true">Tất
 								Cả
 							</button>
 						</li>
 						<th:block th:each="category : ${categoryList}">
 							<li class="nav-item" role="presentation">
-								<button class="nav-link text-white custom-tab-link"
-									th:id="'pizza-tab'+ ${category.categoryId}" th:data-bs-toggle="tab"
+								<button class="nav-link custom-tab-link" th:id="'pizza-tab'+ ${category.categoryId}"
+									th:data-bs-toggle="tab"
 									th:data-bs-target="'#pizza-tab-pane' + ${category.categoryId}" type="button"
 									role="tab" th:aria-controls="'pizza-tab-pane' + ${category.categoryId}"
 									th:aria-selected="false" th:text="${category.name}">
@@ -282,9 +287,64 @@
 							</div>
 						</section>
 						<th:block th:each="category : ${categoryList}">
+
 							<section class="tab-pane fade" th:id="'pizza-tab-pane' + ${category.categoryId}" role="tab"
 								th:aria-labelledby="'pizza-tab' + ${category.categoryId}" tabindex="0">
+
 								<div class="card-group justify-content-center" style="gap: 100px;">
+
+									<div id="myModal" class="modall" th:if="${category.categoryId == 4}">
+										<div class="modal-contentt">
+											<p style="font-size: 22px; text-align: center; padding-top: 15px;">Sản phẩm
+												này chỉ được bán tại cửa hàng!</p>
+											<div class="modal-footer">
+												<span class="closee btn btn-secondary modal-bottom"
+													onclick="closeModal()">Đã hiểu</span>
+											</div>
+										</div>
+									</div>
+
+									<style>
+										/* CSS để tạo modal */
+										.modall {
+											display: none;
+											/* Ẩn modal ban đầu */
+											position: fixed;
+											z-index: 9999;
+											left: 0;
+											top: 0;
+											width: 100%;
+											height: 100%;
+											overflow: auto;
+											background-color: rgba(0, 0, 0, 0.4);
+											/* Tạo một lớp mờ khi modal hiển thị */
+										}
+
+										.modal-contentt {
+											background-color: rgb(226, 226, 226);
+											margin: 15% auto;
+											text-align: center;
+											padding: 20px;
+											border-radius: 10px;
+											width: 50%;
+											box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+										}
+
+										/* Nút đóng modal */
+										.closee {
+											text-align: center;
+											color: #ffffff;
+											font-size: 16px;
+										}
+
+										.closee:hover,
+										.closee:focus {
+											color: rgb(255, 255, 255);
+											text-decoration: none;
+											cursor: pointer;
+										}
+									</style>
+
 									<th:block th:each="product : ${ListProduct}"
 										th:if="${product.category.categoryId == category.categoryId && product.status_prod != false}">
 										<div class="card">
@@ -309,7 +369,7 @@
 													</div>
 												</div>
 												<div class="price"
-													th:text="'Price: ' + ${#numbers.formatDecimal(product.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
+													th:text="'Giá: ' + ${#numbers.formatDecimal(product.price , 0, 'COMMA', 0, 'POINT')} + ' đ'">
 												</div>
 												<a class="tuychonshare text-dark" data-bs-toggle="modal"
 													th:data-bs-target="'#exampleModal' + ${product.productId}">
@@ -507,7 +567,7 @@
 
 			});
 		});
-		
+
 		// $(document).ready(function () {
 		// 	$('.sharefb').click(function (event) {
 		// 		event.preventDefault();
@@ -579,6 +639,18 @@
 				}
 			});
 		});
+		// end
+
+		// tự động hiển thị modal khi người dung bấm vào thể loại 4
+		// Hiển thị modal
+		window.onload = function () {
+			document.getElementById('myModal').style.display = 'block';
+		};
+
+		// Đóng modal khi bấm vào nút đóng hoặc khu vực xung quanh modal
+		function closeModal() {
+			document.getElementById('myModal').style.display = 'none';
+		}
 		// end
 
 	</script>

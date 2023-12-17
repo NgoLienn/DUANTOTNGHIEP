@@ -400,7 +400,7 @@ body {
   overflow: hidden;
   padding-top: 50%;
   margin-left: 15%;
-  padding-right: 50px;
+  padding-right: 19px;
 }
 
 .card-slider .text-slide {
@@ -417,7 +417,6 @@ body {
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 1rem;
   width: max-content;
   transition: transform 0.8s ease-in-out;
 }
@@ -456,12 +455,14 @@ body {
 /* Chia đều ngang 4 phần tử trên một hàng */
 
 .card-slider .controls {
-  position: absolute;
-  top: 95%;
-  left: 40%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   color: #0d1116;
-  gap: 100%;
+  gap: 66em;
+  position: absolute;
+  left: 7%;
+  bottom: 17%;
 }
 
 .card-slider .controls button {
@@ -478,7 +479,7 @@ body {
   justify-content: center;
   align-items: start;
   margin-left: 10px;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.4), 0 1px 3px rgba(0, 0, 0, 0.08);
   border: none;
 }
 
@@ -487,7 +488,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-right: 0;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.4), 0 1px 3px rgba(0, 0, 0, 0.08);
   border: none;
 }
 
@@ -515,20 +516,16 @@ body {
 
 /* menu sp4 */
 .containerr .image-five .tabpanel {
-  position: absolute;
-  top: 70px;
-  right: 7%;
-}
-
-.containerr .image-five .tabpanel {
-  position: absolute;
-  top: 70px;
-  right: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10%;
 }
 
 .containerr .image-five .tabpanel .custom-tab-link {
   margin-right: 2em;
   background-color: rgb(147, 147, 147);
+  color: white;
   border-radius: 10px 0 10px 0;
   border: none;
   border-bottom: 1px solid transparent;
@@ -538,6 +535,7 @@ body {
 .containerr .image-five .tabpanel .custom-tab-link:hover {
   background-color: rgb(199, 58, 58);
   border-color: transparent;
+  color: white;
 }
 
 /* end */
@@ -553,7 +551,6 @@ body {
 .containerr .image-five h2 {
   line-height: 4em;
   font-weight: bold;
-  padding-bottom: 90px;
 }
 
 .containerr .image-five .card-group img {
@@ -660,7 +657,7 @@ body {
 .containerr .myimage {
   position: absolute;
   left: 75%;
-  top: 14%;
+  top: 12%;
   /* transform: rotate(-45deg); */
   width: 25%;
   z-index: 1;
@@ -766,7 +763,7 @@ body {
   text-align: center;
   line-height: 40px;
   cursor: pointer;
-  overflow-x: auto;
+  /* overflow-x: auto; */
   display: flex;
   justify-content: start;
 }
@@ -799,11 +796,10 @@ body {
   width: 250px;
   height: auto;
   font-size: 18px;
-  background: var(--body-color);
+  background: rgb(211, 211, 211);
   padding: 10px;
   box-shadow: 12px 10px 10px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
-  border: 1px solid rgb(255, 255, 255);
   padding: 20px;
   z-index: 1;
   line-height: 35px;
@@ -983,6 +979,31 @@ body {
   animation: fade 5s ease infinite;
 }
 
+.menu-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.menu-title::before,
+.menu-title::after {
+  content: "";
+  position: absolute;
+  top: 35%;
+  width: 35%;
+  height: 1px;
+  background-color: rgb(124, 124, 124);
+}
+
+.menu-title::before {
+  left: 10px;
+}
+
+.menu-title::after {
+  right: 0;
+}
+
 @keyframes fade {
   0% {
     top: 0px;
@@ -1092,8 +1113,57 @@ footer .ft ul li {
   scroll-behavior: smooth;
 }
 
+.styled-text {
+  position: relative;
+  padding: 10px;
+}
+
+.styled-text:before,
+.styled-text:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background-color: rgb(106, 106, 106);
+}
+
+.styled-text:before {
+  right: 100%;
+}
+
+.styled-text:after {
+  left: 100%;
+}
+
+.styled-text {
+  position: relative;
+  padding: 10px;
+}
+
+.styled-text:before,
+.styled-text:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background-color: rgb(106, 106, 106);
+}
+
+.styled-text:before {
+  right: 100%;
+}
+
+.styled-text:after {
+  left: 100%;
+}
+
 /* responsive */
 @media screen and (min-width: 375px) and (max-width: 575.5px) {
+  .image-two header article .button-sp a {
+    font-size: 15px;
+  }
   /* CSS règles cho thiết bị tablet */
   .containerr .image-two {
     position: relative;
@@ -1117,7 +1187,7 @@ footer .ft ul li {
     position: absolute;
     right: 18%;
     top: 7.5%;
-    width: 110px;
+    /* width: 110px; */
     height: 40px;
   }
 
@@ -1387,9 +1457,9 @@ footer .ft ul li {
   .containerr .image-five h2 {
     line-height: 4em;
     font-weight: bold;
-    transform: translate(10%, 20%);
     padding-bottom: 290px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     text-align: center;
   }
@@ -1415,6 +1485,29 @@ footer .ft ul li {
     align-items: center;
     justify-content: center;
     height: 170px;
+  }
+
+  .styled-text {
+    position: relative;
+    padding: 10px;
+  }
+
+  .styled-text:before,
+  .styled-text:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 10%;
+    height: 1px;
+    background-color: rgb(106, 106, 106);
+  }
+
+  .styled-text:before {
+    right: 100%;
+  }
+
+  .styled-text:after {
+    left: 100%;
   }
 
   .containerr .image-five .tabpanel .custom-tab-link {
@@ -1540,8 +1633,35 @@ footer .ft ul li {
   }
 
   .card-slider .controls {
-    margin-top: 10px;
-    margin-left: -80px;
+    gap: 5em;
+    position: absolute;
+    left: 25%;
+    bottom: 1%;
+  }
+
+  .menu-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .menu-title::before,
+  .menu-title::after {
+    content: "";
+    position: absolute;
+    top: 35%;
+    width: 20%;
+    height: 1px;
+    background-color: rgb(124, 124, 124);
+  }
+
+  .menu-title::before {
+    left: 10px;
+  }
+
+  .menu-title::after {
+    right: 0;
   }
 
   .card-slider .text-slide {
@@ -1603,7 +1723,7 @@ footer .ft ul li {
     position: absolute;
     right: 18%;
     top: 9%;
-    width: 110px;
+    /* width: 110px; */
     height: 40px;
   }
 
@@ -1872,7 +1992,6 @@ footer .ft ul li {
     line-height: 4em;
     text-align: center;
     font-weight: bold;
-    padding-bottom: 190px;
   }
 
   .containerr #menu-food {
@@ -1886,12 +2005,34 @@ footer .ft ul li {
   /* menu sp4 */
 
   .containerr .image-five .tabpanel {
-    position: absolute;
     font-size: 15px;
-    top: 150px;
-    right: -4%;
     height: 120px;
     text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 90px;
+  }
+
+  .styled-text {
+    position: relative;
+    padding: 10px;
+  }
+
+  .styled-text:before,
+  .styled-text:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: rgb(106, 106, 106);
+  }
+
+  .styled-text:before {
+    right: 100%;
+  }
+
+  .styled-text:after {
+    left: 100%;
   }
 
   .containerr .image-five .tabpanel .custom-tab-link {
@@ -2011,15 +2152,42 @@ footer .ft ul li {
   }
 
   .card-slider .controls {
-    margin-top: 20px;
-    margin-left: -45px;
+    gap: 8em;
+    position: absolute;
+    left: 30%;
+    bottom: 1%;
+  }
+
+  .menu-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 20px;  }
+
+  .menu-title::before,
+  .menu-title::after {
+    content: "";
+    position: absolute;
+    top: 35%;
+    width: 25%;
+    height: 1px;
+    background-color: rgb(124, 124, 124);
+  }
+
+  .menu-title::before {
+    left: 10px;
+  }
+
+  .menu-title::after {
+    right: 0;
   }
 
   .card-slider .text-slide {
     text-align: center;
     display: flex;
     justify-content: center;
-    font-size: 40px;
+    font-size: 30px;
   }
 
   .card-slider .card-wrapper .slide-card {
@@ -2051,6 +2219,9 @@ footer .ft ul li {
 
 /* Định nghĩa kích thước responsive cho máy tính bảng */
 @media screen and (min-width: 767px) and (max-width: 992.5px) {
+  .image-two header article .button-sp a {
+    font-size: 17px;
+  }
   /* CSS règles cho máy tính bảng */
   /* navbar */
   .navb .navbar-collapse {
@@ -2073,7 +2244,7 @@ footer .ft ul li {
     position: absolute;
     right: 15%;
     top: 9%;
-    width: 110px;
+    /* width: 110px; */
     height: 40px;
   }
 
@@ -2325,7 +2496,7 @@ footer .ft ul li {
   .containerr .image-five h2 {
     line-height: 4em;
     font-weight: bold;
-    padding-bottom: 220px;
+    padding-bottom: 180px;
     text-align: center;
     margin-left: 20px;
   }
@@ -2349,6 +2520,29 @@ footer .ft ul li {
     text-align: center;
     top: 180px;
     right: 10%;
+  }
+
+  .styled-text {
+    position: relative;
+    padding: 10px;
+  }
+
+  .styled-text:before,
+  .styled-text:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 70%;
+    height: 1px;
+    background-color: rgb(106, 106, 106);
+  }
+
+  .styled-text:before {
+    right: 100%;
+  }
+
+  .styled-text:after {
+    left: 100%;
   }
 
   .containerr .image-five .tabpanel .custom-tab-link {
@@ -2467,8 +2661,35 @@ footer .ft ul li {
   }
 
   .card-slider .controls {
-    margin-top: 10px;
-    margin-left: -20px;
+    gap: 8em;
+    position: absolute;
+    left: 35%;
+    bottom: 1%;
+  }
+
+  .menu-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .menu-title::before,
+  .menu-title::after {
+    content: "";
+    position: absolute;
+    top: 35%;
+    width: 30%;
+    height: 1px;
+    background-color: rgb(124, 124, 124);
+  }
+
+  .menu-title::before {
+    left: 10px;
+  }
+
+  .menu-title::after {
+    right: 0;
   }
 
   .card-slider .text-slide {
@@ -2513,7 +2734,7 @@ footer .ft ul li {
     position: absolute;
     right: 4%;
     top: 9%;
-    width: 110px;
+    /* width: 110px; */
     height: 40px;
   }
 
@@ -2749,7 +2970,6 @@ footer .ft ul li {
   .containerr .image-five h2 {
     line-height: 4em;
     font-weight: bold;
-    padding-bottom: 90px;
   }
 
   .containerr #menu-food {
@@ -2762,9 +2982,10 @@ footer .ft ul li {
 
   /* menu sp4 */
   .containerr .image-five .tabpanel {
-    position: absolute;
-    top: 70px;
-    right: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10%;
   }
 
   .containerr .image-five .tabpanel .custom-tab-link {
@@ -2903,10 +3124,10 @@ footer .ft ul li {
   }
 
   .card-slider .controls {
-    margin-top: 10px;
-    margin-left: -10px;
+    gap: 8em;
     position: absolute;
-    padding-bottom: 60px;
+    left: 40%;
+    bottom: 0;
   }
 
   .card-slider .text-slide {
@@ -2943,7 +3164,7 @@ footer .ft ul li {
     position: absolute;
     right: 10%;
     top: 9%;
-    width: 110px;
+    /* width: 110px; */
     height: 40px;
   }
 
@@ -3171,7 +3392,6 @@ footer .ft ul li {
   .containerr .image-five h2 {
     line-height: 4em;
     font-weight: bold;
-    padding-bottom: 90px;
   }
 
   .containerr #menu-food {
@@ -3184,9 +3404,9 @@ footer .ft ul li {
 
   /* menu sp4 */
   .containerr .image-five .tabpanel {
-    position: absolute;
-    top: 70px;
-    right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .containerr .image-five .tabpanel .custom-tab-link {
@@ -3329,10 +3549,18 @@ footer .ft ul li {
     margin-left: 10%;
   }
 
+  .containerr .image-five .tabpanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10%;
+  }
+
   .card-slider .controls {
+    gap: 8em;
     position: absolute;
-    top: 95%;
-    left: 41%;
+    left: 40%;
+    bottom: 1%;
   }
 
   /* end */

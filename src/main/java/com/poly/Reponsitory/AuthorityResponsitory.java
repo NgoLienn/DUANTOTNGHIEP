@@ -14,7 +14,6 @@ public interface AuthorityResponsitory extends JpaRepository<Authority, Integer>
     @Query("Select a from Authority a where a.account.active = true")
     List<Authority> findAllAcount();
 
-
     @Query("Select a from Authority a where a.account.UserName =:username")
     Authority findByUser(String username);
 

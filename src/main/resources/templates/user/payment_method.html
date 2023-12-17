@@ -25,27 +25,38 @@
                         <div class="wraper">
                             <aside class="">
                                 <div class="container-fluid py-4 mt-3">
-                                    <span class="tttk text-uppercase px-2">Thanh Toán</span>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="tttk text-uppercase px-2">Thanh Toán</span>
+                                        <a th:href="@{/cart}"
+                                            style="text-decoration: none; color: black; padding-right: 15px;">
+                                            <span class="text-uppercase"><i class="bi bi-arrow-left"></i> Trở Lại</span>
+                                        </a>
+                                    </div>
                                     <div class="address-section mt-4 px-2">
-                                        <h4 class="mb-3 text-danger"><i class="bi bi-geo-alt-fill"></i> Địa chỉ giao
+                                        <h4 class="mb-4" style="font-weight: bold; color: rgb(205, 34, 34);"><i
+                                                class="bi bi-geo-alt-fill"></i> Địa chỉ giao
                                             hàng
                                         </h4>
                                         <div class="address-card">
-                                            <div class="name px-2">
-                                                <label for="address1" th:text="${account.fullname}"></label>
-                                            </div>
-                                            <div class="phone">
-                                                <label for="address2" th:text="${account.phone}"></label>
-                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <div class="name px-2">
+                                                    <label for="address1" th:text="${account.fullname}"
+                                                        style="font-size: 19px;"></label>
+                                                </div>
+                                                <div class="phone px-3">
+                                                    <label for="address2" th:text="'(+84) ' + ${account.phone}"
+                                                        style="font-size: 19px;"></label>
+                                                </div>
 
-                                            <div class="location px-5">
-                                                <label for="address3" th:text="${account.address}"></label>
+                                                <div class="location px-5">
+                                                    <label for="address3" th:text="${account.address}"
+                                                        style="font-size: 19px;"></label>
+                                                </div>
+                                                <a th:href="@{/user/payment#myModal}" id="openModal"
+                                                    class=" add-new-address px-3 text-location d-flex justify-content-end">
+                                                    Thay Đổi
+                                                </a>
                                             </div>
-                                            <a th:href="@{/user/payment#myModal}" id="openModal"
-                                                class=" add-new-address px-3 text-location d-flex justify-content-end">
-                                                Thay Đổi
-                                            </a>
-
                                             <!-- Màng hình hiển thị -->
                                             <div id="myModal" class="modal">
                                                 <div class="modal-content">
@@ -81,7 +92,9 @@
                                                                             thành</option>
                                                                         <!-- Add options for provinces here -->
                                                                     </select>
-                                                                    <label id="tinhError" class="error-label text-danger d-none">Vui lòng chọn tỉnh thành!</label>
+                                                                    <label id="tinhError"
+                                                                        class="error-label text-danger d-none">Vui lòng
+                                                                        chọn tỉnh thành!</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12 py-2">
@@ -92,7 +105,9 @@
                                                                             quận/huyện</option>
                                                                         <!-- Add options for districts here -->
                                                                     </select>
-                                                                    <label id="huyenError" class="error-label text-danger d-none">Vui lòng chọn quận/huyện!</label>
+                                                                    <label id="huyenError"
+                                                                        class="error-label text-danger d-none">Vui lòng
+                                                                        chọn quận/huyện!</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12 py-2">
@@ -102,7 +117,9 @@
                                                                             phường/xã</option>
                                                                         <!-- Add options for towns here -->
                                                                     </select>
-                                                                    <label id="xaError" class="error-label text-danger d-none">Vui lòng chọn xã!</label>
+                                                                    <label id="xaError"
+                                                                        class="error-label text-danger d-none">Vui lòng
+                                                                        chọn xã!</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12 py-2">
@@ -112,7 +129,9 @@
                                                                         style="vertical-align: top;"
                                                                         name="chitiet"></textarea>
                                                                 </div>
-                                                                <label id="chitietError" class="error-label text-danger d-none">Vui lòng nhập địa chỉ chi tiết!</label>
+                                                                <label id="chitietError"
+                                                                    class="error-label text-danger d-none">Vui lòng nhập
+                                                                    địa chỉ chi tiết!</label>
                                                             </div>
                                                         </div>
                                                         <!-- Các trường thông tin khác -->
@@ -126,11 +145,15 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <span class="horizontal-line "
+                                    style="display: block; width: 98%; height: 0.5px; background-color: #d5d5d5; margin: 20px auto;">
+                                </span>
                                 <div class="container-fluid py-4 mt-3">
                                     <div class="product-container">
                                         <div class="product-row header">
                                             <div class="product-cell">Sản phẩm</div>
-                                            <div class="product-cell">Size</div>
+                                            <div class="product-cell"></div>
                                             <div class="product-cell">Đơn giá</div>
                                             <div class="product-cell">Số lượng</div>
                                             <div class="product-cell">Thành tiền</div>

@@ -154,7 +154,7 @@
           <div class="card">
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
-                <p class="mb-0">Chỉnh Sửa Sản Phẩm </p>
+                <!-- <p class="mb-0">Chỉnh Sửa Sản Phẩm </p> -->
               </div>
             </div>
             <form method="post" th:object="${newProduct}" enctype="multipart/form-data" onsubmit="return validateForm()"
@@ -230,7 +230,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Trang Thái</label>
+                      <label for="example-text-input" class="form-control-label">Trạng Thái</label>
                       <div class="d-flex justify-content-start align-items-center gap-3 mt-2">
                         <label for="trueStatus" class="cursor-pointer" style="font-size: 13px;">
                           <input class="" id="trueStatus" name="status_prod" type="radio" value="True" placeholder=""
@@ -275,19 +275,20 @@
                 </div>
                 <hr class="horizontal dark">
                 <hr class="py-2">
-                <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap;">
+                <div class="d-flex align-items-center justify-content-center pe-7" style="display: flex; flex-wrap: wrap;">
 
                   <button class="btn btn-primary btn-sm ms-4 text-white" type="submit"
                     formaction="/admin/managerProducts/add"
-                    th:disabled="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit')}">
+                    th:style="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit') ? 'display: none;' : ''}">
                     Thêm
                   </button>
 
-                  <button class="btn btn-info btn-sm ms-4 text-white" type="submit"
+                  <button class="btn btn-primary btn-sm ms-4 text-white" type="submit"
                     th:formaction="@{|/admin/managerProducts/update/${productIdd}|}"
-                    th:disabled="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit')}">
-                    Sửa
+                    th:style="${#httpServletRequest != null and not #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit') ? 'display: none;' : ''}">
+                    Lưu
                   </button>
+
 
                   <!-- <button class="btn btn-danger btn-sm ms-4 text-white" type="button" data-bs-toggle="modal"
                     data-bs-target="#confirmDeleteModal"
@@ -298,11 +299,11 @@
                   <a th:href="@{/admin/managerProducts}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts')}"
                     th:unless="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit')}">
-                    <button class="btn btn-dark btn-sm ms-4" type="button">Làm Mới</button>
+                    <button class="btn btn-primary btn-sm ms-4" type="button">Làm Mới</button>
                   </a>
                   <a th:href="@{|/admin/managerProducts/edit/${productIdd}|}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit')}">
-                    <button class="btn btn-dark btn-sm ms-4" type="button">Làm Mới</button>
+                    <button class="btn btn-primary btn-sm ms-4" type="button">Làm Mới</button>
                   </a>
                 </div>
                 <!-- Modal hỏi xóa sản phẩm-->
@@ -351,15 +352,15 @@
                       </th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Thể loại
                       </th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giá
-                      </th>
+                      <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giá
+                      </th> -->
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày
                         Tạo
                       </th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Số
                         Lượng
                       </th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trang
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng
                         Thái
                       </th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Thao
@@ -383,11 +384,11 @@
                       <td>
                         <span class="text-xs font-weight-bold mb-0 category" th:text="${item.category.name}"></span>
                       </td>
-                      <td>
+                      <!-- <td>
                         <span class="text-xs font-weight-bold mb-0 price"
                           th:text="${#numbers.formatDecimal(item.price , 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
-                        <!-- <p class="text-xs text-secondary mb-0">Organization</p> -->
-                      </td>
+                        <p class="text-xs text-secondary mb-0">Organization</p>
+                      </td> -->
                       <td class="align-middle text-center text-sm">
                         <span class="text-xs font-weight-bold mb-0 create_at" th:text="${item.create_at}"></span>
                       </td>
@@ -407,7 +408,7 @@
                       <td class="align-middle text-center">
                         <a th:href="@{/admin/managerProducts/edit/{productId}(productId=${item.productId})}"
                           class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                          data-original-title="Edit user">Edit
+                          data-original-title="Edit user">sửa
                         </a>
                       </td>
                     </tr>
