@@ -19,4 +19,7 @@ public interface AccountReponsitory extends JpaRepository<Account, Integer> {
 
     @Query("select count(u.accountID) from Account u")
     public int countAccount();
+
+    @Query("select u from Account u where u.token=?1") //
+    Account findbytoken(String token);
 }

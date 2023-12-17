@@ -6,109 +6,60 @@
 <body>
     <div class="footer" th:fragment="footer">
         <!-- Footer -->
-        <footer class="text-center text-black d-flex justify-content-center">
-            <!-- Grid container -->
-            <div class="container p-4">
-                <!-- Section: Social media -->
-                <section class="">
-                    <!-- Facebook -->
-                    <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i
-                            class="fab fa-facebook-f"></i></a>
-
-                    <!-- Google -->
-                    <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i
-                            class="fab fa-google"></i></a>
-
-                    <!-- Instagram -->
-                    <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i
-                            class="fab fa-instagram"></i></a>
-
-                    <!-- Github -->
-                    <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button"><i
-                            class="fab fa-github"></i></a>
-                </section>
-                <!-- Section: Social media -->
-
-                <!-- Section: Form -->
-                <section class="">
-                    <form action="">
-                        <!--Grid row-->
-                        <div class="row d-flex justify-content-center p-4">
-                            <!--Grid column-->
-                            <div class="col-auto">
-                                <p class="pt-2">
-                                    <strong>Đăng ký để nhận thông tin mới nhất <br>
-                                        của chúng tôi!
-                                    </strong>
-                                </p>
-                            </div>
-                            <!--Grid column-->
-
-                            <!--Grid column-->
-                            <div class="col-md-5 col-12">
-                                <!-- Email input -->
-                                <div class="form-outline form-white mb-4">
-                                    <input style="caret-color: red;" type="email" placeholder="Email address"
-                                        id="form5Example21" class="form-control" /> <label class="form-label"
-                                        for="form5Example21"></label>
-                                </div>
-                            </div>
-                            <!--Grid column-->
-
-                            <!--Grid column-->
-                            <div class="col-auto">
-                                <!-- Submit button -->
-                                <button type="submit" class="btn btn-outline-dark mb-4">
-                                    Xác Nhận</button>
-                            </div>
-                            <!--Grid column-->
-                        </div>
-                        <!--Grid row-->
-                    </form>
-                </section>
-                <!-- Section: Form -->
-
-                <!-- Section: Links -->
-                <section class="ft">
-                    <!--Grid row-->
-                    <div class="row d-flex justify-content-center">
-                        <!--Grid column-->
-                        <div class="col-lg-5 col-md-12 mb-4 mb-md-0 px-5">
-                            <h5 class="text-center">
-                                <span class="d-flex"><b>Yummy</b></span>
-                            </h5>
-
-                            <ul class="list-unstyled mb-0 col-md-24">
-                                <li><a href="#" class="text-black">Bán Thức Ăn Online
-                                        Yummy</a></li>
-                                <li><a href="#!" class="text-black"><b>Trụ Sở
-                                            Chính:</b> Đường số 22, phường Thường Thạnh,
-                                        quận Cái Răng, TP
-                                        Cần Thơ </a></li>
-                            </ul>
-                        </div>
-
-                        <div class="col-lg-5 col-md-12 mb-4 mb-md-0 px-5">
-                            <h5 class="text-center">
-                                <span class="d-flex"><b>Liên Hệ</b></span>
-                            </h5>
-
-                            <ul class="list-unstyled ">
-                                <li><a href="#" class="text-black">Yummy:
-                                        banglcpc04088fpt.edu.vn</a></li>
-                                <li><a href="#!" class="text-black">Liên Hệ:
-                                        0943925652</a></li>
-                                <li><a th:href="@{/user/rules}" class="text-black">Điều khoản và điều kiện</a></li>
-                            </ul>
-                        </div>
-                        <!--Grid column-->
-                    </div>
-                    <!--Grid row-->
-                </section>
-                <!-- Section: Links -->
+        <footer class="footer">
+            <div class="col-10" style="margin-left: 7.5%;">
+                <hr>
             </div>
-            <!-- Grid container -->
+            <br><br>
+            <div class="container">
+
+                <div class="row d-flex justify-content-center p-4">
+                    <div class="col-md-auto">
+                        <img src="/assets/images/yum-logo.png" alt="" class=""
+                            style="max-width: 200px; max-height: 200px; padding-bottom: 30px;">
+                    </div>
+                    <div class="col-md">
+                        <h4 style="padding-bottom: 8px;">Thông tin cửa hàng</h4>
+                        <p style="line-height: 32px;">Địa chỉ: Đường số 22, phường Thường Thạnh,
+                            <br class="">quận Cái Răng, TP
+                            Cần Thơ
+                        </p>
+                        <p>Email: adfastfootstore@gmai.com</p>
+                        <p>Số điện thoại: 0943925652</p>
+                        <a th:href="@{/rules}" class="" style="text-decoration: none; color: rgb(54, 54, 54);">
+                            <p>Điều khoản và điều kiện</p>
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <h4>Danh mục</h4>
+                        <ul class="list-unstyled" style="line-height: 35px; font-size: 17px;">
+                            <li><a href="/" style="text-decoration: none; color: rgb(54, 54, 54);">Trang chủ</a></li>
+                            <li><a href="#" style="text-decoration: none; color: rgb(54, 54, 54);">Giới thiệu</a></li>
+                            <li><a href="#" style="text-decoration: none; color: rgb(54, 54, 54);">Liên hệ</a></li>
+                            <li><a href="#" style="text-decoration: none; color: rgb(54, 54, 54);">Thực đơn</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md">
+                        <h4>Theo dõi chúng tôi</h4>
+                        <p style="text-align: justify; line-height: 27px; font-size: 17px;">Theo dõi chúng tôi trên các
+                            mạng xã hội để cập nhật thông tin mới nhất về sản phẩm và khuyến
+                            mãi.</p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a
+                                    href="https://www.facebook.com/profile.php?id=61553402523369" class="btn"><i
+                                        class="fab fa-facebook" style="font-size: 27px;"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item"><a href="https://github.com/NgoLienn/DUANTOTNGHIEP.git"
+                                    class="btn"><i class="fab fa-github" style="font-size: 27px;"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </footer>
+
         <!-- Footer -->
     </div>
 </body>

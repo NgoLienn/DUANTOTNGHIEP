@@ -3,7 +3,16 @@ package com.poly.Controller.admin;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +32,7 @@ import com.poly.Reponsitory.AccountReponsitory;
 import com.poly.Reponsitory.OrderItemRepository;
 import com.poly.Reponsitory.OrdersReposiotry;
 import com.poly.Reponsitory.StatusRepository;
+import com.poly.Service.EmailService;
 import com.poly.Service.OrderService;
 
 @Controller
@@ -43,6 +53,9 @@ public class ManagerOrder {
 
     @Autowired
     StatusRepository statusRepo;
+
+    @Autowired
+    EmailService emailService;
 
     @GetMapping("/managerOrder")
     public String ViewOrder(Model model, @RequestParam(value = "query", defaultValue = "") String query) {
@@ -136,12 +149,22 @@ public class ManagerOrder {
         if (order != null) {
             // Lấy trạng thái "Đã hủy đơn" từ cơ sở dữ liệu
             Status cancelledStatus = statusRepo.findById(6L).orElse(null);
+
             // Kiểm tra xem trạng thái đã tìm được hay không
             if (cancelledStatus != null) {
                 // Cập nhật trạng thái đơn hàng thành "Đã hủy đơn"
                 order.setStatus(cancelledStatus);
-                // Lưu thay đổi vào cơ sở dữ liệu
                 ordersRepo.save(order);
+
+                Account userAccount = order.getAccount();
+                if (userAccount != null) {
+                    String recipientEmail = userAccount.getUserName();
+
+                    // Gửi email thông báo hủy đơn hàng
+                    emailService.sendCancellationEmail(recipientEmail,
+                            "Lỗi kỹ thuật hoặc vấn đề hệ thống không cho phép xử lý đơn hàng. Mong quý khách thông cảm"); // Gọi phương thức gửi
+                    // email
+                }
             }
         }
         return "redirect:/admin/managerOrder";
