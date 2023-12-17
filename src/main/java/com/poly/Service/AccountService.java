@@ -16,7 +16,7 @@ import com.poly.Reponsitory.AccountReponsitory;
 @Service
 public class AccountService {
     @Autowired
-    AccountReponsitory accountRepository;
+    AccountReponsitory accountRepository; //
     @Autowired
     PasswordEncoder passwordEncoder;
     @Autowired

@@ -50,7 +50,7 @@ public class ManagerRoles {
         List<Roles> roles = roleRespontory.findAll();
 
         model.addAttribute("newRoles", new Roles());
-        model.addAttribute("roles", roles);
+        model.addAttribute("roles", roles); //
 
         return "admin/Roles";
     }

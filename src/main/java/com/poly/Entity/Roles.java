@@ -21,3 +21,4 @@ public class Roles  implements Serializable{
     @OneToMany(mappedBy = "role")
     List<Authority> authorities;
 }
+//
