@@ -114,7 +114,7 @@ public class ManagerProducts {
         model.addAttribute("productPage", productPage);
         // end
 
-        return "/admin/product";
+        return "admin/product";
     }
 
     @GetMapping("/managerProducts/edit/{productId}")
@@ -165,7 +165,7 @@ public class ManagerProducts {
         model.addAttribute("productPage", productPage);
         // end
 
-        return "/admin/product";
+        return "admin/product";
 
     }
 

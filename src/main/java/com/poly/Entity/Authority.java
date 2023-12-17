@@ -1,6 +1,7 @@
 package com.poly.Entity;
 
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,22 @@ import java.io.Serializable;
         @UniqueConstraint(columnNames = {"Username", "Roleid"})
 })
 public class Authority  implements Serializable {
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

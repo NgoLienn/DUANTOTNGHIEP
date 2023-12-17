@@ -67,7 +67,7 @@ public class ManagerReview {
         reviewPage.setCurrentPage(page);
         model.addAttribute("reviewPage", reviewPage);
 
-		return "/admin/review";
+		return "admin/review";
 	}
 	
 	@PostMapping("/managerReview/reset")
@@ -119,7 +119,7 @@ public class ManagerReview {
        reviewPage.setTotalPages(totalPages);
        reviewPage.setCurrentPage(page);
        model.addAttribute("reviewPage", reviewPage);
-		return "/admin/review";
+		return "admin/review";
 	}
 
 	@PostMapping("/managerReview/delete/{reviewID}")

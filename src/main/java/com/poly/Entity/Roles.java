@@ -15,7 +15,6 @@ import lombok.Data;
 @Table(name = "roles")
 public class Roles  implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String name;
     @JsonIgnore

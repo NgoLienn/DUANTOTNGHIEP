@@ -25,27 +25,26 @@ public class ChangePassword {
     private PasswordEncoder passwordEncoder;
 
     @GetMapping("/changepassword")
-    public String Changepassword() {
+    public String Changepassword(){
 
         return "user/changepassword";
 
     }
-
     @PostMapping("/changepassword")
     public String Changepassword2(Model model, HttpServletRequest httpServletRequest,
-            @RequestParam("Password") String Password,
-            @RequestParam("Passwordnew") String Passwordnew) {
+                                  @RequestParam("Password")String Password,
+                                  @RequestParam("Passwordnew")String Passwordnew){
         String username = httpServletRequest.getRemoteUser();
         Account account = accountReponsitory.findByUsername(username);
-        if (passwordEncoder.matches(Password, account.getPassword())) {
+        if(passwordEncoder.matches(Password,account.getPassword())){
             String encodedPassword = passwordEncoder.encode(Passwordnew);
             account.setPassword(encodedPassword);
             accountReponsitory.save(account);
-            model.addAttribute("message", "đổi mật khẩu thành công");
-            return "redirect:/";
+            model.addAttribute("message","đổi mật khẩu thành công");
+            return "/user/changepassword";
 
-        } else {
-            model.addAttribute("message", "Mật khẩu không khớp");
+        }else{
+            model.addAttribute("message","Mật khẩu không khớp");
             return "/user/changepassword";
         }
     }

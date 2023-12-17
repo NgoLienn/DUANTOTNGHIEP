@@ -11,6 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Page {
 	private List<Products> ListProduct;
+	private List<Authority> ListAuthority;
+
+	public List<Authority> getListAuthority() {
+		return ListAuthority;
+	}
+
+	public void setListAuthority(List<Authority> listAuthority) {
+		ListAuthority = listAuthority;
+	}
 
 	private List<Image_product> imageProduct;
 

@@ -54,7 +54,7 @@ public class ManagerProfile {
         Account account = accountService.findByUsername(users);
         model.addAttribute("account", new Account());
         model.addAttribute("profile", account);
-        return "/admin/profile";
+        return "admin/profile";
     }
 
     @PostMapping("profile")
