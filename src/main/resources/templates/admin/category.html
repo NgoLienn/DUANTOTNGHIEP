@@ -146,7 +146,7 @@
 										<div class="form-group">
 											<label for="example-text-input" class="form-control-label">Tên
 												Danh Mục</label> <input class="form-control" type="text"
-												th:field="*{name}" placeholder="Tên danh mục" id="newProduct_name"
+												th:field="*{name}" placeholder="Nhập tên danh mục" id="newProduct_name"
 												th:value="${newCategories.name}">
 											<small class="text-danger" id="name-error"></small>
 											<div id="form-error" class="text-danger mt-2 border-danger"></div>
@@ -218,8 +218,7 @@
 											Mới</button>
 									</a> <a th:href="@{/admin/managerCategory}"
 										th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerCategory/edit')}">
-										<button class="btn btn-primary btn-sm ms-4" type="button">Làm
-											Mới</button>
+										<button class="btn btn-primary btn-sm ms-4" type="button">Hủy Thao Tác</button>
 									</a>
 								</div>
 							</div>

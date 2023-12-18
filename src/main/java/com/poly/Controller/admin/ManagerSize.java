@@ -122,6 +122,8 @@ public class ManagerSize {
                 // tìm size_product
                 Size_Product size_Product = sizeService.addSize_Product(size, price);
 
+                sizeService.deleteSizeProduct(size_Product);
+
                 // cập nhật giá
                 sizeService.updateSize_Product(size_Product, price);
                 return "Sửa thành công";

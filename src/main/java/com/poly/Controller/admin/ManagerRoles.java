@@ -67,7 +67,7 @@ public class ManagerRoles {
             roleRespontory.save(roles2);
             return "redirect:/admin/managerRoles" ;
         }else{
-            model.addAttribute("message", "Roles đã được sử dụng");
+            model.addAttribute("message", "Vai trò đã được sử dụng");
 
             List<Roles> roless = roleRespontory.findAll();
             model.addAttribute("newRoles", new Roles());

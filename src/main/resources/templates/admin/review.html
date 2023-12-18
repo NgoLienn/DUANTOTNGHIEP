@@ -136,7 +136,7 @@
 			<div class="col-12">
 				<div class="container-fluid py-4">
 					<div class="card">
-						
+
 						<!-- Hiển thị ảnh với tài khoản
 										<div class="form-group">
 											<label for="account" class="form-control-label">Tài
@@ -185,12 +185,12 @@
 								</div>
 								<div>
 									<hr class="py-2">
-									<button class="btn btn-danger btn-sm ms-4" type="button" data-bs-toggle="modal"
+									<button class="btn btn-primary btn-sm ms-4" type="button" data-bs-toggle="modal"
 										th:style="${reviewID == null} ? 'opacity: 0.5; pointer-events: none;' : ''"
 										data-bs-target="#confirmDeleteModal">Xóa</button>
-									<button class="btn btn-dark btn-sm ms-4" type="submit"
+									<button class="btn btn-primary btn-sm ms-4" type="submit"
 										th:style="${reviewID == null} ? 'opacity: 0.5; pointer-events: none;' : ''"
-										th:formaction="@{/admin/managerReview/reset}">Mới</button>
+										th:formaction="@{/admin/managerReview/reset}">Làm mới</button>
 
 									<div style="margin-top: 300px" class="modal fade" id="confirmDeleteModal"
 										tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel"
@@ -208,7 +208,7 @@
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-bs-dismiss="modal">Hủy</button>
-													<button type="submit" class="btn btn-danger"
+													<button type="submit" class="btn btn-primary"
 														th:formaction="@{|/admin/managerReview/delete/${reviewID}|}"
 														th:style="${reviewID == null} ? 'opacity: 0.5; pointer-events: none;' : ''"
 														id="confirmDeleteButton">Xóa</button>
@@ -242,6 +242,9 @@
 												Khoản</th>
 											<th
 												class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+												Sản Phẩm</th>
+											<th
+												class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
 												Sao
 												Đánh Giá</th>
 											<th
@@ -263,13 +266,16 @@
 													class="badge badge-sm text-dark text-xs max-width-200 overflow-auto"
 													th:text="${item.account.fullname}"></span>
 											</td>
+											<td class="align-middle px text-sm"><span
+													class="badge badge-sm text-dark text-xs"
+													th:text="${item.Products.Name} + ' sao'"></span>
+											</td>
 											<td class="align-middle px text-sm ps-4"><span
 													class="badge badge-sm text-dark text-xs"
 													th:text="${item.rating} + ' sao'"></span>
 											</td>
 											<div class="dropdown">
-												<td
-													class="align-middle text-sm">
+												<td class="align-middle text-sm">
 													<span
 														class="badge badge-sm text-dark text-xs dropdown-toggle cursor-pointer"
 														data-bs-toggle="dropdown" aria-expanded="false">Xem

@@ -48,17 +48,21 @@
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <!-- <div class="input-group">
-                            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i
-                ></span>
-                            <input type="text" class="form-control" placeholder="Tìm Kiếm..." />
-                        </div> -->
+            <div class="input-group">
+              <span class="input-group-text text-body">
+                <button class="btn btn-primary input-group-text mb-0 py-1" type="submit">
+                  <i class="fas fa-search cursor-pointer" aria-hidden="true"></i>
+                </button>
+              </span>
+              <input id="searchInput" onkeyup="searchSize()" type="text" class="form-control"
+                placeholder="Tìm Kiếm..." />
+            </div>
           </div>
-          <ul class="navbar-nav justify-content-end">
+          <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a href="/page/admin/profile.html" class="nav-link text-white font-weight-bold px-0">
+              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Tài Khoản</span>
+                <span class="d-sm-inline d-none fixed-plugin-button-nav">Tài Khoản</span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -71,8 +75,8 @@
               </a>
             </li>
             <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              <a href="javascript:;" class="nav-link text-white p-0 font-weight-bold">
+                <!-- <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i> -->
               </a>
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
@@ -80,19 +84,20 @@
                 aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
               </a>
-              <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                 <li class="mb-2">
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="/assets/images/food-menu-1.png" class="avatar avatar-sm me-3" />
+                        <img src="../assets/img/images/food-menu-1.png" class="avatar avatar-sm  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
                           <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
                         </h6>
                         <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i> 13 phút trước
+                          <i class="fa fa-clock me-1"></i>
+                          13 phút trước
                         </p>
                       </div>
                     </div>
@@ -102,14 +107,15 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="/assets/images/food-menu-2.png" class="avatar avatar-sm me-3" />
+                        <img src="../assets/img/images/food-menu-2.png" class="avatar avatar-sm me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
                           <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
                         </h6>
                         <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i> 1 ngày trước
+                          <i class="fa fa-clock me-1"></i>
+                          1 ngày trước
                         </p>
                       </div>
                     </div>
@@ -119,14 +125,15 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="/assets/images/food-menu-4.png" class="avatar avatar-sm me-3" />
+                        <img src="../assets/img/images/food-menu-4.png" class="avatar avatar-sm me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
                           <span class="font-weight-bold">Thông báo mới</span> Từ Yummy
                         </h6>
                         <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i> 3 ngày trước
+                          <i class="fa fa-clock me-1"></i>
+                          3 ngày trước
                         </p>
                       </div>
                     </div>
@@ -143,13 +150,8 @@
       <div class="col-12">
         <div class="container-fluid py-4">
           <div class="card">
-            <div class="card-header pb-0">
-              <div class="d-flex align-items-center">
-                <p class="mb-0">Chỉnh Sửa Size</p>
-              </div>
-            </div>
             <div class="card-body">
-              <p class="text-uppercase text-sm">Thông Tin Bảng Size</p>
+              <p class="text-uppercase text-sm">Thông Tin Size Sản Phẩm</p>
               <div class="row">
                 <div class="col-md-6" id="showAddSize">
                   <div class="form-group">
@@ -179,7 +181,7 @@
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Size</label>
                     <div class="d-flex align-items-center gap-3">
-                      <input class="form-control" type="text" id="nameSize" placeholder="Vui Lòng Chọn Size" />
+                      <input class="form-control" type="text" id="nameSize" placeholder="Nhập size cho sản phẩm" />
                     </div>
                     <small class="text-danger ms-2" id="errorSize"></small>
                   </div>
@@ -188,7 +190,7 @@
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Giá</label>
                     <div class="d-flex align-items-center gap-3">
-                      <input class="form-control" type="text" id="price" placeholder="Vui Lòng Chọn Giá Tiền" />
+                      <input class="form-control" type="text" id="price" placeholder="Nhập giá tiền cho size" />
                     </div>
                     <small class="text-danger ms-2" id="errorPrice"></small>
                   </div>
@@ -197,17 +199,19 @@
               <hr class="horizontal dark" />
               <hr class="py-2" />
               <div class="d-flex align-items-center justify-content-center" style="display: flex; flex-wrap: wrap">
-                <button id="btnAdd" class="btn btn-primary btn-sm ms-4" th:onclick="addSize()">
+                <button id="btnAdd" class="btn btn-primary btn-sm ms-4 text-white" th:onclick="addSize()">
                   Thêm
                 </button>
-                <button id="btnUpdate" class="btn btn-info btn-sm ms-4" th:onclick="updateSize()" disabled>
-                  Sửa
+                <button id="btnUpdate" class="btn btn-primary btn-sm ms-4 text-white" th:onclick="updateSize()"
+                  disabled>
+                  Lưu
                 </button>
-                <button id="btnDelete" class="btn btn-danger btn-sm ms-4" th:onclick="deleteSize()" disabled>
+                <button id="btnDelete" class="btn btn-primary btn-sm ms-4 text-white" th:onclick="deleteSize()"
+                  disabled>
                   Xóa
                 </button>
-                <button id="btnRefresh" class="btn btn-dark btn-sm ms-4" th:onclick="refresh()">
-                  Làm Mới
+                <button id="btnRefresh" class="btn btn-primary btn-sm ms-4 text-white" th:onclick="refresh()">
+                  làm Mới
                 </button>
               </div>
             </div>
@@ -222,13 +226,6 @@
           <div class="card mb-4">
             <div class="card-header pb-0 d-flex justify-content-between">
               <h6>Danh Sách Size Sản Phẩm</h6>
-              <div class="col-3">
-                <div class="input-group">
-                  <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                  <input id="searchInput" onkeyup="searchSize()" type="text" class="form-control"
-                    placeholder="Tìm Kiếm..." />
-                </div>
-              </div>
             </div>
             <nav aria-label="Page navigation example" class="navigation mt-3 mb-3 d-flex justify-content-center">
               <ul class="pagination">
@@ -284,7 +281,7 @@
                         </div>
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0" th:text="${item.size.products.quantity}"></p>
+                        <p class="text-xs font-weight-bold mb-0 ps-4" th:text="${item.size.products.quantity}"></p>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm text-dark text-xs" th:text="${item.size.tableSize.sizeName}"></span>
@@ -297,7 +294,7 @@
                         <a href="javascript:;" th:onclick="'editSize(\'' + ${item.size.sizeID} + '\')'"
                           class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                           data-original-title="Edit user">
-                          Chỉnh Sửa
+                          Sửa
                         </a>
                       </td>
                     </tr>
@@ -409,39 +406,53 @@
       var nameSize = document.getElementById("nameSize").value.trim();
       var price = document.getElementById("price").value.trim();
 
-      if (nameProduct == '') {
-        document.getElementById('errorName').innerText = 'Không bỏ trống tên sản phẩm.';
-      } else if (price == '') {
-        document.getElementById('errorPrice').innerText = 'Không bỏ trống giá.';
-      } else if (nameSize == '') {
-        document.getElementById('errorSize').innerText = 'Không bỏ trống size.';
+      var errorName = document.getElementById('errorName');
+      var errorPrice = document.getElementById('errorPrice');
+      var errorSize = document.getElementById('errorSize');
+
+      errorName.innerText = '';
+      errorPrice.innerText = '';
+      errorSize.innerText = '';
+
+      if (nameProduct === '') {
+        errorName.innerText = 'Không bỏ trống tên sản phẩm.';
+      } else if (price === '' || isNaN(price)) {
+        errorPrice.innerText = 'Giá không hợp lệ.';
+      } else if (nameSize === '') {
+        errorSize.innerText = 'Không bỏ trống size.';
       } else {
         var result = window.confirm("Bạn có chắc chắn muốn sửa không?");
         if (result) {
           $.ajax({
-            url:
-              "/admin/updateSize/" +
-              nameProduct +
-              "/" +
-              nameSize +
-              "/" +
-              price,
+            url: "/admin/updateSize/" + nameProduct + "/" + nameSize + "/" + price,
+            method: "GET",
             success: function (response) {
-              Swal.fire({
-                position: "top",
-                icon: "success",
-                text: "Sửa thành công!",
-                showConfirmButton: false,
-                timer: 1000,
-              });
-              if (response == "Sửa thành công") {
+              if (response === "Sửa thành công") {
+                Swal.fire({
+                  position: "top",
+                  icon: "success",
+                  text: "Sửa thành công!",
+                  showConfirmButton: false,
+                  timer: 1000,
+                });
                 setTimeout(function () {
                   window.location.reload();
                 }, 1200);
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Lỗi",
+                  text: response,
+                });
               }
             },
             error: function (xhr, status, error) {
               console.log("Error: " + error);
+              Swal.fire({
+                icon: "error",
+                title: "Lỗi",
+                text: "Đã xảy ra lỗi trong quá trình xử lý.",
+              });
             },
           });
         }

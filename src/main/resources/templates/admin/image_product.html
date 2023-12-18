@@ -185,7 +185,8 @@
                     </div>
                   </div>
                   <div id="imagePreviews" class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
-                    <img id="preview-image" class="" th:src="*{Url_Img}" alt="" style="padding-left: 15px;">
+                    <img id="preview-image" class="" th:src="*{Url_Img}" alt=""
+                      style="padding-left: 15px; max-width: 300px; max-height: 300px;">
                   </div>
                 </div>
                 <hr class="py-2">
@@ -210,7 +211,7 @@
                   <a th:href="@{/admin/managerImageProduct}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProduct')}"
                     th:unless="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}">
-                    <button class="btn btn-primary btn-sm ms-4" type="button">Hủy Thao Tác</button>
+                    <button class="btn btn-primary btn-sm ms-4" type="button">Làm Mới</button>
                   </a>
                   <a th:href="@{|/admin/managerImageProducts/edit/${imageproductIdd}|}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}">
@@ -289,7 +290,7 @@
                         <a th:href="@{/admin/managerImageProducts/edit/{imageproductId}(imageproductId=${item.imageproductId})}"
                           class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                           data-original-title="Edit user">
-                          sửa
+                          Sửa
                         </a>
                       </td>
                     </tr>

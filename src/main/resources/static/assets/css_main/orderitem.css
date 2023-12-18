@@ -529,7 +529,7 @@ body {
   width: 250px;
   height: auto;
   font-size: 18px;
-  background: var(--body-color);
+  background: rgb(211, 211, 211);
   padding: 10px;
   box-shadow: 12px 10px 10px rgba(0, 0, 0, 0.2);
   border-radius: 20px;

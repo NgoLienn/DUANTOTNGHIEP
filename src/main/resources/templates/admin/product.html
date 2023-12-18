@@ -275,7 +275,8 @@
                 </div>
                 <hr class="horizontal dark">
                 <hr class="py-2">
-                <div class="d-flex align-items-center justify-content-center pe-7" style="display: flex; flex-wrap: wrap;">
+                <div class="d-flex align-items-center justify-content-center pe-7"
+                  style="display: flex; flex-wrap: wrap;">
 
                   <button class="btn btn-primary btn-sm ms-4 text-white" type="submit"
                     formaction="/admin/managerProducts/add"
@@ -303,7 +304,7 @@
                   </a>
                   <a th:href="@{|/admin/managerProducts/edit/${productIdd}|}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerProducts/edit')}">
-                    <button class="btn btn-primary btn-sm ms-4" type="button">Làm Mới</button>
+                    <button class="btn btn-primary btn-sm ms-4" type="button">Hủy Thao Tác</button>
                   </a>
                 </div>
                 <!-- Modal hỏi xóa sản phẩm-->
@@ -408,7 +409,7 @@
                       <td class="align-middle text-center">
                         <a th:href="@{/admin/managerProducts/edit/{productId}(productId=${item.productId})}"
                           class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                          data-original-title="Edit user">sửa
+                          data-original-title="Edit user">Sửa
                         </a>
                       </td>
                     </tr>
@@ -575,15 +576,6 @@
         name.style.borderColor = '';
       }
 
-      // if (!isValidNumber(prices.value) || prices.value.length < 4) {
-      //   prices.style.borderColor = '#ff0000';
-      //   document.getElementById('prices-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
-      //   return false;
-      // } else {
-      //   document.getElementById('prices-error').innerText = '';
-      //   prices.style.borderColor = '';
-      // }
-
       // if (!isValidNumber(price.value) || price.value.length < 4) {
       //   price.style.borderColor = '#ff0000';
       //   document.getElementById('price-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
@@ -600,6 +592,15 @@
       } else {
         document.getElementById('quantity-error').innerText = '';
         quantity.style.borderColor = '';
+      }
+
+      if (!isValidNumber(prices.value) || prices.value.length < 4) {
+        prices.style.borderColor = '#ff0000';
+        document.getElementById('prices-error').innerText = 'Giá phải nhập số và ít nhất 4 chữ số';
+        return false;
+      } else {
+        document.getElementById('prices-error').innerText = '';
+        prices.style.borderColor = '';
       }
 
       if (!description.value) {

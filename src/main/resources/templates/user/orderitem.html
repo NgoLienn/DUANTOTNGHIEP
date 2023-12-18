@@ -62,28 +62,32 @@
                                                             th:classappend="${item.Orders.Status.statusID >= 1} ? 'active' : ''">
                                                             <span class="step-number"><i class="bi bi-journal"
                                                                     style="font-size: 20px;"></i></span>
-                                                            <span class="step-label">Đã đặt hàng</span>
+                                                            <span class="step-label" style="color: rgb(54, 54, 54);">Đã
+                                                                đặt hàng</span>
                                                             <div class="step-bar step-bar-dh"></div>
                                                         </label>
                                                         <label for="step2" class="step-item " data-step="2"
                                                             th:classappend="${item.Orders.Status.statusID >= 2} ? 'active' : ''">
                                                             <span class="step-number"><i class="bi bi-journal-check"
                                                                     style="font-size: 20px;"></i></span>
-                                                            <span class="step-label">Đã xác nhận</span>
+                                                            <span class="step-label" style="color: rgb(54, 54, 54);">Đã
+                                                                xác nhận</span>
                                                             <div class="step-bar step-bar-xn"></div>
                                                         </label>
                                                         <label for="step3" class="step-item" data-step="3"
                                                             th:classappend="${item.Orders.Status.statusID >= 3} ? 'active' : ''">
                                                             <span class="step-number"><i class="bi bi-box-seam"
                                                                     style="font-size: 20px;"></i></span>
-                                                            <span class="step-label">Đang giao hàng</span>
+                                                            <span class="step-label"
+                                                                style="color: rgb(54, 54, 54);">Đang giao hàng</span>
                                                             <div class="step-bar step-bar-gh"></div>
                                                         </label>
                                                         <label for="step4" class="step-item" data-step="4"
                                                             th:classappend="${item.Orders.Status.statusID >= 4} ? 'active' : ''">
                                                             <span class="step-number"><i class="bi bi-star"
                                                                     style="font-size: 20px;"></i></span>
-                                                            <span class="step-label">Đã giao hàng</span>
+                                                            <span class="step-label" style="color: rgb(54, 54, 54);">Đã
+                                                                giao hàng</span>
                                                         </label>
                                                     </div>
 
@@ -144,7 +148,7 @@
                                                     </div>
                                                     <div class="dcnhanhang">
                                                         <div class="d-flex justify-content-between flex-wrap">
-                                                            <div class="diachinh h5"> Địa Chỉ Nhận Hàng</div>
+                                                            <div class="diachinh h4"> Địa Chỉ Nhận Hàng</div>
                                                             <a th:href="@{/}">
                                                                 <button class="btn btn-outline-danger">Xem
                                                                     shop</button>
@@ -153,18 +157,22 @@
                                                         <br>
                                                         <div class="text-start" style="font-size: 16px;"
                                                             th:each="item : ${orderItems.get(0)}">
-                                                            <div class="name-order" style="font-size: 18px;"
+                                                            <div class="name-order" style="font-size: 20px;"
                                                                 th:text="${item.Orders.Account.Fullname}"></div>
-                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                            <div class="mt-2"
+                                                                style=" color: rgb(54, 54, 54); font-size: 18px;"
                                                                 th:text="'SĐT: (84+) ' + ${item.Orders.Phone}">
                                                             </div>
-                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                            <div class="mt-2"
+                                                                style="  color: rgb(54, 54, 54); font-size: 18px;"
                                                                 th:text="'Địa chỉ nhận hàng: ' + ${item.Orders.deliveryAddress}">
                                                             </div>
-                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                            <div class="mt-2"
+                                                                style="  color: rgb(54, 54, 54); font-size: 18px;"
                                                                 th:text="'Thời gian đặt hàng: ' + ${item.Orders.orderTime}">
                                                             </div>
-                                                            <div class="mt-2" style=" color: rgb(95, 95, 95);"
+                                                            <div class="mt-2"
+                                                                style="  color: rgb(54, 54, 54); font-size: 18px;"
                                                                 th:text="'Phương thức thanh toán: ' + ${item.Orders.paymentMethod}">
                                                             </div>
                                                         </div>
@@ -267,7 +275,7 @@
 
         </div>
 
-        <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a>
+        <!-- <a href="#" class="top-home"><span><i class="bi bi-arrow-up-square-fill"></i></span></a> -->
     </div>
 
     <script src="/assets/js/jquery.min.js"></script>

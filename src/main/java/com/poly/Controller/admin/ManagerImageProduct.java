@@ -74,6 +74,8 @@ public class ManagerImageProduct {
             imageProduct = imageProductService.searchProducts(query);
         }
 
+        imageProduct = imageProductRepo.findAllByOrderByImageproductIdDesc();
+
         model.addAttribute("query", query);
         model.addAttribute("imageProduct", imageProduct);
         model.addAttribute("products", products);
@@ -121,6 +123,8 @@ public class ManagerImageProduct {
         } else {
             imageProduct = imageProductService.searchProducts(query);
         }
+
+        imageProduct = imageProductRepo.findAllByOrderByImageproductIdDesc();
 
         model.addAttribute("query", query);
         model.addAttribute("imageProduct", imageProduct);
@@ -181,7 +185,41 @@ public class ManagerImageProduct {
                     Map<String, Object> params = ObjectUtils.asMap(
                             "folder", "Images_FastFoodStore",
                             "resource_type", "image");
-                    Map uploadResult = cloudinary.uploader().upload(file.getBytes(), params);
+                    // Your existing code to save the original file
+                    String baseDir = System.getProperty("user.dir");
+                    String folderPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator
+                            + "resources"
+                            + File.separator + "static" + File.separator + "assets" + File.separator + "images"
+                            + File.separator
+                            + "img_product";
+                    File directory = new File(folderPath);
+
+                    if (!directory.exists()) {
+                        directory.mkdirs();
+                    }
+
+                    String fileName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
+                    File savedFile = new File(directory, fileName);
+
+                    file.transferTo(savedFile);
+
+                    // API to remove background
+                    Response response = Request.Post("https://api.remove.bg/v1.0/removebg")
+                            .addHeader("X-Api-Key", "HXSXxqK7s8DL38Gr5UtiEGXH")
+                            .body(
+                                    MultipartEntityBuilder.create()
+                                            .addBinaryBody("image_file", savedFile)
+                                            .addTextBody("size", "auto")
+                                            .build())
+                            .execute();
+
+                    // Save the modified image
+                    String modifiedFileName = System.currentTimeMillis() + "-no-bg-" + file.getOriginalFilename();
+                    File modifiedImageFile = new File(directory, modifiedFileName);
+                    response.saveContent(modifiedImageFile);
+
+                    // Cloudinary upload using the modified image
+                    Map<String, Object> uploadResult = cloudinary.uploader().upload(modifiedImageFile, params);
                     String url = uploadResult.get("url").toString();
                     temp = url;
                 } catch (Exception e) {

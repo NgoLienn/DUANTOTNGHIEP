@@ -64,7 +64,7 @@
 							<div class="title text-black">Pizza Pepperoni</div>
 						</a>
 						<div class="quantity">
-							Lượt xem: <small style="font-weight: initial;"></small>
+							Lượt xem: <small style="font-weight: initial;"> 11</small>
 						</div>
 						<div class="evaluate text-danger">
 							<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i
@@ -97,7 +97,7 @@
 					<span class="wrap-food-sp2">
 						<div class="title">Hamburger Classic</div>
 						<div class="quantity">
-							Lượt xem: <small style="font-weight: initial;"></small>
+							Lượt xem: <small style="font-weight: initial;"> 680</small>
 						</div>
 						<div class="evaluate text-danger">
 							<i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i
@@ -526,7 +526,7 @@
 				var productId = $(this).data('product-id');
 
 				// Tạo đường dẫn cho sản phẩm dựa trên thông tin trên
-				var shareUrl = 'http://192.168.1.38:8080' + productId;
+				var shareUrl = 'http://localhost:8080' + productId;
 
 				// Sao chép đường dẫn vào bộ nhớ tạm của thiết bị
 				navigator.clipboard.writeText(shareUrl)
@@ -558,33 +558,13 @@
 				var productId = $(this).data('product-id');
 
 				// Tạo đường dẫn cho sản phẩm dựa trên thông tin trên
-				var shareUrl = 'http://192.168.1.38:8080' + productId;
-
-				// chia sẽ lên mạng xã hội
+				var shareUrl = 'http://192.168.1.38:8080/productDetail/?productID=' + productId;
 
 				// Chia sẻ trực tiếp tới Facebook
 				window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl));
 
 			});
 		});
-
-		// $(document).ready(function () {
-		// 	$('.sharefb').click(function (event) {
-		// 		event.preventDefault();
-
-		// 		var productId = $(this).data('product-id');
-		// 		var shareUrl = 'http://192.168.1.38:8080/productDetail/?productID=' + productId;
-		// 		var productName = $(this).siblings('.title').text().trim(); // Tên sản phẩm
-		// 		var productDescription = $(this).siblings('.price').text().trim(); // Mô tả sản phẩm
-		// 		var productImage = $(this).siblings('img').attr('src'); // Đường dẫn hình ảnh
-
-		// 		var fbShareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl) +
-		// 			'&quote=' + encodeURIComponent(productName + ' - ' + productDescription) +
-		// 			'&picture=' + encodeURIComponent(productImage);
-
-		// 		window.open(fbShareUrl, '_blank');
-		// 	});
-		// });
 
 		//chia sẻ trên pinteres
 		$(document).ready(function () {

@@ -21,4 +21,6 @@ public interface ImageProductRepository extends JpaRepository<Image_product, Lon
     @Query("SELECT ip FROM Image_product ip WHERE ip.productId.Name LIKE %:query%")
     List<Image_product> findByNameContainingIgnoreCase(@Param("query") String query);
 
+    List<Image_product> findAllByOrderByImageproductIdDesc();
+
 }
