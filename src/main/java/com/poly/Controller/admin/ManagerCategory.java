@@ -62,13 +62,12 @@ public class ManagerCategory {
 	public String ViewCategory(Model model) {
 
 		// List<Categories> categories = categoryRepo.findAll();
-		 
-		 List<Categories> categories = categoryRepo.findAllByOrderByCategoryIdDesc();
 
-	        // Thêm danh sách vào model để truyền đến view
-	        model.addAttribute("categories", categories);
+		List<Categories> categories = categoryRepo.findAllByOrderByCategoryIdDesc();
 
-		 
+		// Thêm danh sách vào model để truyền đến view
+		model.addAttribute("categories", categories);
+
 		model.addAttribute("newCategories", new Categories());
 		model.addAttribute("categories", categories);
 
@@ -77,59 +76,72 @@ public class ManagerCategory {
 
 	@PostMapping("/managerCategory/add")
 	public String addProduct(@ModelAttribute("newCategories") Categories category, BindingResult bindingResult,
-	        @RequestParam("uploadimage") MultipartFile file, Model model) {
+			@RequestParam("uploadimage") MultipartFile file, Model model) {
 
-	    Map<String, Object> params = ObjectUtils.asMap("folder", "Images_FastFoodStore", "resource_type", "image");
-	    
-	    if (categoryService.isCategoryExists(category.getName())) {
-	        bindingResult.rejectValue("name", "error.newCategories", "DANH MỤC ĐÃ TỒN TẠI");
-	        model.addAttribute("error", "DANH MỤC ĐÃ TỒN TẠI");
-	        model.addAttribute("categories", categoryService.getAllCategories());
-	        return "admin/category";
-	    }
-	    try {
-	        // Bắt thêm ảnh
-	        if (file == null || file.isEmpty()) {
-	            model.addAttribute("error_image", "Vui lòng chọn ảnh.");
-	            model.addAttribute("categories", categoryService.getAllCategories());
-	            return "admin/category";
-	        }
+		Map<String, Object> params = ObjectUtils.asMap("folder", "Images_FastFoodStore", "resource_type", "image");
 
-	        // Lưu trữ ảnh trực tiếp trong phương thức addProduct
-	        String baseDir = System.getProperty("user.dir");
-	        String folderPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator
-	                + "resources" + File.separator + "static" + File.separator + "assets" + File.separator + "images"
-	                + File.separator + "img_product";
+		if (categoryService.isCategoryExists(category.getName())) {
+			bindingResult.rejectValue("name", "error.newCategories", "DANH MỤC ĐÃ TỒN TẠI");
+			model.addAttribute("error", "DANH MỤC ĐÃ TỒN TẠI");
+			model.addAttribute("categories", categoryService.getAllCategories());
+			return "admin/category";
+		}
+		try {
+			// Bắt thêm ảnh
+			if (file == null || file.isEmpty()) {
+				model.addAttribute("error_image", "Vui lòng chọn ảnh.");
+				model.addAttribute("categories", categoryService.getAllCategories());
+				return "admin/category";
+			}
 
-	        File directory = new File(folderPath);
+			// Your existing code to save the original file
+			String baseDir = System.getProperty("user.dir");
+			String folderPath = baseDir + File.separator + "src" + File.separator + "main" + File.separator
+					+ "resources"
+					+ File.separator + "static" + File.separator + "assets" + File.separator + "images"
+					+ File.separator
+					+ "img_product";
+			File directory = new File(folderPath);
 
-	        if (!directory.exists()) {
-	            directory.mkdirs();
-	        }
-	        String fileName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
-	        File savedFile = new File(folderPath, fileName);
-	        file.transferTo(savedFile);
+			if (!directory.exists()) {
+				directory.mkdirs();
+			}
 
-	      
-	        
+			String fileName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
+			File savedFile = new File(directory, fileName);
 
-	        // Cloudinary upload sử dụng ảnh đã được chỉnh sửa
-	        Map<String, Object> uploadResult = cloudinary.uploader().upload(savedFile, params);
-	        String url = uploadResult.get("url").toString();
+			file.transferTo(savedFile);
 
-	        category.setImage_url(url);
-	      
-	        
-	        categoryRepo.save(category);
+			// API to remove background
+			Response response = Request.Post("https://api.remove.bg/v1.0/removebg")
+					.addHeader("X-Api-Key", "HXSXxqK7s8DL38Gr5UtiEGXH")
+					.body(
+							MultipartEntityBuilder.create()
+									.addBinaryBody("image_file", savedFile)
+									.addTextBody("size", "auto")
+									.build())
+					.execute();
 
-	        return "redirect:/admin/managerCategory";
+			// Save the modified image
+			String modifiedFileName = System.currentTimeMillis() + "-no-bg-" + file.getOriginalFilename();
+			File modifiedImageFile = new File(directory, modifiedFileName);
+			response.saveContent(modifiedImageFile);
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	    return "redirect:/admin/managerCategory";
+			// Cloudinary upload using the modified image
+			Map<String, Object> uploadResult = cloudinary.uploader().upload(modifiedImageFile, params);
+			String url = uploadResult.get("url").toString();
+
+			category.setImage_url(url);
+
+			categoryRepo.save(category);
+
+			return "redirect:/admin/managerCategory";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/admin/managerCategory";
 	}
-
 
 	@GetMapping("/managerCategory/edit/{categoryId}")
 	public String edit(Model model, @PathVariable("categoryId") Long categoryId) {

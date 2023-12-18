@@ -174,7 +174,7 @@
 								Cả
 							</button>
 						</li>
-						<th:block th:each="category : ${categoryList}">
+						<th:block th:each="category : ${categoryList}" th:if="${category.Status != false}">
 							<li class="nav-item" role="presentation">
 								<button class="nav-link custom-tab-link" th:id="'pizza-tab'+ ${category.categoryId}"
 									th:data-bs-toggle="tab"

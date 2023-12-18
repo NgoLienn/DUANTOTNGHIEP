@@ -29,14 +29,13 @@
 								<span class="caption">Tất Cả</span>
 								</img>
 							</li>
-							<th:block th:each="category : ${categoryList}">
+							<th:block th:each="category : ${categoryList}" th:if="${category.Status != false}">
 								<li class="nav-item" role="presentation">
 									<img class="nav-link text-white custom-tab-link"
 										th:id="'pizza-tab'+ ${category.categoryId}" th:data-bs-toggle="tab"
 										th:data-bs-target="'#pizza-tab-pane' + ${category.categoryId}" type="button"
 										role="tab" th:aria-controls="'pizza-tab-pane' + ${category.categoryId}"
-										th:aria-selected="false"
-										th:src="${category.image_url}">
+										th:aria-selected="false" th:src="${category.image_url}">
 									<span class="caption" th:text="${category.name}"></span>
 									</img>
 								</li>

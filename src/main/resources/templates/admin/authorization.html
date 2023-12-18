@@ -44,7 +44,7 @@
 										<i class="fas fa-search cursor-pointer" aria-hidden="true"></i>
 									</button>
 								</span> <input type="text" class="form-control" name="query" id="searchInput"
-											   oninput="search()" placeholder="Tìm Kiếm...">
+									oninput="search()" placeholder="Tìm Kiếm...">
 							</div>
 						</form>
 					</div>
@@ -151,7 +151,8 @@
 												Khoản
 											</th>
 
-											<th th:each="role: ${roles}" th:text="${role.name}" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+											<th th:each="role: ${roles}" th:text="${role.name}"
+												class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
 
 											</th>
 										</tr>
@@ -161,15 +162,17 @@
 										<tr th:each="authority : ${authorities}">
 											<td class="align-middle text-sm">
 
-												<span th:text="${authority.account.UserName}" class="badge badge-sm text-dark text-xs"></span>
+												<span th:text="${authority.account.UserName}"
+													class="badge badge-sm text-dark text-xs"></span>
 											</td>
 											<td th:each="role : ${roles}" class="align-middle">
-												<input th:id="'checkbox-' + ${authority.account.UserName} + '-' + ${role.id}"
-													   th:name="'checkbox-' + ${authority.account.UserName} + '-' + ${role.id}"
-													   th:checked="${authority.role.id == role.id}"
-													   th:data-username="${authority.account.UserName}"
-													   th:data-role="${role.id}"
-													   onclick="setRole(this)" type="checkbox" class="custom-checkbox"
+												<input
+													th:id="'checkbox-' + ${authority.account.UserName} + '-' + ${role.id}"
+													th:name="'checkbox-' + ${authority.account.UserName} + '-' + ${role.id}"
+													th:checked="${authority.role.id == role.id}"
+													th:data-username="${authority.account.UserName}"
+													th:data-role="${role.id}" onclick="setRole(this)" type="checkbox"
+													class="custom-checkbox"
 													style="margin-left: 30px; width: 18px; height: 18px; cursor: pointer;">
 											</td>
 										</tr>
@@ -177,24 +180,26 @@
 								</table>
 
 								<nav aria-label="Page navigation example"
-									 class="navigation mt-3 mb-3 d-flex justify-content-center">
+									class="navigation mt-3 mb-3 d-flex justify-content-center">
 									<ul class="pagination">
 										<li class="page-item cursor-pointer" th:if="${accountPage.currentPage > 1}">
 											<a class="page-link" href="#" aria-label="Previous"
-											   th:onclick="'javascript:loadPage(1, event)'">
+												th:onclick="'javascript:loadPage(1, event)'">
 												<span aria-hidden="true">&laquo;</span>
 											</a>
 										</li>
 										<li th:each="page : ${#numbers.sequence(1, accountPage.totalPages)}"
 											class="page-item cursor-pointer">
-											<a class="page-link text-black" th:classappend="${page == accountPage.currentPage} ? active"
-											   th:onclick="'javascript:loadPage(' + ${page} + ', event)'" th:text="${page}"></a>
+											<a class="page-link text-black"
+												th:classappend="${page == accountPage.currentPage} ? active"
+												th:onclick="'javascript:loadPage(' + ${page} + ', event)'"
+												th:text="${page}"></a>
 										</li>
 										<li class="page-item cursor-pointer"
 											th:if="${accountPage.currentPage < accountPage.totalPages}">
 											<a class="page-link" href=""
-											   th:onclick="'javascript:loadPage(' + ${accountPage.totalPages} + ', event)'"
-											   aria-label="Next">
+												th:onclick="'javascript:loadPage(' + ${accountPage.totalPages} + ', event)'"
+												aria-label="Next">
 												<span aria-hidden="true">&raquo;</span>
 											</a>
 										</li>
@@ -243,14 +248,14 @@
 				data: {
 					page: page
 				},
-				success: function(response) {
+				success: function (response) {
 					// Cập nhật nội dung danh sách tài khoản
 					var table = $(response).find("#customers").html();
 					$("#customers").html(table);
 					var pagination = $(response).find(".pagination").html();
 					$(".pagination").html(pagination);
 				},
-				error: function(xhr, status, error) {
+				error: function (xhr, status, error) {
 					console.log("Error: " + error);
 				}
 			});
@@ -267,11 +272,11 @@
 					page: 1,
 					keyword: search
 				},
-				success: function(response) {
+				success: function (response) {
 					var table = $(response).find("#customers").html();
 					$("#customers").html(table);
 				},
-				error: function(error) {
+				error: function (error) {
 					console.log(error);
 				}
 			});
@@ -296,7 +301,7 @@
 				}
 			});
 
-			var confirmation = confirm('Bạn có muốn  thay đổi ' +username + ' thành vai trò ' +role );
+			var confirmation = confirm('Bạn có muốn  thay đổi ' + username + ' thành vai trò ' + role);
 			if (confirmation == true) {
 				$.ajax({
 					url: '/admin/set-role',
@@ -305,11 +310,11 @@
 						username: username,
 						role: role
 					},
-					success: function(response) {
+					success: function (response) {
 						console.log(response);
 
 					},
-					error: function(error) {
+					error: function (error) {
 						console.log(error);
 						alert("Đã xảy ra lỗi. Vui lòng thử lại sau.");
 					}
@@ -334,7 +339,7 @@
 		var currentCheckbox = null;
 
 		for (var i = 0; i < checkboxes.length; i++) {
-			checkboxes[i].onclick = function() {
+			checkboxes[i].onclick = function () {
 				if (this.checked) {
 					if (currentCheckbox !== null) {
 						currentCheckbox.checked = false;

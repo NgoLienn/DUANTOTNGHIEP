@@ -210,11 +210,11 @@
                   <a th:href="@{/admin/managerImageProduct}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProduct')}"
                     th:unless="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}">
-                    <button class="btn btn-primary btn-sm ms-4" type="button">Làm Mới</button>
+                    <button class="btn btn-primary btn-sm ms-4" type="button">Hủy Thao Tác</button>
                   </a>
                   <a th:href="@{|/admin/managerImageProducts/edit/${imageproductIdd}|}"
                     th:if="${#httpServletRequest != null and #strings.contains(#httpServletRequest.getRequestURI(), '/admin/managerImageProducts/edit')}">
-                    <button class="btn btn-primary btn-sm ms-4" type="button">Làm Mới</button>
+                    <button class="btn btn-primary btn-sm ms-4" type="button">Hủy Thao Tác</button>
                   </a>
                 </div>
                 <!-- Modal hỏi xóa sản phẩm-->
